@@ -1,4 +1,5 @@
 ================
+================
 Installing CoLab
 ================
 ---------------------
@@ -9,7 +10,8 @@ CoLab requires...
  - Python 2.3 (maybe 2.4). I recommend using 2.6 because why not?
  - Django 1.2
  - Pinax 0.9
- - MathJax (too many files to include)
+ - MathJax
+ - TinyMCE 
 
 Getting a local copy running isn't the simplest thing right now. Eventually we will have a buildout script to do all of this. Babysteps.
 
