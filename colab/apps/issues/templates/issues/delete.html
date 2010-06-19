@@ -1,0 +1,28 @@
+{% extends "issues/issue_base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load threadedcommentstags %}
+{% load issues_tags %}
+
+{% block head_title %}Delete Issue?{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Issues</a></li>
+    <li><a href="{{ issue.get_absolute_url }}">{{ issue.title }}</a></li>
+    <li><a href="{{ request.path }}">Delete Confirmation</a></li>
+{% endblock %}
+
+{% block body %}
+    
+    <h1>Issue Deletion</h1>
+    
+    <p>
+        Are you sure you want to delete the issue <a href="{{ issue.get_absolute_url }}">{{ issue.title }}</a>?
+    </p>
+    
+    <p>
+        <a href="{{ delete_url }}">Yes</a>.
+    </p>
+    
+{% endblock %}

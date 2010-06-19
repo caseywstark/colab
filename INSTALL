@@ -1,0 +1,101 @@
+================
+Installing CoLab
+================
+---------------------
+for local development
+---------------------
+
+CoLab requires...
+ - Python 2.3 (maybe 2.4). I recommend using 2.6 because why not?
+ - Django 1.2
+ - Pinax 0.9
+ - MathJax (too many files to include)
+
+Getting a local copy running isn't the simplest thing right now. Eventually we will have a buildout script to do all of this. Babysteps.
+
+
+Python
+------
+
+First you need to make sure Python is installed and works. Hopefully, you are using something easy like Ubuntu and you can run a simple
+
+    $ sudo apt-get install python2.6
+    $ python
+    Python 2.6.4 (r264:75706, Dec  7 2009, 18:45:15)
+    [GCC 4.4.1] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> 
+ 
+
+Python package tools
+--------------------
+
+Python has two package management tools that make your life very easy. They are called easy_install and pip. I think pip is better, but it doesn't really matter. Do a
+
+ $ sudo apt-get install python-setuptools
+ $ sudo apt-get install python-pip
+
+to install both. Now you can install any python package you want using
+
+ $ sudo pip install whatever
+ 
+or
+ 
+ $ sudo easy_install whatever
+ 
+Yay python.
+
+
+Virtualenv and virtualenvwrapper
+--------------------------------
+
+I highly recommend using virtualenvwrapper in order to isolate the colab project from your other python environments. First get virtualenv and then virtualenvwrapper.
+ 
+    $ sudo pip install virtualenv virtualenvwrapper
+ 
+Now you need a place to put your virtualenvs. The default is ~/.virtualenvs.
+ 
+    $ cd
+    $ mkdir .virtualenvs
+ 
+After that, you need to set your WORKON_HOME to tell virtualenvwrapper where to
+look. Put this at the end of your ~/.bashrc
+
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+ 
+or whatever the path is to virtualenvwrapper.sh or virtualenvwrapper_bashrc on your system. Now you should make an environment for colab.
+
+    $ mkvirtualenv colab
+    (colab)$ 
+ 
+Cool.
+
+
+CoLab
+-----
+
+If you plan on commiting back to the main GitHub repo, you can either fork the project upfront or use
+
+    $ git clone git://github.com/caseywstark/colab.git
+ 
+and upload it to GitHub later.
+
+
+Django and Pinax
+----------------
+
+In the colab directory, run
+
+    (colab)$ pip install Pinax
+    (colab)$ pip install -r requirements.txt
+
+
+MathJax
+-------
+
+I couldn't include MathJax in the repo because there are too many files. It's easy to install. In colab/colab/media...
+
+    $ svn co https://mathjax.svn.sourceforge.net/svnroot/mathjax mathjax
+    $ cd mathjax
+    $ unzip fonts

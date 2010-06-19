@@ -1,0 +1,66 @@
+{% load flagtags %}
+{% load avatar_tags %}
+{% load account_tags %}
+{% load theme_tags %}
+
+<div class="meta-wrapper">
+    <div class="post-meta">
+        <ul class="vote-boxes">
+            <li class="vote-box yeas">
+                <div class="vote-name">yeas</div>
+                <div class="vote-number">{{ post.yeas }}</div>
+                {% if previous_up %}
+                    <form class="vote-button-form" method="post" action="{{ up_url }}">{% csrf_token %}
+                        <input class="button vote-button yea-button vote-clear" type="submit" name="clear" value="clear">
+                    </form>
+                {% else %}
+                    <form class="vote-button-form" method="post" action="{{ up_url }}">{% csrf_token %}
+                        <input class="button vote-button yea-button" type="submit" name="up" value="+">
+                    </form>
+                {% endif %}
+            </li>
+            <li class="vote-box nays">
+                <div class="vote-name">nays</div>
+                <div class="vote-number">{{ post.nays }}</div>
+                {% if previous_down %}
+                    <form class="vote-button-form" method="post" action="{{ down_url }}">{% csrf_token %}
+                        <input class="button vote-button nay-button vote-clear" type="submit" name="clear" value="clear">
+                    </form>
+                {% else %}
+                    <form class="vote-button-form" method="post" action="{{ down_url }}">{% csrf_token %}
+                        <input class="button vote-button nay-button" type="submit" name="down" value="-">
+                    </form>
+                {% endif %}
+            </li>
+        </ul>
+        <div class="clear"></div>
+        
+        <div class="post-user">
+            {% ifequal the_author "anonymous" %}
+                Anonymous
+            {% else %}
+                <a class="user-avatar" href="{{ the_author.get_absolute_url }}">
+                    {% avatar the_author 40 %}
+                </a>
+                <a class="user-name" href="{{ the_author.get_absolute_url }}">{% user_display the_author %}</a>
+            {% endifequal %}
+            <div class="clear"></div>
+            <div class="post-date">
+                {% silk icon %}{{ datetime|date:"P M d, Y" }}
+            </div>
+        </div>
+
+        <a class="post-permalink-link" href="{{ permalink }}">link</a>
+        <a class="post-flag-link" id="flag-{{ post_type.id }}-{{ post.id }}-link" href="">flag</a>
+        <div class="flag-form-wrapper" id="flag-{{ post_type.id }}-{{ post.id }}">
+            {% flag post author_field %}
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#flag-{{ post_type.id }}-{{ post.id }}-link").click(function(e) {
+                    $("#flag-{{ post_type.id }}-{{ post.id }}").toggle("slide", {}, 500);
+                    return false;
+                });
+            });
+        </script>
+    </div></div>

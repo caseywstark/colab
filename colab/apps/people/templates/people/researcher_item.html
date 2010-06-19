@@ -1,0 +1,33 @@
+{% load account_tags %}
+{% load avatar_tags %}
+
+<li class="list-item">
+    <a class="big-avatar" href="{{ researcher.get_absolute_url }}">
+        {% avatar researcher.user 80 %}
+    </a>
+    
+    <div class="researcher-list-items">
+        <div class="researcher-name list-item-header">
+            <a href="{{ researcher.get_absolute_url }}">{% user_display researcher.user %}</a>
+        </div>
+        <div class="researcher-disciplines">
+            Expertise: 
+            {% if researcher.expertise %}
+                <a href="{{ researcher.expertise.get_absolute_url }}">{{ researcher.expertise }}</a>
+            {% else %}
+                None specified, yet
+            {% endif %}
+        </div>
+        <div class="researcher-insterests">
+            Research Interests:
+            {% if researcher.research_interests.any %}
+                {% for interest in researcher.research_interests.all %}
+                    {{ interest }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                None specified, yet
+            {% endif %}
+        </div>
+    </div>
+    <div class="clear"></div>
+</li>

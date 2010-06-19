@@ -1,0 +1,42 @@
+{% load theme_tags %}
+{% load headquarters_tags %}
+{% load avatar_tags %}
+
+<li class="list-item post-summary">
+    
+    <div class="post-title-wrapper">
+        <a class="post-title" href="{{ feedback.get_absolute_url }}">
+            {{ feedback.title }}
+        </a>
+    </div>
+    
+    {% post_meta_summary feedback %}
+    
+    <div class="post-push-right post-content-wrapper">
+        <span class="feedback-type feedback-type-{{ feedback.type.slug }}">{{ feedback.type.title }}</span>
+        <a href="{{ feedback.get_absolute_url }}">{{ feedback.title }}</a> <span class="feedback-status feedback-status-{{ feedback.status.slug }}">{{ feedback.status.title }}</span>
+        <span class="feedback-comments"><a href="{{ feedback.get_absolute_url }}">{{ comment_count }} comment{{ comment_count|pluralize }}</a></span>
+        <span class="feedback-user">
+            {% if feedback.user %}
+                {% if not feedback.anonymous %}
+                    Submitted by:
+                    <a href="{{ feedback.user.get_absolute_url }}" class="avatar" title="View profile">{% avatar feedback.user.username 15 %}</a>
+                    <a href="{{ feedback.user.get_absolute_url }}" title="View profile">{{ feedback.user }}</a>
+                {% else %}
+                    Submitted anonymously
+                {% endif %}
+            {% else %}
+                Submitted anonymously
+            {% endif %}
+        </span>
+        <span class="feedback-date">on {{ feedback.created|date:"d M Y" }}</span>
+        
+        <div class="post-content">
+            {{ feedback.description|safe }}
+        </div>
+        
+        
+    </div>
+    <div class="clear"></div>
+    
+</li>

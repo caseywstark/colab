@@ -1,0 +1,27 @@
+{% extends "feedback/base.html" %}
+
+{% load uni_form_tags %}
+{% load feedback_tags %}
+{% load theme_tags %}
+
+{% block head_title %}Submit Feedback{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url feedback_list %}">Feedback</a></li>
+    <li><a href="{{ request.path }}">Submit</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <p>Be honest! Tell us exactly what you like and don't and feel free to suggest new features or changes.</p>
+    
+    <form class="uniForm" id="feedback_form" method="POST" action="">{% csrf_token %}
+        <fieldset class="inlineLabels">
+            {{ form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" value="Submit Feedback"/>
+            </div>
+        </fieldset>
+    </form>
+
+{% endblock %}

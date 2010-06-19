@@ -1,0 +1,54 @@
+{% load flagtags %}
+{% load avatar_tags %}
+{% load account_tags %}
+{% load issues_tags %}
+
+<div class="meta-wrapper">
+    <div class="post-meta">
+        <ul class="vote-boxes">
+            <li class="vote-box yeas">
+                <div class="vote-name">yeas</div>
+                <div class="vote-number">{{ post.yeas }}</div>
+                {% if previous_up %}
+                    <a class="vote-link vote-yea vote-clear" href="{{ up_url }}">clear</a>
+                {% else %}
+                    <a class="vote-link vote-yea" href="{{ up_url }}">+</a>
+                {% endif %}
+            </li>
+            <li class="vote-box nays">
+                <div class="vote-name">nays</div>
+                <div class="vote-number">{{ post.nays }}</div>
+                {% if previous_down %}
+                    <a class="vote-link vote-nay vote-clear" href="{{ down_url }}">clear</a>
+                {% else %}
+                    <a class="vote-link vote-nay" href="{{ down_url }}">-</a>
+                {% endif %}
+            </li>
+        </ul>
+        <div class="clear"></div>
+        
+        <div class="post-user">
+            <a class="user-avatar" href="{{ user.get_absolute_url }}">
+                {% avatar user 40 %}
+            </a>
+            <a class="user-name" href="{{ user.get_absolute_url }}">{% user_display user %}</a>
+            <div class="clear"></div>
+            <div class="post-date">
+                {{ post.date_submitted|date:"M d, Y P" }}
+            </div>
+        </div>
+
+        <a class="post-permalink-link" href="{% comment_url post %}">link</a>
+        <a class="post-flag-link" id="flag-post-{{ post.id }}-link" href="">flag</a>
+        <div class="flag-form-wrapper" id="flag-post-{{ post.id }}">
+            {% flag post "user" %}
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#flag-post-{{ post.id }}-link").click(function(e) {
+                    $("#flag-post-{{ post.id }}").toggle("slide", {}, 500);
+                    return false;
+                });
+            });
+        </script>
+    </div></div>

@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load avatar_tags %}
+
+{% block head_title %}{% trans "Avatar" %}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url acct_email %}">Account</a></li>
+    <li><a href="{{ request.path }}">Avatar Control</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Avatar" %}</h1>
+    <h3>{% trans "Here is your current avatar:" %}</h3>
+  {% avatar user 80 %}
+  {% if not avatars %}
+        <h3>Your avatar is currently the one found on <a href="http://www.gravatar.com/">Gravatar</a>, but you can upload a custom avatar just for this site!  To do so, simply use the form below.</h3>
+        <p>( Custom avatars will not show up unless you have a <a href="{% url acct_email%}">confirmed email address</a>. )</p>
+    {% else %}
+        <h3>Select a different avatar:</h3>
+        <p>( Custom avatars will not show up unless you have a <a href="{% url acct_email%}">confirmed email address</a>. )</p>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <ul class="avatar_choices">
+                {{ primary_avatar_form.choice }}
+            </ul>
+            <input type="submit" value="Choose new Default" />
+        </form>
+        {% url avatar_delete as avatar_delete_url %}
+        <p>{% blocktrans %}Don&rsquo;t like these avatars? You can <a href="{{ avatar_delete_url }}">choose which ones to delete</a>.{% endblocktrans %}</p>
+    {% endif %}
+    <p>
+    <form enctype="multipart/form-data" method="POST" action="">
+        {% csrf_token %}
+        <label for="avatar">{% trans "Upload an Avatar:" %}</label>
+        <input type="file" name="avatar" value="{% trans "Avatar Image" %}" />
+        <input type="submit" value="{% trans "Upload New Image" %}" />
+    </form>
+    </p>
+{% endblock %}
+
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <script type="text/javascript">
+       <!-- nothing here -->
+    </script>
+{% endblock %}

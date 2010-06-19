@@ -1,0 +1,35 @@
+{% extends "issues/issue_base.html" %}
+
+{% load uni_form_tags %}
+{% load issues_tags %}
+
+{% block head_title %}Resolve Issue: {{ issue.title }}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Issues</a></li>
+    <li><a href="{{ issue.get_absolute_url }}">{{ issue.title }}</a></li>
+    <li><a href="{{ request.path }}">Resolve</a></li>
+{% endblock %}
+
+{% block body %}
+    
+    <h1>Eureka!</h1>
+    <h2>Mark your issue as resolved.</h2>
+    
+    {% if issue.papers %}
+        <form class="uniForm" id="resolution_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ resolution_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" value="Resolve"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <p class="error">
+            You can't resolve your issue without a resolution paper.
+            Please compose a paper on the solution to this issue before trying to link to it.
+        </p>
+    {% endif %}
+    
+{% endblock %}

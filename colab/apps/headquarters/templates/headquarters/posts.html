@@ -1,0 +1,37 @@
+{% extends "headquarters/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+{% load object_feeds_tags %}
+{% load headquarters_tags %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Headquarters</a></li>
+    <li><a href="{{ request.path }}">Posts</a></li>
+{% endblock %}
+
+{% block body %}
+    
+    {% if post_updates %}
+        <p>
+            You have contributed {{ post_updates.count }} posts.
+        </p>
+        
+        {% autopaginate post_updates %}
+        {% paginate %}
+        
+        <ul id="update-list">
+            {% for update in post_updates %}
+            <li class="update list-item">
+                {% update_preview update %}
+            </li>
+            {% endfor %}
+        </ul>
+        
+        {% paginate %}
+        
+    {% else %}
+        <p>You have not posted anything, yet.</p>
+    {% endif %}
+    
+{% endblock %}

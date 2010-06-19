@@ -1,0 +1,45 @@
+{% extends "feeds/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load object_feeds_tags %}
+
+{% block head_title %}{% blocktrans %}Your Subscription to {{ feed }}{% endblocktrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="">Feeds</a></li>
+    <li><a href="{{ feed.feed_object.get_absolute_url }}">{{ feed.feed_object }}</a></li>
+    <li><a href="{{ request.path }}">Follow</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>Subscription to {{ feed }}</h1>
+    
+    <p>You are {% if not following %}<strong>not</strong>{% endif %} following this feed.</p>
+    
+    {% if following %}
+        <form class="uniForm" id="unfollow_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                <div class="form_block">
+                    <input type="submit" name="unfollow" value="Unfollow"/>
+                </div>
+            </fieldset>
+        </form>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="subscription_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ subscription_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" name="follow" value="Update Subscription"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+{% endblock %}

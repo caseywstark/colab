@@ -1,0 +1,24 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}Contribute to CoLab{% endblock %}
+
+{% block body_class %}contribute{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a></li>
+    <li><a href="{{ request.path }}">Contribute</a></li>
+{% endblock %}
+
+{% block body %}
+    <div id="about">
+        <h1 class="about-title">Give CoLab A Helping Hand</h1>
+        
+        <p>We are currently looking for two kinds of help: new staff and money.</p>
+        
+        <p>
+            We don't have a donation PayPal yet, so please contact
+            <a href="mailto:casey@thisiscolab.com">Casey</a> in order to help either
+            way. Thank you!
+        </p>
+    </div>
+{% endblock %}

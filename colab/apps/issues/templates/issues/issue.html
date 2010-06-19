@@ -1,0 +1,88 @@
+{% extends "issues/issue_base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load threadedcommentstags %}
+{% load theme_tags %}
+{% load issues_tags %}
+{% load headquarters_tags %}
+{% load account_tags %}
+{% load object_feeds_tags %}
+{% load wikis_tags %}
+{% load people_tags %}
+
+{% block head_title %}Issue: {{ issue.title }}{% endblock %}
+
+{% block extra_head %}
+    {{ comment_form.media }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Issues</a></li>
+    <li><a href="{{ request.path }}">{{ issue.title }}</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            {{ issue.title }}
+        </div>
+    </div>
+    
+    {% if issue.papers %}
+        <ul id="paper-list" class="wiki-list">
+            <li>{% silk "page_white_text" %} Papers:</li>
+            {% for paper in issue.papers.all %}
+                <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="clear"></div>
+    {% endif %}
+    
+    {% post_meta issue %}
+    
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ issue.description|safe }}
+        </div>
+
+        <ul class="post-buttons">
+            {% ifequal user issue.creator %}
+                <li><a class="post-option" href="{% url issue_edit issue.slug %}">{% silk "script_edit" %} Edit</a></li>
+                <li><a class="post-option" href="{% url issue_delete issue.slug %}">{% silk "script_delete" %} Delete</a></li>
+            {% endifequal %}
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+    {#{% resolution_preview issue %}#}
+    
+    {% if issue.summaries %}
+        <ul id="summary-list" class="wiki-list">
+            <li>{% silk "note" %} Summaries:</li>
+            {% for summary in issue.summaries.all %}
+                <li><a href="{{ summary.get_absolute_url }}">{{ summary }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="clear"></div>
+    {% endif %}
+    
+    {% comment_list issue %}
+    
+    <div class="reply-wrapper">
+        {% if user.is_authenticated %}
+        <form class="reply-form uniForm" id="reply-to-issue" method="POST" action="{% get_comment_url issue %}">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ comment_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="comment" />
+                    <input type="submit" value="{% trans 'Comment on Issue' %}"/>
+                </div>
+            </fieldset>
+        </form>
+        {% else %}
+            <h3>Please <a href="{% url acct_login %}">Login</a> (or <a href="{% url acct_signup %}">Sign Up</a>) to leave a comment.</h3>
+        {% endif %}
+    </div>
+    
+{% endblock %}

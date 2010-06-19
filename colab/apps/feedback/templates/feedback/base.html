@@ -1,0 +1,15 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load theme_tags %}
+
+{% block body_class %}feedback{% endblock %}
+
+{% block subnav %}
+    <li><a href="{% url feedback_list "all" %}">{% silk "bug" %} {% trans "All Feedback" %}</a></li>
+    <li><a href="{% url feedback_list "open" %}">{% silk "door_open" %} {% trans "Open" %}</a></li>
+    <li><a href="{% url feedback_list "closed" %}">{% silk "door" %} {% trans "Closed" %}</a></li>
+    {% if user.is_authenticated %}
+        <li><a href="{% url my_feedback %} ">{% silk "bug_link" %} {% trans "Mine" %}</a></li>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+[
+    {"pk": 1, "model": "feedback.status", "fields": {"default": 1, "status": "open", "slug": "new", "title": "New"}},
+    {"pk": 2, "model": "feedback.status", "fields": {"default": 0, "status": "open", "slug": "accepted", "title": "Accepted"}},
+    {"pk": 3, "model": "feedback.status", "fields": {"default": 0, "status": "closed", "slug": "done", "title": "Done"}},
+    {"pk": 4, "model": "feedback.status", "fields": {"default": 0, "status": "closed", "slug": "wont-do", "title": "Won't do"}},
+    {"pk": 1, "model": "feedback.type", "fields": {"slug": "idea", "title": "Idea"}},
+    {"pk": 2, "model": "feedback.type", "fields": {"slug": "problem", "title": "Problem"}},
+    {"pk": 3, "model": "feedback.type", "fields": {"slug": "question", "title": "Question"}},
+    {"pk": 4, "model": "feedback.type", "fields": {"slug": "general", "title": "General"}}
+]

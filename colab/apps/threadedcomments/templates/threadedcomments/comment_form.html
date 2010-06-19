@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% if user.is_authenticated %}
+    <form class="uniForm" id="reply-form" method="POST" action="{{ comment_url }}">
+        <fieldset class="inlineLabels">
+            {{ comment_form|as_uni_form }}
+            <div class="form_block">
+                <input type="hidden" name="action" value="comment" />
+                <input type="submit" value="{% trans 'comment' %}"/>
+            </div>
+        </fieldset>
+    </form>
+{% else %}
+    {% url acct_signup as signup_url %}
+    {% url acct_login as login_url %}
+    <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own issue or join an existing one.{% endblocktrans %}</p>
+{% endif %}

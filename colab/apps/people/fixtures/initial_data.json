@@ -1,0 +1,18 @@
+[
+    {
+        "pk": 1, 
+        "model": "people.researcher", 
+        "fields": {
+            "website": "http://www.thestarkeffect.com", 
+            "about": "Casey Stark is the founder of CoLab", 
+            "name": "Casey Stark", 
+            "grad_institution": null, 
+            "default_filter": 36, 
+            "research_interests": [], 
+            "expertise": 48, 
+            "user": 1, 
+            "institution": null, 
+            "occupation": "SU"
+        }
+    }
+]

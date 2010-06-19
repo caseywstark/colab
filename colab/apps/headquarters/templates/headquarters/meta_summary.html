@@ -1,0 +1,45 @@
+{% load account_tags %}
+{% load threadedcommentstags %}
+{% load theme_tags %}
+
+<div class="meta-wrapper">
+    <div class="meta-summary">
+        <ul class="vote-boxes">
+            <li class="vote-box yeas">
+                <div class="vote-name">yeas</div>
+                <div class="vote-number">{{ post.yeas }}</div>
+            </li>
+            <li class="vote-box nays">
+                <div class="vote-name">nays</div>
+                <div class="vote-number">{{ post.nays }}</div>
+            </li>
+        </ul>
+        <div class="clear"></div>
+        
+        
+        <div class="post-user">
+            {% if show_author %}
+                <div class="user-name">
+                    {% ifequal the_author "anonymous" %}
+                        Anonymous
+                    {% else %}
+                        <a href="{{ the_author.get_absolute_url }}">{% user_display the_author %}</a>
+                    {% endifequal %}
+                </div>
+            {% endif %}
+            <div class="post-date">
+                {% silk icon %} {{ datetime|date:"P M d, Y" }}
+            </div>
+        </div>
+        
+        <ul class="count-list">
+            {% if contributor_count %}
+                <li><span>{{ contributor_count }}</span> contributors</li>
+            {% endif %}
+            {% if comment_count %}
+                {% get_comment_count for post as comment_count %}
+                <li><span>{{ comment_count }}</span> comments</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Logout" %}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url acct_email %}">Account</a></li>
+    <li><a href="{{ request.path }}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+    <p>{% trans "You've been logged out." %}</p>
+{% endblock %}

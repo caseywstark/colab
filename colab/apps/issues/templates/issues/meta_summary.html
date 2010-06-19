@@ -1,0 +1,33 @@
+{% load account_tags %}
+{% load threadedcommentstags %}
+<div class="meta-wrapper">
+    <div class="meta-summary">
+        <ul class="vote-boxes">
+            <li class="vote-box yeas">
+                <div class="vote-name">yeas</div>
+                <div class="vote-number">{{ issue.yeas }}</div>
+            </li>
+            <li class="vote-box nays">
+                <div class="vote-name">nays</div>
+                <div class="vote-number">{{ issue.nays }}</div>
+            </li>
+        </ul>
+        <div class="clear"></div>
+        
+        <div class="post-user">
+            <div class="user-name">
+                <a href="{{ issue.creator.get_absolute_url }}">{% user_display issue.creator %}</a>
+            </div>
+            <div class="post-date">
+                {{ issue.created|date:"M d, Y P" }}
+            </div>
+        </div>
+        
+        {% get_comment_count for issue as comment_count %}
+        <ul class="count-list">
+            <li><span>{{ contributor_count }}</span> contributors</li>
+            <li><span>{{ comment_count }}</span> comments</li> 
+            <li><span>{{ wiki_count }}</span> wikis</li>
+        </ul>
+    </div>
+</div>

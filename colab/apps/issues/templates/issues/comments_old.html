@@ -1,0 +1,96 @@
+{% load threadedcommentstags %}
+{% load i18n %}
+{% load uni_form_tags %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load markup_tags %}
+{% load sorting_tags %}
+{% load issues_tags %}
+
+{% get_threaded_comment_tree for post as comments %}
+{% get_comment_count for post as comment_count %}
+
+{#{% autosort comments %}#}
+{% autopaginate comments %}
+
+<div class="comments-wrapper">
+    <div class="section">
+        <div class="list-title-wrapper">
+            <div class="list-title">
+                Comments
+                <span>({{ comment_count }})</span>
+            </div>
+            
+            <ul class="list-sorting">
+                <li>Sort:</li>
+                <li>{% anchor created "by date" %}</li>
+                <li>{% anchor yeas "by yeas" %}</li>
+                <li>{% anchor nays "by nays" %}</li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="section-content">
+            <ul class="post-list comments">
+                {% if comments %}
+                    {% for comment in comments %}
+                    <li class="list-item comment level-{{ comment.depth }}">
+                        {% post_meta comment %}
+                        
+                        <div class="post-content">
+                            {{ comment.comment|safe }}
+                        </div>
+                        <div class="clear"></div>
+                        
+                        <ul class="post-buttons">
+                            {% ifequal comment.user request.user %}
+                                <li><a id="edit-{{ comment.id }}-link" class="post-option" href="{% url tc_comment_edit comment.id %}">Edit</a></li>
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        $("#edit-{{ comment.id }}-link").click(function(e) {
+                                            $("#edit-{{ comment.id }}").toggle("slide", {}, 500);
+                                            if (!($("#edit-{{ comment.id }}").is('.loaded'))) {
+                                                $("#edit-{{ comment.id }}").load("{% url tc_comment_edit_form comment.id %}");
+                                                $("#edit-{{ comment.id }}").addClass('loaded');
+                                            }
+                                            return false;
+                                        });
+                                    });
+                                </script>
+                                <li><a class="post-option" href="{% url tc_comment_delete comment.id %}">Delete</a></li>
+                            {% endifequal %}
+                            <li><a id="reply-{{ comment.id }}-link" class="post-option" href="">Reply</a></li>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $("#reply-{{ comment.id }}-link").click(function(e) {
+                                        $("#reply-{{ comment.id }}").toggle("slide", {}, 500);
+                                        if (!($("#reply-{{ comment.id }}").is('.loaded'))) {
+                                            $("#reply-{{ comment.id }}").load("{% url tc_comment_parent_form post_type post.id comment.id %}");
+                                            $("#reply-{{ comment.id }}").addClass('loaded');
+                                        }
+                                        return false;
+                                    });
+                                });
+                            </script>
+                        </ul>
+                        <div class="clear"></div>
+                        
+                        <div id="edit-{{ comment.id }}" class="comment-form-wrapper">
+                            Loading...
+                        </div>
+                        
+                        <div id="reply-{{ comment.id }}" class="comment-form-wrapper">
+                            Loading...
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No comments yet</li>
+                {% endif %}
+            </ul>
+
+            {% paginate %}
+            
+        </div>
+    </div>
+</div>

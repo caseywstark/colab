@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load issues_tags %}
+{% load theme_tags %}
+{% load tagging_tags %}
+{% load headquarters_tags %}
+
+<li class="list-item post-summary">
+   
+    <div class="post-title-wrapper">
+        <a class="post-title" href="{{ issue.get_absolute_url }}">
+            {{ issue.title }}
+        </a>
+    </div>
+    
+    {% post_meta_summary issue %}
+    
+    <div class="post-push-right post-content-wrapper">
+        <div class="post-content">
+            {{ issue.description|safe }}
+        </div>
+        
+        <div class="post-categories">
+            <div class="post-disciplines-list">
+                {% silk "book_open" %}
+                <span>Posted under:</span>
+                {% if issue.disciplines %}
+                    {% for discipline in issue.disciplines.all %}
+                        <a href="{{ discipline.get_absolute_url }}">{{ discipline }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    No Disciplines.
+                {% endif %}
+            </div>
+            
+            <div class="post-tags-list">
+                {% silk "tag_blue" %}
+                <span>Tagged with:</span>
+                {% tags_for_object issue as tags %}
+                {% if tags %}
+                    {% for tag in tags %}
+                        <a href="{#{% url issue_tag_detail tag %}#}">{{ tag }}</a>
+                    {% endfor %}
+                {% else %}
+                    No tags.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    
+</li>

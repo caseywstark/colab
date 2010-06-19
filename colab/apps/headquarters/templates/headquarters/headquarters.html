@@ -1,0 +1,42 @@
+{% extends "headquarters/base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+{% load pagination_tags %}
+{% load account_tags %}
+{% load object_feeds_tags %}
+{% load headquarters_tags %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Headquarters</a></li>
+{% endblock %}
+
+{% block body %}
+    
+    {% if subscriptions %}
+        <p>
+            You are subscribed to <a href="{% url my_feeds %}">{{ feed_count }} feeds</a>.
+        </p>
+        
+        {% autopaginate updates %}
+        {% paginate %}
+        
+        {% if updates %}
+            <ul id="update-list">
+                {% for update in updates %}
+                <li class="update list-item">
+                    {% update_preview update %}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No updates in these feeds yet!</p>
+        {% endif %}
+        
+        {% paginate %}
+        
+    {% else %}
+        <p>You are not subscribed to any feeds.</p>
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "disciplines/base.html" %}
+
+{% load account_tags %}
+{% load issues_tags %}
+{% load people_tags %}
+
+{% block head_title %}{{ discipline }}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url discipline_list %}">Disciplines</a></li>
+    <li><a href="{{ request.path }}">{{ discipline.name }}</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ discipline }}</h1>
+
+    {% if discipline.about %}
+        <div class="box">
+            <div class="box-title">About</div>
+            
+            <p>{{ discipline.about|safe }}</p>
+        </div>
+    {% endif %}
+
+    <div class="box">
+        <div class="box-title">Researchers</div>
+        
+        <ul class="list">
+            {% for researcher in researchers %}
+                {% show_researcher researcher %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="box">
+        <div class="box-title">Ongoing Issues</div>
+        
+        <ul class="list">
+            {% for issue in active_issues %}
+            <li class="list-item">
+                {% show_issue issue %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock body %}

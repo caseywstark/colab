@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load theme_tags %}
+
+{% block body_class %}people{% endblock %}
+
+{% block subnav %}
+    <li><a href="{% url researcher_list %}">{% silk "group" %} {% trans "All Researchers" %}</a></li>
+    {% if user.is_authenticated %}
+        <li><a href="{% url my_profile %}">{% silk "user" %} {% trans "My Profile" %}</a></li>
+    {% endif %}
+{% endblock %}

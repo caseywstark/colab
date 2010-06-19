@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load theme_tags %}
+
+{% block body_class %}issues{% endblock %}
+
+{% block subnav %}
+    <li><a href="{% url issue_list %}">{% silk "world" %} {% trans "Public Issues" %}</a></li>
+    {% if user.is_authenticated %}
+        <li><a href="{% url my_issues %} ">{% silk "world_link" %} {% trans "My Issues" %}</a></li>
+    {% endif %}
+{% endblock %}

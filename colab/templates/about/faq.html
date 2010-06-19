@@ -1,0 +1,50 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}FAQs{% endblock %}
+
+{% block body_class %}faqs{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a></li>
+    <li><a href="{{ request.path }}">About</a></li>
+{% endblock %}
+
+{% block body %}
+    <div id="about">
+        <h1 class="about-title">FAQs</h1>
+        
+        <div class="question">
+            Why should I expose my research process to the world?  Won't I get scooped?
+        </div>
+        <p class="answer">
+            Not likely. Since everything you post on CoLab is time-stamped and available for the world
+            (or at least your collaborators if you chose to make your issue private) to see, its easy to tell where an idea originated.
+            Not so if your research is hidden in emails, lab notebooks, and post-it notes.
+            Imagine how much easier life would have been for Isaac Newton if he had only used CoLab.
+            Additionally, by exposing your research to the rest of the scientific community,
+            you can get help from others inside and outside your field quickly and easily.
+        </p>
+        
+        <div class="question">
+            What is this open science stuff?
+        </div>
+        <p class="answer">
+            One of CoLab's core principles is the promotion of open science.
+            In the spirit of open source software, open science takes the stance that a large community of intelligent users
+            is better able to spot flaws and come up with new ideas than is a small, private group.
+            We believe in rapid, complete, and free publication of data, lab notebooks, and brainstorming.
+        </p>
+        <p class="answer">
+            In case you're unconvinced or simply interested in learning more, check out these links:
+            
+            <ul class="point-list">
+                <li><a href="http://polymathprojects.org/">The PolyMath Projects</a></li>
+                <li><a href="http://michaelnielsen.org/blog/">Michael Nielsen</a></li>
+                <li><a href="http://cameronneylon.net/">Cameron Neylon's "Science in the Open"</a></li>
+                <li><a href="http://friendfeed.com/science-2-0">Science 2.0 FriendFeed</a></li>
+                <li><a href="http://scienceblogs.com/commonknowledge/">Common Knowledge</a></li>
+                <li><a href="http://delicious.com/djstrouse/openscience">A growing list of open science links</a></li>
+            </ul>
+        </p>
+    </div>
+{% endblock %}

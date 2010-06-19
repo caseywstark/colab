@@ -1,0 +1,12 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load account_tags %}
+
+{% block body_class %}comments{% endblock %}
+
+{% block extra_tab %}
+    <li id="tab_comments" class="active"><a href="{{ request.path }}">Comments</a></li>
+{% endblock %}
+
+

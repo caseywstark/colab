@@ -1,0 +1,27 @@
+from django import forms
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
+
+from object_feeds.models import Feed, Subscription, Action
+
+class SubscriptionForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        self.feed = kwargs.pop('feed', None)
+        self.user = kwargs.pop('user', None)
+        super(SubscriptionForm, self).__init__(*args, **kwargs)
+        
+        self.fields['feed'].widget = forms.HiddenInput()
+        self.fields['user'].widget = forms.HiddenInput()
+        self.fields['actions'].queryset = Action.objects.filter(feed_type=self.feed.feed_type)
+    
+    def save(self):
+        subscription = Subscription.objects.get_or_create(feed=self.feed, user=self.user)
+        return subscription
+    
+    class Meta:
+        model = Subscription
+        fields = ['feed', 'user', 'actions']
+

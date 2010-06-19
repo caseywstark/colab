@@ -1,0 +1,34 @@
+{% extends "disciplines/base.html" %}
+{% load mptt_tags %}
+
+{% block head_title %}Disciplines{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ request.path }}">Disciplines</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <p>
+        Have a suggestion for adding, removing, or reorganizing our discipline
+        structure? Submit Feedback by using the button on the left or by going
+        to the <a href="{% url feedback_submit %}">Submit Feedback page</a>.
+    </p>
+    
+    <strong>Discipline Tree:</strong>
+    
+    <div id="discipline-tree-root">
+        {% full_tree_for_model disciplines.Discipline as discipline_set %}
+        
+        {% for discipline,structure in discipline_set|tree_info %}
+            {% if structure.new_level %}
+                <ul class="discipline-tree"><li>
+            {% else %}
+                </li><li>
+            {% endif %}
+                <a href="{{ discipline.get_absolute_url }}">{{ discipline }}</a>
+            {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+        {% endfor %}
+    </div>
+
+{% endblock body %}

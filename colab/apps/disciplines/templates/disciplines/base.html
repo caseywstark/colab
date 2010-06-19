@@ -1,0 +1,20 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load theme_tags %}
+
+{% block body_class %}disciplines{% endblock %}
+
+{% block extra_tab %}
+    <li id="tab_disciplines" class="active"><a href="{% url discipline_list %}">{% trans "Disciplines" %}</a></li>
+{% endblock %}
+
+{% block subnav %}
+    <ul>
+        <li><a href="{% url discipline_list %}">{% silk "book_open" %} {% trans "Discipline Tree" %}</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url my_expertise %} ">{% silk "book_link" %} {% trans "Your Expertise" %}</a></li>
+            <li><a href="{% url researcher_edit %} ">{% silk "book_edit" %} {% trans "Change your default filter" %}</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}

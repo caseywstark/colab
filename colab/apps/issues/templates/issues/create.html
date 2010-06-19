@@ -1,0 +1,42 @@
+{% extends "issues/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load humanize %}
+{% load issues_tags %}
+
+{% block head_title %}{% blocktrans %}Compose Issue{% endblocktrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Issues</a></li>
+    <li><a href="{% url issue_create %}">Create an Issue</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>Compose Issue</h1>
+    
+    <p>An <strong>issue</strong> is orgranized to manage and resolve any open problem or question in science.</p>
+    
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="issue_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ issue_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" value="Create new Issue"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+{% endblock %}
+{% block extra_body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#id_title").slug({ slug:'#id_slug', space: '-' });
+        });
+    </script>
+{% endblock %}

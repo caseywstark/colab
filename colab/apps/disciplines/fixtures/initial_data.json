@@ -1,0 +1,2398 @@
+[
+    {
+        "pk": 72, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Physics and Society", 
+            "parent": 47, 
+            "rght": 87, 
+            "level": 1, 
+            "lft": 86, 
+            "tree_id": 8, 
+            "slug": "physics-and-society"
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Physics Education", 
+            "parent": 47, 
+            "rght": 85, 
+            "level": 1, 
+            "lft": 84, 
+            "tree_id": 8, 
+            "slug": "physics-education"
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Optics", 
+            "parent": 47, 
+            "rght": 83, 
+            "level": 1, 
+            "lft": 82, 
+            "tree_id": 8, 
+            "slug": "optics"
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Medical Physics", 
+            "parent": 47, 
+            "rght": 81, 
+            "level": 1, 
+            "lft": 80, 
+            "tree_id": 8, 
+            "slug": "medical-physics"
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Instrumentation and Detectors", 
+            "parent": 47, 
+            "rght": 79, 
+            "level": 1, 
+            "lft": 78, 
+            "tree_id": 8, 
+            "slug": "instrumentation-and-detectors"
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "History of Physics", 
+            "parent": 47, 
+            "rght": 77, 
+            "level": 1, 
+            "lft": 76, 
+            "tree_id": 8, 
+            "slug": "history-physics"
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Geophysics", 
+            "parent": 47, 
+            "rght": 75, 
+            "level": 1, 
+            "lft": 74, 
+            "tree_id": 8, 
+            "slug": "geophysics"
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Quantum Gases", 
+            "parent": 49, 
+            "rght": 24, 
+            "level": 2, 
+            "lft": 23, 
+            "tree_id": 8, 
+            "slug": "quantum-gases"
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Fluid Dynamics", 
+            "parent": 47, 
+            "rght": 73, 
+            "level": 1, 
+            "lft": 72, 
+            "tree_id": 8, 
+            "slug": "fluid-dynamics"
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Data Analysis", 
+            "parent": 47, 
+            "rght": 71, 
+            "level": 1, 
+            "lft": 70, 
+            "tree_id": 8, 
+            "slug": "data-analysis"
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computational Physics", 
+            "parent": 47, 
+            "rght": 69, 
+            "level": 1, 
+            "lft": 68, 
+            "tree_id": 8, 
+            "slug": "computational-physics"
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Classical Physics", 
+            "parent": 47, 
+            "rght": 67, 
+            "level": 1, 
+            "lft": 66, 
+            "tree_id": 8, 
+            "slug": "classical-physics"
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Chemical Physics", 
+            "parent": 47, 
+            "rght": 65, 
+            "level": 1, 
+            "lft": 64, 
+            "tree_id": 8, 
+            "slug": "chemical-physics"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Biophysics", 
+            "parent": 47, 
+            "rght": 63, 
+            "level": 1, 
+            "lft": 62, 
+            "tree_id": 8, 
+            "slug": "biophysics"
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Atomic and Molecular Clusters", 
+            "parent": 47, 
+            "rght": 61, 
+            "level": 1, 
+            "lft": 60, 
+            "tree_id": 8, 
+            "slug": "atomic-and-molecular-clusters"
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Atomic Physics", 
+            "parent": 47, 
+            "rght": 59, 
+            "level": 1, 
+            "lft": 58, 
+            "tree_id": 8, 
+            "slug": "atomic-physics"
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Atmospheric and Oceanic Physics", 
+            "parent": 47, 
+            "rght": 57, 
+            "level": 1, 
+            "lft": 56, 
+            "tree_id": 8, 
+            "slug": "atmospheric-and-oceanic-physics"
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Quantum Physics", 
+            "parent": 47, 
+            "rght": 53, 
+            "level": 1, 
+            "lft": 52, 
+            "tree_id": 8, 
+            "slug": "quantum-physics"
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Accelerator Physics", 
+            "parent": 47, 
+            "rght": 55, 
+            "level": 1, 
+            "lft": 54, 
+            "tree_id": 8, 
+            "slug": "accelerator-physics"
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Mathematical Physics", 
+            "parent": 47, 
+            "rght": 45, 
+            "level": 1, 
+            "lft": 44, 
+            "tree_id": 8, 
+            "slug": "mathematical-physics"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Nuclear Physics", 
+            "parent": 47, 
+            "rght": 51, 
+            "level": 1, 
+            "lft": 46, 
+            "tree_id": 8, 
+            "slug": "nuclear-physics"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "High Energy Physics", 
+            "parent": 47, 
+            "rght": 43, 
+            "level": 1, 
+            "lft": 34, 
+            "tree_id": 8, 
+            "slug": "high-energy-physics"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "General Relativity and Quantum Cosmology", 
+            "parent": 47, 
+            "rght": 33, 
+            "level": 1, 
+            "lft": 32, 
+            "tree_id": 8, 
+            "slug": "general-relativity-and-quantum-cosmology"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Condensed Matter", 
+            "parent": 47, 
+            "rght": 31, 
+            "level": 1, 
+            "lft": 16, 
+            "tree_id": 8, 
+            "slug": "condensed-matter"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Physics", 
+            "parent": null, 
+            "rght": 96, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 8, 
+            "slug": "physics"
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Astrophysics", 
+            "parent": 47, 
+            "rght": 15, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 8, 
+            "slug": "astrophysics"
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "CoLab Development", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 7, 
+            "slug": "colab-development"
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Plasma Physics", 
+            "parent": 47, 
+            "rght": 89, 
+            "level": 1, 
+            "lft": 88, 
+            "tree_id": 8, 
+            "slug": "plasma-physics"
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Popular Physics", 
+            "parent": 47, 
+            "rght": 91, 
+            "level": 1, 
+            "lft": 90, 
+            "tree_id": 8, 
+            "slug": "popular-physics"
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Space Physics", 
+            "parent": 47, 
+            "rght": 93, 
+            "level": 1, 
+            "lft": 92, 
+            "tree_id": 8, 
+            "slug": "space-physics"
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "High Energy Physics - Experiment", 
+            "parent": 51, 
+            "rght": 36, 
+            "level": 2, 
+            "lft": 35, 
+            "tree_id": 8, 
+            "slug": "high-energy-physics-experiment"
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "High Energy Physics - Lattice", 
+            "parent": 51, 
+            "rght": 38, 
+            "level": 2, 
+            "lft": 37, 
+            "tree_id": 8, 
+            "slug": "high-energy-physics-lattice"
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "High Energy Physics - Phenomenology", 
+            "parent": 51, 
+            "rght": 40, 
+            "level": 2, 
+            "lft": 39, 
+            "tree_id": 8, 
+            "slug": "high-energy-physics-phenomenology"
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "High Energy Physics - Theory", 
+            "parent": 51, 
+            "rght": 42, 
+            "level": 2, 
+            "lft": 41, 
+            "tree_id": 8, 
+            "slug": "high-energy-physics-theory"
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Nuclear Experiment", 
+            "parent": 53, 
+            "rght": 48, 
+            "level": 2, 
+            "lft": 47, 
+            "tree_id": 8, 
+            "slug": "nuclear-experiment"
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Nuclear Theory", 
+            "parent": 53, 
+            "rght": 50, 
+            "level": 2, 
+            "lft": 49, 
+            "tree_id": 8, 
+            "slug": "nuclear-theory"
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Cosmology and Extragalactic Astrophysics", 
+            "parent": 48, 
+            "rght": 4, 
+            "level": 2, 
+            "lft": 3, 
+            "tree_id": 8, 
+            "slug": "cosmology-and-extragalactic-astrophysics"
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Earth and Planetary Astrophysics", 
+            "parent": 48, 
+            "rght": 6, 
+            "level": 2, 
+            "lft": 5, 
+            "tree_id": 8, 
+            "slug": "earth-and-planetary-astrophysics"
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Galaxy Astrophysics", 
+            "parent": 48, 
+            "rght": 8, 
+            "level": 2, 
+            "lft": 7, 
+            "tree_id": 8, 
+            "slug": "galaxy-astrophysics"
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "High Energy Astrophysical Phenomena", 
+            "parent": 48, 
+            "rght": 10, 
+            "level": 2, 
+            "lft": 9, 
+            "tree_id": 8, 
+            "slug": "high-energy-astrophysical-phenomena"
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Instrumentation and Methods for Astrophysics", 
+            "parent": 48, 
+            "rght": 12, 
+            "level": 2, 
+            "lft": 11, 
+            "tree_id": 8, 
+            "slug": "instrumentation-and-methods-astrophysics"
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Solar and Stellar Astrophysics", 
+            "parent": 48, 
+            "rght": 14, 
+            "level": 2, 
+            "lft": 13, 
+            "tree_id": 8, 
+            "slug": "solar-and-stellar-astrophysics"
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Disordered Systems and Neural Networks", 
+            "parent": 49, 
+            "rght": 18, 
+            "level": 2, 
+            "lft": 17, 
+            "tree_id": 8, 
+            "slug": "disordered-systems-and-neural-networks"
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Materials Science", 
+            "parent": 49, 
+            "rght": 20, 
+            "level": 2, 
+            "lft": 19, 
+            "tree_id": 8, 
+            "slug": "materials-science"
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Mesoscale and Nanoscale Physics", 
+            "parent": 49, 
+            "rght": 22, 
+            "level": 2, 
+            "lft": 21, 
+            "tree_id": 8, 
+            "slug": "mesoscale-and-nanoscale-physics"
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Soft Condensed Matter", 
+            "parent": 49, 
+            "rght": 26, 
+            "level": 2, 
+            "lft": 25, 
+            "tree_id": 8, 
+            "slug": "soft-condensed-matter"
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Statistical Mechanics", 
+            "parent": 47, 
+            "rght": 95, 
+            "level": 1, 
+            "lft": 94, 
+            "tree_id": 8, 
+            "slug": "statistical-mechanics"
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Strongly Correlated Electrons", 
+            "parent": 49, 
+            "rght": 28, 
+            "level": 2, 
+            "lft": 27, 
+            "tree_id": 8, 
+            "slug": "strongly-correlated-electrons"
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Superconductivity", 
+            "parent": 49, 
+            "rght": 30, 
+            "level": 2, 
+            "lft": 29, 
+            "tree_id": 8, 
+            "slug": "superconductivity"
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Mathematics", 
+            "parent": null, 
+            "rght": 20, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 9, 
+            "slug": "mathematics"
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Algebra", 
+            "parent": 96, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 9, 
+            "slug": "algebra"
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Calculus and Analysis", 
+            "parent": 96, 
+            "rght": 5, 
+            "level": 1, 
+            "lft": 4, 
+            "tree_id": 9, 
+            "slug": "calculus-and-analysis"
+        }
+    }, 
+    {
+        "pk": 100, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Geometry and Topology", 
+            "parent": 96, 
+            "rght": 7, 
+            "level": 1, 
+            "lft": 6, 
+            "tree_id": 9, 
+            "slug": "geometry-and-topology"
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Combinatorics", 
+            "parent": 96, 
+            "rght": 9, 
+            "level": 1, 
+            "lft": 8, 
+            "tree_id": 9, 
+            "slug": "combinatorics"
+        }
+    }, 
+    {
+        "pk": 103, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Number Theory", 
+            "parent": 96, 
+            "rght": 11, 
+            "level": 1, 
+            "lft": 10, 
+            "tree_id": 9, 
+            "slug": "number-theory"
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Applied Mathematics", 
+            "parent": 96, 
+            "rght": 17, 
+            "level": 1, 
+            "lft": 12, 
+            "tree_id": 9, 
+            "slug": "applied-mathematics"
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Dynamical Systems and Differential Equations", 
+            "parent": 104, 
+            "rght": 14, 
+            "level": 2, 
+            "lft": 13, 
+            "tree_id": 9, 
+            "slug": "dynamical-systems-and-differential-equations"
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Probability and Statistics", 
+            "parent": 104, 
+            "rght": 16, 
+            "level": 2, 
+            "lft": 15, 
+            "tree_id": 9, 
+            "slug": "probability-and-statistics"
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Logic and Foundations of Mathematics", 
+            "parent": 96, 
+            "rght": 19, 
+            "level": 1, 
+            "lft": 18, 
+            "tree_id": 9, 
+            "slug": "logic-and-foundations-mathematics"
+        }
+    }, 
+    {
+        "pk": 108, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Agricultural Science", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 10, 
+            "slug": "agricultural-science"
+        }
+    }, 
+    {
+        "pk": 109, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Anthropology", 
+            "parent": null, 
+            "rght": 4, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 11, 
+            "slug": "anthropology"
+        }
+    }, 
+    {
+        "pk": 124, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Archaeology", 
+            "parent": 109, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 11, 
+            "slug": "archaeology"
+        }
+    }, 
+    {
+        "pk": 125, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Chemistry", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 14, 
+            "slug": "chemistry"
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Earth Science", 
+            "parent": null, 
+            "rght": 34, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 15, 
+            "slug": "earth-science"
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Environmental Science", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 16, 
+            "slug": "environmental-science"
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Astronomy", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 17, 
+            "slug": "astronomy"
+        }
+    }, 
+    {
+        "pk": 129, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Science", 
+            "parent": null, 
+            "rght": 40, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 18, 
+            "slug": "computer-science"
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Biology", 
+            "parent": null, 
+            "rght": 60, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 12, 
+            "slug": "biology"
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Economics", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 19, 
+            "slug": "economics"
+        }
+    }, 
+    {
+        "pk": 135, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Psychology", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 20, 
+            "slug": "psychology"
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Philosophy", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 21, 
+            "slug": "philosophy"
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Political Science", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 22, 
+            "slug": "political-science"
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Sociology", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 23, 
+            "slug": "sociology"
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Architecture", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 24, 
+            "slug": "architecture"
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Engineering", 
+            "parent": null, 
+            "rght": 42, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 25, 
+            "slug": "engineering"
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Aeronautical Engineering", 
+            "parent": 140, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 25, 
+            "slug": "aeronautical-engineering"
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Aerospace Engineering", 
+            "parent": 140, 
+            "rght": 5, 
+            "level": 1, 
+            "lft": 4, 
+            "tree_id": 25, 
+            "slug": "aerospace-engineering"
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Agricultural Engineering", 
+            "parent": 140, 
+            "rght": 7, 
+            "level": 1, 
+            "lft": 6, 
+            "tree_id": 25, 
+            "slug": "agricultural-engineering"
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Agricultural Engineering", 
+            "parent": 140, 
+            "rght": 9, 
+            "level": 1, 
+            "lft": 8, 
+            "tree_id": 25, 
+            "slug": "agricultural-engineering"
+        }
+    }, 
+    {
+        "pk": 145, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Bioengineering", 
+            "parent": 140, 
+            "rght": 11, 
+            "level": 1, 
+            "lft": 10, 
+            "tree_id": 25, 
+            "slug": "bioengineering"
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Chemical Engineering", 
+            "parent": 140, 
+            "rght": 13, 
+            "level": 1, 
+            "lft": 12, 
+            "tree_id": 25, 
+            "slug": "chemical-engineering"
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Civil Engineering", 
+            "parent": 140, 
+            "rght": 15, 
+            "level": 1, 
+            "lft": 14, 
+            "tree_id": 25, 
+            "slug": "civil-engineering"
+        }
+    }, 
+    {
+        "pk": 148, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Engineering", 
+            "parent": 140, 
+            "rght": 17, 
+            "level": 1, 
+            "lft": 16, 
+            "tree_id": 25, 
+            "slug": "computer-engineering"
+        }
+    }, 
+    {
+        "pk": 149, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Control Engineering", 
+            "parent": 140, 
+            "rght": 19, 
+            "level": 1, 
+            "lft": 18, 
+            "tree_id": 25, 
+            "slug": "control-engineering"
+        }
+    }, 
+    {
+        "pk": 150, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Electrical Engineering", 
+            "parent": 140, 
+            "rght": 21, 
+            "level": 1, 
+            "lft": 20, 
+            "tree_id": 25, 
+            "slug": "electrical-engineering"
+        }
+    }, 
+    {
+        "pk": 151, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Industrial Engineering", 
+            "parent": 140, 
+            "rght": 23, 
+            "level": 1, 
+            "lft": 22, 
+            "tree_id": 25, 
+            "slug": "industrial-engineering"
+        }
+    }, 
+    {
+        "pk": 152, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Language Engineering", 
+            "parent": 140, 
+            "rght": 25, 
+            "level": 1, 
+            "lft": 24, 
+            "tree_id": 25, 
+            "slug": "language-engineering"
+        }
+    }, 
+    {
+        "pk": 153, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Marine Engineering", 
+            "parent": 140, 
+            "rght": 27, 
+            "level": 1, 
+            "lft": 26, 
+            "tree_id": 25, 
+            "slug": "marine-engineering"
+        }
+    }, 
+    {
+        "pk": 154, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Materials Engineering", 
+            "parent": 140, 
+            "rght": 29, 
+            "level": 1, 
+            "lft": 28, 
+            "tree_id": 25, 
+            "slug": "materials-engineering"
+        }
+    }, 
+    {
+        "pk": 155, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Mechanical Engineering", 
+            "parent": 140, 
+            "rght": 31, 
+            "level": 1, 
+            "lft": 30, 
+            "tree_id": 25, 
+            "slug": "mechanical-engineering"
+        }
+    }, 
+    {
+        "pk": 156, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Mining Engineering", 
+            "parent": 140, 
+            "rght": 33, 
+            "level": 1, 
+            "lft": 32, 
+            "tree_id": 25, 
+            "slug": "mining-engineering"
+        }
+    }, 
+    {
+        "pk": 157, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Nuclear Engineering", 
+            "parent": 140, 
+            "rght": 35, 
+            "level": 1, 
+            "lft": 34, 
+            "tree_id": 25, 
+            "slug": "nuclear-engineering"
+        }
+    }, 
+    {
+        "pk": 158, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Polymer Engineering", 
+            "parent": 140, 
+            "rght": 37, 
+            "level": 1, 
+            "lft": 36, 
+            "tree_id": 25, 
+            "slug": "polymer-engineering"
+        }
+    }, 
+    {
+        "pk": 159, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Software Engineering", 
+            "parent": 140, 
+            "rght": 39, 
+            "level": 1, 
+            "lft": 38, 
+            "tree_id": 25, 
+            "slug": "software-engineering"
+        }
+    }, 
+    {
+        "pk": 160, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Systems Engineering", 
+            "parent": 140, 
+            "rght": 41, 
+            "level": 1, 
+            "lft": 40, 
+            "tree_id": 25, 
+            "slug": "systems-engineering"
+        }
+    }, 
+    {
+        "pk": 161, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Health Sciences", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 26, 
+            "slug": "health-sciences"
+        }
+    }, 
+    {
+        "pk": 162, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Systems Science", 
+            "parent": null, 
+            "rght": 14, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 27, 
+            "slug": "systems-science"
+        }
+    }, 
+    {
+        "pk": 163, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Chaos Theory", 
+            "parent": 162, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 27, 
+            "slug": "chaos-theory"
+        }
+    }, 
+    {
+        "pk": 164, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Complex Systems", 
+            "parent": 162, 
+            "rght": 5, 
+            "level": 1, 
+            "lft": 4, 
+            "tree_id": 27, 
+            "slug": "complex-systems"
+        }
+    }, 
+    {
+        "pk": 165, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Complexity Theory", 
+            "parent": 162, 
+            "rght": 7, 
+            "level": 1, 
+            "lft": 6, 
+            "tree_id": 27, 
+            "slug": "complexity-theory"
+        }
+    }, 
+    {
+        "pk": 166, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Cybernetics", 
+            "parent": 162, 
+            "rght": 9, 
+            "level": 1, 
+            "lft": 8, 
+            "tree_id": 27, 
+            "slug": "cybernetics"
+        }
+    }, 
+    {
+        "pk": 167, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Control Theory", 
+            "parent": 162, 
+            "rght": 11, 
+            "level": 1, 
+            "lft": 10, 
+            "tree_id": 27, 
+            "slug": "control-theory"
+        }
+    }, 
+    {
+        "pk": 168, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Operations Research", 
+            "parent": 162, 
+            "rght": 13, 
+            "level": 1, 
+            "lft": 12, 
+            "tree_id": 27, 
+            "slug": "operations-research"
+        }
+    }, 
+    {
+        "pk": 172, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Theory of Computation", 
+            "parent": 129, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 18, 
+            "slug": "theory-computation"
+        }
+    }, 
+    {
+        "pk": 173, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Algorithms", 
+            "parent": 129, 
+            "rght": 5, 
+            "level": 1, 
+            "lft": 4, 
+            "tree_id": 18, 
+            "slug": "algorithms"
+        }
+    }, 
+    {
+        "pk": 174, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Data Structures", 
+            "parent": 129, 
+            "rght": 7, 
+            "level": 1, 
+            "lft": 6, 
+            "tree_id": 18, 
+            "slug": "data-structures"
+        }
+    }, 
+    {
+        "pk": 175, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Architecture", 
+            "parent": 129, 
+            "rght": 9, 
+            "level": 1, 
+            "lft": 8, 
+            "tree_id": 18, 
+            "slug": "computer-architecture"
+        }
+    }, 
+    {
+        "pk": 176, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Operating Systems", 
+            "parent": 129, 
+            "rght": 11, 
+            "level": 1, 
+            "lft": 10, 
+            "tree_id": 18, 
+            "slug": "operating-systems"
+        }
+    }, 
+    {
+        "pk": 177, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Communications (Networks)", 
+            "parent": 129, 
+            "rght": 13, 
+            "level": 1, 
+            "lft": 12, 
+            "tree_id": 18, 
+            "slug": "computer-communications-networks"
+        }
+    }, 
+    {
+        "pk": 178, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Security", 
+            "parent": 129, 
+            "rght": 15, 
+            "level": 1, 
+            "lft": 14, 
+            "tree_id": 18, 
+            "slug": "computer-security"
+        }
+    }, 
+    {
+        "pk": 179, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Distributed Computing", 
+            "parent": 129, 
+            "rght": 17, 
+            "level": 1, 
+            "lft": 16, 
+            "tree_id": 18, 
+            "slug": "distributed-computing"
+        }
+    }, 
+    {
+        "pk": 180, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Parallel Computing", 
+            "parent": 129, 
+            "rght": 19, 
+            "level": 1, 
+            "lft": 18, 
+            "tree_id": 18, 
+            "slug": "parallel-computing"
+        }
+    }, 
+    {
+        "pk": 181, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Quantum Computing", 
+            "parent": 129, 
+            "rght": 21, 
+            "level": 1, 
+            "lft": 20, 
+            "tree_id": 18, 
+            "slug": "quantum-computing"
+        }
+    }, 
+    {
+        "pk": 182, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Graphics", 
+            "parent": 129, 
+            "rght": 23, 
+            "level": 1, 
+            "lft": 22, 
+            "tree_id": 18, 
+            "slug": "computer-graphics"
+        }
+    }, 
+    {
+        "pk": 183, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Programming Languages", 
+            "parent": 129, 
+            "rght": 25, 
+            "level": 1, 
+            "lft": 24, 
+            "tree_id": 18, 
+            "slug": "programming-languages"
+        }
+    }, 
+    {
+        "pk": 184, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Information Science", 
+            "parent": 129, 
+            "rght": 27, 
+            "level": 1, 
+            "lft": 26, 
+            "tree_id": 18, 
+            "slug": "information-science"
+        }
+    }, 
+    {
+        "pk": 185, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Artificial Intelligence", 
+            "parent": 129, 
+            "rght": 37, 
+            "level": 1, 
+            "lft": 28, 
+            "tree_id": 18, 
+            "slug": "artificial-intelligence"
+        }
+    }, 
+    {
+        "pk": 186, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Human-Computer Interaction", 
+            "parent": 129, 
+            "rght": 39, 
+            "level": 1, 
+            "lft": 38, 
+            "tree_id": 18, 
+            "slug": "human-computer-interaction"
+        }
+    }, 
+    {
+        "pk": 187, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Computer Vision", 
+            "parent": 185, 
+            "rght": 30, 
+            "level": 2, 
+            "lft": 29, 
+            "tree_id": 18, 
+            "slug": "computer-vision"
+        }
+    }, 
+    {
+        "pk": 188, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Machine Learning", 
+            "parent": 185, 
+            "rght": 32, 
+            "level": 2, 
+            "lft": 31, 
+            "tree_id": 18, 
+            "slug": "machine-learning"
+        }
+    }, 
+    {
+        "pk": 189, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Natural Language Processing", 
+            "parent": 185, 
+            "rght": 34, 
+            "level": 2, 
+            "lft": 33, 
+            "tree_id": 18, 
+            "slug": "natural-language-processing"
+        }
+    }, 
+    {
+        "pk": 190, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Robotics", 
+            "parent": 185, 
+            "rght": 36, 
+            "level": 2, 
+            "lft": 35, 
+            "tree_id": 18, 
+            "slug": "robotics"
+        }
+    }, 
+    {
+        "pk": 191, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Information Systems (Business Informatics)", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 28, 
+            "slug": "information-systems-business-informatics"
+        }
+    }, 
+    {
+        "pk": 192, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Anatomy", 
+            "parent": 115, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 12, 
+            "slug": "anatomy"
+        }
+    }, 
+    {
+        "pk": 193, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Astrobiology", 
+            "parent": 115, 
+            "rght": 5, 
+            "level": 1, 
+            "lft": 4, 
+            "tree_id": 12, 
+            "slug": "astrobiology"
+        }
+    }, 
+    {
+        "pk": 194, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Biochemistry", 
+            "parent": 115, 
+            "rght": 7, 
+            "level": 1, 
+            "lft": 6, 
+            "tree_id": 12, 
+            "slug": "biochemistry"
+        }
+    }, 
+    {
+        "pk": 195, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Bioinformatics", 
+            "parent": 115, 
+            "rght": 9, 
+            "level": 1, 
+            "lft": 8, 
+            "tree_id": 12, 
+            "slug": "bioinformatics"
+        }
+    }, 
+    {
+        "pk": 196, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Botany", 
+            "parent": 115, 
+            "rght": 11, 
+            "level": 1, 
+            "lft": 10, 
+            "tree_id": 12, 
+            "slug": "botany"
+        }
+    }, 
+    {
+        "pk": 197, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Cell Biology", 
+            "parent": 115, 
+            "rght": 13, 
+            "level": 1, 
+            "lft": 12, 
+            "tree_id": 12, 
+            "slug": "cell-biology"
+        }
+    }, 
+    {
+        "pk": 198, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Developmental Biology", 
+            "parent": 115, 
+            "rght": 15, 
+            "level": 1, 
+            "lft": 14, 
+            "tree_id": 12, 
+            "slug": "developmental-biology"
+        }
+    }, 
+    {
+        "pk": 199, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Epidemiology", 
+            "parent": 115, 
+            "rght": 17, 
+            "level": 1, 
+            "lft": 16, 
+            "tree_id": 12, 
+            "slug": "epidemiology"
+        }
+    }, 
+    {
+        "pk": 200, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Ecology", 
+            "parent": 115, 
+            "rght": 19, 
+            "level": 1, 
+            "lft": 18, 
+            "tree_id": 12, 
+            "slug": "ecology"
+        }
+    }, 
+    {
+        "pk": 201, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Evolutionary Biology", 
+            "parent": 115, 
+            "rght": 21, 
+            "level": 1, 
+            "lft": 20, 
+            "tree_id": 12, 
+            "slug": "evolutionary-biology"
+        }
+    }, 
+    {
+        "pk": 202, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Genetics", 
+            "parent": 115, 
+            "rght": 29, 
+            "level": 1, 
+            "lft": 22, 
+            "tree_id": 12, 
+            "slug": "genetics"
+        }
+    }, 
+    {
+        "pk": 203, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Genomics", 
+            "parent": 202, 
+            "rght": 24, 
+            "level": 2, 
+            "lft": 23, 
+            "tree_id": 12, 
+            "slug": "genomics"
+        }
+    }, 
+    {
+        "pk": 204, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Proteomics", 
+            "parent": 202, 
+            "rght": 26, 
+            "level": 2, 
+            "lft": 25, 
+            "tree_id": 12, 
+            "slug": "proteomics"
+        }
+    }, 
+    {
+        "pk": 205, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Population Genetics", 
+            "parent": 202, 
+            "rght": 28, 
+            "level": 2, 
+            "lft": 27, 
+            "tree_id": 12, 
+            "slug": "population-genetics"
+        }
+    }, 
+    {
+        "pk": 206, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Microbiology", 
+            "parent": 115, 
+            "rght": 31, 
+            "level": 1, 
+            "lft": 30, 
+            "tree_id": 12, 
+            "slug": "microbiology"
+        }
+    }, 
+    {
+        "pk": 207, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Molecular Biology", 
+            "parent": 115, 
+            "rght": 33, 
+            "level": 1, 
+            "lft": 32, 
+            "tree_id": 12, 
+            "slug": "molecular-biology"
+        }
+    }, 
+    {
+        "pk": 208, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Physiology", 
+            "parent": 115, 
+            "rght": 35, 
+            "level": 1, 
+            "lft": 34, 
+            "tree_id": 12, 
+            "slug": "physiology"
+        }
+    }, 
+    {
+        "pk": 209, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Virology", 
+            "parent": 115, 
+            "rght": 37, 
+            "level": 1, 
+            "lft": 36, 
+            "tree_id": 12, 
+            "slug": "virology"
+        }
+    }, 
+    {
+        "pk": 210, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Atmospheric Sciences", 
+            "parent": 126, 
+            "rght": 3, 
+            "level": 1, 
+            "lft": 2, 
+            "tree_id": 15, 
+            "slug": "atmospheric-sciences"
+        }
+    }, 
+    {
+        "pk": 211, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Climatology", 
+            "parent": 126, 
+            "rght": 5, 
+            "level": 1, 
+            "lft": 4, 
+            "tree_id": 15, 
+            "slug": "climatology"
+        }
+    }, 
+    {
+        "pk": 212, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Geology", 
+            "parent": 126, 
+            "rght": 7, 
+            "level": 1, 
+            "lft": 6, 
+            "tree_id": 15, 
+            "slug": "geology"
+        }
+    }, 
+    {
+        "pk": 213, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Geophysics", 
+            "parent": 126, 
+            "rght": 9, 
+            "level": 1, 
+            "lft": 8, 
+            "tree_id": 15, 
+            "slug": "geophysics"
+        }
+    }, 
+    {
+        "pk": 214, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Glaciology", 
+            "parent": 126, 
+            "rght": 11, 
+            "level": 1, 
+            "lft": 10, 
+            "tree_id": 15, 
+            "slug": "glaciology"
+        }
+    }, 
+    {
+        "pk": 215, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Hydrology", 
+            "parent": 126, 
+            "rght": 13, 
+            "level": 1, 
+            "lft": 12, 
+            "tree_id": 15, 
+            "slug": "hydrology"
+        }
+    }, 
+    {
+        "pk": 216, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Hydrogeology", 
+            "parent": 126, 
+            "rght": 15, 
+            "level": 1, 
+            "lft": 14, 
+            "tree_id": 15, 
+            "slug": "hydrogeology"
+        }
+    }, 
+    {
+        "pk": 217, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Mineralogy", 
+            "parent": 126, 
+            "rght": 17, 
+            "level": 1, 
+            "lft": 16, 
+            "tree_id": 15, 
+            "slug": "mineralogy"
+        }
+    }, 
+    {
+        "pk": 218, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Meteorology", 
+            "parent": 126, 
+            "rght": 19, 
+            "level": 1, 
+            "lft": 18, 
+            "tree_id": 15, 
+            "slug": "meteorology"
+        }
+    }, 
+    {
+        "pk": 219, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Oceanography", 
+            "parent": 126, 
+            "rght": 21, 
+            "level": 1, 
+            "lft": 20, 
+            "tree_id": 15, 
+            "slug": "oceanography"
+        }
+    }, 
+    {
+        "pk": 220, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Petrology", 
+            "parent": 126, 
+            "rght": 23, 
+            "level": 1, 
+            "lft": 22, 
+            "tree_id": 15, 
+            "slug": "petrology"
+        }
+    }, 
+    {
+        "pk": 221, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Paleoclimatology", 
+            "parent": 126, 
+            "rght": 25, 
+            "level": 1, 
+            "lft": 24, 
+            "tree_id": 15, 
+            "slug": "paleoclimatology"
+        }
+    }, 
+    {
+        "pk": 222, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Paleontology", 
+            "parent": 126, 
+            "rght": 27, 
+            "level": 1, 
+            "lft": 26, 
+            "tree_id": 15, 
+            "slug": "paleontology"
+        }
+    }, 
+    {
+        "pk": 223, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Seismology", 
+            "parent": 126, 
+            "rght": 29, 
+            "level": 1, 
+            "lft": 28, 
+            "tree_id": 15, 
+            "slug": "seismology"
+        }
+    }, 
+    {
+        "pk": 224, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Soil Science", 
+            "parent": 126, 
+            "rght": 31, 
+            "level": 1, 
+            "lft": 30, 
+            "tree_id": 15, 
+            "slug": "soil-science"
+        }
+    }, 
+    {
+        "pk": 225, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Volcanology", 
+            "parent": 126, 
+            "rght": 33, 
+            "level": 1, 
+            "lft": 32, 
+            "tree_id": 15, 
+            "slug": "volcanology"
+        }
+    }, 
+    {
+        "pk": 226, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Education", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 29, 
+            "slug": "education"
+        }
+    }, 
+    {
+        "pk": 227, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Linguistics", 
+            "parent": null, 
+            "rght": 2, 
+            "level": 0, 
+            "lft": 1, 
+            "tree_id": 30, 
+            "slug": "linguistics"
+        }
+    }, 
+    {
+        "pk": 228, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Neuroscience", 
+            "parent": 115, 
+            "rght": 59, 
+            "level": 1, 
+            "lft": 38, 
+            "tree_id": 12, 
+            "slug": "neuroscience"
+        }
+    }, 
+    {
+        "pk": 229, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Molecular and Cellular Neuroscience", 
+            "parent": 228, 
+            "rght": 40, 
+            "level": 2, 
+            "lft": 39, 
+            "tree_id": 12, 
+            "slug": "molecular-and-cellular-neuroscience"
+        }
+    }, 
+    {
+        "pk": 230, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Behavioral Neuroscience", 
+            "parent": 228, 
+            "rght": 42, 
+            "level": 2, 
+            "lft": 41, 
+            "tree_id": 12, 
+            "slug": "behavioral-neuroscience"
+        }
+    }, 
+    {
+        "pk": 231, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Systems Neuroscience", 
+            "parent": 228, 
+            "rght": 44, 
+            "level": 2, 
+            "lft": 43, 
+            "tree_id": 12, 
+            "slug": "systems-neuroscience"
+        }
+    }, 
+    {
+        "pk": 232, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Developmental Neuroscience", 
+            "parent": 228, 
+            "rght": 46, 
+            "level": 2, 
+            "lft": 45, 
+            "tree_id": 12, 
+            "slug": "developmental-neuroscience"
+        }
+    }, 
+    {
+        "pk": 233, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Cognitive Neuroscience", 
+            "parent": 228, 
+            "rght": 48, 
+            "level": 2, 
+            "lft": 47, 
+            "tree_id": 12, 
+            "slug": "cognitive-neuroscience"
+        }
+    }, 
+    {
+        "pk": 234, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Theoretical and Computational Neuroscience", 
+            "parent": 228, 
+            "rght": 50, 
+            "level": 2, 
+            "lft": 49, 
+            "tree_id": 12, 
+            "slug": "theoretical-and-computational-neuroscience"
+        }
+    }, 
+    {
+        "pk": 235, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Neural Engineering", 
+            "parent": 228, 
+            "rght": 52, 
+            "level": 2, 
+            "lft": 51, 
+            "tree_id": 12, 
+            "slug": "neural-engineering"
+        }
+    }, 
+    {
+        "pk": 236, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Neurolinguistics", 
+            "parent": 228, 
+            "rght": 54, 
+            "level": 2, 
+            "lft": 53, 
+            "tree_id": 12, 
+            "slug": "neurolinguistics"
+        }
+    }, 
+    {
+        "pk": 237, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Neurology", 
+            "parent": 228, 
+            "rght": 56, 
+            "level": 2, 
+            "lft": 55, 
+            "tree_id": 12, 
+            "slug": "neurology"
+        }
+    }, 
+    {
+        "pk": 238, 
+        "model": "disciplines.discipline", 
+        "fields": {
+            "about": "", 
+            "name": "Neuroimaging", 
+            "parent": 228, 
+            "rght": 58, 
+            "level": 2, 
+            "lft": 57, 
+            "tree_id": 12, 
+            "slug": "neuroimaging"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "disciplines.researchinterest", 
+        "fields": {
+            "name": "galaxy formation", 
+            "disciplines": []
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "disciplines.researchinterest", 
+        "fields": {
+            "name": "large-scale structure", 
+            "disciplines": []
+        }
+    }
+]

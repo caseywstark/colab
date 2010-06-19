@@ -1,0 +1,10 @@
+{% load theme_tags %}
+
+<a href="{{ subscription_url }}">
+    {% if subscription %}
+        {% silk "feed_delete" %} Unfollow
+    {% else %}
+        {% silk "feed_add" %} Follow
+    {% endif %}
+    {% if extra_text %} {{ extra_text }}{% endif %}
+</a>

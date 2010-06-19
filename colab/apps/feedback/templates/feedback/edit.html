@@ -1,0 +1,32 @@
+{% extends "feedback/base.html" %}
+
+{% load uni_form_tags %}
+{% load feedback_tags %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Edit Feedback{% endblocktrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url feedback_list %}">Feedback</a></li>
+    <li><a href="{{ feedback.get_absolute_url }}">{{ feedback.title }}</a></li>
+    <li><a href="{{ request.path }}">Edit</a></li>
+{% endblock %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="feedback_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" value="Update Feedback"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load theme_tags %}
+{% load headquarters_tags %}
+{% load avatar_tags %}
+{% load account_tags %}
+
+<div class="update-description">
+    {% avatar the_user 30 %} <a href="{{ the_user.get_absolute_url }}">{% user_display the_user %}</a>
+    {{ update.action.description }} <a href="{{ feed_object.get_absolute_url }}">{{ feed_object }}</a>
+    <span class="update-date">at {{ update.created|date:"P M d, Y" }}</span>
+</div>
+
+<div class="update-object">
+    {% post_meta_summary update_object 0 %}
+    {{ object_content|safe }}
+</div>
+<div class="clear"></div>

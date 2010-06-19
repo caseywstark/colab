@@ -1,0 +1,80 @@
+{% extends "feedback/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load feedback_tags %}
+{% load theme_tags %}
+{% load threadedcommentstags %}
+{% load headquarters_tags %}
+{% load object_feeds_tags %}
+
+{% block head_title %}Feedback: {{ feedback.title }}{% endblock %}
+
+{% block extra_head %}
+    {{ comment_form.media }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url feedback_list %}">Feedbacks</a></li>
+    <li><a href="{{ request.path }}">{{ feedback.title }}</a></li>
+{% endblock %}
+
+{% block actions %}
+    <li class="right">
+        {% follow_link feedback %}
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            {{ feedback.title }}
+        </div>
+    </div>
+    
+    
+    <h1 id="feedback-detail-heading">
+        <span class="feedback-type feedback-type-{{ feedback.type.slug }}">
+            {{ feedback.type.title }}
+        </span>
+        {{ feedback.title }}
+        <span class="feedback-status feedback-status-{{ feedback.status.slug }}">
+            {{ feedback.status.title }}
+        </span>
+    </h1>
+
+    {% post_meta feedback %}
+
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ feedback.description|safe }}
+        </div>
+        
+        {% ifequal user feedback.user %}
+            <ul class="post-buttons">
+                <li><a class="post-option" href="{% url feedback_edit feedback.id %}">{% silk "bug_edit" %} Edit</a></li>
+                <li><a class="post-option" href="{% url feedback_delete feedback.id %}">{% silk "bug_delete" %} Delete</a></li>
+            </ul>
+        {% endifequal %}
+    </div>
+    <div class="clear"></div>
+    
+    {% comment_list feedback %}
+    
+    <div class="reply-wrapper">
+        {% if user.is_authenticated %}
+        <form class="reply-form uniForm" id="reply-to-feedback" method="POST" action="{% get_comment_url feedback %}">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ comment_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="comment" />
+                    <input type="submit" value="{% trans 'Comment on Feedback' %}"/>
+                </div>
+            </fieldset>
+        </form>
+        {% else %}
+            <h3>Please <a href="{% url acct_login %}">Login</a> (or <a href="{% url acct_signup %}">Sign Up</a>) to leave a comment.</h3>
+        {% endif %}
+    </div>
+    
+{% endblock %}

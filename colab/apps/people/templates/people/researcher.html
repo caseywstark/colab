@@ -1,0 +1,81 @@
+{% extends "people/base.html" %}
+
+{% load issues_tags %}
+{% load avatar_tags %}
+{% load account_tags %}
+{% load object_feeds_tags %}
+{% load theme_tags %}
+
+{% block head_title %}{{ researcher }}{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url researcher_list %}">People</a></li>
+    <li><a href="{{ request.path }}">{% user_display the_user %}</a></li>
+{% endblock %}
+
+{% block actions %}
+    <li class="left">
+        <a href="{% url headquarters the_user.username %}">{% silk "house" %} {% user_display the_user %}'s HQ</a>
+    </li>
+    {% if user.is_authenticated %}
+        <li class="right">
+            {#{% follow_link researcher %}#}
+        </li>
+    {% endif %}
+    {% ifequal request.user the_user %}
+        <li class="right">
+            <a href="{% url researcher_edit %}">{% silk "user_edit" %} Edit my profile</a>
+        </li>
+    {% endifequal %}
+{% endblock %}
+
+{% block body %}
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            {{ researcher }}
+        </div>
+    </div>
+    
+    <div class="meta-wrapper">
+        <div class="post-meta">
+            <div class="big-avatar">
+                {% avatar the_user 80 %}
+            </div>
+            
+            <div class="clear"></div>
+            <div class="since">
+                Member since 
+                <div class="date">{{ the_user.date_joined|date:"M d, Y" }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="profile" class="post-content">
+        <ul class="profile-list">
+            {% if researcher.institution %}
+                <li>
+                    <span>Current Institution:</span>
+                    <a href="{{ researcher.institution.get_absolute_url }}">{{ researcher.institution }}</a>
+                </li>
+            {% endif %}
+            {% if researcher.grad_institution %}
+                <li>
+                    <span>Graduate Institution:</span>
+                    <a href="{{ researcher.grad_institution.get_absolute_url }}">{{ researcher.grad_institution }}</a>
+                </li>
+            {% endif %}
+            {% if researcher.expertise %}
+                <li>
+                    <span>Primary Expertise:</span>
+                    <a href="{{ researcher.expertise.get_absolute_url }}">{{ researcher.expertise }}</a>
+                </li>
+            {% endif %}
+        </ul>
+
+        <div class="profile-about-header">About</div>
+        <div class="profile-about">
+            {{ researcher.about|safe }}
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock body %}

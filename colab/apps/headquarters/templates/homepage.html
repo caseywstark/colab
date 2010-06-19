@@ -1,0 +1,85 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+{% load uni_form_tags %}
+
+{% block head_title %}{% trans "Welcome to CoLab" %}{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a><li>
+{% endblock %}
+
+{% block body %}
+    
+    <div class="tagline">
+        CoLab is an online set of tools designed to promote open and massively collaborative science.
+    </div>
+    
+    <div class="home-blurb rounded">
+        <strong>Warning:</strong> CoLab is still under heavy development and testing, so don't be too surprised if something breaks.
+        We are looking for contributors, so <a href="{% url contact %}">contact us</a> if you are interested.
+    </div>
+    
+    <div id="home-box">
+        <div id="home-about">
+            <p>
+                We are currently preparing a screencast tutorial on using CoLab.
+            </p>
+            
+            <div id="tutorial-video">
+                Tutorial screencast will go here.
+            </div>
+        </div>
+        
+        <div id="home-login-box">
+            <div id="login-suggestion">Create an account to get started.</div>
+        
+            {% if user.is_authenticated %}
+                {% url what_next as what_next_url %}
+                <p>You're already logged in.</p>
+                <p class="what_next">{% blocktrans %}Wondering <a href="{{ what_next_url }}">What Next</a>?{% endblocktrans %}</p>
+            {% else %}
+                {% url acct_login as login_url %}
+                {% ifsetting ACCOUNT_OPEN_SIGNUP %}
+                    {% url acct_signup as signup_url %}
+                    <form class="uniForm" id="signup_form" method="POST" action="{{ signup_url }}">{% csrf_token %}
+                        <fieldset class="inlineLabels">
+                            {{ signup_form|as_uni_form }}
+                            <div class="form_block">
+                                <input type="hidden" name="action" value="signup" />
+                                <input type="submit" value="{% trans 'Create Account' %}"/>
+                            </div>
+                        </fieldset>
+                    </form>
+                {% else %}
+                    <p>{% blocktrans %}You can <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+                {% endifsetting %}
+            {% endif %}
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+    <p class="ui-state-highlight ui-corner-all">
+        <span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
+        You must have Javascript enabled to use several features on this site.
+    </p>
+    
+    <p class="ui-state-highlight ui-corner-all">
+        <span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
+        This site looks best using <a href="http://www.getfirefox.com/">Firefox</a>
+        or any WebKit browser (<a href="http://www.apple.com/safari/">Safari</a> or
+        <a href="http://www.google.com/chrome">Chrome</a>).
+    </p>
+    
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#id_name").slug({ slug:'#id_username', space: '' });
+        });
+    </script>
+{% endblock %}

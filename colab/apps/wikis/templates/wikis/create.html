@@ -1,0 +1,34 @@
+{% extends "wikis/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}{% blocktrans %}Create a Wiki{% endblocktrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% if wiki.content_object %}
+        <li><a href="{{ wiki.content_object.get_absolute_url }}">{{ wiki.content_object }}</a></li>
+    {% endif %}
+    <li>Wikis</li>
+    <li><a href="{{ request.path }}">Create a Wiki</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>Create a Wiki ({{ wiki_type }} {% if content_object %}linked to <a href="{{ content_object.get_absolute_url }}">{{ content_object }}</a>{% endif %})</h1>
+    
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="wiki_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ wiki_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" value="Create new wiki"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+{% endblock %}

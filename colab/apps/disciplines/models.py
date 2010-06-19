@@ -1,0 +1,54 @@
+from django.db import models
+from django.template.defaultfilters import slugify
+from django.contrib.contenttypes import generic
+
+import mptt
+import object_feeds
+
+class Discipline(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField()
+    
+    about = models.TextField(blank=True)
+    
+    # fields for the tree to work and migrate properly
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
+    lft = models.PositiveIntegerField(null=True, blank=True)
+    rght = models.PositiveIntegerField(null=True, blank=True)
+    tree_id = models.PositiveIntegerField(null=True, blank=True)
+    level = models.PositiveIntegerField(null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.name
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('discipline_detail', (), {'slug': self.slug})
+    
+    def researcher_is_member(self, researcher):
+        if self == researcher.expertise:
+            return True
+        else:
+            return False
+    
+    def save(self, *args, **kwargs):
+        super(Discipline, self).save(*args, **kwargs)
+        
+        if not self.feed.all():
+            feed = Feed(feed_type='DIS', feed_object=self)
+            feed.save()
+            self.feed.add(feed)
+
+mptt.register(Discipline)
+object_feeds.register(Discipline)
+
+class ResearchInterest(models.Model):
+    name = models.CharField(max_length=50)
+    disciplines = models.ManyToManyField(Discipline, blank=True)
+    
+    def __unicode__(self):
+        return self.name
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('interest_detail', (), {'object_id': self.id})

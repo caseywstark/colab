@@ -1,0 +1,34 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}Contact the Staff{% endblock %}
+
+{% block body_class %}contact{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a></li>
+    <li><a href="{{ request.path }}">Contact</a></li>
+{% endblock %}
+
+{% block body %}
+    <div id="about">
+        <h1 class="about-title">We'd love to hear from you!</h1>
+        
+        <p>
+            Feature suggestion, bug reporting, or other feedback about the website?
+            Head to our nifty <a href="{% url feedback_list %}">feedback system</a>.
+        </p>
+        
+        <p>
+            Want to help make the web better for science?
+            Email Founder & Chief Architect Casey at <a href="mailto:casey@thisiscolab.com">casey@thisiscolab.com</a>.
+        <p>
+            Media requests? Email DJ at <a href="mailto:djstrouse@thisiscolab.com">djstrouse@thisiscolab.com</a>.
+        </p>
+        
+        <p>
+            Any other questions or comments? Feel free to contact the founders -
+            Casey at <a href="mailto:casey@thisiscolab.com">casey@thisiscolab.com</a> or
+            DJ at <a href="mailto:djstrouse@thisiscolab.com">djstrouse@thisiscolab.com</a>.
+        </p>
+    </div>
+{% endblock %}

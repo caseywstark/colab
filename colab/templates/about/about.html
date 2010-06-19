@@ -1,0 +1,136 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}About CoLab{% endblock %}
+
+{% block body_class %}about{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a></li>
+    <li><a href="{{ request.path }}">About</a></li>
+{% endblock %}
+
+{% block body %}
+    <div id="about">
+        <h1 class="about-title">About CoLab</h1>
+        
+        <div class="tagline">
+            CoLab is an online set of tools designed to promote open and massively collaborative science.
+        </div>
+        
+        <div class="about-header">Ethos</div>
+        <div class="question">
+            What are you trying to do here?
+        </div>
+        <p class="answer">
+            We want to capture the spirit of the scientific conference and put it on the web.
+            Brainstorming with colleagues from around the world shouldn't occur only within a narrow 3-day window once a year.
+            It should be a part of everyday science.
+            We want to make it as easy to collaborate with someone across oceans as easy as collaborating with someone across the hall.
+        </p>
+        <p class="answer">
+            We call these spontaneous, transient interactions "microcollaborations."
+            Less formal than an official collaboration, they focus on one single issue and often occur between researchers in widely separated disciplines.
+            For instance, a neuroscientist analyzing data from spiking neurons might ask a quick signal processing question of an electrical engineer.
+        </p>
+        
+        <div class="question">
+            What inspired the site?
+        </div>
+        <p class="answer">
+            When we were little kids, we imagined big rooms full of scientists, tossing ideas back and forth and all working together to solve interesting problems.
+            We were disappointed to later discover that many groups work in isolated offices, often spending months redoubling the efforts of others or struggling
+            just an idea away from a breakthrough but without the right expertise in the room to make it happen.
+            We still dream of a place where scientists from all disciplines gather to help each other out and solve problems.
+            We hope that place is CoLab.
+        </p>
+        
+        <div class="question">
+            But what's wrong with things the way they are now?
+        </div>
+        <p class="answer">
+            We think that science should be conducted in the open.
+            The current presentation of scientific work resembles an iceberg.
+            10% of the efforts (in the form of highly polished papers) are visible and the other 90%
+            (in the form of conversations, null results, data, source code, and more) are hidden from view.
+            That other 90% can be very interesting and open science is about exposing it.
+        </p>
+        
+        <div class="question">
+            Why should I do science on the web?
+        </div>
+        <p class="answer bullet-leadin">
+            Easy Project Management
+            <ul class="point-list">
+                <li>keep track of all the projects you're working on or interested in</li>
+                <li>access your projects anywhere and anytime</li>
+                <li>maintain a public record who contributed to an idea and how</li>
+            </ul>
+        </p>
+        <p class="answer bullet-leadin">
+            Share Ideas with Collaborators
+            <ul class="point-list">
+                <li>work together online with scientists from around the world and from all disciplines</li>
+                <li>bring new collaborators up to speed quickly</li>
+                <li>allow other researchers who share your interests to find your work and contribute</li>
+                <li>collaboratively and publicly draft papers to summarize results</li>
+            </ul>
+        </p>
+        <p class="answer bullet-leadin">
+            Share Ideas with the Public
+            <ul class="point-list">
+                <li>allow members of the public to follow your work and results</li>
+                <li>allow young scientists to see the process of science unfold</li>
+            </ul>
+        </p>
+        
+        <div class="about-header">An Adaptive Site</div>
+        <p>
+            If there is one thing we want our users to understand, it is that CoLab will constantly be adapting to the needs of its users - scientists.
+            This is not a finished version of the site and there never will be one.
+            We have many new features currently in development and are constantly thinking about how to improve the site.
+        </p>
+        <p>
+            If you are interested in what we are cooking up, check out what we're up under the
+            <a href="{% url discipline_detail "colab-development" %}">CoLab Development</a> Discipline,
+            but even more importantly, let us know what you think!
+            Found a bug? Don't like the UI? Itching for some new feature? Tell us! 
+            You can always participate in the CoLab Development Issues or use the feedback button on the left (on any page).
+            You can also submit feedback directly in our <a href="{% url feedback_list %}">Feedback system</a>.
+            We want to make the web a better place for scientists and we can't do it without your suggestions.
+        <p>
+            Best of all, we don't have any hidden interests.
+            We are not a publisher, a journal, or a government agency - just passionate scientists who want to help the community use the web to do science better.
+        </p>
+        
+        <div class="about-header">The Lab Rats</div>
+        <div class="bio-title"><a href="http://www.thestarkeffect.com/">Casey Stark</a> - Founder and Architect</div>
+        <p class="bio">
+            Part web developer and part computational physicist, Casey would love to see science and the web learn to play nice.
+            After completing several small web design projects last spring (2009), Casey decided to look into the intersection of the web and science.
+            Frustrated with the lack of equation support and discussion tools out there for scientists, he began to tinkering with several ideas last summer
+            and after months of coding, ended up with what you see here today.
+            He implemented the entire site himself, so if something breaks, please yell at him.
+            Casey is currently a graduating senior at the University of Southern California and will continue
+            graduate studies in an as-yet-undetermined physics department in the fall.
+        </p>
+        
+        <div class="bio-title"><a href="http://www.djstrouse.com/">DJ Strouse</a> - Co-Founder</div>
+        <p class="bio">
+            Easily excited but rarely satisfied, DJ entertained ideas of becoming a filmmaker, sherpa, and professional chef before selling his soul to science.
+            His research interests are in the nature of information, computation, and intelligence and, in particular, their representation in the human brain.
+            His scientific mecca is to understand the brain well enough to interface with and supplement neural computation.
+            When he's not thinking about computation or hacking brains, he's thinking about hacking science and education.
+            Currently, he's a junior majoring in physics and mathematics at the University of Southern California.
+        </p>
+        
+        <div class="about-header">Nuts and Bolts</div>
+        <p>
+            The site is currently powered by <a href="http://www.djangoproject.com/">Django</a>,
+            a <a href="http://en.wikipedia.org/wiki/Web_application_framework">web framework</a>
+            written in <a href="http://www.python.org/">Python</a>,
+            and uses a hefty amount of code from the <a href="http://pinaxproject.com/">Pinax Platform</a>.
+            Hosted by <a href="http://www.webfaction.com/">Webfaction</a>. More details to come...
+        </p>
+    </div>
+{% endblock %}
+    

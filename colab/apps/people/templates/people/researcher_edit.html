@@ -1,0 +1,30 @@
+{% extends "people/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load account_tags %}
+
+{% block head_title %}Edit Profile{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url researcher_list %}">People</a></li>
+    <li><a href="{{ user.get_absolute_url }}">{% user_display user %}</a></li>
+    <li><a href="{{ request.path }}">Edit Profile</a></li>
+{% endblock %}
+
+{% block body %}
+
+{% ifequal user request.user %}
+    <form class="uniForm" method="POST" action="">{% csrf_token %}
+        <fieldset class="inlineLabels">
+            {{ researcher_form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" value="Update my Profile"/>
+            </div>
+        </fieldset>
+    </form>
+{% else %}
+    <p>You cannot edit this profile because it is not yours.</p>
+{% endifequal %}
+
+{% endblock body %}

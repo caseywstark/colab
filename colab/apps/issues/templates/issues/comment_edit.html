@@ -1,0 +1,60 @@
+{% extends "issues/issue_base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load threadedcommentstags %}
+{% load issues_tags %}
+{% load account_tags %}
+{% load object_feeds_tags %}
+
+{% block head_title %}Edit your Comment{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url issue_list %}">Issues</a></li>
+    <li><a href="{{ issue.get_absolute_url }}">{{ issue.title }}</a></li>
+    <li><a href="{{ issue.get_absolute_url }}">Comments</a></li>
+    <li><a href="{{ request.path }}">Edit</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            Edit your Comment
+        </div>
+    </div>
+    
+    <div class="list-item comment level-{{ comment.depth }}">
+        {% post_meta comment %}
+        
+        <div class="post-content">
+            {{ comment.comment|safe }}
+        </div>
+        <div class="clear"></div>
+        
+        <ul class="post-buttons">
+            {% ifequal comment.user user %}
+                <li><a id="edit-{{ comment.id }}-link" class="post-option" href="{% url tc_comment_edit comment.id %}">Edit</a></li>
+                <li><a class="post-option" href="{% url tc_comment_delete comment.id %}">Delete</a></li>
+            {% endifequal %}
+            <li><a id="reply-{{ comment.id }}-link" class="post-option" href="{% url comment_reply issue.slug comment.id %}">Reply</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    
+     <div class="edit-wrapper">
+        {% if user.is_authenticated %}
+        <form class="edit-form uniForm" id="edit-comment" method="POST" action="{% get_comment_url issue comment %}">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ comment_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="next" value="{% comment_url comment %}" />
+                    <input type="hidden" name="action" value="comment" />
+                    <input type="submit" value="{% trans 'Comment on Issue' %}"/>
+                </div>
+            </fieldset>
+        </form>
+        {% else %}
+            <h3>Please <a href="{% url acct_login %}">Login</a> (or <a href="{% url acct_signup %}">Sign Up</a>) to leave a comment.</h3>
+        {% endif %}
+    </div>
+{% endblock %}

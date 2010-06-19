@@ -1,0 +1,15 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}wikis{% endblock %}
+
+{% block extra_tab %}
+    <li id="tab_wikis" class="active"><a href="{{ request.path }}">Wikis</a></li>
+{% endblock %}
+
+{% block subnav %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url my_issues %} ">{% trans "My Wikis" %}</a></li>
+    {% endif %}
+{% endblock %}

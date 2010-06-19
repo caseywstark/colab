@@ -1,0 +1,61 @@
+{% extends "wikis/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load headquarters_tags %}
+
+{% block head_title %}{% blocktrans %}Revert to Revision {{ revision }}{% endblocktrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% if wiki.content_object %}
+        <li><a href="{{ wiki.content_object.get_absolute_url }}">{{ wiki.content_object }}</a></li>
+    {% endif %}
+    <li>Wikis</li>
+    <li><a href="{{ wiki.get_absolute_url }}">{{ wiki }}</a></li>
+    <li><a href="{% url wiki_history wiki.id %}">History</a></li>
+    <li><a href="{{ request.path }}">Revert to Revision {{ revision }}</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>Revert Wiki {{ wiki.title }} to Revision #{{ revision }}</h1>
+    
+    <p>Are you sure you want to revert the wiki to the version below?</p>
+    
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="revert_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                <div class="form_block">
+                    <input type="submit" value="Revert"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            Revision #{{ changeset.revision }} of <a href="{{ wiki.get_absolute_url }}">{{ wiki }}</a><br>
+            {% if changeset.old_title %}{{ changeset.old_title }}{% endif %}
+        </div>
+    </div>
+    
+    {% post_meta changeset %}
+    
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ changeset.display_diff|safe }}
+        </div>
+
+        <ul class="post-buttons">
+            <li><a class="post-option" href="{% url wiki_edit wiki.id %}">Edit</a></li>
+            {% ifequal request.user wiki.creator %}
+                <li><a class="post-option" href="{% url wiki_delete wiki.id %}">Delete</a></li>
+            {% endifequal %}
+        </ul>
+        <div class="clear"></div>
+    </div>
+    
+{% endblock %}
