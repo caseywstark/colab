@@ -1,6 +1,6 @@
 --extra-index-url=http://dist.pinaxproject.com/dev/
 
-Django>=1.1.1
+Django==1.2
 
 python-dateutil==1.4.1
 docutils==0.5
