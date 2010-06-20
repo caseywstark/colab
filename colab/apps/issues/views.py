@@ -26,7 +26,7 @@ from threadedcomments.forms import RichCommentForm
 
 @login_required
 def create(request, form_class=IssueForm, template_name="issues/create.html"):
-    issue_form = form_class(request.POST or None)
+    issue_form = form_class(request.POST or None, auto_id='new_issue_%s')
     
     if issue_form.is_valid():
         issue = issue_form.save(commit=False)

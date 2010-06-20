@@ -7,6 +7,10 @@
 
 {% block head_title %}{% blocktrans %}Compose Issue{% endblocktrans %}{% endblock %}
 
+{% block head_extra %}
+    {{ issue_form.media }}
+{% endblock %}
+
 {% block breadcrumbs %}
     <li><a href="{% url issue_list %}">Issues</a></li>
     <li><a href="{% url issue_create %}">Create an Issue</a></li>

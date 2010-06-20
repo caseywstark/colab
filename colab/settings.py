@@ -301,15 +301,33 @@ AJAX_LOOKUP_CHANNELS = {
 TINYMCE_JS_URL = STATIC_URL + "tiny_mce/tiny_mce.js"
 TINYMCE_JS_ROOT = STATIC_URL + "tiny_mce"
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
     'theme': "advanced",
     'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
+    #'skin': "o2k7",
+    #'skin_variant': "black",
+    'plugins': "safari, spellchecker, table, advimage, advlink, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, contextmenu, paste, directionality, fullscreen, noneditable, nonbreaking, xhtmlxtras, template",
+    'theme_advanced_buttons1': "bold, italic, underline, strikethrough, |, bullist, numlist, outdent, indent, blockquote, |, link, unlink,",
+    'theme_advanced_buttons2': "cut, copy, paste, pastetext, pasteword, |, search, replace, |, undo, redo, |, anchor, image, cleanup, help, |, insertdate, inserttime, preview,",
+    'theme_advanced_buttons3': "tablecontrols, |, removeformat, visualaid, |, sub, sup, |, charmap, iespell, media, |, fullscreen",
+    'theme_advanced_buttons4': "styleprops, spellchecker, |, cite, abbr, acronym, del, ins, attribs,",
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_toolbar_align': "center",
+    'theme_advanced_statusbar_location': "bottom",
+    'theme_advanced_resizing': True,
 }
 
 # No credentials for you
 try:
-    from settings_overrides.staging import *
-    from settings_overrides.production import *
-except ImportError:
+    from development import *
+except ImportError as e:
+    pass
+
+try:
+    from staging import *
+except ImportError as e:
+    pass
+    
+try:
+    from production import *
+except ImportError as e:
     pass

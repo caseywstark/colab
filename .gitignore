@@ -6,3 +6,4 @@ fabfile.py
 colab/media/mathjax
 colab/media/tiny_mce
 colab/site_media/media/*
+colab/development.py
