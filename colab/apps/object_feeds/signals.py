@@ -19,9 +19,9 @@ def pre_save(sender, instance, **kwargs):
         feed_type, created = FeedType.objects.get_or_create(content_type=content_type, name=model_name, slug=slugify(model_name))
         
         if created:
-            create_action = Action.objects.create(feed_type=feed_type, action='create', description='created', slug='create')
-            edit_action = Action.objects.create(feed_type=feed_type, action='edit', description='edited', slug='edit')
-            comment_action = Action.objects.create(feed_type=feed_type, action='comment', description='commented on', slug='comment')
+            create_action = Action.objects.create(feed_type=feed_type, name='create', description='created', slug='create')
+            edit_action = Action.objects.create(feed_type=feed_type, name='edit', description='edited', slug='edit')
+            comment_action = Action.objects.create(feed_type=feed_type, name='comment', description='commented on', slug='comment')
         
         the_feed = Feed.objects.create(feed_type=feed_type)
         setattr(instance, opts.feed_attr, the_feed)

@@ -53,7 +53,7 @@ def edit(request, slug=None, form_class=IssueForm, template_name="issues/edit.ht
     if issue.creator != request.user:
         return render_to_response('issues/forbidden.html', {}, context_instance=RequestContext(request))
     
-    issue_form = form_class(request.POST or None, instance=issue)
+    issue_form = form_class(request.POST or None, instance=issue, auto_id='edit_issue_%s')
     
     if issue_form.is_valid():
         issue = issue_form.save()

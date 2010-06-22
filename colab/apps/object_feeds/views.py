@@ -51,14 +51,18 @@ def subscription(request, feed_id=None, content_type=None, object_id=None, templ
     else:
         raise Http404
     
-    subscription_form = SubscriptionForm(feed=feed, user=request.user)
-    
     subscription = None
+    actions = None
     try:
         subscription = Subscription.objects.get(feed=feed, user=request.user)
+        actions = subscription.actions
         following = True
     except Subscription.DoesNotExist:
         following = False
+    
+    subscription_form = SubscriptionForm(
+        {'feed': feed.id, 'user': request.user.id, 'actions': actions},
+        feed=feed, user=request.user, actions=actions)
     
     # figure out which form was submitted
     unfollow_form = request.POST.get('unfollow', False)
@@ -67,13 +71,15 @@ def subscription(request, feed_id=None, content_type=None, object_id=None, templ
         subscription.delete()
         return HttpResponseRedirect(feed.feed_object.get_absolute_url())
         
-    if follow_form: # and subscription_form.is_valid():
+    if follow_form and subscription_form.is_valid():
         subscription = subscription_form.save()
         
         user_message = u"Your subscription was updated."
         request.user.message_set.create(message=user_message)
         
         return HttpResponseRedirect(feed.feed_object.get_absolute_url())
+    else:
+        print "Errors: %s %s" % (str(subscription_form.is_bound), subscription_form.errors)
     
     return render_to_response(template_name, {
         'feed': feed,

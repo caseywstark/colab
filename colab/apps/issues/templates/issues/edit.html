@@ -5,6 +5,10 @@
 
 {% block head_title %}Edit: {{ issue.title }}{% endblock %}
 
+{% block head_extra %}
+    {{ issue_form.media }}
+{% endblock %}
+
 {% block breadcrumbs %}
     <li><a href="{% url issue_list %}">Issues</a></li>
     <li><a href="{{ issue.get_absolute_url }}">{{ issue.title }}</a></li>

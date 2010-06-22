@@ -17,22 +17,26 @@
     
     <p>You are {% if not following %}<strong>not</strong>{% endif %} following this feed.</p>
     
+    <p>What type of updates would you like to see?</p>
+    
     {% if following %}
         <form class="uniForm" id="unfollow_form" method="POST" action="">{% csrf_token %}
             <fieldset class="inlineLabels">
                 <div class="form_block">
-                    <input type="submit" name="unfollow" value="Unfollow"/>
+                    <input type="submit" name="unfollow" value="I want to remove this subscription"/>
                 </div>
             </fieldset>
         </form>
     {% endif %}
+    
+    {{ subscription_form.errors }}
     
     {% if user.is_authenticated %}
         <form class="uniForm" id="subscription_form" method="POST" action="">{% csrf_token %}
             <fieldset class="inlineLabels">
                 {{ subscription_form|as_uni_form }}
                 <div class="form_block">
-                    <input type="submit" name="follow" value="Update Subscription"/>
+                    <input type="submit" name="follow" value="Update subscription"/>
                 </div>
             </fieldset>
         </form>

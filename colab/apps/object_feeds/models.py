@@ -21,7 +21,7 @@ def register_action(self, user, action, content_object):
     feed_type = FeedType.objects.get(content_type=content_type)
     
     # get the Action specified with the action string
-    the_action = Action.objects.get(feed_type=feed_type, action=action)
+    the_action = Action.objects.get(feed_type=feed_type, name=action)
     the_update = Update.objects.create(feed=self.feed, user=user, action=the_action, content_object=content_object)
 
 ### End Code ###
@@ -96,13 +96,13 @@ class Subscription(models.Model):
 class Action(models.Model):
     
     feed_type = models.ForeignKey(FeedType)
-    action = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
     
     slug = models.SlugField()
     
     def __unicode__(self):
-        return self.action
+        return self.name
 
 class Update(models.Model):
     

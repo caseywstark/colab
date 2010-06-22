@@ -16,7 +16,7 @@ from object_feeds.models import Feed, Update, Subscription
 from people.models import Researcher
 from issues.models import Issue
 
-from headquarters.forms import WmdCommentForm
+from threadedcomments.forms import RichCommentForm
 
 def homepage(request):
     """ 
@@ -119,7 +119,7 @@ def votes(request, mine=True, username=None):
 def comment_edit(request, comment_id=None, template_name="headquarters/comment_edit.html"):
     comment = get_object_or_404(ThreadedComment, id=comment_id)
     
-    comment_form = WmdCommentForm(extra_id='comment_edit', instance=comment)
+    comment_form = RichCommentForm(instance=comment, auto_id='comment_edit_%s')
     
     return render_to_response(template_name, {
         'comment': comment,
@@ -130,7 +130,7 @@ def comment_edit(request, comment_id=None, template_name="headquarters/comment_e
 def comment_reply(request, comment_id=None, template_name="headquarters/comment_reply.html"):
     comment = get_object_or_404(ThreadedComment, id=comment_id)
     
-    comment_form = WmdCommentForm(extra_id='comment_reply')
+    comment_form = RichCommentForm(auto_id='comment_reply_%s')
     
     return render_to_response(template_name, {
         'comment': comment,
