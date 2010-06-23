@@ -29,8 +29,6 @@
         </form>
     {% endif %}
     
-    {{ subscription_form.errors }}
-    
     {% if user.is_authenticated %}
         <form class="uniForm" id="subscription_form" method="POST" action="">{% csrf_token %}
             <fieldset class="inlineLabels">
