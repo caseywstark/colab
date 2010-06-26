@@ -123,30 +123,25 @@ class SignupForm(GroupForm):
         label = _("Name"),
         max_length = 50,
         widget = forms.TextInput(),
-        help_text = "your authorship name, as you want others to see it. Ex: John J. Smith."
-    )
+        help_text = "your authorship name, as you want others to see it. Ex: John J. Smith.")
     username = forms.CharField(
         label = _("Username"),
         max_length = 30,
         widget = forms.TextInput(),
-        help_text = "for your very own URL here on CoLab."
-    )
+        help_text = "for your very own URL here on CoLab.")
     email = forms.EmailField(
         widget=forms.TextInput(),
         help_text = "for logging in and so we can contact you. Don't worry, this is kept private.")
     password1 = forms.CharField(
         label = _("Password"),
-        widget = forms.PasswordInput(render_value=False)
-    )
+        widget = forms.PasswordInput(render_value=False))
     password2 = forms.CharField(
         label = _("Password (again)"),
-        widget = forms.PasswordInput(render_value=False)
-    )
+        widget = forms.PasswordInput(render_value=False))
     confirmation_key = forms.CharField(
         max_length = 40,
         required = False,
-        widget = forms.HiddenInput()
-    )
+        widget = forms.HiddenInput())
     
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
@@ -281,12 +276,19 @@ class SignupForm(GroupForm):
 
 class OpenIDSignupForm(forms.Form):
     
+    name =  forms.CharField(
+        label = _("Name"),
+        max_length = 50,
+        widget = forms.TextInput(),
+        help_text = "your authorship name, as you want others to see it. Ex: John J. Smith.")
     username = forms.CharField(
         label = _("Username"),
         max_length = 30,
-        widget = forms.TextInput()
-    )
-    email = forms.EmailField(widget=forms.TextInput())
+        widget = forms.TextInput(),
+        help_text = "for your very own URL here on CoLab.")
+    email = forms.EmailField(
+        widget=forms.TextInput(),
+        help_text = "for logging in and so we can contact you. Don't worry, this is kept private.")
     
     def __init__(self, *args, **kwargs):
         # remember provided (validated!) OpenID to attach it to the new user
@@ -324,7 +326,22 @@ class OpenIDSignupForm(forms.Form):
                 return value
             raise forms.ValidationError(_("A user is registered with this e-mail address."))
         return value
-
+    
+    def clean_name(self):
+        if not name_re.search(self.cleaned_data["name"]):
+            raise forms.ValidationError(_("Names can only contain letters, periods, dashes, and apostrophes."))
+        return self.cleaned_data["name"]
+    
+    def save(self):
+        new_user = super(OpenIDSignupForm, self).save(*args, **kwargs)
+        
+        ### CoLab mods here ###
+        name = self.cleaned_data["name"]
+        new_researcher, created = Researcher.objects.get_or_create(user=new_user)
+        new_researcher.name = name
+        new_researcher.save()
+        
+        return new_user
 
 class UserForm(forms.Form):
     

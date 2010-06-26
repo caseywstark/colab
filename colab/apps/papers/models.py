@@ -8,7 +8,6 @@ from django.db.models.query import QuerySet
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-from threadedcomments.models import ThreadedComment
 from tagging.fields import TagField
 
 import object_feeds
@@ -21,15 +20,14 @@ class QuerySetManager(models.Manager):
 	def __getattr__(self, attr, *args):
 		return getattr(self.get_query_set(), attr, *args)
 
-class Summary(models.Model):
-    """ A summary of a discussion. """
+class Paper(models.Model):
+    """ A formal write-up of results. """
     
     content_type = models.ForeignKey(ContentType, null=True, blank=True)
     object_id = models.PositiveIntegerField(null=True, blank=True)
     content_object = generic.GenericForeignKey("content_type", "object_id")
     
-    summarized = models.ManyToManyField(ThreadedComment, verbose_name=_(u'Comments Summarized'))
-    
+    title = models.CharField(_("title"), max_length=255, unique=True)
     content = models.TextField(_("content"))
     
     creator = models.ForeignKey(User, verbose_name=_("creator"), related_name="%(class)s_created")
@@ -55,30 +53,31 @@ class Summary(models.Model):
             return self.filter(**self._generate_object_kwarg_dict(content_object, **kwargs))
     
     class Meta:
-        app_label = "summaries"
-        verbose_name = _("Summary")
-        verbose_name_plural = _("Summaries")
+        app_label = "papers"
+        verbose_name = _("Paper")
+        verbose_name_plural = _("Papers")
     
     def __unicode__(self):
-        return u"Summary of %s" % self.content_object
+        return self.title
     
     def get_absolute_url(self):
-        return reverse("summary_detail", kwargs={"summary_id": self.id})
+        return reverse("paper_detail", kwargs={"paper_id": self.id})
     
     def latest_revision(self):
         try:
             return self.revision_set.filter(reverted=False).order_by('-revision')[0]
         except IndexError:
-            return SummaryRevision.objects.none()
+            return PaperRevision.objects.none()
     
-    def new_revision(self, old_content, comment, editor):
-        """ Create a new Revision with the old content. """
+    def new_revision(self, old_content, old_title, comment, editor):
+        '''Create a new PaperRevision with the old content.'''
         content_diff = diff(self.content, old_content)
 
-        rev = SummaryRevision( #.objects.create(
-            summary=self,
+        rev = PaperRevision( #.objects.create(
+            paper=self,
             comment=comment,
             editor=editor,
+            title=old_title,
             content = self.content,
             content_diff=content_diff)
         rev.save()
@@ -86,20 +85,20 @@ class Summary(models.Model):
         return rev
         
     def revert_to(self, revision, editor):
-        """ Revert the summary to a previuos state, by revision number. """
+        """ Revert the paper to a previuos state, by revision number. """
         revision = self.revision_set.get(revision=revision)
         revision.reapply(editor)
 
-object_feeds.register(Summary)
+object_feeds.register(Paper)
 
 class NonRevertedRevisionManager(QuerySetManager):
     def get_default_queryset(self):
         super(NonRevertedRevisionManager, self).get_query_set().filter(reverted=False)
 
-class SummaryRevision(models.Model):
-    """ A change in Summary. """
+class PaperRevision(models.Model):
+    """ A change in Paper. """
     
-    summary = models.ForeignKey(Summary, verbose_name=_(u'Summary'), related_name='revision')
+    paper = models.ForeignKey(Paper, verbose_name=_(u'Paper'), related_name="revision")
     editor = models.ForeignKey(User, verbose_name=_(u'Editor'), null=True)
     revision = models.IntegerField(_(u"Revision Number"))
     
@@ -116,7 +115,7 @@ class SummaryRevision(models.Model):
 
     objects = QuerySetManager()
     non_reverted_objects = NonRevertedRevisionManager()
-
+    
     class QuerySet(QuerySet):
         def all_later(self, revision):
             """ Return all changes later to the given revision.
@@ -125,68 +124,68 @@ class SummaryRevision(models.Model):
             return self.filter(revision__gt=int(revision))
 
     class Meta:
-        verbose_name = _(u'Summary revision')
-        verbose_name_plural = _(u'Summary revisions')
+        verbose_name = _(u'Paper revision')
+        verbose_name_plural = _(u'Paper revisions')
         get_latest_by  = 'modified'
         ordering = ('-revision',)
     
     def __unicode__(self):
-        return u'Summary Revision %d' % self.revision
+        return u'Paper Revision %d' % self.revision
     
     def get_absolute_url(self):
-        return reverse("summary_revision", kwargs={"summary_id": self.summary.id, "revision": self.revision})
+        return reverse("paper_revision", kwargs={"paper_id": self.paper.id, "revision": self.revision})
     
     def reapply(self, editor):
-        """ Return the Summary to this revision. """
+        """ Return the paper to this revision. """
 
         # XXX Would be better to exclude reverted revisions
         #     and revisions previous/next to reverted ones
-        next_changes = self.summary.revision_set.filter(
+        next_changes = self.paper.revision_set.filter(
             revision__gt=self.revision).order_by('-revision')
 
-        summary = self.summary
+        paper = self.paper
 
         content = None
         for revision in next_changes:
             if content is None:
-                content = summary.content
+                content = paper.content
             patch = dmp.patch_fromText(revision.content_diff)
             content = dmp.patch_apply(patch, content)[0]
 
             revision.reverted = True
             revision.save()
 
-        old_content = summary.content
-        old_title = summary.title
+        old_content = paper.content
+        old_title = paper.title
 
-        summary.content = content
-        summary.title = revision.old_title
-        summary.save()
+        paper.content = content
+        paper.title = revision.old_title
+        paper.save()
 
-        summary.new_revision(old_content=old_content, old_title=old_title,
+        paper.new_revision(old_content=old_content, old_title=old_title,
             comment="Reverted to revision #%s" % self.revision, editor=editor)
 
         self.save()
 
     def save(self, force_insert=False, force_update=False):
-        """ Saves the summary with a new revision. """
+        """ Saves the paper with a new revision. """
         if self.id is None:
             try:
-                self.revision = SummaryRevision.objects.filter(
-                    summary=self.summary).latest().revision + 1
+                self.revision = PaperRevision.objects.filter(
+                    paper=self.paper).latest().revision + 1
             except self.DoesNotExist:
                 self.revision = 1
-        super(SummaryRevision, self).save()#force_insert, force_update)
+        super(PaperRevision, self).save()#force_insert, force_update)
 
     def display_diff(self):
         ''' Returns a HTML representation of the diff. '''
 
         # well, it *will* be the old content
-        old_content = self.summary.content
+        old_content = self.paper.content
 
-        # newer non-reverted revisions of this summary, starting from this
-        newer_revisions = SummaryRevision.non_reverted_objects.filter(
-            summary=self.summary,
+        # newer non-reverted revisions of this paper, starting from this
+        newer_revisions = PaperRevision.non_reverted_objects.filter(
+            paper=self.paper,
             revision__gte=self.revision)
 
         # apply all patches to get the content of this revision

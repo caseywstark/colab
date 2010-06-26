@@ -205,7 +205,8 @@ INSTALLED_APPS = [
     "disciplines",
     "people",
     "issues",
-    "wikis",
+    "papers",
+    "summaries",
     "headquarters",
     "feedback",
     
