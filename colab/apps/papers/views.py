@@ -39,13 +39,10 @@ def create(request, content_type=None, object_id=None, form_class=PaperForm, tem
         request.user.message_set.create(message=user_message)
         
         return HttpResponseRedirect(paper.get_absolute_url())
-
-    form = form_class(request.POST or None, paper_type=paper_type)
     
     return render_to_response(template_name, {
         'content_object': content_object,
         'paper_form': form,
-        'paper_type': paper_type,
     }, context_instance=RequestContext(request))
 
 @login_required
