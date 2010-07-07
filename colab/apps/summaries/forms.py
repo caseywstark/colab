@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from summaries.models import Summary
 from tinymce.widgets import TinyMCE
+from threadedcomments.models import ThreadedComment
 
 class SummaryForm(forms.ModelForm):
     
@@ -22,9 +23,11 @@ class SummaryForm(forms.ModelForm):
         fields = ['summarized', 'content', 'tags', 'content_type', 'object_id']
     
     def __init__(self, *args, **kwargs):
+        self.summary_object = kwargs.pop('summary_object', None)
         super(SummaryForm, self).__init__(*args, **kwargs)
         
-        #self.fields['summarized'].widget = forms.CheckboxSelectMultiple()
+        self.fields['summarized'].widget = forms.CheckboxSelectMultiple()
+        self.fields['summarized'].queryset = ThreadedComment.public.all_for_object(self.summary_object)
 
     def save(self):
         # 1 - Get the old stuff before saving

@@ -22,7 +22,7 @@ def create(request, content_type=None, object_id=None, form_class=SummaryForm, t
     else:
         content_object = none
     
-    form = form_class(request.POST or None)
+    form = form_class(request.POST or None, summary_object=content_object)
     
     if form.is_valid():
         form.editor = request.user
