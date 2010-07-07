@@ -1,0 +1,38 @@
+{% extends "papers/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}{% blocktrans %}Create a Paper{% endblocktrans %}{% endblock %}
+
+{% block head_extra %}
+    {{ paper_form.media }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% if paper.content_object %}
+        <li><a href="{{ paper.content_object.get_absolute_url }}">{{ paper.content_object }}</a></li>
+    {% endif %}
+    <li>Papers</li>
+    <li><a href="{{ request.path }}">Create a Paper</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>Create a Paper{% if content_object %} linked to <a href="{{ content_object.get_absolute_url }}">{{ content_object }}</a>{% endif %})</h1>
+    
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="paper_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ paper_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" value="Create new paper"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+{% endblock %}
