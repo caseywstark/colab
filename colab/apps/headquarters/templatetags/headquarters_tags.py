@@ -7,7 +7,8 @@ register = template.Library()
 from threadedcomments.models import ThreadedComment
 
 from issues.models import Issue
-from wikis.models import Wiki, ChangeSet
+from papers.models import Paper, PaperRevision
+from summaries.models import Summary, SummaryRevision
 from voting.models import Vote
 from feedback.models import Feedback
 
@@ -18,15 +19,10 @@ def post_icon(post):
     icon = None
     if isinstance(post, Issue):
         icon = 'script'
-    elif isinstance(post, Wiki) or isinstance(post, ChangeSet):
-        if isinstance(post, ChangeSet):
-            post = post.wiki
-        if post.wiki_type == 'PR':
-            icon = 'report'
-        elif post.wiki_type == 'SM':
-            icon = 'newspaper'
-        elif post.wiki_type == 'PG':
-            icon = 'page'
+    elif isinstance(post, Paper) or isinstance(post, PaperRevision):
+        icon = 'report'
+    elif isinstance(post, Summary) or isinstance(post, SummaryRevision):
+        icon = 'newspaper'
     elif isinstance(post, Feedback):
         icon = 'bug'
     elif isinstance(post, ThreadedComment):
@@ -41,9 +37,9 @@ def post_author(post):
     author = None
     if isinstance(post, Issue):
         author = post.creator
-    elif isinstance(post, Wiki):
-        author = post.latest_changeset().editor
-    elif isinstance(post, ChangeSet):
+    elif isinstance(post, Paper) or isinstance(post, Summary):
+        author = post.last_editor
+    elif isinstance(post, PaperRevision) or isinstance(post, SummaryRevision):
         author = post.editor
     elif isinstance(post, Feedback):
         if not post.user or post.anonymous:
@@ -62,9 +58,9 @@ def post_datetime(post):
     datetime = None
     if isinstance(post, Issue):
         datetime = post.created
-    elif isinstance(post, Wiki):
-        datetime = post.latest_changeset().modified
-    elif isinstance(post, ChangeSet):
+    elif isinstance(post, Paper) or isinstance(post, Summary):
+        datetime = post.last_edited
+    elif isinstance(post, PaperRevision) or isinstance(post, SummaryRevision):
         datetime = post.modified
     elif isinstance(post, Feedback):
         datetime = post.created
@@ -82,7 +78,7 @@ def post_meta_summary(post, show_author=True):
         contributor_count = post.contributors.count()
         the_user = post.creator
         comment_count = True
-    elif isinstance(post, Wiki):
+    elif isinstance(post, Paper) or isinstance(post, Summary):
         the_user = post.creator
         comment_count = True
     elif isinstance(post, ThreadedComment):
@@ -106,14 +102,14 @@ def post_meta(context, post):
         author_field = "creator"
         permalink = post.get_absolute_url()
         vote_url = 'issue_vote'
-    elif isinstance(post, Wiki):
+    elif isinstance(post, Paper):
         author_field = "creator"
         permalink = post.get_absolute_url()
-        vote_url = 'wiki_vote'
-    elif isinstance(post, ChangeSet):
-        author_field = "editor"
+        vote_url = 'paper_vote'
+    elif isinstance(post, Summary):
+        author_field = "creator"
         permalink = post.get_absolute_url()
-        vote_url = 'changeset_vote'
+        vote_url = 'summary_vote'
     elif isinstance(post, Feedback):
         author_field = "user"
         permalink = post.get_absolute_url()
