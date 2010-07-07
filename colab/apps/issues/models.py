@@ -11,7 +11,7 @@ from tagging.fields import TagField
 
 from disciplines.models import Discipline
 from people.models import Institution
-from wikis.models import Wiki
+from papers.models import Paper
 import object_feeds
 
 class Issue(models.Model):
@@ -29,7 +29,7 @@ class Issue(models.Model):
     
     # resolution
     resolved = models.BooleanField(default=False)
-    resolution = models.ForeignKey(Wiki, null=True, blank=True, related_name='resolved_issue')
+    resolution = models.ForeignKey(Paper, null=True, blank=True, related_name='resolved_issue')
     
     # denormalize votes
     yeas = models.PositiveIntegerField(default=0, editable=False)
@@ -39,8 +39,6 @@ class Issue(models.Model):
     # store contributing institutions! why not?
     institutions = models.ManyToManyField(Institution, blank=True)
     
-    wikis = generic.GenericRelation(Wiki)
-    
     contributor_users = models.ManyToManyField(User,
         through = "IssueContributor",
         verbose_name = _("contributor")
@@ -48,15 +46,15 @@ class Issue(models.Model):
     
     @property
     def papers(self):
-        return Wiki.objects.papers_for_object(self)
+        return Paper.objects.papers_for_object(self)
     
     @property
     def summaries(self):
-        return Wiki.objects.summaries_for_object(self)
+        return Paper.objects.summaries_for_object(self)
     
     @property
     def pages(self):
-        return Wiki.objects.pages_for_object(self)
+        return Paper.objects.pages_for_object(self)
     
     class Meta:
         verbose_name = _("Issue")
@@ -78,7 +76,7 @@ class Issue(models.Model):
     
     def resolve(self, resolution_id):
         try:
-            resolution = Wiki.objects.get(id=resolution_id)
+            resolution = Paper.objects.get(id=resolution_id)
         except:
             return False
         

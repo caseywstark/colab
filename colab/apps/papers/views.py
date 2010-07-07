@@ -27,9 +27,9 @@ def create(request, content_type=None, object_id=None, form_class=PaperForm, tem
     if form.is_valid():
         form.editor = request.user
         form.content_object = content_object
-
         paper, revision = form.save()
         
+        # Updates and messages
         paper.register_action(request.user, 'create', revision)
         
         if hasattr(paper.content_object, 'feed'):
@@ -99,7 +99,7 @@ def paper(request, paper_id=None, template_name='papers/paper.html'):
 
     paper = get_object_or_404(Paper, id=paper_id)
 
-    comment_form = WmdCommentForm(extra_id='paper_comment')    
+    comment_form = RichCommentForm(auto_id='paper_comment_%s')    
     
     return render_to_response(template_name, {
         'paper': paper,
@@ -113,7 +113,7 @@ def revision(request, paper_id=None, revision=1, template_name='papers/revision.
     paper = get_object_or_404(Paper, id=paper_id)
     revision = get_object_or_404(paper.paperrevision_set, revision=int(revision))
     
-    comment_form = WmdCommentForm(extra_id='revision_comment')
+    comment_form = RichCommentForm(auto_id='revision_comment_%s')
     
     return render_to_response(template_name, {
         'paper': paper,

@@ -14,13 +14,12 @@ class PaperForm(forms.ModelForm):
     
     content_type = forms.ModelChoiceField(
         queryset=ContentType.objects.all(),
-        required=False,
-        widget=TinyMCE)
+        required=False, widget=forms.HiddenInput)
     object_id = forms.IntegerField(required=False, widget=forms.HiddenInput)
 
     class Meta:
         model = Paper
-        fields = ['summarized', 'content', 'tags', 'content_type', 'object_id']
+        fields = ['title', 'content', 'tags', 'content_type', 'object_id']
     
     def __init__(self, *args, **kwargs):
         super(PaperForm, self).__init__(*args, **kwargs)
@@ -28,26 +27,31 @@ class PaperForm(forms.ModelForm):
     def save(self):
         # 1 - Get the old stuff before saving
         if self.instance.id is None:
+            old_title = ''
             old_content = ''
             new = True
         else:
+            old_title = self.instance.title
             old_content = self.instance.content
             new = False
         comment = self.cleaned_data["comment"]
 
         # 2 - Save the page
-        paper = super(PaperForm, self).save()
+        paper = super(PaperForm, self).save(commit=False)
 
         # 3 - Set creator and group
         editor = getattr(self, 'editor', None)
         content_object = getattr(self, 'content_object', None)
         if new:
+            paper.content_object = content_object
             if editor is not None:
                 paper.creator = editor
-                paper.content_object = content_object
-            paper.save()
+                paper.last_editor = editor
+        
+        paper.save()
+        self.save_m2m()
 
         # 4 - Create new revision
-        revision = paper.new_revision(old_content, comment, editor)
+        revision = paper.new_revision(old_title, old_content, comment, editor)
 
         return paper, revision

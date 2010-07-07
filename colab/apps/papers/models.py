@@ -12,6 +12,17 @@ from tagging.fields import TagField
 
 import object_feeds
 
+# The diff stuff
+from diff_match_patch import diff_match_patch
+
+# We dont need to create a new one everytime
+dmp = diff_match_patch()
+
+def diff(txt1, txt2):
+    """Create a 'diff' from txt1 to txt2."""
+    patch = dmp.patch_make(txt1, txt2)
+    return dmp.patch_toText(patch)
+
 
 class QuerySetManager(models.Manager):
 	def get_query_set(self):
@@ -69,7 +80,7 @@ class Paper(models.Model):
         except IndexError:
             return PaperRevision.objects.none()
     
-    def new_revision(self, old_content, old_title, comment, editor):
+    def new_revision(self, old_title, old_content, comment, editor):
         '''Create a new PaperRevision with the old content.'''
         content_diff = diff(self.content, old_content)
 
@@ -77,7 +88,7 @@ class Paper(models.Model):
             paper=self,
             comment=comment,
             editor=editor,
-            title=old_title,
+            old_title=old_title,
             content = self.content,
             content_diff=content_diff)
         rev.save()
@@ -102,6 +113,7 @@ class PaperRevision(models.Model):
     editor = models.ForeignKey(User, verbose_name=_(u'Editor'), null=True)
     revision = models.IntegerField(_(u"Revision Number"))
     
+    old_title = models.CharField(_(u"Old Title"), max_length=255, blank=True)
     content_diff = models.TextField(_(u"Content Patch"), blank=True)
     content = models.TextField(_(u"Content"))
 
