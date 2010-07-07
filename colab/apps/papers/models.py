@@ -76,7 +76,7 @@ class Paper(models.Model):
     
     def latest_revision(self):
         try:
-            return self.revision_set.filter(reverted=False).order_by('-revision')[0]
+            return self.revisions.filter(reverted=False).order_by('-revision')[0]
         except IndexError:
             return PaperRevision.objects.none()
     
@@ -95,9 +95,9 @@ class Paper(models.Model):
         
         return rev
         
-    def revert_to(self, revision, editor):
+    def revert_to(self, revision_number, editor):
         """ Revert the paper to a previuos state, by revision number. """
-        revision = self.revision_set.get(revision=revision)
+        revision = self.revisions.get(revision=revision_number)
         revision.reapply(editor)
 
 object_feeds.register(Paper)
@@ -152,7 +152,7 @@ class PaperRevision(models.Model):
 
         # XXX Would be better to exclude reverted revisions
         #     and revisions previous/next to reverted ones
-        next_changes = self.paper.revision_set.filter(
+        next_changes = self.paper.revisions.filter(
             revision__gt=self.revision).order_by('-revision')
 
         paper = self.paper

@@ -140,7 +140,7 @@ def revert(request, paper_id=None, revision=1, template_name='papers/revert.html
     
     if request.method == 'POST':
         # revert the document
-        paper.revert_to(revision, request.user)
+        revision.reapply(request.user)
         
         paper.register_action(request.user, 'revert', revision)
         
