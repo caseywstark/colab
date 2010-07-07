@@ -284,11 +284,7 @@ body.people #tab_people a, body.blog #tab_blog a, body.feedback #tab_feedback a 
 #page-content {
     color: #3e4f4a;
     background-color: #ffffff;
-    
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border: 8px #ABAEB0 solid;
-    
+    border-top: 8px #ABAEB0 solid;
     margin-bottom: 20px;
     text-align: left;
 }
@@ -405,11 +401,6 @@ body.people #tab_people a, body.blog #tab_blog a, body.feedback #tab_feedback a 
     background: #323434;
     padding: 10px 15px;
     text-align: center;
-    
-    -moz-border-radius-topleft: 8px;
-    -moz-border-radius-topright: 8px;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-top-right-radius: 8px;
 }
 #footer div {
     display: inline;

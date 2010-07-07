@@ -165,9 +165,12 @@
                 </ul>
             </div>
             <div class="clear"></div>
+        </div>
             
-            <div id="page-content">
-                <div id="subnav-wrapper">
+        <div id="page-content">
+            
+            <div id="subnav-wrapper">
+                <div class="guide">
                     <ul id="breadcrumbs">
                         {% block breadcrumbs %}{% endblock %}
                     </ul>
@@ -177,38 +180,47 @@
                     </ul>
                     <div class="clear"></div>
                 </div>
-                <div id="actions">
+            </div>
+            
+            <div id="actions">
+                <div class="guide">
                     <ul id="action-list">
                         {% block actions %}{% endblock %}
                     </ul>
                     <div class="clear"></div>
                 </div>
-                <div id="body">
+            </div>
+            
+            <div id="body">
+                <div class="guide">
                     {% block body %}{% endblock body %}
                 </div>
             </div>
                 
             <div id="footer">
-                <div id="copyright">
-                        &copy; 2010 Casey Stark (<a href="http://www.thestarkeffect.com/">The Stark Effect</a>)
+                <div class="guide">
+                    <div id="copyright">
+                            &copy; 2010 Casey Stark (<a href="http://www.thestarkeffect.com/">The Stark Effect</a>)
+                    </div>
+                    
+                    <div id="powered-by">
+                        Powered by <a href="http://www.pinaxproject.com/">Pinax</a>,
+                        <div id="django-badge">
+                            <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangomade124x25.gif" border="0" alt="Made with Django." title="Made with Django." /></a>
+                        </div>
+                        , and
+                        <div id="jquery-badge">
+                            <a href='http://jquery.com/' title='jQuery JavaScript Library'><img src='http://jquery.com/files/buttons/110x31_gr01.png' alt='jQuery JavaScript Library' title='jQuery JavaScript Library' style='border:none;'/></a>
+                        </div>
+                        . Hosted by
+                        <div id="webfaction-badge">
+                            <a href="http://www.webfaction.com/">
+                                <img src="http://www.webfaction.com/banners/80x15-bg.png" border="0" alt="Webfaction." title="Webfaction" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
                 </div>
-                
-                <div id="powered-by">
-                    Powered by <a href="http://www.pinaxproject.com/">Pinax</a>,
-                <div id="django-badge">
-                    <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangomade124x25.gif" border="0" alt="Made with Django." title="Made with Django." /></a>
-                </div>
-                , and
-                <div id="jquery-badge">
-                    <a href='http://jquery.com/' title='jQuery JavaScript Library'><img src='http://jquery.com/files/buttons/110x31_gr01.png' alt='jQuery JavaScript Library' title='jQuery JavaScript Library' style='border:none;'/></a>
-                </div>
-                . Hosted by
-                <div id="webfaction-badge">
-                    <a href="http://www.webfaction.com/">
-                        <img src="http://www.webfaction.com/banners/80x15-bg.png" border="0" alt="Webfaction." title="Webfaction" />
-                    </a>
-                </div>
-                <div class="clear"></div>
             </div>
         
         </div>
