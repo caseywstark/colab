@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^create/(?P<content_type>\d+)/(?P<object_id>\d+)/$', views.create, name='paper_create'),
     
     # specific
-    url(r'^paper/(?P<paper_id>\d+)/$', views.detail, name='paper_detail'),
+    url(r'^paper/(?P<paper_id>\d+)/$', views.paper, name='paper_detail'),
     url(r'^paper/(?P<paper_id>\d+)/edit/$', views.edit, name='paper_edit'),
     url(r'^paper/(?P<paper_id>\d+)/delete/$', views.delete, name='paper_delete'),
     url(r'^paper/(?P<paper_id>\d+)/history/$', views.history, name='paper_history'),
