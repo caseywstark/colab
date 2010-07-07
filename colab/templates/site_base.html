@@ -80,17 +80,6 @@
                 </a>
             </div>
             
-            <div id="top-navigation-wrapper">
-                <ul id="top-navigation">
-                    <li id="tab_home"><a href="{% url home %}">Home</a></li>
-                    <li id="tab_about"><a href="{% url about %}">About</a></li>
-                    <li id="tab_faqs"><a href="{% url faq %}">FAQs</a></li>
-                    <li id="tab_contact"><a href="{% url contact %}">Contact</a></li>
-                    <li id="tab_contribute"><a href="{% url contribute %}">{% silk "coins" %} Contribute</a></li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-            
             <!--
             <div id="oss">Open Source Science</div>
             -->
@@ -104,11 +93,11 @@
                     <div id="user-details">
                         <a id="my-name" href="{{ profile_url }}">{% user_display user %}</a>
                         <div id="user-navigation">
-                            <a href="{{ profile_url }}">{% silk "user" %} {% trans "Profile" %}</a> | 
-                            <a href="{% url acct_email %}">{% silk "cog" %} {% trans "Settings" %}</a> | 
-                            <a href="/openid/logout/?next={% url acct_logout %}">{% silk "world_go" %} {% trans "Logout" %}</a>
+                            <a href="{{ profile_url }}">{% trans "Profile" %}</a> | 
+                            <a href="{% url acct_email %}">{% trans "Settings" %}</a> | 
+                            <a href="/openid/logout/?next={% url acct_logout %}">{% trans "Logout" %}</a>
                             {% if user.is_staff %}
-                                <br><a href="/admin/">{% silk "server_database" %} {% trans "Admin" %}</a>
+                                <br><a href="/admin/">{% trans "Admin" %}</a>
                             {% endif %}
                         </div>
                     </div>
@@ -199,8 +188,16 @@
                 
             <div id="footer">
                 <div class="guide">
+                    <ul id="top-navigation">
+                        <li id="tab_home"><a href="{% url home %}">Home</a></li>
+                        <li id="tab_about"><a href="{% url about %}">About</a></li>
+                        <li id="tab_faqs"><a href="{% url faq %}">FAQs</a></li>
+                        <li id="tab_contact"><a href="{% url contact %}">Contact</a></li>
+                        <li id="tab_contribute"><a href="{% url contribute %}">Contribute</a></li>
+                    </ul>
+                    
                     <div id="copyright">
-                            &copy; 2010 Casey Stark (<a href="http://www.thestarkeffect.com/">The Stark Effect</a>)
+                        &copy; 2010 Casey Stark (<a href="http://www.thestarkeffect.com/">The Stark Effect</a>)
                     </div>
                     
                     <div id="powered-by">

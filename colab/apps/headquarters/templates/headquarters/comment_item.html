@@ -10,10 +10,10 @@
     
     <ul class="post-buttons">
         {% ifequal comment.user request.user %}
-            <li><a id="edit-{{ comment.id }}-link" class="post-option" href="{% url comment_edit comment.id %}">{% silk "comment_edit" %} Edit</a></li>
-            <li><a class="post-option" href="{% url tc_comment_delete comment.id %}">{% silk "comment_delete" %} Delete</a></li>
+            <li><a id="edit-{{ comment.id }}-link" class="post-option" href="{% url comment_edit comment.id %}">Edit</a></li>
+            <li><a class="post-option" href="{% url tc_comment_delete comment.id %}">Delete</a></li>
         {% endifequal %}
-        <li><a id="reply-{{ comment.id }}-link" class="post-option" href="{% url comment_reply comment.id %}">{% silk "comments_add" %} Reply</a></li>
+        <li><a id="reply-{{ comment.id }}-link" class="post-option" href="{% url comment_reply comment.id %}">Reply</a></li>
     </ul>
     <div class="clear"></div>
 </li>

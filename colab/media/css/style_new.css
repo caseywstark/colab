@@ -25,6 +25,7 @@ a, a:link, a:visited {
     color: #ffffff;
 }
 a:hover { text-decoration: none; }
+a img { vertical-align: baseline; }
 
 .clear { clear: both; }
 
@@ -118,7 +119,7 @@ a:hover { text-decoration: none; }
 
 #top-navigation-wrapper {
     width: 520px; float: right;
-    font-variant: small-caps; font-size: 18px;
+    font-size: 14px;
     background: #2d2d2d;
     
     -moz-border-radius-bottomleft: 10px;
@@ -135,7 +136,7 @@ a:hover { text-decoration: none; }
 #top-navigation li {
     display: inline;
     float: left;
-    margin: 13px 5px;
+    margin: 13px 14px;
 }
 #top-navigation a {
     text-decoration: none;

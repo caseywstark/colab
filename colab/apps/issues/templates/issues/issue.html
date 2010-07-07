@@ -47,8 +47,8 @@
 
         <ul class="post-buttons">
             {% ifequal user issue.creator %}
-                <li><a class="post-option" href="{% url issue_edit issue.slug %}">{% silk "script_edit" %} Edit</a></li>
-                <li><a class="post-option" href="{% url issue_delete issue.slug %}">{% silk "script_delete" %} Delete</a></li>
+                <li><a class="post-option" href="{% url issue_edit issue.slug %}">Edit</a></li>
+                <li><a class="post-option" href="{% url issue_delete issue.slug %}">Delete</a></li>
             {% endifequal %}
         </ul>
         <div class="clear"></div>

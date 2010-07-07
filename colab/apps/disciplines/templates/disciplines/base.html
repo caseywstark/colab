@@ -11,10 +11,10 @@
 
 {% block subnav %}
     <ul>
-        <li><a href="{% url discipline_list %}">{% silk "book_open" %} {% trans "Discipline Tree" %}</a></li>
+        <li><a href="{% url discipline_list %}">{% trans "Discipline Tree" %}</a></li>
         {% if user.is_authenticated %}
-            <li><a href="{% url my_expertise %} ">{% silk "book_link" %} {% trans "Your Expertise" %}</a></li>
-            <li><a href="{% url researcher_edit %} ">{% silk "book_edit" %} {% trans "Change your default filter" %}</a></li>
+            <li><a href="{% url my_expertise %} ">{% trans "Your Expertise" %}</a></li>
+            <li><a href="{% url researcher_edit %} ">{% trans "Change your default filter" %}</a></li>
         {% endif %}
     </ul>
 {% endblock %}
