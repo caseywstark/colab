@@ -22,15 +22,14 @@
                 <li>{% anchor yeas "yeas" %}</li>
                 <li>{% anchor nays "nays" %}</li>
             </ul>
-            
-            <div class="add-summary">
-                <a href="{% add_summary_url post %}">{% silk "newspaper" %} Add a Summary</a>
-            </div>
-            
-            <div class="clear"></div>
         </div>
         
         <div class="section-content">
+            <div class="add-summary">
+                <a href="{% add_summary_url post %}">{% silk "newspaper" %} Add a Summary</a>
+            </div>
+            <div class="clear"></div>
+            
             <ul class="post-list comments">
                 {% if comments %}
                     {% for comment in comments %}

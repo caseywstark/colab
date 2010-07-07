@@ -743,7 +743,7 @@ input.ac_loading {
 }
 
 .add-summary {
-    float: right;
+    float: left;
     width: 200px;
 }
 
