@@ -27,9 +27,9 @@ def create(request, content_type=None, object_id=None, form_class=SummaryForm, t
     if form.is_valid():
         form.editor = request.user
         form.content_object = content_object
-
         summary, revision = form.save()
         
+        # Updates and messages
         summary.register_action(request.user, 'create', revision)
         
         if hasattr(summary.content_object, 'feed'):
@@ -39,13 +39,10 @@ def create(request, content_type=None, object_id=None, form_class=SummaryForm, t
         request.user.message_set.create(message=user_message)
         
         return HttpResponseRedirect(summary.get_absolute_url())
-
-    form = form_class(request.POST or None, summary_type=summary_type)
     
     return render_to_response(template_name, {
         'content_object': content_object,
         'summary_form': form,
-        'summary_type': summary_type,
     }, context_instance=RequestContext(request))
 
 @login_required
@@ -102,7 +99,7 @@ def summary(request, summary_id=None, template_name='summaries/summary.html'):
 
     summary = get_object_or_404(Summary, id=summary_id)
 
-    comment_form = WmdCommentForm(extra_id='summary_comment')    
+    comment_form = RichCommentForm(auto_id='summary_comment_%s')
     
     return render_to_response(template_name, {
         'summary': summary,
@@ -114,9 +111,9 @@ def summary(request, summary_id=None, template_name='summaries/summary.html'):
 def revision(request, summary_id=None, revision=1, template_name='summaries/revision.html'):
     
     summary = get_object_or_404(Summary, id=summary_id)
-    revision = get_object_or_404(summary.summaryrevision_set, revision=int(revision))
+    revision = get_object_or_404(summary.revisions, revision=int(revision))
     
-    comment_form = WmdCommentForm(extra_id='revision_comment')
+    comment_form = RichCommentForm(auto_id='revision_comment_%s')
     
     return render_to_response(template_name, {
         'summary': summary,
@@ -128,7 +125,7 @@ def revision(request, summary_id=None, revision=1, template_name='summaries/revi
 def history(request, summary_id=None, template_name='summaries/history.html'):
 
     summary = get_object_or_404(Summary, id=summary_id)
-    changes = summary.revision_set.all().order_by('-revision')
+    changes = summary.revisions.all().order_by('-revision')
 
     return render_to_response(template_name, {
         'summary': summary,
@@ -139,7 +136,7 @@ def history(request, summary_id=None, template_name='summaries/history.html'):
 def revert(request, summary_id=None, revision=1, template_name='summaries/revert.html'):
     
     summary = get_object_or_404(Summary, id=summary_id)
-    revision = get_object_or_404(summary.revision_set, revision=int(revision))
+    revision = get_object_or_404(summary.revisions, revision=int(revision))
     
     if request.method == 'POST':
         # revert the document

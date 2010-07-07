@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load sorting_tags %}
 {% load headquarters_tags %}
+{% load theme_tags %}
+{% load summaries_tags %}
 
 {#{% get_threaded_comment_tree for post as comments %}#}
 {#{% get_comment_count for post as comment_count %}#}
@@ -20,6 +22,11 @@
                 <li>{% anchor yeas "yeas" %}</li>
                 <li>{% anchor nays "nays" %}</li>
             </ul>
+            
+            <div class="add-summary">
+                <a href="{% add_summary_url post %}">{% silk "newspaper" %} Add a Summary</a>
+            </div>
+            
             <div class="clear"></div>
         </div>
         

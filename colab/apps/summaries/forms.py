@@ -14,8 +14,7 @@ class SummaryForm(forms.ModelForm):
     
     content_type = forms.ModelChoiceField(
         queryset=ContentType.objects.all(),
-        required=False,
-        widget=TinyMCE)
+        required=False, widget=forms.HiddenInput)
     object_id = forms.IntegerField(required=False, widget=forms.HiddenInput)
 
     class Meta:
@@ -24,6 +23,8 @@ class SummaryForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(SummaryForm, self).__init__(*args, **kwargs)
+        
+        #self.fields['summarized'].widget = forms.CheckboxSelectMultiple()
 
     def save(self):
         # 1 - Get the old stuff before saving
@@ -36,16 +37,19 @@ class SummaryForm(forms.ModelForm):
         comment = self.cleaned_data["comment"]
 
         # 2 - Save the page
-        summary = super(SummaryForm, self).save()
+        summary = super(SummaryForm, self).save(commit=False)
 
         # 3 - Set creator and group
         editor = getattr(self, 'editor', None)
         content_object = getattr(self, 'content_object', None)
         if new:
+            summary.content_object = content_object
             if editor is not None:
                 summary.creator = editor
-                summary.content_object = content_object
-            summary.save()
+                summary.last_editor = editor
+        
+        summary.save()
+        self.save_m2m()
 
         # 4 - Create new revision
         revision = summary.new_revision(old_content, comment, editor)

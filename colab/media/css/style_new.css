@@ -751,6 +751,11 @@ input.ac_loading {
     text-align: center;
 }
 
+.add-summary {
+    float: right;
+    width: 200px;
+}
+
 .level-1 { margin-left: 50px; }
 .level-2 { margin-left: 100px; }
 .level-3 { margin-left: 140px; }

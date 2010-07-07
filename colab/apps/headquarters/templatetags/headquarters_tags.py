@@ -178,7 +178,7 @@ def comment_list(context, post):
     sort_field += sort
     
     comments = ThreadedComment.public.get_tree(post, sort=sort_field)
-    return {'comments': comments, 'comment_count': len(comments),
+    return {'comments': comments, 'comment_count': len(comments), 'post': post,
         'request': context['request']}
 
 ### Full preview of an update instance ###

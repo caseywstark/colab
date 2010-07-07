@@ -13,6 +13,17 @@ from tagging.fields import TagField
 
 import object_feeds
 
+# The diff stuff
+from diff_match_patch import diff_match_patch
+
+# We dont need to create a new one everytime
+dmp = diff_match_patch()
+
+def diff(txt1, txt2):
+    """Create a 'diff' from txt1 to txt2."""
+    patch = dmp.patch_make(txt1, txt2)
+    return dmp.patch_toText(patch)
+
 
 class QuerySetManager(models.Manager):
 	def get_query_set(self):

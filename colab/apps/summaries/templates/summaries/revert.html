@@ -1,0 +1,61 @@
+{% extends "summaries/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load headquarters_tags %}
+
+{% block head_title %}{% blocktrans %}Revert to Revision {{ revision }}{% endblocktrans %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% if summary.content_object %}
+        <li><a href="{{ summary.content_object.get_absolute_url }}">{{ summary.content_object }}</a></li>
+    {% endif %}
+    <li>Summaries</li>
+    <li><a href="{{ summary.get_absolute_url }}">{{ summary }}</a></li>
+    <li><a href="{% url summary_history summary.id %}">History</a></li>
+    <li><a href="{{ request.path }}">Revert to Revision {{ revision }}</a></li>
+{% endblock %}
+
+{% block body %}
+    <h1>Revert summary {{ summary.title }} to Revision #{{ revision }}</h1>
+    
+    <p>Are you sure you want to revert the summary to the version below?</p>
+    
+    {% if user.is_authenticated %}
+        <form class="uniForm" id="revert_form" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                <div class="form_block">
+                    <input type="submit" value="Revert"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            Revision #{{ revision.revision }} of <a href="{{ summary.get_absolute_url }}">{{ summary }}</a><br>
+            {% if revision.old_title %}{{ revision.old_title }}{% endif %}
+        </div>
+    </div>
+    
+    {% post_meta revision %}
+    
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ revision.display_diff|safe }}
+        </div>
+
+        <ul class="post-buttons">
+            <li><a class="post-option" href="{% url summary_edit summary.id %}">Edit</a></li>
+            {% ifequal request.user summary.creator %}
+                <li><a class="post-option" href="{% url summary_delete summary.id %}">Delete</a></li>
+            {% endifequal %}
+        </ul>
+        <div class="clear"></div>
+    </div>
+    
+{% endblock %}
