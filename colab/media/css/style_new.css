@@ -111,8 +111,7 @@ a img { vertical-align: baseline; }
 
 #oss {
     position: absolute; top: 120px; left: 30px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
     font-variant: small-caps;
     letter-spacing: 2px;
 }
@@ -158,6 +157,10 @@ body.faqs #tab_faqs a, body.contact #tab_contact a,
 body.contribute #tab_contribute a {
     font-weight: bold;
     background: #494D4F;
+}
+
+#tab_contribute {
+    float: right!important;
 }
 
 /**************************************\
@@ -248,11 +251,10 @@ body.contribute #tab_contribute a {
 
 #content-navigation-wrapper {
     padding: 12px 0 7px 20px;
-    min-height: 18px;
+    min-height: 14px;
     margin: 5px 0 0 0;
     clear: both;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
 }
 #content-navigation li {
     display: inline;
@@ -262,7 +264,7 @@ body.contribute #tab_contribute a {
 #content-navigation li a {
     text-decoration: none;
     color: #ffffff;
-    padding: 10px 25px;
+    padding: 8px 15px 8px;
     -moz-border-radius-topleft: 4px;
     -moz-border-radius-topright: 4px;
     -webkit-border-top-left-radius: 4px;
