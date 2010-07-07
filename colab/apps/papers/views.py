@@ -111,7 +111,7 @@ def paper(request, paper_id=None, template_name='papers/paper.html'):
 def revision(request, paper_id=None, revision=1, template_name='papers/revision.html'):
     
     paper = get_object_or_404(Paper, id=paper_id)
-    revision = get_object_or_404(paper.paperrevision_set, revision=int(revision))
+    revision = get_object_or_404(paper.revisions, revision=int(revision))
     
     comment_form = RichCommentForm(auto_id='revision_comment_%s')
     
@@ -125,7 +125,7 @@ def revision(request, paper_id=None, revision=1, template_name='papers/revision.
 def history(request, paper_id=None, template_name='papers/history.html'):
 
     paper = get_object_or_404(Paper, id=paper_id)
-    changes = paper.revision_set.all().order_by('-revision')
+    changes = paper.revisions.all().order_by('-revision')
 
     return render_to_response(template_name, {
         'paper': paper,
@@ -136,7 +136,7 @@ def history(request, paper_id=None, template_name='papers/history.html'):
 def revert(request, paper_id=None, revision=1, template_name='papers/revert.html'):
     
     paper = get_object_or_404(Paper, id=paper_id)
-    revision = get_object_or_404(paper.revision_set, revision=int(revision))
+    revision = get_object_or_404(paper.revisions, revision=int(revision))
     
     if request.method == 'POST':
         # revert the document

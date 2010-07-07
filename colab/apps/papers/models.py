@@ -109,7 +109,7 @@ class NonRevertedRevisionManager(QuerySetManager):
 class PaperRevision(models.Model):
     """ A change in Paper. """
     
-    paper = models.ForeignKey(Paper, verbose_name=_(u'Paper'), related_name="revision")
+    paper = models.ForeignKey(Paper, verbose_name=_(u'Paper'), related_name="revisions")
     editor = models.ForeignKey(User, verbose_name=_(u'Editor'), null=True)
     revision = models.IntegerField(_(u"Revision Number"))
     
