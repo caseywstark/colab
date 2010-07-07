@@ -1,0 +1,80 @@
+{% extends "papers/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load threadedcommentstags %}
+{% load account_tags %}
+{% load papers_tags %}
+{% load headquarters_tags %}
+{% load object_feeds_tags %}
+
+{% block head_title %}Revision {{ paper.revision }} of Paper {{ paper.title }}{% endblock %}
+
+{% block breadcrumbs %}
+    {% if paper.content_object %}
+       <li><a href="{{ paper.content_object.get_absolute_url }}">{{ paper.content_object }}</a></li>
+    {% endif %}
+    <li>papers</li>
+    <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
+    <li><a href="{% url paper_history paper.id %}">History</a></li>
+    <li><a href="{{ request.path }}">{{ revision }}</a></li>
+{% endblock %}
+
+{% block actions %}
+    {% if user.is_authenticated %}
+        <li class="right">
+            {% follow_link paper %}
+        </li>
+        <li class="left">
+            <a href="{% url paper_history paper.id %}">&laquo; Back to History</a>
+        </li>
+    {% else %}
+        Sign in to access actions.
+    {% endif %}
+    
+{% endblock %}
+
+
+{% block body %}
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            Revision #{{ revision.revision }} of <a href="{{ paper.get_absolute_url }}">{{ paper }}</a><br>
+            {% if revision.old_title %}{{ revision.old_title }}{% endif %}
+        </div>
+    </div>
+    
+    {% post_meta revision %}
+    
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ revision.content|safe }}
+        </div>
+
+        <ul class="post-buttons">
+            <li><a class="post-option" href="{% url paper_edit paper.id %}">Edit</a></li>
+            {% ifequal user revision.editor %}
+                <li><a class="post-option" href="{% url paper_delete paper.id %}">Delete</a></li>
+            {% endifequal %}
+        </ul>
+        <div class="clear"></div>
+        
+        {% comment_list revision %}
+        
+        <div class="comment-form-wrapper">
+            {% if user.is_authenticated %}
+            <form class="comment-form uniForm" id="comment-form" method="POST" action="{% get_comment_url revision %}">{% csrf_token %}
+                <fieldset class="inlineLabels">
+                    {{ comment_form|as_uni_form }}
+                    <div class="form_block">
+                        <input type="hidden" name="action" value="comment" />
+                        <input type="submit" value="{% trans 'Comment on Revision' %}"/>
+                    </div>
+                </fieldset>
+            </form>
+            {% else %}
+                <h3>Please <a href="{% url acct_login %}">Login</a> (or <a href="{% url acct_signup %}">Sign Up</a>) to leave a comment.</h3>
+            {% endif %}
+        </div>
+    
+    </div>
+{% endblock %}

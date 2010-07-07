@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 
 from papers import views
-from papers.models import Paper
+from papers.models import Paper, PaperRevision
 
 from voting.views import vote_on_object
 
@@ -21,4 +21,7 @@ urlpatterns = patterns('',
     url(r'^paper/(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/$',
             vote_on_object, dict(model=Paper, template_object_name='paper',
             allow_xmlhttprequest=True, confirm_vote=False), name="paper_vote"),
+    url(r'^revision/(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/$',
+            vote_on_object, dict(model=PaperRevision, template_object_name='revision',
+            allow_xmlhttprequest=True, confirm_vote=False), name="paper_revision_vote"),
 )

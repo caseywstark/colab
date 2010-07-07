@@ -106,10 +106,18 @@ def post_meta(context, post):
         author_field = "creator"
         permalink = post.get_absolute_url()
         vote_url = 'paper_vote'
+    elif isinstance(post, PaperRevision):
+        author_field = "editor"
+        permalink = post.get_absolute_url()
+        vote_url = 'paper_revision_vote'
     elif isinstance(post, Summary):
         author_field = "creator"
         permalink = post.get_absolute_url()
         vote_url = 'summary_vote'
+    elif isinstance(post, SummaryRevision):
+        author_field = "editor"
+        permalink = post.get_absolute_url()
+        vote_url = 'summary_revision_vote'
     elif isinstance(post, Feedback):
         author_field = "user"
         permalink = post.get_absolute_url()
@@ -183,7 +191,7 @@ def update_preview(context, update):
     
     if isinstance(update_object, Issue):
         object_content = update_object.description
-    elif isinstance(update_object, Wiki):
+    elif isinstance(update_object, Paper) or isinstance(update_object, Summary):
         object_content = update_object.content
     elif isinstance(update_object, ThreadedComment):
         object_content = update_object.comment
