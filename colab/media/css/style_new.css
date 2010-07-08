@@ -279,7 +279,7 @@ body.contribute #tab_contribute a {
 }
 #content-navigation li a:hover, #content-navigation li a:active,
 #content-navigation li.active a, body.hq #tab_hq a, body.issues #tab_issues a,
-body.people #tab_people a, body.blog #tab_blog a, body.feedback #tab_feedback a {
+body.people #tab_researchers a, body.blog #tab_disciplines a, body.feedback #tab_feedback a {
     color: #313638;
     background: #ABAEB0;
 }
