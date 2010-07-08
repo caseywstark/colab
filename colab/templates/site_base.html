@@ -16,15 +16,12 @@
         
         <meta name="robots" content="index, follow, noodp" />
         <meta name="description" content="Open Source Science" />
-        <meta name="keywords" content="CoLab, Science, Lab, Physics, Math, Debate, Publications, Papers" />
+        <meta name="keywords" content="CoLab, Science, Lab, Physics, Math, Discussion, Publications, Papers" />
         <meta name="author" content="Casey Stark" />
         
         <link rel="icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico" />
         
         <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
-        <!-- Testing without uni-form CSS - we should have our own form styles
-        <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" />
-        -->
         <link rel="stylesheet" href="{{ STATIC_URL }}js/autocomplete/jquery.autocomplete.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/style_new.css" />
         
@@ -137,10 +134,6 @@
                 </ul>
             {% endif %}
             
-            <!--
-            <div id="beta"><a href="{% url about %}">Prototype Version!</a></div>
-            -->
-            
             <div id="content-navigation-wrapper">
                 <ul id="content-navigation">
                     {% block extra_tab %}{% endblock %}
@@ -149,7 +142,7 @@
                     {% endif %}
                     <li id="tab_issues"><a href="{% url issue_list %}">{% trans "Issues" %}</a></li>
                     <li id="tab_people"><a href="{% url researcher_list %}">{% trans "People" %}</a></li>
-                    <li id="tab_blog"><a href="/blog/">{% trans "The Blog" %}</a></li>
+                    <li id="tab_people"><a href="{% url discipline_list %}">{% trans "Disciplines" %}</a></li>
                     <li id="tab_feedback"><a href="{% url feedback_list %}">{% trans "Feedback" %}</a></li>
                     <li id="tab_contribute"><a href="{% url contribute %}">Contribute</a></li>
                 </ul>
@@ -194,6 +187,7 @@
                         <li id="tab_about"><a href="{% url about %}">About</a></li>
                         <li id="tab_faqs"><a href="{% url faq %}">FAQs</a></li>
                         <li id="tab_contact"><a href="{% url contact %}">Contact</a></li>
+                        <li id="tab_blog"><a href="/blog/">{% trans "The Blog" %}</a></li>
                     </ul>
                     
                     <div id="copyright">

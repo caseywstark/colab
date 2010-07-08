@@ -5,10 +5,6 @@
 
 {% block body_class %}disciplines{% endblock %}
 
-{% block extra_tab %}
-    <li id="tab_disciplines" class="active"><a href="{% url discipline_list %}">{% trans "Disciplines" %}</a></li>
-{% endblock %}
-
 {% block subnav %}
     <ul>
         <li><a href="{% url discipline_list %}">{% trans "Discipline Tree" %}</a></li>
