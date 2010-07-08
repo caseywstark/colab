@@ -397,7 +397,7 @@ body.people #tab_people a, body.blog #tab_blog a, body.feedback #tab_feedback a 
 \**************************************/
 
 #body {
-    padding: 10px 15px;
+    padding: 10px 0 60px;
 }
 
 /**************************************\
@@ -405,9 +405,11 @@ body.people #tab_people a, body.blog #tab_blog a, body.feedback #tab_feedback a 
 \**************************************/
 
 #footer {
-    background: #323434;
+    background: #494D4F;
     padding: 10px 15px;
     text-align: center;
+    width: 100%;
+    height: 50px;
 }
 #footer div {
     display: inline;

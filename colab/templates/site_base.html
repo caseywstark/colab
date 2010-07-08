@@ -101,10 +101,10 @@
                 </div>
             {% else %}
                 <div id="login-box">
-                        <a href="{% url acct_login %}">{% silk "world_go" %} {% trans "Login" %}</a>
+                        <a href="{% url acct_login %}">{% trans "Login" %}</a>
                     {% ifsetting ACCOUNT_OPEN_SIGNUP %}
                         {% trans "or" %}
-                        <a href="{% url acct_signup %}"><b>{% silk "key" %} {% trans "Sign up" %}</b></a>
+                        <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>
                     {% endifsetting %}
                 </div>
             {% endif %}
@@ -140,7 +140,7 @@
                         <li id="tab_hq"><a href="{% url headquarters %}">{% trans "Headquarters" %}</a></li>
                     {% endif %}
                     <li id="tab_issues"><a href="{% url issue_list %}">{% trans "Issues" %}</a></li>
-                    <li id="tab_people"><a href="{% url researcher_list %}">{% trans "People" %}</a></li>
+                    <li id="tab_people"><a href="{% url researcher_list %}">{% trans "Researchers" %}</a></li>
                     <li id="tab_people"><a href="{% url discipline_list %}">{% trans "Disciplines" %}</a></li>
                     <li id="tab_feedback"><a href="{% url feedback_list %}">{% trans "Feedback" %}</a></li>
                     <li id="tab_contribute"><a href="{% url contribute %}">Contribute</a></li>
