@@ -196,8 +196,8 @@ INSTALLED_APPS = [
     "django_filters",
     "ajax_select",
     "tinymce",
+    "oauth_access",
     "south",
-    #"djangovoice",
     
     # custom
     "about",
@@ -315,6 +315,24 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_toolbar_align': "center",
     'theme_advanced_statusbar_location': "bottom",
     'theme_advanced_resizing': True,
+}
+
+# valid OAuth options
+OAUTH_ACCESS_SETTINGS = {
+    'facebook': {
+        'request_token_url': "https://facebook.com/oauth/request_token",
+    },
+    'twitter': {
+        'keys': {
+            'KEY': 'key',
+            'SECRET': '',
+        },
+        'endpoints': {
+            'request_token': 'https://twitter.com/oauth/request_token',
+            'access_token': 'https://twitter.com/oauth/access_token',
+            'user_auth': 'http://twitter.com/oauth/authorize',
+        },
+    },
 }
 
 # No credentials for you

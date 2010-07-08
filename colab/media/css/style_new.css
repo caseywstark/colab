@@ -255,6 +255,7 @@ body.contribute #tab_contribute a {
     margin: 5px 0 0 0;
     clear: both;
     font-size: 14px;
+    font-weight: bold;
 }
 #content-navigation li {
     display: inline;

@@ -43,6 +43,10 @@
         </fieldset>
     </form>
     
+    <p>
+        Sign in using <a href="{% url oauth_access_login service="twitter" %}">OAuth</a>.
+    </p>
+    
     <p>{% trans "Or sign in with your OpenID" %}:</p>
     {# @@@ why isn't this just does as a form object ? #}
     <form class="login uniForm" action="/openid/register/" method="POST">

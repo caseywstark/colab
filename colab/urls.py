@@ -46,6 +46,7 @@ urlpatterns = patterns("",
     (r"^comments/", include("django.contrib.comments.urls")),
     (r"^feedback/", include("feedback.urls")),
     (r'^ajax-autocomplete/', include('ajax_select.urls')),
+    (r'^oauth_access/', include('oauth_access.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     
     ### custom ###

@@ -1,0 +1,17 @@
+{% block head_title %}OAuth error{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url acct_email %}">Account</a></li>
+    <li><a href="{% url oauth_access_login %}">OAuth</a></li>
+    <li><a href="{{ request.path }}">Error</a></li>
+{% endblock %}
+
+{% block body %}
+    <p class="error">
+        Oops! Something went wrong with your OAuth credentials.
+    </p>
+    
+    <p>
+        You can try <a href="{% url oauth_access_login %}">logging in</a> again.
+    </p>
+{% endblock %}
