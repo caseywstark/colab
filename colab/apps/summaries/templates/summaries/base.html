@@ -4,10 +4,6 @@
 
 {% block body_class %}summaries{% endblock %}
 
-{% block extra_tab %}
-    <li id="tab_summaries" class="active"><a href="{{ request.path }}">Summaries</a></li>
-{% endblock %}
-
 {% block subnav %}
     {% if user.is_authenticated %}
         <li><a href="{% url my_issues %} ">{% trans "My summaries" %}</a></li>
