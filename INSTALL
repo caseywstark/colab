@@ -1,10 +1,9 @@
-================
-================
+################
 Installing CoLab
-================
----------------------
+################
+=====================
 for local development
----------------------
+=====================
 
 CoLab requires...
  - Python 2.3 (maybe 2.4). I recommend using 2.6 because why not?
@@ -68,8 +67,8 @@ look. Put this at the end of your ~/.bashrc
  
 or whatever the path is to virtualenvwrapper.sh or virtualenvwrapper_bashrc on your system. Now you should make an environment for colab.
 
-    $ mkvirtualenv colab
-    (colab)$ 
+    $ mkvirtualenv colab_dev
+    (colab_dev)$ 
  
 Cool.
 
@@ -101,3 +100,9 @@ I couldn't include MathJax in the repo because there are too many files. It's ea
     $ svn co https://mathjax.svn.sourceforge.net/svnroot/mathjax mathjax
     $ cd mathjax
     $ unzip fonts
+
+
+TinyMCE
+-------
+
+Download and unzip the tiny_mce directory (not tinymce) to colab/media

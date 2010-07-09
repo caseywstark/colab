@@ -1,3 +1,20 @@
-Use INSTALL to get a local working copy.
+#################
+CoLab development
+#################
+================================
+Open source - for great science!
+================================
 
-We're still working on automated deployment.
+Excited about CoLab? Want to make it even sweeter? Get started here!
+
+Installing CoLab locally
+------------------------
+
+See INSTALL on how to get going with your own dev copy of CoLab.
+
+Development notes
+-----------------
+
+We are just starting to add general notes about how the code is structured. This might be a little disorganized until we have time to come back to documentation.
+
+

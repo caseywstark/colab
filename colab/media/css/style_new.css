@@ -108,10 +108,6 @@ a img {
     width: 250px;
 }
 
-/**************************************\
- * Page-specific Header
-\**************************************/
-
 #site_wide_announcements {
     background: yellow;
     padding: 10px;
@@ -142,7 +138,7 @@ a img {
 
 #user-box {
     float: right;
-    margin: 0 20px 0 0; padding: 10px 5px 10px 15px;
+    padding: 10px 5px 10px 15px;
     text-align: left;
     font-size: 14px;
     background: #585b5d;
@@ -185,17 +181,15 @@ a img {
 }
 
 #content-navigation-wrapper {
-    padding: 12px 0 7px 20px;
-    min-height: 14px;
-    margin: 5px 0 0 0;
+    float: right;
+    padding: 0 0 6px;
     clear: both;
     font-size: 14px;
     font-weight: bold;
-    float: right;
 }
 #content-navigation li {
-    display: inline;
     float: left;
+    display: inline;
     margin-left: 5px;
 }
 #content-navigation li a {
@@ -207,9 +201,6 @@ a img {
     -webkit-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
 }
-#content-navigation li a:link, #content-navigation li a:visited {
-    
-}
 #content-navigation li a:hover, #content-navigation li a:active,
 #content-navigation li.active a, body.hq #tab_hq a, body.issues #tab_issues a,
 body.people #tab_researchers a, body.blog #tab_disciplines a,
@@ -217,9 +208,35 @@ body.feedback #tab_feedback a, body.contribute #tab_contribute a {
     color: #313638;
     background: #ABAEB0;
 }
-#tab_contribute {
+#tab_contribute a {
     background: #738753;
 }
+
+/**************************************\
+ * Messages
+\**************************************/
+
+ul#messages {
+    margin: 0; padding: 0;
+    list-style: none;
+    color: #3e4f4a;
+}
+ul#messages li {
+    padding: 5px 10px;
+    background: #9CCCA4;
+    margin: 3px;
+    border: 1px solid #479955;
+}
+ul#messages li a {
+    float: right;
+    color: #693;
+}
+
+.error {
+    background: #CC9CA6!important;
+    border: 1px solid #825964!important;
+}
+.error a { color: #7F4854!important; }
 
 /**************************************\
  * Page Content
@@ -227,10 +244,10 @@ body.feedback #tab_feedback a, body.contribute #tab_contribute a {
 
 #page-content {
     clear: both;
+    margin: 0 0 20px;
     color: #3e4f4a;
     background-color: #ffffff;
     border-top: 8px #ABAEB0 solid;
-    margin-bottom: 20px;
     text-align: left;
 }
 #page-content a:link, #page-content a:visited {
@@ -714,33 +731,6 @@ input.ac_loading {
 .level-18 { margin-left: 250px; }
 .level-19 { margin-left: 250px; }
 .level-20 { margin-left: 250px; }
-
-/**************************************\
- * Messages
-\**************************************/
-
-ul#messages {
-    margin: 0 0 10px 0;
-    padding: 0;
-    list-style: none;
-    color: #3e4f4a;
-}
-ul#messages li {
-    padding: 5px 10px;
-    background: #9CCCA4;
-    margin: 3px;
-    border: 1px solid #479955;
-}
-ul#messages li a {
-    float: right;
-    color: #693;
-}
-
-.error {
-    background: #CC9CA6!important;
-    border: 1px solid #825964!important;
-}
-.error a { color: #7F4854!important; }
 
 /**************************************\
  * Announcements
