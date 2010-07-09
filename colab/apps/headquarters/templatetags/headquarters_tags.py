@@ -196,6 +196,6 @@ def update_preview(context, update):
     elif isinstance(update_object, ThreadedComment):
         object_content = update_object.comment
     
-    return {'update': update, 'the_user': update.user,
+    return {'update': update, 'update_user': update.user,
         'feed_object': feed_object, 'update_object': update_object,
         'object_content': object_content}

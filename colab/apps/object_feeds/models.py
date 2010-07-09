@@ -22,7 +22,9 @@ def register_action(self, user, action, content_object):
     
     # get the Action specified with the action string
     the_action = Action.objects.get(feed_type=feed_type, name=action)
-    the_update = Update.objects.create(feed=self.feed, user=user, action=the_action, content_object=content_object)
+    the_update = Update.objects.create(feed=self.feed, user=user, 
+        action=the_action, content_object=content_object,
+        action_description=the_action.description)
 
 ### End Code ###
 
@@ -65,17 +67,13 @@ class Feed(models.Model):
     
     def save(self, *args, **kwargs):
         already_created = False
-        if not self.id:
+        if self.id:
             already_created = True
             
         super(Feed, self).save(*args, **kwargs)
         
         if not already_created: # just created so we need to connect parent feeds
-            if self.feed_type == 'PRJ':
-                for discipline in self.feed_object.disciplines.all():
-                    discipline.feed.all()[0].children.add(self)
-            elif self.feed_type == 'ISU' or self.feed_type == 'WKI':
-                self.feed_object.project.feed.all()[0].children.add(self)
+            pass # do this later
 
 class Subscription(models.Model):
     
@@ -87,7 +85,7 @@ class Subscription(models.Model):
     top_level = models.BooleanField(default=False)
     
     def __unicode__(self):
-        return '%s\'s subscription to %s' % (self.user.get_profile(), self.feed)
+        return '%s\'s subscription to %s' % (self.user, self.feed)
     
     @models.permalink
     def get_absolute_url(self):
@@ -116,15 +114,20 @@ class Update(models.Model):
     
     created = models.DateTimeField(_('created'), default=datetime.now)
     
+    # denormalizing
+    action_description = models.CharField(max_length=255)
+    object_title = models.CharField(max_length=255)
+    object_link = models.CharField(max_length=255)
+    
     def __unicode__(self):
-        return '%s %s %s' % (self.user, self.action.description, self.content_object)
+        return '%s %s %s' % (self.user, self.action_description, self.object_title)
     
     @models.permalink
     def get_absolute_url(self):
         return ('update_detail', (), {'update_id': self.id})
-    
-from threadedcomments.models import ThreadedComment
 
+
+from threadedcomments.models import ThreadedComment
 
 def comment_action_update(sender, instance, created, **kwargs):
     object_feed = getattr(instance.content_object, 'feed', None)

@@ -4,8 +4,10 @@
 {% load account_tags %}
 
 <div class="update-description">
-    {% avatar the_user 30 %} <a href="{{ the_user.get_absolute_url }}">{% user_display the_user %}</a>
-    {{ update.action.description }} <a href="{{ feed_object.get_absolute_url }}">{{ feed_object }}</a>
+    {% url researcher_detail update_user as update_user_url %}
+    <a class="update-user-avatar" href="{{ update_user_url }}">{% avatar update_user 30 %}</a>
+    <a href="{{ update_user_url }}">{% user_display update_user %}</a>
+    {{ update.action_description }} <a href="{{ feed_object.get_absolute_url }}">{{ feed_object }}</a>
     <span class="update-date">at {{ update.created|date:"P M d, Y" }}</span>
 </div>
 
