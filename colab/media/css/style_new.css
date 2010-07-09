@@ -385,7 +385,7 @@ input[type="text"], input[type="password"], textarea {
     -webkit-border-radius: 4px;
 }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
-    border-color: #7bc7ed;
+    border-color: #a7cf4c;
 }
 input[type="submit"], input[type="button"] {
     border: 2px solid #d5dde0;
@@ -397,7 +397,7 @@ input[type="submit"], input[type="button"] {
     -webkit-border-radius: 9px;
 }
 input[type="submit"]:hover, input[type="submit"]:hover {
-    border-color: #a7b8be;
+    border-color: #a7cf4c;
 }
 .form_block input {
     margin: 10px;
