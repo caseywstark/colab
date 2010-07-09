@@ -58,7 +58,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#flag-{{ post_type.id }}-{{ post.id }}-link").click(function(e) {
-                    $("#flag-{{ post_type.id }}-{{ post.id }}").toggle("slide", {}, 500);
+                    $("#flag-{{ post_type.id }}-{{ post.id }}").slideToggle(500);
                     return false;
                 });
             });
