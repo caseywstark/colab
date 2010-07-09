@@ -162,7 +162,7 @@ a img {
 }
 #user-box-links {
     float: left;
-    margin-left: 5px;
+    margin: 9px 5px 0;
 }
 #user-box-links a {
     text-decoration: none;
@@ -179,6 +179,7 @@ a img {
     font-weight: bold;
     color: #9f9f9f!important;
 }
+#user-box-admin { color: #bda657!important; }
 
 #content-navigation-wrapper {
     float: right;
@@ -262,17 +263,16 @@ ul#messages li a {
 #subnav-wrapper {
     background: #C9CCCE;
     list-style: none;
-    height: 36px;
+    height: 30px;
 }
 
 #breadcrumbs {
     float: left;
-    height: 36px;
-    margin-left: 20px;
+    height: 30px;
 }
 #breadcrumbs li { 
     float:left;
-	line-height:36px;
+	line-height:30px;
 	color:#777;
 	padding-left:15px;
 }
