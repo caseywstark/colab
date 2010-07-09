@@ -82,29 +82,27 @@
             -->
             
             {% if user.is_authenticated %}
+                {% url researcher_detail user as profile_url %}
                 <div id="user-box">
-                    <a id="my-avatar" href="{% url avatar_change %}">
-                        {% avatar user 60 %}
+                    <a id="user-box-avatar" href="{{ profile_url }}">
+                        {% avatar user 35 %}
                     </a>
-                    {% url researcher_detail user as profile_url %}
-                    <div id="user-details">
-                        <a id="my-name" href="{{ profile_url }}">{% user_display user %}</a>
-                        <div id="user-navigation">
-                            <a href="{{ profile_url }}">{% trans "Profile" %}</a> | 
-                            <a href="{% url acct_email %}">{% trans "Settings" %}</a> | 
-                            <a href="/openid/logout/?next={% url acct_logout %}">{% trans "Logout" %}</a>
-                            {% if user.is_staff %}
-                                <br><a href="/admin/">{% trans "Admin" %}</a>
-                            {% endif %}
-                        </div>
+                    <div id="user-box-links">
+                        <a id="user-box-name" href="{{ profile_url }}">{% user_display user %}</a>
+                        <a id="user-box-hq" href="{% url headquarters }}">Headquarters</a> | 
+                        <a id="user-box-settings" href="{% url acct_email %}">{% trans "Settings" %}</a>
+                        <a id="user-box-logout" href="/openid/logout/?next={% url acct_logout %}">{% trans "Logout" %}</a>
+                        {% if user.is_staff %}
+                            <br><a href="/admin/">{% trans "Admin" %}</a>
+                        {% endif %}
                     </div>
                 </div>
             {% else %}
                 <div id="login-box">
-                        <a href="{% url acct_login %}">{% trans "Login" %}</a>
+                    <a id="login-box-login" href="{% url acct_login %}">{% trans "Login" %}</a>
                     {% ifsetting ACCOUNT_OPEN_SIGNUP %}
                         {% trans "or" %}
-                        <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>
+                        <a id="login-box-signup" href="{% url acct_signup %}">{% trans "Sign up" %}</a>
                     {% endifsetting %}
                 </div>
             {% endif %}
@@ -136,14 +134,11 @@
             
             <div id="content-navigation-wrapper">
                 <ul id="content-navigation">
-                    {% if user.is_authenticated %}
-                        <li id="tab_hq"><a href="{% url headquarters %}">{% trans "Headquarters" %}</a></li>
-                    {% endif %}
                     <li id="tab_issues"><a href="{% url issue_list %}">{% trans "Issues" %}</a></li>
                     <li id="tab_researchers"><a href="{% url researcher_list %}">{% trans "Researchers" %}</a></li>
                     <li id="tab_disciplines"><a href="{% url discipline_list %}">{% trans "Disciplines" %}</a></li>
                     <li id="tab_feedback"><a href="{% url feedback_list %}">{% trans "Feedback" %}</a></li>
-                    <li id="tab_contribute"><a href="{% url contribute %}">Contribute</a></li>
+                    <li id="tab_contribute"><a href="{% url contribute %}">{% trans "Contribute" %}</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
