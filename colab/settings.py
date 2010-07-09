@@ -338,15 +338,15 @@ OAUTH_ACCESS_SETTINGS = {
 # No credentials for you
 try:
     from development import *
-except ImportError as e:
+except ImportError:
     pass
 
 try:
     from staging import *
-except ImportError as e:
+except ImportError:
     pass
     
 try:
     from production import *
-except ImportError as e:
+except ImportError:
     pass
