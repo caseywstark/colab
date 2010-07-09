@@ -16,34 +16,20 @@ BASIC_ACTIONS = (
 
 ### Code for the Feed Object ###
 def register_action(self, user, action, content_object):
-    # must be valid feed object, check for FeedType
     content_type = ContentType.objects.get_for_model(self)
-    feed_type = FeedType.objects.get(content_type=content_type)
     
     # get the Action specified with the action string
-    the_action = Action.objects.get(feed_type=feed_type, name=action)
+    the_action = Action.objects.get(content_type=content_type, name=action)
     the_update = Update.objects.create(feed=self.feed, user=user, 
         action=the_action, content_object=content_object,
         action_description=the_action.description)
 
 ### End Code ###
 
-class FeedType(models.Model):
-    """ Defines the feed type for every object registered to have a feed. """
-    
-    content_type = models.ForeignKey(ContentType)
-    name = models.CharField(max_length=50)
-    slug = models.SlugField()
-    
-    def __unicode__(self):
-        return self.name
-
 class Feed(models.Model):
     
-    feed_type = models.ForeignKey(FeedType)
-    
-    content_type = models.ForeignKey(ContentType, null=True, blank=True)
-    object_id = models.PositiveIntegerField(null=True, blank=True)
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField(null=True, blank=True) # needs to allow null because we create the feed right before the feed_object instance
     feed_object = generic.GenericForeignKey("content_type", "object_id")
     
     subscriber_users = models.ManyToManyField(User, through="Subscription", verbose_name=_('subscribers'))
@@ -51,7 +37,7 @@ class Feed(models.Model):
     children = models.ManyToManyField('self', blank=True)
     
     def __unicode__(self):
-        return 'Feed for %s %s' % (self.feed_type, self.feed_object)
+        return 'Feed for %s %s' % (self.content_type, self.feed_object)
     
     @models.permalink
     def get_absolute_url(self):
@@ -93,7 +79,7 @@ class Subscription(models.Model):
 
 class Action(models.Model):
     
-    feed_type = models.ForeignKey(FeedType)
+    content_type = models.ForeignKey(ContentType)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
     

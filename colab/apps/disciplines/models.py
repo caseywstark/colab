@@ -35,11 +35,13 @@ class Discipline(models.Model):
         super(Discipline, self).save(*args, **kwargs)
         
         if not self.feed.all():
-            feed = Feed(feed_type='DIS', feed_object=self)
-            feed.save()
-            self.feed.add(feed)
+            pass
 
-mptt.register(Discipline)
+try:
+    mptt.register(Discipline)
+except mptt.AlreadyRegistered:
+    pass
+
 object_feeds.register(Discipline)
 
 class ResearchInterest(models.Model):

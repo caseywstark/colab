@@ -18,7 +18,7 @@ class SubscriptionForm(forms.ModelForm):
         # hide the fields we don't need and get the right actions
         self.fields['feed'].widget = forms.HiddenInput()
         self.fields['user'].widget = forms.HiddenInput()
-        self.fields['actions'].queryset = Action.objects.filter(feed_type=self.feed.feed_type)
+        self.fields['actions'].queryset = Action.objects.filter(content_type=self.feed.content_type)
 
     class Meta:
         model = Subscription

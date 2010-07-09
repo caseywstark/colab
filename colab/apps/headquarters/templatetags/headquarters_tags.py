@@ -186,7 +186,6 @@ def comment_list(context, post):
 def update_preview(context, update):
     feed_object = update.feed.feed_object
     update_object = update.content_object
-    feed_type = update.action.feed_type
     icon = object_content = None
     
     if isinstance(update_object, Issue):
