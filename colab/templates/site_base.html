@@ -107,27 +107,20 @@
                 </div>
             {% endif %}
             <div class="clear"></div>
-                
-            {% if site_wide_announcements %}
-                <div id="site-wide-announcements">
-                    <ul>
-                        {% for announcement in site_wide_announcements %}
-                        <li>
-                            <a href="{{ announcement.get_absolute_url }}">{{ announcement }}</a> |
-                            <a href="{% url announcement_hide announcement.pk %}?next={{ request.path }}">{% trans "Hide announcement" %}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
             
-            {% if messages %}
+            {% if messages or site_wide_announcements %}
                 <ul id="messages">
+                    {% for announcement in site_wide_announcements %}
+                        <li class="announcement">
+                            <a href="{{ announcement.get_absolute_url }}">{{ announcement }}</a>
+                            <a class="clear-message" href="{% url announcement_hide announcement.pk %}?next={{ request.path }}">{% trans "Hide announcement" %}</a>
+                        </li>
+                    {% endfor %}
                     {% for message in messages %}
-                    <li id="message_{{ forloop.counter }}"{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                        <a href="#"><small>{% trans "clear" %}</small></a>
-                        {{ message }}
-                    </li>
+                        <li id="message_{{ forloop.counter }}"{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            {{ message }}
+                            <a class="clear-message" href="#"><small>{% trans "clear" %}</small></a>
+                        </li>
                     {% endfor %}
                 </ul>
             {% endif %}

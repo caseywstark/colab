@@ -211,15 +211,26 @@ body.feedback #tab_feedback a, body.contribute #tab_contribute a {
  * Announcements
 \**************************************/
 
-#site-wide-announcements {
+ul#messages {
     margin: 10px 0; padding: 0;
     list-style: none;
+    color: #3e4f4a;
 }
-#site-wide-announcements ul li {
+ul#messages li {
     padding: 5px 10px;
-    background: #dadf57;
+    background: #9CCCA4;
     margin: 3px;
+    border: 1px solid #479955;
 }
+ul#messages li a { color: #693; }
+.clear-message { float: right; }
+
+.announcement {
+    text-align: center;
+    background: #dadf57!important;
+    border: #a2a641!important;
+}
+.announcement a { color: #6a6c34!important; }
 
 .error {
     background: #CC9CA6!important;
