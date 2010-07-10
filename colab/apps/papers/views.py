@@ -46,9 +46,9 @@ def create(request, content_type=None, object_id=None, form_class=PaperForm, tem
     }, context_instance=RequestContext(request))
 
 @login_required
-def edit(request, paper_id=None, form_class=PaperForm, template_name='papers/edit.html'):
+def edit(request, paper_id=None, slug=None, form_class=PaperForm, template_name='papers/edit.html'):
     
-    paper = get_object_or_404(Paper, id=paper_id)
+    paper = get_object_or_404(Paper, slug=slug)
 
     form = form_class(request.POST or None, instance=paper)
 
@@ -69,9 +69,9 @@ def edit(request, paper_id=None, form_class=PaperForm, template_name='papers/edi
     }, context_instance=RequestContext(request))
 
 @login_required
-def delete(request, paper_id=None, template_name='papers/delete.html'):
+def delete(request, paper_id=None, slug=None, template_name='papers/delete.html'):
     
-    paper = get_object_or_404(Paper, id=paper_id)
+    paper = get_object_or_404(Paper, slug=slug)
 
     redirect_url = paper.get_absolute_url()
     
@@ -95,9 +95,9 @@ def delete(request, paper_id=None, template_name='papers/delete.html'):
     return HttpResponseRedirect(redirect_url)
 
 
-def paper(request, paper_id=None, template_name='papers/paper.html'):
+def paper(request, paper_id=None, slug=None, template_name='papers/paper.html'):
 
-    paper = get_object_or_404(Paper, id=paper_id)
+    paper = get_object_or_404(Paper, slug=slug)
 
     comment_form = RichCommentForm(auto_id='paper_comment_%s')    
     
@@ -108,9 +108,9 @@ def paper(request, paper_id=None, template_name='papers/paper.html'):
     }, context_instance=RequestContext(request))
 
 
-def revision(request, paper_id=None, revision=1, template_name='papers/revision.html'):
+def revision(request, paper_id=None, slug=None, revision=1, template_name='papers/revision.html'):
     
-    paper = get_object_or_404(Paper, id=paper_id)
+    paper = get_object_or_404(Paper, slug=slug)
     revision = get_object_or_404(paper.revisions, revision=int(revision))
     
     comment_form = RichCommentForm(auto_id='revision_comment_%s')
@@ -122,9 +122,9 @@ def revision(request, paper_id=None, revision=1, template_name='papers/revision.
     }, context_instance=RequestContext(request))
 
 
-def history(request, paper_id=None, template_name='papers/history.html'):
+def history(request, paper_id=None, slug=None, template_name='papers/history.html'):
 
-    paper = get_object_or_404(Paper, id=paper_id)
+    paper = get_object_or_404(Paper, slug=slug)
     changes = paper.revisions.all().order_by('-revision')
 
     return render_to_response(template_name, {
@@ -133,9 +133,9 @@ def history(request, paper_id=None, template_name='papers/history.html'):
     }, context_instance=RequestContext(request))
 
 @login_required
-def revert(request, paper_id=None, revision=1, template_name='papers/revert.html'):
+def revert(request, paper_id=None, slug=None, revision=1, template_name='papers/revert.html'):
     
-    paper = get_object_or_404(Paper, id=paper_id)
+    paper = get_object_or_404(Paper, slug=slug)
     revision = get_object_or_404(paper.revisions, revision=int(revision))
     
     if request.method == 'POST':
@@ -152,6 +152,3 @@ def revert(request, paper_id=None, revision=1, template_name='papers/revert.html
         'revision': revision,
         'revision': revision,
     }, context_instance=RequestContext(request))
-    
-
-

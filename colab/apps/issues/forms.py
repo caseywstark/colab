@@ -15,7 +15,7 @@ from tinymce.widgets import TinyMCE
 class IssueForm(forms.ModelForm):
     
     title = forms.CharField(label=_("Title"), max_length=255)
-    slug = forms.SlugField(max_length=20,
+    slug = forms.SlugField(max_length=30,
         help_text = _("a short version of the name consisting only of letters, numbers, underscores and hyphens."),
     )
     description = forms.CharField(widget=TinyMCE)

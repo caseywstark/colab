@@ -9,6 +9,9 @@ from tinymce.widgets import TinyMCE
 
 class PaperForm(forms.ModelForm):
     
+    slug = forms.SlugField(max_length=30,
+        help_text = _("a short version of the name consisting only of letters, numbers, underscores and hyphens."),
+    )
     content = forms.CharField(widget=TinyMCE)
     comment = forms.CharField(required=False, max_length=255)
     
@@ -19,7 +22,7 @@ class PaperForm(forms.ModelForm):
 
     class Meta:
         model = Paper
-        fields = ['title', 'content', 'tags', 'content_type', 'object_id']
+        fields = ['title', 'slug', 'content', 'tags', 'content_type', 'object_id']
     
     def __init__(self, *args, **kwargs):
         super(PaperForm, self).__init__(*args, **kwargs)

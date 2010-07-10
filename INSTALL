@@ -99,10 +99,10 @@ I couldn't include MathJax in the repo because there are too many files. It's ea
 
     $ svn co https://mathjax.svn.sourceforge.net/svnroot/mathjax mathjax
     $ cd mathjax
-    $ unzip fonts
+    $ unzip fonts.zip
 
 
 TinyMCE
 -------
 
-Download and unzip the tiny_mce directory (not tinymce) to colab/media
+Download and unzip the tiny_mce directory (not tinymce) to colab/colab/media

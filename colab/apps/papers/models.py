@@ -39,6 +39,7 @@ class Paper(models.Model):
     content_object = generic.GenericForeignKey("content_type", "object_id")
     
     title = models.CharField(_("title"), max_length=255, unique=True)
+    slug = models.SlugField()
     content = models.TextField(_("content"))
     
     creator = models.ForeignKey(User, verbose_name=_("creator"), related_name="%(class)s_created")
@@ -72,7 +73,7 @@ class Paper(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse("paper_detail", kwargs={"paper_id": self.id})
+        return reverse("paper_detail", kwargs={"slug": self.slug})
     
     def latest_revision(self):
         try:

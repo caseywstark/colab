@@ -10,12 +10,12 @@ urlpatterns = patterns('',
     url(r'^create/(?P<content_type>\d+)/(?P<object_id>\d+)/$', views.create, name='paper_create'),
     
     # specific
-    url(r'^paper/(?P<paper_id>\d+)/$', views.paper, name='paper_detail'),
-    url(r'^paper/(?P<paper_id>\d+)/edit/$', views.edit, name='paper_edit'),
-    url(r'^paper/(?P<paper_id>\d+)/delete/$', views.delete, name='paper_delete'),
-    url(r'^paper/(?P<paper_id>\d+)/history/$', views.history, name='paper_history'),
-    url(r'^paper/(?P<paper_id>\d+)/revision/(?P<revision>\d+)/$', views.revision, name='paper_revision'),
-    url(r'^paper/(?P<paper_id>\d+)/revert/(?P<revision>\d+)/$', views.revert, name='paper_revert'),
+    url(r'^paper/(?P<slug>[-\w]+)/$', views.paper, name='paper_detail'),
+    url(r'^paper/(?P<slug>[-\w]+)/edit/$', views.edit, name='paper_edit'),
+    url(r'^paper/(?P<slug>[-\w]+)/delete/$', views.delete, name='paper_delete'),
+    url(r'^paper/(?P<slug>[-\w]+)/history/$', views.history, name='paper_history'),
+    url(r'^paper/(?P<slug>[-\w]+)/revision/(?P<revision>\d+)/$', views.revision, name='paper_revision'),
+    url(r'^paper/(?P<slug>[-\w]+)/revert/(?P<revision>\d+)/$', views.revert, name='paper_revert'),
     
     # paper voting
     url(r'^paper/(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/$',
