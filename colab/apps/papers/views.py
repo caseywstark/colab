@@ -91,27 +91,41 @@ def delete(request, paper_id=None, slug=None, revision_number=None, template_nam
         if revision.pk != rev_specific.pk:
             revision = rev_specific
             revision.is_not_current = True
-
-    redirect_url = paper.get_absolute_url()
-    
-    if request.method == 'POST' and request.POST.get('delete'):
-        if request.user == revision.editor or request.user == paper.creator:
-            paper.feed.delete()
-            paper.delete()
-            messages.add_message(request, messages.SUCCESS,
-                _("Paper %s deleted.") % paper.title
-            )
-            redirect_url = paper.content_object.get_absolute_url()
-        else:
-            messages.add_message(request, messages.ERROR,
-                _("You are not the creator of this paper.")
-            )
-    
-    return HttpResponseRedirect(redirect_url)
+        
+        if request.method == 'POST' and request.POST.get('delete'):
+            if request.user == revision.editor:
+                revision.delete()
+                messages.add_message(request, messages.SUCCESS,
+                    _("Revision #%d deleted.") % revision.revision
+                )
+                redirect_url = paper.get_absolute_url()
+            else:
+                messages.add_message(request, messages.ERROR,
+                    _("You are not the editor of this revision.")
+                )
+                redirect_url = revision.get_absolute_url()
+            return HttpResponseRedirect(redirect_url)
+    else:
+        # user wants to delete entire paper
+        if request.method == 'POST' and request.POST.get('delete'):
+            if request.user == paper.creator:
+                paper.feed.delete()
+                paper.delete()
+                messages.add_message(request, messages.SUCCESS,
+                    _("Paper %s deleted.") % paper.title
+                )
+                redirect_url = paper.content_object.get_absolute_url()
+            else:
+                messages.add_message(request, messages.ERROR,
+                    _("You are not the creator of this paper.")
+                )
+                redirect_url = paper.get_absolute_url()
+            return HttpResponseRedirect(redirect_url)
     
     return render_to_response(template_name, {
         'paper': paper,
         'revision': revision,
+        'revision_number': revision_number,
         'content_object': paper.content_object,
     }, context_instance=RequestContext(request))
 

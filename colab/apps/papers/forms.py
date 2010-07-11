@@ -60,6 +60,7 @@ class PaperForm(forms.ModelForm):
         )
 
         return paper, revision
+    
 
 class DeletePaperForm(forms.Form):
     delete = forms.ChoiceField(label=_('Delete'), choices=())
