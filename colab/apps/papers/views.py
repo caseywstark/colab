@@ -1,3 +1,4 @@
+import difflib
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect, HttpResponseNotAllowed, HttpResponse, HttpResponseForbidden
@@ -154,33 +155,36 @@ def paper(request, paper_id=None, slug=None, revision_number=None, template_name
 def history(request, paper_id=None, slug=None, template_name='papers/history.html'):
 
     paper = get_object_or_404(Paper, slug=slug)
-    changes = paper.revisions.all().order_by('-revision')
 
     return render_to_response(template_name, {
         'paper': paper,
-        'changes': changes,
     }, context_instance=RequestContext(request))
 
 def changes(request, paper_id=None, slug=None, template_name='papers/changes.html', extra_context=None):
-    pass
+    rev_number_a = request.GET.get('a', None)
+    rev_number_b = request.GET.get('b', None)
 
-@login_required
-def revert(request, paper_id=None, slug=None, revision=1, template_name='papers/revert.html'):
+    # Some stinky fingers manipulated the url
+    if not rev_number_a or not rev_number_b:
+        return HttpResponseBadRequest('Bad Request')
     
     paper = get_object_or_404(Paper, slug=slug)
-    revision = get_object_or_404(paper.revisions, revision=int(revision))
-    
-    if request.method == 'POST':
-        # revert the document
-        revision.reapply(request.user)
-        
-        paper.register_action(request.user, 'revert', revision)
-        
-        redirect_to = reverse("paper_history", kwargs={'paper_id': paper_id})
-        return HttpResponseRedirect(redirect_to)
+    revision_a = PaperRevision.objects.get(paper=paper, revision=rev_number_a)
+    revision_b = PaperRevision.objects.get(paper=paper, revision=rev_number_b)
+
+    if revision_a.content != revision_b.content:
+        d = difflib.unified_diff(revision_b.content.splitlines(),
+                                 revision_a.content.splitlines(),
+                                 'Original', 'Current', lineterm='')
+        difftext = '\n'.join(d)
+    else:
+        difftext = _(u'No changes were made between this two files.')
     
     return render_to_response(template_name, {
         'paper': paper,
-        'revision': revision,
-        'revision': revision,
+        'rev_number_a': rev_number_a,
+        'rev_number_b': rev_number_b,
+        'revision_a': revision_a,
+        'revision_b': revision_b,
+        'diff': difftext,
     }, context_instance=RequestContext(request))
