@@ -4,7 +4,6 @@
 {% load avatar_tags %}
 {% load account_tags %}
 {% load object_feeds_tags %}
-{% load theme_tags %}
 
 {% block head_title %}{{ researcher }}{% endblock %}
 
@@ -14,17 +13,17 @@
 {% endblock %}
 
 {% block actions %}
-    <li class="left">
-        <a href="{% url headquarters the_user.username %}">{% silk "house" %} {% user_display the_user %}'s HQ</a>
+    <li class="left-action">
+        <a href="{% url headquarters the_user.username %}">{% user_display the_user %}'s HQ</a>
     </li>
     {% if user.is_authenticated %}
-        <li class="right">
+        <li class="right-action">
             {#{% follow_link researcher %}#}
         </li>
     {% endif %}
     {% ifequal request.user the_user %}
-        <li class="right">
-            <a href="{% url researcher_edit %}">{% silk "user_edit" %} Edit my profile</a>
+        <li class="right-action">
+            <a href="{% url researcher_edit %}">Edit my profile</a>
         </li>
     {% endifequal %}
 {% endblock %}

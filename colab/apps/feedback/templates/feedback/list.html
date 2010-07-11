@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block actions %}
-    <li class="search-form-wrapper">
+    <li class="search-form-wrapper right-action">
         <form class="search-form" method="GET" action="">
             <input id="search-input" type="text" name="search" class="side-input" value="{{ search_terms }}" />
             <input id="search-button" type="submit" value="Search Feedback" />
@@ -25,8 +25,8 @@
         </form>
     </li>
     
-    <li class="add-item">
-        <a href="{% url feedback_submit %}">{% silk "bug_add" %} Submit Feedback</a>
+    <li class="left-action">
+        <a href="{% url feedback_submit %}">Submit Feedback</a>
     </li>
 {% endblock %}
 

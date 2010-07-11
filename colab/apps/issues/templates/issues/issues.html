@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block actions %}
-    <li class="search-form-wrapper">
+    <li class="search-form-wrapper right-action">
         <form class="search-form" method="GET" action="">
             <input id="search-input" type="text" name="search" class="side-input" value="{{ search_terms }}" />
             <input id="search-button" type="submit" value="Search Issues" />
@@ -29,8 +29,8 @@
     </li>
     
     {% if user.is_authenticated %}
-        <li class="add-item">
-            <a href="{% url issue_create %}">{% silk "script_add" %} Compose new Issue</a>
+        <li class="left-action">
+            <a href="{% url issue_create %}">Compose new Issue</a>
         </li>
     {% endif %}
 {% endblock %}

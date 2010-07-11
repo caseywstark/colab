@@ -9,21 +9,21 @@
     {% if user.is_authenticated %}
         {% if not issue.resolved %}
             {% ifequal issue.creator user %}
-                <li class="resolve-button">
-                    <a href="{% url issue_resolve issue.slug %}">{% silk "lightbulb" %} Resolve</a>
+                <li class="left-action">
+                    <a href="{% url issue_resolve issue.slug %}">Resolve</a>
                 </li>
             {% endifequal %}
         {% endif %}
-        <li class="right">
+        <li class="right-action">
             {% follow_link issue "this Issue" %}
         </li>
         {% if issue.private %}
-        <li class="right">
-            {% silk "user_add" %}<a href="{% url issue_invite issue.slug %}">Invite Contributors</a>
-        </li>
+            <li class="right-action">
+                <a href="{% url issue_invite issue.slug %}">Invite Contributors</a>
+            </li>
         {% endif %}
-        <li class="left">
-            <a href="{% add_paper_url issue %}">{% silk "report" %} Add a Paper</a>
+        <li class="left-action">
+            <a href="{% add_paper_url issue %}">Add a Paper</a>
         </li>
     {% else %}
         Sign in to access actions.

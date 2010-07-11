@@ -22,7 +22,7 @@ p {
     margin-bottom: 1.5em;
 }
 
-a, a:link, a:visited {
+a, a, a:visited {
     text-decoration: underline;
     color: #ffffff;
 }
@@ -62,7 +62,7 @@ a img {
     left: 0;
     color: #3e4f4a;
 }
-#feedback-widget-wrapper a, #feedback-widget-wrapper a:link, #feedback-wrapper a:visited {
+#feedback-widget-wrapper a, #feedback-widget-wrapper a, #feedback-wrapper a:visited {
     color: #193F66;
     text-decoration: underline;
 }
@@ -250,7 +250,7 @@ ul#messages li a { color: #693; }
     border-bottom: 8px #ABAEB0 solid;
     text-align: left;
 }
-#page-content a:link, #page-content a:visited {
+#page-content a, #page-content a:visited {
     color: #193F66;
     text-decoration: underline;
 }
@@ -280,7 +280,7 @@ ul#messages li a { color: #693; }
 	display: block;
 	padding: 0 25px 0 0;
 }
-#breadcrumbs li a:link, #breadcrumbs li a:visited {
+#breadcrumbs li a, #breadcrumbs li a:visited {
 	color: #777;
 	text-decoration:none;
 }
@@ -296,7 +296,7 @@ ul#messages li a { color: #693; }
     float: left;
     margin: 7px 10px;
 }
-#subnav a:link, #subnav a:visited {
+#subnav a, #subnav a:visited {
     text-decoration: none;
     color: #415157;
     padding: 4px 8px;
@@ -323,13 +323,14 @@ ul#messages li a { color: #693; }
 }
 #actions a, #actions a:visited {
     text-decoration: none;
-    color: #415157;
-    background: #A0A5A7;
+    color: #ffffff;
+    background: #C9CCCE;
     padding: 4px 8px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
 #actions a:hover, #actions a:active {
+    color: #ffffff;
     background: #A0A5A7;
 }
 
@@ -484,7 +485,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
-.post-title-wrapper a:link, .post-title-wrapper a:visited {
+.post-title-wrapper a, .post-title-wrapper a:visited {
     color: #3e4f4a !important;
     text-decoration: underline !important;
 }
