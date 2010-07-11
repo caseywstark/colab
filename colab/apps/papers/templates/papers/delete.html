@@ -1,0 +1,50 @@
+{% extends "papers/base.html" %}
+
+{% load i18n %}
+{% load headquarters_tags %}
+
+{% block head_title %}
+    Delete Paper{% if revision_number %}Revision{% endif %}?
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% if content_object %}
+        <li><a href="{{ content_object.get_absolute_url }}">{{ content_object }}</a></li>
+    {% endif %}
+    <li>Papers</li>
+    <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
+    {% if revision_number %}
+        <li><a href="{% url paper_revision slug=paper.slug revision_number=revision_number %}">Revision #{{ revision_number }}</a></li>
+    {% endif %}
+    <li><a href="{{ request.path }}">Delete</a></li>
+{% endblock %}
+
+{% block body %}
+    
+    <p>Are you sure you want to delete this {% if revision_number %}revision{% else %}paper{% endif %}?</p>
+    
+    <form class="uniForm" id="delete_form" method="POST" action="">{% csrf_token %}
+        <fieldset class="inlineLabels">
+            <div class="form_block">
+                <input type="hidden" name="delete" value="1" />
+                <input type="hidden" name="next" value="{{ paper.content_object.get_absolute_url }}" />
+                <input type="submit" value="Delete {% if revision_number %}Revision{% else %}Paper{% endif %}"/>
+            </div>
+        </fieldset>
+    </form>
+    
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            {{ paper.title }}
+        </div>
+    </div>
+    
+    {% post_meta paper %}
+    
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ revision.content|safe }}
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}

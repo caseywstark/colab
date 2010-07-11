@@ -1,0 +1,36 @@
+{% extends "papers/base.html" %}
+
+{% load i18n %}
+{% load account_tags %}
+{% load object_feeds_tags %}
+
+{% block head_title %}Compare Paper Revisions{% endblock %}
+
+{% block breadcrumbs %}
+    {% if paper.content_object %}
+        <li><a href="{{ paper.content_object.get_absolute_url }}">{{ paper.content_object }}</a></li>
+    {% endif %}
+    <li>Papers</li>
+    <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
+    <li><a href="{{ request.path }}">Compare revisions</a></li>
+{% endblock %}
+
+{% block actions %}
+    {% if user.is_authenticated %}
+        <li class="right">
+            {% follow_link paper %}
+        </li>
+        <li class="left">
+            <a href="{% url paper_history paper.slug %}">View Paper History</a>
+        </li>
+    {% else %}
+        Sign in to access actions.
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    
+    <h1>Comparing Revisions #{{ rev_number_a }} and #{{ rev_number_b }} of Paper {{ paper.title }}</h1>
+    
+    <pre class="changes">{{ diff }}</pre>
+{% endblock %}

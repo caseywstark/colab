@@ -197,6 +197,7 @@ INSTALLED_APPS = [
     "ajax_select",
     "tinymce",
     "oauth_access",
+    "biblion",
     "south",
     
     # custom
@@ -334,6 +335,8 @@ OAUTH_ACCESS_SETTINGS = {
         },
     },
 }
+
+BIBLION_SECTIONS = ['tag', 'tag2']
 
 # No credentials for you
 try:

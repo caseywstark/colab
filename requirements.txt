@@ -7,6 +7,7 @@ django-openid>=0.2.3.dev0
 django-extensions==0.4.1
 django-oauth-access
 oauth2
+biblion
 
 # Maybe required?
 python-dateutil==1.4.1

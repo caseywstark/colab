@@ -48,6 +48,7 @@ urlpatterns = patterns("",
     (r'^ajax-autocomplete/', include('ajax_select.urls')),
     (r'^oauth_access/', include('oauth_access.urls')),
     (r'^tinymce/', include('tinymce.urls')),
+    (r'^blog/', include('biblion.urls')),
     
     ### custom ###
     (r"^disciplines/", include("disciplines.urls")),
