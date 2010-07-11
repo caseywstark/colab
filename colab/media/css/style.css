@@ -321,9 +321,10 @@ ul#messages li a { color: #693; }
     display: inline;
     float: left;
 }
-#actions a:link, #actions a:visited {
+#actions a, #actions a:visited {
     text-decoration: none;
     color: #415157;
+    background: #A0A5A7;
     padding: 4px 8px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -339,9 +340,9 @@ ul#messages li a { color: #693; }
 #search-input {
     width: 250px;
 }
-.add-item, .follow-item {
-    float: right !important;
-}
+
+.left-action { float: left !important; }
+.right-action { float: right !important; }
 
 /**************************************\
  * Body
