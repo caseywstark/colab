@@ -4,8 +4,17 @@
 
 {% block body_class %}papers{% endblock %}
 
+{% block extrahead %}
+	{{ block.super }}
+
+	{# Don't let search engines scan this old revision #}
+	{% if revision.is_not_current %}
+		<meta name="robots" content="noindex" />
+	{% endif %}
+{% endblock %}
+
 {% block subnav %}
     {% if user.is_authenticated %}
-        <li><a href="{% url my_issues %} ">{% trans "My papers" %}</a></li>
+        <li><a href="{% url my_issues %} ">{% trans "My issues" %}</a></li>
     {% endif %}
 {% endblock %}

@@ -28,7 +28,7 @@
             {% follow_link paper %}
         </li>
         <li class="left">
-            <a href="{% url paper_history paper.id %}">View Paper History</a>
+            <a href="{% url paper_history paper.slug %}">View Paper History</a>
         </li>
     {% else %}
         Sign in to access actions.
@@ -38,6 +38,15 @@
 
 
 {% block body %}
+    {% if revision.is_not_current %}
+        <p class="revert-warning">
+	        {% trans "You are viewing an older revision" %}
+	        <a href="{% url paper_detail slug=paper.slug %}">
+	          {% trans "See the latest version" %}
+	        </a>
+        </p>
+    {% endif %}
+    
     <div class="post-title-wrapper">
         <div class="post-title">
             {{ paper.title }}
@@ -48,13 +57,13 @@
     
     <div id="description" class="post-wrapper">
         <div class="post-content">
-            {{ paper.content|safe }}
+            {{ revision.content|safe }}
         </div>
 
         <ul class="post-buttons">
-            <li><a class="post-option" href="{% url paper_edit paper.id %}">{% silk "page_edit" %} Edit</a></li>
+            <li><a class="post-option" href="{% url paper_edit slug=paper.slug %}">{% silk "page_edit" %} Edit</a></li>
             {% ifequal user paper.creator %}
-                <li><a class="post-option" href="{% url paper_delete paper.id %}">{% silk "page_edit" %} Delete</a></li>
+                <li><a class="post-option" href="{% url paper_delete slug=paper.slug %}">{% silk "page_edit" %} Delete</a></li>
             {% endifequal %}
         </ul>
         

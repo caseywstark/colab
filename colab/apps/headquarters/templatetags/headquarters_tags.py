@@ -61,7 +61,7 @@ def post_datetime(post):
     elif isinstance(post, Paper) or isinstance(post, Summary):
         datetime = post.last_edited
     elif isinstance(post, PaperRevision) or isinstance(post, SummaryRevision):
-        datetime = post.modified
+        datetime = post.created
     elif isinstance(post, Feedback):
         datetime = post.created
     elif isinstance(post, ThreadedComment):
@@ -191,7 +191,7 @@ def update_preview(context, update):
     if isinstance(update_object, Issue):
         object_content = update_object.description
     elif isinstance(update_object, Paper) or isinstance(update_object, Summary):
-        object_content = update_object.content
+        object_content = update_object.current.content
     elif isinstance(update_object, ThreadedComment):
         object_content = update_object.comment
     

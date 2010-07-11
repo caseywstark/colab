@@ -7,21 +7,21 @@
 {% load account_tags %}
 {% load papers_tags %}
 
-{% block head_title %}Paper History: {{ paper.title }}{% endblock %}
+{% block head_title %}History of Paper: {{ paper.title }}{% endblock %}
 
 {% block breadcrumbs %}
     {% if paper.content_object %}
        <li><a href="{{ paper.content_object.get_absolute_url }}">{{ paper.content_object }}</a></li>
     {% endif %}
-    <li>papers</li>
-    <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
+    <li>Papers</li>
+    <li><a href="{{ paper.get_absolute_url }}">{{ paper.title }}</a></li>
     <li><a href="{{ request.path }}">History</a></li>
 {% endblock %}
 
 {% block actions %}
     {% if user.is_authenticated %}
         <li class="add-page">
-            <a href="{% url paper_detail paper.id %}">&laquo; Back to Paper</a>
+            <a href="{% url paper_detail slug=paper.slug %}">&laquo; Back to Paper</a>
         </li>
     {% else %}
         Sign in to access actions.
@@ -37,35 +37,49 @@
         </div>
     </div>
     
-    <table>
-        <tr class="tbheader">
-            <th>Revert to Revision #</th>
-            <th>At</th>
-            <th>Author</th>
-            <th>Comment</th>
-        </tr>
-        {% for change in changes %}
-        <tr class="{% cycle 'tbodd' 'tbeven' %}">
-            <td>
-                <a href="{% url paper_revert paper.id change.revision %}">
-                    {{ change.revision }}
-                    {% if forloop.first %}
-                        (Current version)
-                    {% endif %}
-                </a>
-        	<td>
-        	    <a href="{{ change.get_absolute_url }}">
-        	        {{ change.modified|date:"M d, Y" }}
-    	        </a>
-            </td>
-        	<td>
-                <a href="">{% user_display change.editor %}</a>
-            </td>
-            <td>
-                {% if change.comment %}<i>'{{ change.comment}}'</i>{% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <form method="GET" action="{% url paper_changes slug=paper.slug %}">
+        <table>
+            <tr class="tbheader">
+                <th>Compare</th>
+                <th>Modified</th>
+                <th>Comment</th>
+                <th>Author</th>
+                <th>Options</th>
+            </tr>
+            {% for rev in paper.revisions.all %}
+                <tr class="{% cycle 'table-odd' 'table-even' %}">
+                    <td class="compare">
+                        <input type="radio" name="a" value="{{ rev.revision }}"
+	                        {% if rev_a %}
+		                        {% ifequal rev_a.pk rev.pk %}checked{% endifequal %}
+	                        {% else %}
+		                        {% ifequal forloop.counter 1 %}checked{% endifequal %}
+	                        {% endif %}
+                        />
+                        <input type="radio" name="b" value="{{ rev.revision }}"
+	                        {% if rev_b %}
+		                        {% ifequal rev_b.pk rev.pk %}checked{% endifequal %}
+	                        {% else %}
+		                        {% ifequal page.revisions.all|length 1 %}
+			                        checked
+		                        {% else %}
+			                        {% ifequal forloop.counter 2 %}checked{% endifequal %}
+		                        {% endifequal %}
+	                        {% endif %}
+                        />
+                	</td>
+                    <td class="modifed">{{ rev.created|timesince }} ago</td>
+	                <td class="message">{{ rev.comment }}</td>
+	                <td class="creator"><a href="{{ rev.editor.get_absolute_url }}">{% user_display rev.editor %}</td>
+	                <td class="options">
+		                <a href="{% url paper_revision slug=paper.slug, revision_number=rev.revision %}">{% trans "View" %}</a>
+		                <a href="{% url paper_edit slug=paper.slug, revision_number=rev.revision %}">{% trans "Revert" %}</a>
+		                <a href="{% url paper_delete slug=paper.slug, revision_number=rev.revision %}">{% trans "Delete" %}</a>
+	                </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p><input type="submit" value="{% trans "Compare revisions" %}"/></p>
+    </form>
     
 {% endblock %}

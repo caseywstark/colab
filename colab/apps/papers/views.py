@@ -9,11 +9,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 
 from papers.models import Paper, PaperRevision
-from papers.forms import PaperForm
+from papers.forms import PaperForm, DeletePaperForm
 from threadedcomments.forms import RichCommentForm
 
 @login_required
-def create(request, content_type=None, object_id=None, form_class=PaperForm, template_name="papers/create.html"):
+def create(request, content_type=None, object_id=None, form_class=PaperForm, template_name="papers/edit.html"):
 
     # Get the parent object if passed one
     if content_type and object_id:
@@ -22,12 +22,12 @@ def create(request, content_type=None, object_id=None, form_class=PaperForm, tem
     else:
         content_object = none
     
-    form = form_class(request.POST or None)
+    form = form_class(request.POST or None, auto_id='paper_%s')
     
     if form.is_valid():
         form.editor = request.user
         form.content_object = content_object
-        paper, revision = form.save()
+        paper, revision = form.save(request)
         
         # Updates and messages
         paper.register_action(request.user, 'create', revision)
@@ -46,15 +46,25 @@ def create(request, content_type=None, object_id=None, form_class=PaperForm, tem
     }, context_instance=RequestContext(request))
 
 @login_required
-def edit(request, paper_id=None, slug=None, form_class=PaperForm, template_name='papers/edit.html'):
+def edit(request, paper_id=None, slug=None, revision_number=None, form_class=PaperForm, paper_delete_form=DeletePaperForm, template_name='papers/edit.html'):
     
     paper = get_object_or_404(Paper, slug=slug)
+    revision = paper.current
+    initial = {'content': revision.content}
+    
+    if revision_number:
+        # There is a specific revision, fetch this
+        rev_specific = PaperRevision.objects.get(paper=paper, revision=revision_number) # shouldn't there be a way to do this with paper.revisions?
+        if revision.pk != rev_specific.pk:
+            revision = rev_specific
+            revision.is_not_current = True
+            initial = {'content': revision.content, 'comment': _('Reverted to #%d' % revision.revision)}
 
-    form = form_class(request.POST or None, instance=paper)
-
+    form = form_class(request.POST or None, instance=paper, initial=initial, auto_id='paper_%s')
+    
     if form.is_valid():
         form.editor = request.user
-        paper, revision = form.save()
+        paper, revision = form.save(request)
         
         paper.register_action(request.user, 'edit', revision)
         
@@ -65,18 +75,27 @@ def edit(request, paper_id=None, slug=None, form_class=PaperForm, template_name=
 
     return render_to_response(template_name, {
         'paper': paper,
+        'revision': revision,
         'paper_form': form,
     }, context_instance=RequestContext(request))
 
 @login_required
-def delete(request, paper_id=None, slug=None, template_name='papers/delete.html'):
+def delete(request, paper_id=None, slug=None, revision_number=None, template_name='papers/delete.html'):
     
     paper = get_object_or_404(Paper, slug=slug)
+    revision = paper.current
+    
+    if revision_number:
+        # user wants to delete a specific revision, not the paper
+        rev_specific = PaperRevision.objects.get(paper=paper, revision=revision_number) # shouldn't there be a way to do this with paper.revisions?
+        if revision.pk != rev_specific.pk:
+            revision = rev_specific
+            revision.is_not_current = True
 
     redirect_url = paper.get_absolute_url()
     
-    if request.user == paper.creator:
-        if not ThreadedComment.objects.all_for_object(paper).exists():
+    if request.method == 'POST' and request.POST.get('delete'):
+        if request.user == revision.editor or request.user == paper.creator:
             paper.feed.delete()
             paper.delete()
             messages.add_message(request, messages.SUCCESS,
@@ -85,39 +104,35 @@ def delete(request, paper_id=None, slug=None, template_name='papers/delete.html'
             redirect_url = paper.content_object.get_absolute_url()
         else:
             messages.add_message(request, messages.ERROR,
-                _("Please delete comments before deleting the paper.")
+                _("You are not the creator of this paper.")
             )
-    else:
-        messages.add_message(request, messages.SUCCESS,
-            _("You are not the creator of this paper.")
-        )
     
     return HttpResponseRedirect(redirect_url)
+    
+    return render_to_response(template_name, {
+        'paper': paper,
+        'revision': revision,
+        'content_object': paper.content_object,
+    }, context_instance=RequestContext(request))
 
 
-def paper(request, paper_id=None, slug=None, template_name='papers/paper.html'):
+def paper(request, paper_id=None, slug=None, revision_number=None, template_name='papers/paper.html'):
 
     paper = get_object_or_404(Paper, slug=slug)
+    revision = paper.current
+    
+    if revision_number:
+        new_revision = paper.revisions.get(revision=revision_number)
+        if revision.pk != new_revision.pk:
+            new_revision.is_not_current = True
+        revision = new_revision
 
     comment_form = RichCommentForm(auto_id='paper_comment_%s')    
     
     return render_to_response(template_name, {
         'paper': paper,
-        'content_object': paper.content_object,
-        'comment_form': comment_form,
-    }, context_instance=RequestContext(request))
-
-
-def revision(request, paper_id=None, slug=None, revision=1, template_name='papers/revision.html'):
-    
-    paper = get_object_or_404(Paper, slug=slug)
-    revision = get_object_or_404(paper.revisions, revision=int(revision))
-    
-    comment_form = RichCommentForm(auto_id='revision_comment_%s')
-    
-    return render_to_response(template_name, {
-        'paper': paper,
         'revision': revision,
+        'content_object': paper.content_object,
         'comment_form': comment_form,
     }, context_instance=RequestContext(request))
 
@@ -131,6 +146,9 @@ def history(request, paper_id=None, slug=None, template_name='papers/history.htm
         'paper': paper,
         'changes': changes,
     }, context_instance=RequestContext(request))
+
+def changes(request, paper_id=None, slug=None, template_name='papers/changes.html', extra_context=None):
+    pass
 
 @login_required
 def revert(request, paper_id=None, slug=None, revision=1, template_name='papers/revert.html'):

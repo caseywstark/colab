@@ -3,20 +3,39 @@
 {% load i18n %}
 {% load uni_form_tags %}
 
-{% block head_title %}{% blocktrans %}Revise Paper{% endblocktrans %}{% endblock %}
+{% block head_title %}
+    {% if paper %}
+        Revise Paper
+    {% else %}
+        Create a Paper
+    {% endif %}
+{% endblock %}
 
 {% block head_extra %}
     {{ paper_form.media }}
 {% endblock %}
 
 {% block breadcrumbs %}
+    {% if content_object %}
+        <li><a href="{{ content_object.get_absolute_url }}">{{ content_object }}</a></li>
+    {% endif %}
     <li>Papers</li>
-    <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
-    <li><a href="{{ request.path }}">Edit</a></li>
+    {% if paper %}
+        <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
+        <li><a href="{{ request.path }}">Edit</a></li>
+    {% else %}
+        <li><a href="{{ request.path }}">Create</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block body %}
-    <h1>Revise the Paper {{ paper }}</h1>
+    <h1>
+        {% if paper %}
+            Revise the Paper {{ paper }}
+        {% else %}
+            Create a Paper{% if content_object %} linked to <a href="{{ content_object.get_absolute_url }}">{{ content_object }}</a>{% endif %}
+        {% endif %}
+    </h1>
     
     {% if user.is_authenticated %}
         <form class="uniForm" id="paper_form" method="POST" action="">{% csrf_token %}
@@ -33,4 +52,20 @@
         <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to create your own project or join an existing one.{% endblocktrans %}</p>
     {% endif %}
     
+    {% if paper and delete_form %}
+	<form class="paper_delete_form" method="POST" action="" onsubmit="return confirm('{% trans "Please confirm deletion" %}');">
+		{{ delete_form.as_p }}
+		<p>
+			<input type="submit" value="{% trans "Delete" %}" />
+		</p>
+	</form>
+	{% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#paper_title").slug({ slug:'#paper_slug', space: '-' });
+        });
+    </script>
 {% endblock %}
