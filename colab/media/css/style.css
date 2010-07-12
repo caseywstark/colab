@@ -324,14 +324,15 @@ ul#messages li a { color: #693; }
 #actions a, #actions a:visited {
     text-decoration: none;
     color: #ffffff;
-    background: #C9CCCE;
+    background: #A0A5A7;
+    border: 1px solid #494D4F;
     padding: 4px 8px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
 #actions a:hover, #actions a:active {
     color: #ffffff;
-    background: #A0A5A7;
+    background: #C9CCCE;
 }
 
 .search-form-wrapper {
@@ -342,8 +343,14 @@ ul#messages li a { color: #693; }
     width: 250px;
 }
 
-.left-action { float: left !important; }
-.right-action { float: right !important; }
+.left-action {
+    float: left !important;
+    padding-right: 10px;
+}
+.right-action {
+    float: right !important;
+    padding-left: 10px;
+}
 
 /**************************************\
  * Body

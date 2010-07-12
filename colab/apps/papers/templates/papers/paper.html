@@ -24,10 +24,10 @@
 
 {% block actions %}
     {% if user.is_authenticated %}
-        <li class="right">
-            {% follow_link paper %}
+        <li class="right-action">
+            {% follow_link paper "this Paper"%}
         </li>
-        <li class="left">
+        <li class="left-action">
             <a href="{% url paper_history paper.slug %}">View Paper History</a>
         </li>
     {% else %}

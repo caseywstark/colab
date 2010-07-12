@@ -5,12 +5,8 @@
 
 {% block body_class %}feeds{% endblock %}
 
-{% block extra_tab %}
-    <li id="tab_feeds" class="active"><a href="{{ request.path }}">{% trans "Feeds" %}</a></li>
-{% endblock %}
-
 {% block subnav %}
     {% if user.is_authenticated %}
-        <li><a href="{% url my_feeds %} ">{% silk "feed_link" %} {% trans "My Feeds" %}</a></li>
+        <li><a href="{% url my_feeds %} ">{% trans "My Feeds" %}</a></li>
     {% endif %}
 {% endblock %}

@@ -1,10 +1,11 @@
 {% load theme_tags %}
 
+{% spaceless %}
 <a href="{{ subscription_url }}">
     {% if subscription %}
-        {% silk "feed_delete" %} Unfollow
+        Unfollow
     {% else %}
-        {% silk "feed_add" %} Follow
+        Follow
     {% endif %}
     {% if extra_text %} {{ extra_text }}{% endif %}
-</a>
+</a>{% endspaceless %}
