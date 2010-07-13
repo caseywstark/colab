@@ -336,7 +336,10 @@ OAUTH_ACCESS_SETTINGS = {
     },
 }
 
-BIBLION_SECTIONS = ['tag', 'tag2']
+BIBLION_SECTIONS = [
+    ['dear-scientists', 'Dear Scientists'],
+    ['features', 'Features'],
+]
 
 # No credentials for you
 try:
