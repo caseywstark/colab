@@ -6,5 +6,5 @@
 
 {% block subnav %}
     <li><a href="{% url blog %}">{% trans "All posts" %}</a></li>
-    <li><a href="{% url blog %} ">{% trans "Dear" %}</a></li>
+    <li><a href="{% url blog_section section="dear-scientists" %} ">{% trans "Dear Scientists" %}</a></li>
 {% endblock %}

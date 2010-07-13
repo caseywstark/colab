@@ -15,25 +15,21 @@ from biblion.settings import ALL_SECTION_NAME
 
 from threadedcomments.forms import RichCommentForm
 
-def blog_index(request):
+def blog_list(request, section=None):
     
     posts = Post.objects.current()
     
+    section_name = None
+    if section:
+        section_name = dict(Post.SECTION_CHOICES)[Post.section_idx(section)]
+        try:
+            posts = Post.objects.section(section)
+        except InvalidSection:
+            raise Http404()
+    
     return render_to_response("biblion/blog_list.html", {
-        "posts": posts,
-    }, context_instance=RequestContext(request))
-
-
-def blog_section_list(request, section):
-    
-    try:
-        posts = Post.objects.section(section)
-    except InvalidSection:
-        raise Http404()
-    
-    return render_to_response("biblion/blog_section_list.html", {
         "section_slug": section,
-        "section_name": dict(Post.SECTION_CHOICES)[Post.section_idx(section)],
+        "section_name": section_name,
         "posts": posts,
     }, context_instance=RequestContext(request))
 
