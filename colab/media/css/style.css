@@ -338,18 +338,20 @@ ul#messages li a { color: #693; }
 .search-form-wrapper {
     float: left;
     text-align: left;
+    padding: 0px !important;
 }
 #search-input {
     width: 250px;
 }
+#search-input, #search-button { font-size: 12px; }
 
 .left-action {
     float: left !important;
-    padding-right: 10px;
+    padding: 6px 10px;
 }
 .right-action {
     float: right !important;
-    padding-left: 10px;
+    padding: 6px 10px;
 }
 
 /**************************************\

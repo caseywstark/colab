@@ -1,0 +1,54 @@
+{% extends "biblion/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load threadedcommentstags %}
+{% load biblion_tags %}
+{% load account_tags %}
+{% load object_feeds_tags %}
+{% load headquarters_tags %}
+
+{% block head_title %}{{ post.title }}{% endblock %}
+
+{% block head_extra %}
+    {{ comment_form.media }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url blog %}">Blog</a></li>
+    <li><a href="{{ request.path }}">{{ post.title }}</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="post-title-wrapper">
+        <div class="post-title">
+            {{ post.title }}
+        </div>
+    </div>
+    
+    
+    <div id="description" class="post-wrapper">
+        <div class="post-content">
+            {{ post.content_html|safe }}
+        </div>
+    </div>
+        
+    {% comment_list post %}
+    
+    <div class="reply-wrapper">
+        {% if user.is_authenticated %}
+        <form class="reply-form uniForm" id="reply-to-post" method="POST" action="{% get_comment_url post %}">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ comment_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="comment" />
+                    <input type="submit" value="{% trans 'Comment on Post' %}"/>
+                </div>
+            </fieldset>
+        </form>
+        {% else %}
+            <h3>Please <a href="{% url acct_login %}">Login</a> (or <a href="{% url acct_signup %}">Sign Up</a>) to leave a comment.</h3>
+        {% endif %}
+    </div>
+    
+{% endblock %}

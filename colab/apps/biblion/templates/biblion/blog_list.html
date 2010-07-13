@@ -1,0 +1,89 @@
+{% extends "biblion/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load pagination_tags %}
+{% load order_by %}
+{% load sorting_tags %}
+{% load biblion_tags %}
+{% load tagging_tags %}
+
+{% block head_title %}{% blocktrans %}Blog{% endblocktrans %}{% endblock %}
+
+{% autosort posts %}
+{% autopaginate posts 10 %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url blog %}">Blog</a></li>
+{% endblock %}
+
+{% block actions %}
+    <li class="search-form-wrapper right-action">
+        <form class="search-form" method="GET" action="">
+            <input id="search-input" type="text" name="search" class="side-input" value="{{ search_terms }}" />
+            <input id="search-button" type="submit" value="Search Blog" />
+            {% if search_terms %}
+                <a href="{% clear_search_url request %}">Clear Search Terms</a>
+            {% endif %}
+        </form>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="list-title-wrapper">
+        <h1 class="list-title">Blog</h1>
+    </div>
+    
+    {% paginate %}
+    
+    <ul class="post-list blog-list">
+        {% if posts %}
+            {% for post in posts %}
+                <li class="list-item post-summary">
+                    <div class="post-title-wrapper">
+                        <a class="post-title" href="{{ post.get_absolute_url }}">
+                            {{ post.title }}
+                        </a>
+                    </div>
+                    
+                    <div class="post-push-right post-content-wrapper">
+                        <div class="post-content">
+                            {{ post.content_html|safe }}
+                        </div>
+                        
+                        <div class="post-categories">
+                            <div class="post-section">
+                                <span>Posted under:</span>
+                                {% if post.section %}
+                                    <a href="{{ post.section.get_absolute_url }}">{{ post.section }}</a>
+                                {% else %}
+                                    None
+                                {% endif %}
+                            </div>
+                            
+                            <div class="post-tags-list">
+                                <span>Tagged with:</span>
+                                {% tags_for_object post as tags %}
+                                {% if tags %}
+                                    {% for tag in tags %}
+                                        <a href="{#{% url post_tag_detail tag %}#}">{{ tag }}</a>
+                                    {% endfor %}
+                                {% else %}
+                                    No tags.
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            {% endfor %}
+        {% else %}
+            <li class="list-item no-results">
+                No posts match your filters. Please broaden your search.
+            </li>
+        {% endif %}
+    </ul>
+    <div class="clear"></div>
+    
+    {% paginate %}
+{% endblock %}

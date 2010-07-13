@@ -1,0 +1,10 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block subnav %}
+    <li><a href="{% url blog %}">{% trans "All posts" %}</a></li>
+    <li><a href="{% url blog %} ">{% trans "Dear" %}</a></li>
+{% endblock %}
