@@ -3,7 +3,7 @@
 \**************************************/
 
 body {
-    font-family: "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
+    font-family: "Helvetica", Arial, sans-serif;
     font-size: 13px;
     font-style: normal;
     font-variant: normal;
@@ -59,12 +59,18 @@ a img {
     position: absolute;
     z-index: 2;
     top: 50%;
-    left: 0;
+    margin-left:-25px;
     color: #3e4f4a;
 }
 #feedback-widget-wrapper a, #feedback-widget-wrapper a, #feedback-wrapper a:visited {
     color: #193F66;
-    text-decoration: underline;
+    top:0px;
+    text-decoration: none;
+    display:table-cell;
+    -webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	/* for ie */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 #feedback-widget-wrapper a:hover {
     color: #657F98;
@@ -73,13 +79,13 @@ a img {
 
 #feedback-widget-toggle {
     padding: 3px;
-    border: 3px solid #222222;
-    background: #ffffff;
-    -moz-border-radius-topright: 10px;
-    -moz-border-radius-bottomright: 10px;
-    -webkit-border-top-right-radius: 10px;
-    -webkit-border-bottom-right-radius: 10px;
-    
+    margin-left:25px;
+    border: 3px solid #eee;
+    background: #eee;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
     text-decoration:none;
     font-size: 14px;
     line-height: 14px;
@@ -90,9 +96,10 @@ a img {
     z-index: 1;
     background: #ffffff;
     max-width: 600px;
-    
     border: 5px solid #ccc;
     background: #fff;
+    margin-left:50px;
+    padding:10px;
 }
 
 /**************************************\
@@ -102,10 +109,11 @@ a img {
 #logo-wrapper {
     float: left;
     margin-left: 0;
+    padding-top:10px;
 }
 #logo-link img {
-    height: 77px;
-    width: 250px;
+    height: 67px;
+    width: 200px;
 }
 
 #login-box {
@@ -132,9 +140,9 @@ a img {
 
 #user-box {
     float: right;
-    padding: 10px 5px 10px 15px;
+    padding: 3px 5px 5px 15px;
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
     background: #585b5d;
     -webkit-border-bottom-right-radius: 10px;
     -webkit-border-bottom-left-radius: 10px;
@@ -146,17 +154,20 @@ a img {
 #user-box-avatar {
     float: left;
     padding: 0!important;
-    width: 35px; height: 35px;
+    width: 25px; height: 25px;
     border: 2px solid #999999;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+}
+#user-box-avatar img{
+	 width: 25px; height: 25px;
 }
 #user-box-avatar:hover {
     border: 2px solid #cccccc;
 }
 #user-box-links {
     float: left;
-    margin: 9px 5px 0;
+    margin: 5px 5px 0;
 }
 #user-box-links a {
     text-decoration: none;
@@ -178,8 +189,8 @@ a img {
 #content-navigation-wrapper {
     clear: both;
     float: right;
-    padding: 0 0 6px;
-    font-size: 14px;
+    padding: 0 0 3px;
+    font-size: 12px;
     font-weight: bold;
 }
 #content-navigation li {
@@ -190,7 +201,7 @@ a img {
 #content-navigation li a {
     text-decoration: none;
     color: #ffffff;
-    padding: 8px 15px 8px;
+    padding: 6px 15px;
     -moz-border-radius-topleft: 4px;
     -moz-border-radius-topright: 4px;
     -webkit-border-top-left-radius: 4px;
@@ -315,7 +326,7 @@ ul#messages li a { color: #693; }
 \**************************************/
 
 #actions {
-    
+	
 }
 #actions li {
     display: inline;
@@ -323,16 +334,20 @@ ul#messages li a { color: #693; }
 }
 #actions a, #actions a:visited {
     text-decoration: none;
-    color: #ffffff;
-    background: #A0A5A7;
-    border: 1px solid #494D4F;
+    color: #333;
+    height:25px;
+    background: #aad052;
+    border: 0px solid #494D4F;
     padding: 4px 8px;
+    font-weight:bold;
+    font-size:10px;
+    text-transform:uppercase;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
 #actions a:hover, #actions a:active {
-    color: #ffffff;
-    background: #C9CCCE;
+    color: #aad052;
+    background: #333;
 }
 
 .search-form-wrapper {
@@ -347,7 +362,9 @@ ul#messages li a { color: #693; }
 
 .left-action {
     float: left !important;
-    padding: 6px 10px;
+}
+.left-action a{
+	   padding: 6px 10px;
 }
 .right-action {
     float: right !important;
@@ -458,27 +475,32 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     
 }
 .list-title {
-    text-align: center;
+    text-align: left;
     font-size: 25px;
     line-height: 30px;
     font-weight: bold;
+    margin-top:10px;
 }
 .list-title span {
     font-size: 16px;
     font-weight: normal;
 }
 .sorting-wrapper {
-    text-align: center;
+    text-align: left;
     line-height: 30px;
-    font-size: 18px;
+    font-size: 12px;
+}
+ul.list-sorting{
+	padding:0px 0px 10px 0px;
+	border-bottom:1px dotted #ccc;
 }
 .list-sorting li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 15px;
 }
 
 .list-item {
-    border-bottom: 1px dashed;
+    border-bottom: 1px dotted #ccc;
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
@@ -486,17 +508,17 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .post-title-wrapper {
     font-size: 30px;
     line-height: 40px;
-    text-align: center;
-    margin: 15px;
+    text-align: left;
+    margin:20px 0px;
 }
 .post-title {
-    padding: 4px 8px;
+    padding: 4px 8px 0px 0px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
 .post-title-wrapper a, .post-title-wrapper a:visited {
     color: #3e4f4a !important;
-    text-decoration: underline !important;
+    text-decoration: none!important;
 }
 .post-title-wrapper a:hover, .post-title-wrapper a:active {
     color: #3e4f4a;
@@ -505,7 +527,10 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .post-categories {
-    padding-top: 10px;
+    padding: 10px 5px;
+    color:#999;
+    width:805px;
+    margin-left:195px;  
 }
 
 /**************************************\
@@ -516,13 +541,13 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     float: left;
     width: 180px;
     margin-right: 15px;
-    text-align: center;
+    text-align: left;
 }
     
 .meta-summary, .post-meta {
     padding: 10px 10px;
-    
-    background-color: #E0E3E5;
+    background-color: #eee;
+    border:3px solid #ccc;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
 }
@@ -530,11 +555,11 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .vote-box {
     float: left;
     width: 50%;
-    font-family: Verdana,Helvetica,Arial,Geneva,Helvetica,sans-serif;
+    text-align:center;
 }
 .vote-name {
     font-size: 12px;
-    text-transform: uppercase;
+    font-weight:bold;
 }
 .vote-number {
     padding: 5px;
@@ -552,7 +577,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     -webkit-border-radius: 5px !important;
 }
 .vote-button:hover { background-color: #AEB0B2!important; }
-.yeas { color: #4c4; }
+.yeas { color: #94ba3c; }
 .nays { color: #c44; }
 .nay-button { color: #c44 !important; border-color: #c44 !important;}
 .nay-button:hover { color: #911 !important; border-color: #911 !important; }
@@ -585,14 +610,29 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .big-avatar:hover {
     border: 3px solid #cccccc;
 }
+.user-name, .post-date {
+    font-size: 12px;
+}
+.post-date{
+	padding:0px 5px;
+}
 .user-name {
-    font-size: 16px;
+   margin: 5px 0px;
+   border-top:1px solid #ccc;
+   border-bottom:1px solid #ccc;
+   } 
+.user-name a{
+ 	text-decoration:none!important;
+ 	display:block;
+ 	padding:0px 5px;
+ }
+.user-name a:hover{
+ 	background-color:#fff;
+ 	color:#193F66!important;
+ }
+.count-list li{
+	padding: 0px 5px;
 }
-.post-date {
-    font-size: 11px;
-    font-style: italic;
-}
-
 .count-list li span {
     font-weight: bold;
 }
@@ -858,29 +898,3 @@ input.ac_loading {
 .bio {
     margin-left: 50px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
