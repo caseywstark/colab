@@ -1,6 +1,5 @@
 {% load i18n %}
 {% load issues_tags %}
-{% load theme_tags %}
 {% load tagging_tags %}
 {% load headquarters_tags %}
 
@@ -21,7 +20,6 @@
         
         <div class="post-categories">
             <div class="post-disciplines-list">
-                {% silk "book_open" %}
                 <span>Posted under:</span>
                 {% if issue.disciplines %}
                     {% for discipline in issue.disciplines.all %}
@@ -33,7 +31,6 @@
             </div>
             
             <div class="post-tags-list">
-                {% silk "tag_blue" %}
                 <span>Tagged with:</span>
                 {% tags_for_object issue as tags %}
                 {% if tags %}
