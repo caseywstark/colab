@@ -75,6 +75,7 @@ class Paper(models.Model):
 
 object_feeds.register(Paper)
 
+
 class PaperRevision(models.Model):
     """ A change in Paper. """
     
@@ -117,4 +118,4 @@ class PaperRevision(models.Model):
         }
     
     def get_absolute_url(self):
-        return reverse("paper_revision", kwargs={"paper_id": self.paper.id, "revision": self.revision})
+        return reverse("paper_revision", kwargs={"paper_id": self.paper.id, "revision_number": self.revision})

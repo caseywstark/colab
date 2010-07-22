@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.query import QuerySet
 from django.contrib.contenttypes.models import ContentType
@@ -12,17 +12,6 @@ from threadedcomments.models import ThreadedComment
 from tagging.fields import TagField
 
 import object_feeds
-
-# The diff stuff
-from diff_match_patch import diff_match_patch
-
-# We dont need to create a new one everytime
-dmp = diff_match_patch()
-
-def diff(txt1, txt2):
-    """Create a 'diff' from txt1 to txt2."""
-    patch = dmp.patch_make(txt1, txt2)
-    return dmp.patch_toText(patch)
 
 
 class QuerySetManager(models.Manager):
@@ -38,6 +27,7 @@ class Summary(models.Model):
     content_type = models.ForeignKey(ContentType, null=True, blank=True)
     object_id = models.PositiveIntegerField(null=True, blank=True)
     content_object = generic.GenericForeignKey("content_type", "object_id")
+    content_object_title = models.CharField(max_length=255, blank=True)
     
     summarized = models.ManyToManyField(ThreadedComment, verbose_name=_(u'Comments Summarized'))
     
@@ -69,146 +59,55 @@ class Summary(models.Model):
         app_label = "summaries"
         verbose_name = _("Summary")
         verbose_name_plural = _("Summaries")
+        ordering = ['content_object']
+        get_latest_by = 'last_edited'
     
     def __unicode__(self):
-        return u"Summary of %s" % self.content_object
+        return "Discussion Summary of %s" % self.content_object_title
     
     def get_absolute_url(self):
         return reverse("summary_detail", kwargs={"summary_id": self.id})
     
-    def latest_revision(self):
-        try:
-            return self.revision_set.filter(reverted=False).order_by('-revision')[0]
-        except IndexError:
-            return SummaryRevision.objects.none()
+    @property
+    def current(self):
+        return self.revisions.latest()
     
-    def new_revision(self, old_content, comment, editor):
-        """ Create a new Revision with the old content. """
-        content_diff = diff(self.content, old_content)
-
-        rev = SummaryRevision( #.objects.create(
-            summary=self,
-            comment=comment,
-            editor=editor,
-            content = self.content,
-            content_diff=content_diff)
-        rev.save()
-        
-        return rev
-        
-    def revert_to(self, revision, editor):
-        """ Revert the summary to a previuos state, by revision number. """
-        revision = self.revision_set.get(revision=revision)
-        revision.reapply(editor)
+    @property
+    def revision(self, rev_number):
+        return self.revisions.get(revision=rev_number)
 
 object_feeds.register(Summary)
 
-class NonRevertedRevisionManager(QuerySetManager):
-    def get_default_queryset(self):
-        super(NonRevertedRevisionManager, self).get_query_set().filter(reverted=False)
 
 class SummaryRevision(models.Model):
     """ A change in Summary. """
     
-    summary = models.ForeignKey(Summary, verbose_name=_(u'Summary'), related_name='revision')
+    summary = models.ForeignKey(Summary, verbose_name=_(u'Summary'), related_name="revisions")
     editor = models.ForeignKey(User, verbose_name=_(u'Editor'), null=True)
     revision = models.IntegerField(_(u"Revision Number"))
+    comment = models.CharField(_(u"Editor comment"), max_length=255, blank=True)
     
-    content_diff = models.TextField(_(u"Content Patch"), blank=True)
     content = models.TextField(_(u"Content"))
 
-    comment = models.CharField(_(u"Editor comment"), max_length=255, blank=True)
-    modified = models.DateTimeField(_(u"Modified at"), default=datetime.now)
-    reverted = models.BooleanField(_(u"Reverted Revision"), default=False)
+    created = models.DateTimeField(_(u"Modified at"), default=datetime.now)
     
     yeas = models.PositiveIntegerField(default=0, editable=False)
     nays = models.PositiveIntegerField(default=0, editable=False)
     votes = models.PositiveIntegerField(default=0, editable=False)
 
     objects = QuerySetManager()
-    non_reverted_objects = NonRevertedRevisionManager()
-
-    class QuerySet(QuerySet):
-        def all_later(self, revision):
-            """ Return all changes later to the given revision.
-            Util when we want to revert to the given revision.
-            """
-            return self.filter(revision__gt=int(revision))
 
     class Meta:
         verbose_name = _(u'Summary revision')
         verbose_name_plural = _(u'Summary revisions')
-        get_latest_by  = 'modified'
-        ordering = ('-revision',)
+        get_latest_by  = 'created'
+        ordering = ['-revision']
     
     def __unicode__(self):
-        return u'Summary Revision %d' % self.revision
+        return ugettext('Revision %(created)s for %(summary)s') % {
+            'created': self.created.strftime('%Y%m%d-%H%M'),
+            'summary': self.summary,
+        }
     
     def get_absolute_url(self):
-        return reverse("summary_revision", kwargs={"summary_id": self.summary.id, "revision": self.revision})
-    
-    def reapply(self, editor):
-        """ Return the Summary to this revision. """
-
-        # XXX Would be better to exclude reverted revisions
-        #     and revisions previous/next to reverted ones
-        next_changes = self.summary.revision_set.filter(
-            revision__gt=self.revision).order_by('-revision')
-
-        summary = self.summary
-
-        content = None
-        for revision in next_changes:
-            if content is None:
-                content = summary.content
-            patch = dmp.patch_fromText(revision.content_diff)
-            content = dmp.patch_apply(patch, content)[0]
-
-            revision.reverted = True
-            revision.save()
-
-        old_content = summary.content
-        old_title = summary.title
-
-        summary.content = content
-        summary.title = revision.old_title
-        summary.save()
-
-        summary.new_revision(old_content=old_content, old_title=old_title,
-            comment="Reverted to revision #%s" % self.revision, editor=editor)
-
-        self.save()
-
-    def save(self, force_insert=False, force_update=False):
-        """ Saves the summary with a new revision. """
-        if self.id is None:
-            try:
-                self.revision = SummaryRevision.objects.filter(
-                    summary=self.summary).latest().revision + 1
-            except self.DoesNotExist:
-                self.revision = 1
-        super(SummaryRevision, self).save()#force_insert, force_update)
-
-    def display_diff(self):
-        ''' Returns a HTML representation of the diff. '''
-
-        # well, it *will* be the old content
-        old_content = self.summary.content
-
-        # newer non-reverted revisions of this summary, starting from this
-        newer_revisions = SummaryRevision.non_reverted_objects.filter(
-            summary=self.summary,
-            revision__gte=self.revision)
-
-        # apply all patches to get the content of this revision
-        for i, revision in enumerate(newer_revisions):
-            patches = dmp.patch_fromText(revision.content_diff)
-            if len(newer_revisions) == i+1:
-                # we need to compare with the next revision after the change
-                next_rev_content = old_content
-            old_content = dmp.patch_apply(patches, old_content)[0]
-
-        diffs = dmp.diff_main(old_content, next_rev_content)
-        return dmp.diff_prettyHtml(diffs)
-
-
+        return reverse("summary_revision", kwargs={"summary_id": self.summary.id, "revision_number": self.revision})
