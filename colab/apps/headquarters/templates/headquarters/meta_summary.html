@@ -20,10 +20,10 @@
         <div class="post-user">
             {% if show_author %}
                 <div class="user-name">
-                    {% ifequal the_author "anonymous" %}
+                    {% ifequal the_user "anonymous" %}
                         Anonymous
                     {% else %}
-                        <a href="{{ the_author.get_absolute_url }}">{% user_display the_author %}</a>
+                        <a href="{{ the_user.get_absolute_url }}">{% user_display the_user %}</a>
                     {% endifequal %}
                 </div>
             {% endif %}
@@ -33,12 +33,11 @@
         </div>
         
         <ul class="count-list">
-            {% if contributor_count %}
-                <li><span>{{ contributor_count }}</span> contributors</li>
+            {% if contributors_count %}
+                <li><span>{{ contributors_count }}</span> contributors</li>
             {% endif %}
-            {% if comment_count %}
-                {% get_comment_count for post as comment_count %}
-                <li><span>{{ comment_count }}</span> comments</li>
+            {% if comments_count %}
+                <li><span>{{ comments_count }}</span> comments</li>
             {% endif %}
         </ul>
     </div>

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.datastructures import SortedDict
+from django.core.paginator import Paginator
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from django.contrib import messages
@@ -100,7 +101,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     authenticated = request.user.is_authenticated()
     
     if authenticated and mine:
-        issues = Issue.objects.filter(contributor_users=request.user)
+        issues = Issue.objects.filter(contributor_users__contains=request.user)
     else:
         issues = Issue.objects.filter(private=False)
     
@@ -135,6 +136,21 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     if sort == 'nays' and direction == 'asc':
         list_title += 'Least Disliked Issues'
         issues = issues.order_by('nays')
+    
+    # Paginate the list
+    paginator = Paginator(issues, 20) # Show 20 issues per page
+    
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page is out of range, deliver last page of results.
+    try:
+        issues = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        issues = paginator.page(paginator.num_pages)
     
     return render_to_response(template_name, {
         'issues': issues,

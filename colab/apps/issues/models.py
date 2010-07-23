@@ -31,18 +31,24 @@ class Issue(models.Model):
     resolved = models.BooleanField(default=False)
     resolution = models.ForeignKey(Paper, null=True, blank=True, related_name='resolved_issue')
     
-    # denormalize votes
-    yeas = models.PositiveIntegerField(default=0, editable=False)
-    nays = models.PositiveIntegerField(default=0, editable=False)
-    votes = models.PositiveIntegerField(default=0, editable=False)
-    
-    # store contributing institutions! why not?
-    institutions = models.ManyToManyField(Institution, blank=True)
-    
     contributor_users = models.ManyToManyField(User,
         through = "IssueContributor",
         verbose_name = _("contributor")
     )
+    
+    # store contributing institutions! why not?
+    institutions = models.ManyToManyField(Institution, blank=True)
+    
+    ### denormalization
+    # votes
+    yeas = models.PositiveIntegerField(default=0, editable=False)
+    nays = models.PositiveIntegerField(default=0, editable=False)
+    votes = models.PositiveIntegerField(default=0, editable=False)
+    # contributors
+    contributors_count = models.PositiveIntegerField(default=0, editable=False)
+    # comments
+    comments_count = models.PositiveIntegerField(default=0, editable=False)
+    
     
     @property
     def papers(self):
@@ -51,10 +57,6 @@ class Issue(models.Model):
     @property
     def summaries(self):
         return Paper.objects.summaries_for_object(self)
-    
-    @property
-    def pages(self):
-        return Paper.objects.pages_for_object(self)
     
     class Meta:
         verbose_name = _("Issue")

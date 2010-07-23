@@ -1,17 +1,10 @@
 {% extends "issues/base.html" %}
 
 {% load i18n %}
-{% load uni_form_tags %}
-{% load pagination_tags %}
-{% load order_by %}
-{% load sorting_tags %}
 {% load issues_tags %}
-{% load theme_tags %}
+{% load sorting_tags %}
 
 {% block head_title %}{% blocktrans %}Issues{% endblocktrans %}{% endblock %}
-
-{% autosort issues %}
-{% autopaginate issues 10 %}
 
 {% block breadcrumbs %}
     <li><a href="{% url issue_list %}">Issues</a></li>
@@ -36,39 +29,50 @@
 {% endblock %}
 
 {% block body %}
-    <div class="list-title-wrapper">
-        <h1 class="list-title">
-            {{ list_title }}
-            {% if search_terms %}
-                with keywords "{{ search_terms }}"
-            {% endif %}
-            <span>({{ issues.count }} results)</span>
-        </h1>
+    <h1 class="list-title">
+        {{ list_title }}
+        {% if search_terms %}
+            with keywords "{{ search_terms }}"
+        {% endif %}
+        <span>({{ issues.paginator.count }} results)</span>
+    </h1>
         
-        <div class="sorting-wrapper">
-            <ul class="list-sorting">
-                <li>Sort by:</li>
-                <li>{% anchor created "date" %}</li>
-                <li>{% anchor yeas "yeas" %}</li>
-                <li>{% anchor nays "nays" %}</li>
-            </ul>
-            <div class="clear"></div>
-        </div>
+    <div class="sorting-wrapper">
+        <ul class="list-sorting">
+            <li>Sort by:</li>
+            <li>{% anchor created "date" %}</li>
+            <li>{% anchor yeas "yeas" %}</li>
+            <li>{% anchor nays "nays" %}</li>
+        </ul>
+        <div class="clear"></div>
     </div>
     
-    {% paginate %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if issues.has_previous %}
+                <a href="?page={{ issues.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ issues.number }} of {{ issues.paginator.num_pages }}
+            </span>
+
+            {% if issues.has_next %}
+                <a href="?page={{ issues.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
     
     <ul class="post-list issues">
         {% if issues %}
-            {% for issue in issues %}
+            {% for issue in issues.object_list %}
                 {% show_issue issue %}
-                <div class="clear"></div>
             {% endfor %}
         {% else %}
             {% if mine %}
-            <li class="list-item no-results">
-                You haven't joined any issues yet.
-            </li>
+                <li class="list-item no-results">
+                    You haven't contributed to any issues yet.
+                </li>
             {% else %}
                 <li class="list-item no-results">
                     No issues match your filters. Please broaden your search or create a new issue.
@@ -76,7 +80,6 @@
             {% endif %}
         {% endif %}
     </ul>
-    <div class="clear"></div>
     
-    {% paginate %}
+    
 {% endblock %}
