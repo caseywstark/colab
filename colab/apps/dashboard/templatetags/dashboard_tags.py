@@ -70,7 +70,7 @@ def post_datetime(post):
     return datetime
 
 ### Meta summary: votes, contrib, issues, wiki counts ###
-@register.inclusion_tag("headquarters/meta_summary.html")
+@register.inclusion_tag("dashboard/meta_summary.html")
 def post_meta_summary(post, show_author=True):
     contributor_count = the_user = comment_count = None
     
@@ -86,7 +86,7 @@ def post_meta_summary(post, show_author=True):
         'datetime': post_datetime(post)}
 
 ### Meta for a issue: voting, permalink, flag, bounty, and top contribs ###
-@register.inclusion_tag("headquarters/meta.html", takes_context=True)
+@register.inclusion_tag("dashboard/meta.html", takes_context=True)
 def post_meta(context, post):
     # get vote details
     post_type = ContentType.objects.get_for_model(post)
@@ -149,7 +149,7 @@ def post_meta(context, post):
         'permalink': permalink, 'post_type': post_type}
 
 ### Shows a comment, to keep the full comment rendering in one file ###
-@register.inclusion_tag("headquarters/comment_item.html", takes_context=True)
+@register.inclusion_tag("dashboard/comment_item.html", takes_context=True)
 def show_comment(context, comment):
     return {'comment': comment, 'request': context['request']}
 
@@ -159,7 +159,7 @@ def comment_url(comment):
     return comment.content_object.get_absolute_url()+"#comment-"+str(comment.id)
 
 ### List comments on a post ###
-@register.inclusion_tag("headquarters/comments.html", takes_context=True)
+@register.inclusion_tag("dashboard/comments.html", takes_context=True)
 def comment_list(context, post):
     sort_field = ''
     sort = context['request'].GET.get('sort', 'date_submitted')
@@ -179,7 +179,7 @@ def comment_list(context, post):
         'request': context['request']}
 
 ### Full preview of an update instance ###
-@register.inclusion_tag("headquarters/update_preview.html", takes_context=True)
+@register.inclusion_tag("dashboard/update_preview.html", takes_context=True)
 def update_preview(context, update):
     feed_object = update.feed.feed_object
     update_object = update.content_object

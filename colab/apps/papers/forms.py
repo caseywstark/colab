@@ -98,7 +98,7 @@ class DeletePaperForm(forms.Form):
         if content_object:
             paper_deletion_redirect = content_object.get_absolute_url()
         else:
-            paper_deletion_redirect = reverse('headquarters')
+            paper_deletion_redirect = reverse('dashboard')
         
         # Delete the paper
         if self.cleaned_data.get('delete') == 'paper' and \

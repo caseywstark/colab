@@ -208,7 +208,7 @@ INSTALLED_APPS = [
     "issues",
     "papers",
     "summaries",
-    "headquarters",
+    "dashboard",
     "feedback",
     
 ]

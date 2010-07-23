@@ -20,7 +20,7 @@ from threadedcomments.forms import RichCommentForm
 
 def homepage(request):
     """ 
-    What the user sees when they go to http://www.thisiscolab.com.
+    What the user sees when they go to http://www.colabscience.com
     
     If they are not logged in, a sign-up form and tutorial.
     
@@ -40,7 +40,7 @@ def tutorial(request):
     """
     return direct_to_template(request, 'tutorial.html')
 
-def headquarters(request, mine=True, username=None):
+def dashboard(request, mine=True, username=None):
     """
     User's HQ is where the user can get updates on the things that interest them
     and manage their creations.
@@ -64,7 +64,7 @@ def headquarters(request, mine=True, username=None):
     feeds = [sub.feed for sub in subscriptions]
     updates = Update.objects.filter(feed__in=feeds).order_by('-created')
     
-    return render_to_response('headquarters/headquarters.html', {
+    return render_to_response('dashboard/dashboard.html', {
         'the_user': the_user,
         'is_me': is_me,
         'subscriptions': subscriptions,
@@ -88,7 +88,7 @@ def posts(request, mine=True, username=None):
     
     post_updates = Update.objects.filter(user=the_user)
     
-    return render_to_response('headquarters/posts.html', {
+    return render_to_response('dashboard/posts.html', {
         'the_user': the_user,
         'is_me': is_me,
         'post_updates': post_updates,
@@ -109,14 +109,14 @@ def votes(request, mine=True, username=None):
     
     votes = Vote.objects.filter(user=request.user)
     
-    return render_to_response('headquarters/votes.html', {
+    return render_to_response('dashboard/votes.html', {
         'the_user': the_user,
         'is_me': is_me,
         'votes': votes,
         }, context_instance=RequestContext(request)
     )
 @login_required
-def comment_edit(request, comment_id=None, template_name="headquarters/comment_edit.html"):
+def comment_edit(request, comment_id=None, template_name="dashboard/comment_edit.html"):
     comment = get_object_or_404(ThreadedComment, id=comment_id)
     
     comment_form = RichCommentForm(instance=comment, auto_id='comment_edit_%s')
@@ -127,7 +127,7 @@ def comment_edit(request, comment_id=None, template_name="headquarters/comment_e
     }, context_instance=RequestContext(request))
 
 @login_required
-def comment_reply(request, comment_id=None, template_name="headquarters/comment_reply.html"):
+def comment_reply(request, comment_id=None, template_name="dashboard/comment_reply.html"):
     comment = get_object_or_404(ThreadedComment, id=comment_id)
     
     comment_form = RichCommentForm(auto_id='comment_reply_%s')

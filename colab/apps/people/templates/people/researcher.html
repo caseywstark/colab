@@ -14,7 +14,7 @@
 
 {% block actions %}
     <li class="left-action">
-        <a href="{% url headquarters the_user.username %}">{% user_display the_user %}'s HQ</a>
+        <a href="{% url dashboard the_user.username %}">{% user_display the_user %}'s Dashboard</a>
     </li>
     {% if user.is_authenticated %}
         <li class="right-action">

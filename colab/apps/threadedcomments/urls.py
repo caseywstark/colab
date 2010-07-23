@@ -34,8 +34,4 @@ urlpatterns = patterns('',
     url(r'^voting/(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/$',
             vote_on_object, dict(model=ThreadedComment, template_object_name='comment',
             allow_xmlhttprequest=True, confirm_vote=False), name="comment_vote"),
-    
-    url(r'^comment_form/(?P<content_type>\d+)/(?P<object_id>\d+)/$', views.comment_form, name="tc_comment_form"),
-    url(r'^comment_form/(?P<content_type>\d+)/(?P<object_id>\d+)/(?P<parent_id>\d+)/$', views.comment_form, name="tc_comment_parent_form"),
-    url(r'^comment_form/(?P<edit_id>\d+)/edit/$', views.comment_form, name="tc_comment_edit_form"),
 )

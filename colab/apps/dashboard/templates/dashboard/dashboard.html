@@ -1,14 +1,14 @@
-{% extends "headquarters/base.html" %}
+{% extends "dashboard/base.html" %}
 
 {% load i18n %}
 {% load ifsetting_tag %}
 {% load pagination_tags %}
 {% load account_tags %}
 {% load object_feeds_tags %}
-{% load headquarters_tags %}
+{% load dashboard_tags %}
 
 {% block breadcrumbs %}
-    <li><a href="{% url issue_list %}">Headquarters</a></li>
+    <li><a href="{% url dashboard %}">Dashboard</a></li>
 {% endblock %}
 
 {% block body %}

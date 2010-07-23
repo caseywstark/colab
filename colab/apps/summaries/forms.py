@@ -94,7 +94,7 @@ class DeleteSummaryForm(forms.Form):
         if content_object:
             summary_deletion_redirect = content_object.get_absolute_url()
         else:
-            summary_deletion_redirect = reverse('headquarters')
+            summary_deletion_redirect = reverse('dashboard')
         
         # Delete the summary
         if self.cleaned_data.get('delete') == 'summary' and \

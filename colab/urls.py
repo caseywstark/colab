@@ -16,11 +16,11 @@ else:
     signup_view = "signup_codes.views.signup"
 
 # custom site-wide views
-from headquarters import views as hq_views
+from dashboard import views as dash_views
 
 urlpatterns = patterns("",
-    url(r'^$', hq_views.homepage, name="home"),
-    url(r'^tutorial/$', hq_views.tutorial, name="tutorial"),
+    url(r'^$', dash_views.homepage, name="home"),
+    url(r'^tutorial/$', dash_views.tutorial, name="tutorial"),
         
     url(r"^admin/invite_user/$", "signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^account/signup/$", signup_view, name="acct_signup"),
@@ -56,7 +56,7 @@ urlpatterns = patterns("",
     (r"^issues/", include("issues.urls")),
     (r"^papers/", include("papers.urls")),
     (r"^summaries/", include("summaries.urls")),
-    (r"^headquarters/", include("headquarters.urls")),
+    (r"^dashboard/", include("dashboard.urls")),
     (r"^feeds/", include("object_feeds.urls")),
 )
 

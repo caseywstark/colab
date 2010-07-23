@@ -89,7 +89,7 @@
                     </a>
                     <div id="user-box-links">
                         <a id="user-box-name" href="{{ profile_url }}">{% user_display user %}</a>
-                        <a id="user-box-hq" href="{% url headquarters %}">Headquarters</a> | 
+                        <a id="user-box-dashboard" href="{% url dashboard %}">Dashboard</a> | 
                         <a id="user-box-settings" href="{% url acct_email %}">{% trans "Settings" %}</a>
                         <a id="user-box-logout" href="/openid/logout/?next={% url acct_logout %}">{% trans "Logout" %}</a>
                         {% if user.is_staff %}
