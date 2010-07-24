@@ -40,9 +40,15 @@ class Summary(models.Model):
     
     tags = TagField()
     
+    ### denormalization
+    # votes
     yeas = models.PositiveIntegerField(default=0, editable=False)
     nays = models.PositiveIntegerField(default=0, editable=False)
     votes = models.PositiveIntegerField(default=0, editable=False)
+    # contributors
+    contributors_count = models.PositiveIntegerField(default=0, editable=False)
+    # comments
+    comments_count = models.PositiveIntegerField(default=0, editable=False)
     
     class QuerySet(QuerySet):
         def _generate_object_kwarg_dict(self, content_object, **kwargs):

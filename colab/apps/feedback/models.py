@@ -50,10 +50,15 @@ class Feedback(models.Model):
     page_specific = models.BooleanField(default=False, help_text=_('Specific to this page?'))
     page = models.CharField(max_length=255, blank=True)
     
-    # denormalize votes
+    ### denormalization
+    # votes
     yeas = models.PositiveIntegerField(default=0, editable=False)
     nays = models.PositiveIntegerField(default=0, editable=False)
     votes = models.PositiveIntegerField(default=0, editable=False)
+    # contributors
+    contributors_count = models.PositiveIntegerField(default=0, editable=False)
+    # comments
+    comments_count = models.PositiveIntegerField(default=0, editable=False)
     
     class Meta:
         ordering = ['-created']

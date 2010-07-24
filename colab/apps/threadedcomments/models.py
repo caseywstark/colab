@@ -169,10 +169,13 @@ class ThreadedComment(models.Model):
     # Extra Field
     ip_address = models.IPAddressField(_('IP address'), null=True, blank=True)
     
-    ### Modified for denormalization of votes ###
+    ### denormalization
+    # votes
     yeas = models.PositiveIntegerField(default=0, editable=False)
     nays = models.PositiveIntegerField(default=0, editable=False)
     votes = models.PositiveIntegerField(default=0, editable=False)
+    # comments
+    replies_count = models.PositiveIntegerField(default=0, editable=False)
     
     objects = ThreadedCommentManager()
     public = PublicThreadedCommentManager()
