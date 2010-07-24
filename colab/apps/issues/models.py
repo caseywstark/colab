@@ -45,7 +45,7 @@ class Issue(models.Model):
     nays = models.PositiveIntegerField(default=0, editable=False)
     votes = models.PositiveIntegerField(default=0, editable=False)
     # contributors
-    contributors_count = models.PositiveIntegerField(default=0, editable=False)
+    contributors_count = models.PositiveIntegerField(default=1, editable=False)
     # comments
     comments_count = models.PositiveIntegerField(default=0, editable=False)
     
@@ -69,7 +69,7 @@ class Issue(models.Model):
         return reverse("issue_detail", kwargs={"slug": self.slug})
     
     def user_is_contributor(self, user):
-        return IssueContributor.objects.filter(issue=self, user=user).exists()
+        return self.contributors.filter(user=user).exists()
     
     def user_can_read(self, user):
         if self.private and not self.user_is_contributor(user):
@@ -102,3 +102,20 @@ class IssueContributor(models.Model):
     
     class Meta:
         unique_together = [("user", "issue")]
+
+# This is for comment and contributor count denormalization. Eventually this
+# should work with a register(Model) statement instead of manually adding the
+# fields to the commentable object...
+from django.db.models.signals import pre_save, post_save
+from threadedcomments.models import ThreadedComment
+
+def update_comment_counts(sender, instance, created, **kwargs):
+    if created:
+        issue = instance.content_object
+        issue.comments_count = issue.comments_count + 1
+        if not issue.user_is_contributor(instance.user):
+            issue.contributors_count = issue.contributors_count + 1
+        issue.save()
+
+post_save.connect(update_comment_counts, sender=ThreadedComment)
+
