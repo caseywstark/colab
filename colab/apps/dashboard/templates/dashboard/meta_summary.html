@@ -1,6 +1,5 @@
 {% load account_tags %}
 {% load threadedcommentstags %}
-{% load theme_tags %}
 
 <div class="meta-wrapper">
     <div class="meta-summary">
@@ -13,6 +12,18 @@
                 <div class="vote-name">nays</div>
                 <div class="vote-number">{{ post.nays }}</div>
             </li>
+            {% if comments_count >= 0%}
+                <li class="vote-box comments">
+                    <div class="vote-name">comments</div>
+                    <div class="vote-number">{{ comments_count }}</div>
+                </li>
+            {% endif %}
+            {% if followers_count >= 0%}
+                <li class="vote-box followers">
+                    <div class="vote-name">followers</div>
+                    <div class="vote-number">{{ followers_count }}</div>
+                </li>
+            {% endif %}
         </ul>
         <div class="clear"></div>
         
@@ -31,14 +42,5 @@
                 {{ datetime|date:"P M d, Y" }}
             </div>
         </div>
-        
-        <ul class="count-list">
-            {% if contributors_count %}
-                <li><span>{{ contributors_count }}</span> contributors</li>
-            {% endif %}
-            {% if comments_count %}
-                <li><span>{{ comments_count }}</span> comments</li>
-            {% endif %}
-        </ul>
     </div>
 </div>

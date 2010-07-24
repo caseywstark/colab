@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -50,6 +52,12 @@ class Feedback(models.Model):
     page_specific = models.BooleanField(default=False, help_text=_('Specific to this page?'))
     page = models.CharField(max_length=255, blank=True)
     
+    contributor_users = models.ManyToManyField(User,
+        through = "FeedbackContributor",
+        verbose_name = _("contributor"),
+        related_name = "contributed_to_feedbacks",
+    )
+    
     ### denormalization
     # votes
     yeas = models.PositiveIntegerField(default=0, editable=False)
@@ -77,8 +85,41 @@ class Feedback(models.Model):
     def get_absolute_url(self):
         return reverse("feedback_detail", kwargs={"object_id": self.id})
     
+    def user_is_contributor(self, user):
+        return self.contributors.filter(user=user).exists()
+    
     def __unicode__(self):
         return self.title
     
 object_feeds.register(Feedback)
+
+class FeedbackContributor(models.Model):
+    
+    feedback = models.ForeignKey(Feedback, related_name = "contributors", verbose_name = _("feedback"))
+    user = models.ForeignKey(User, related_name = "feedbacks", verbose_name = _("user"))
+    
+    contributions = models.PositiveIntegerField(_("contributions"), default=1)
+    
+    away = models.BooleanField(_("away"), default=False)
+    away_message = models.CharField(_("away_message"), max_length=500)
+    away_since = models.DateTimeField(_("away since"), default=datetime.now)
+    
+    class Meta:
+        unique_together = [("user", "feedback")]
+
+# This is for comment and contributor count denormalization. Eventually this
+# should work with a register(Model) statement instead of manually adding the
+# fields to the commentable object...
+from django.db.models.signals import pre_save, post_save
+from threadedcomments.models import ThreadedComment
+
+def update_feedback_counts(sender, instance, created, **kwargs):
+    if created:
+        feedback = instance.content_object
+        feedback.comments_count = feedback.comments_count + 1
+        if not feedback.user_is_contributor(instance.user):
+            feedback.contributors_count = feedback.contributors_count + 1
+        feedback.save()
+
+post_save.connect(update_feedback_counts, sender=ThreadedComment)
 

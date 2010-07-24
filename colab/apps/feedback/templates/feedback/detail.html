@@ -52,8 +52,8 @@
         
         {% ifequal user feedback.user %}
             <ul class="post-buttons">
-                <li><a class="post-option" href="{% url feedback_edit feedback.id %}">{% silk "bug_edit" %} Edit</a></li>
-                <li><a class="post-option" href="{% url feedback_delete feedback.id %}">{% silk "bug_delete" %} Delete</a></li>
+                <li><a class="post-option" href="{% url feedback_edit feedback.id %}">Edit</a></li>
+                <li><a class="post-option" href="{% url feedback_delete feedback.id %}">Delete</a></li>
             </ul>
         {% endifequal %}
     </div>

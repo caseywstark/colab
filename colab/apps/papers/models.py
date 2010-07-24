@@ -37,6 +37,11 @@ class Paper(models.Model):
     
     tags = TagField()
     
+    contributor_users = models.ManyToManyField(User,
+        through = "PaperContributor",
+        verbose_name = _("contributor")
+    )
+    
     ### denormalization
     # votes
     yeas = models.PositiveIntegerField(default=0, editable=False)
@@ -46,6 +51,8 @@ class Paper(models.Model):
     contributors_count = models.PositiveIntegerField(default=0, editable=False)
     # comments
     comments_count = models.PositiveIntegerField(default=0, editable=False)
+    # followers
+    followers_count = models.PositiveIntegerField(default=1, editable=False)
     
     class QuerySet(QuerySet):
         def _generate_object_kwarg_dict(self, content_object, **kwargs):
@@ -70,6 +77,9 @@ class Paper(models.Model):
     
     def get_absolute_url(self):
         return reverse("paper_detail", kwargs={"slug": self.slug})
+    
+    def user_is_contributor(self, user):
+        return self.contributors.filter(user=user).exists()
     
     @property
     def current(self):
@@ -125,3 +135,33 @@ class PaperRevision(models.Model):
     
     def get_absolute_url(self):
         return reverse("paper_revision", kwargs={"paper_id": self.paper.id, "revision_number": self.revision})
+        
+
+class PaperContributor(models.Model):
+    
+    paper = models.ForeignKey(Paper, related_name = "contributors", verbose_name = _("paper"))
+    user = models.ForeignKey(User, related_name = "papers", verbose_name = _("user"))
+    
+    contributions = models.PositiveIntegerField(_("contributions"), default=1)
+    
+    away = models.BooleanField(_("away"), default=False)
+    away_message = models.CharField(_("away_message"), max_length=500)
+    away_since = models.DateTimeField(_("away since"), default=datetime.now)
+    
+    class Meta:
+        unique_together = [("user", "paper")]
+
+# This is for comment and contributor count denormalization. Eventually this
+# should work with a register(Model) statement instead of manually adding the
+# fields to the commentable object...
+from django.db.models.signals import pre_save, post_save
+from threadedcomments.models import ThreadedComment
+
+def update_paper_counts(sender, instance, created, **kwargs):
+    if created:
+        paper = instance.content_object
+        paper.comments_count = paper.comments_count + 1
+        paper.save()
+
+post_save.connect(update_paper_counts, sender=ThreadedComment)
+

@@ -72,20 +72,22 @@ def post_datetime(post):
 ### Meta summary: votes, contrib, comments ###
 @register.inclusion_tag("dashboard/meta_summary.html")
 def post_meta_summary(post, show_author=True):
-    contributors_count = the_user = comments_count = None
+    the_user = contributors_count = comments_count = followers_count = None
     
     if isinstance(post, Issue) or isinstance(post, Paper) or isinstance(post, Summary):
         contributors_count = post.contributors_count
         comments_count = post.comments_count
+        followers_count = post.followers_count
         the_user = post.creator
     elif isinstance(post, ThreadedComment):
         the_user = post.user
     
-    return {'post': post, 'the_user': post_author(post), 'comments_count': comments_count,
+    return {'post': post, 'the_user': post_author(post),
+        'comments_count': comments_count, 'followers_count': followers_count,
         'contributors_count': contributors_count, 'show_author': show_author,
         'datetime': post_datetime(post)}
 
-### Meta for a issue: voting, permalink, flag, bounty, and top contribs ###
+### Meta: voting, permalink, flag, bounty, and top contribs ###
 @register.inclusion_tag("dashboard/meta.html", takes_context=True)
 def post_meta(context, post):
     # get vote details

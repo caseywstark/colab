@@ -51,6 +51,17 @@ class Feed(models.Model):
         
         return subscription
     
+    @property
+    def updates(self):
+        """
+        A wrapper for update_set used in order to distinguish between object
+        feeds and researcher feeds (they act differently).
+        """
+        if self.content_type_id == 58: # horrible but it will perform nicely!
+            return Update.objects.filter(user__id=self.object_id)
+        else:
+            return self.update_set
+    
     def save(self, *args, **kwargs):
         already_created = False
         if self.id:
@@ -90,7 +101,7 @@ class Action(models.Model):
 
 class Update(models.Model):
     
-    feed = models.ForeignKey(Feed, related_name='updates')
+    feed = models.ForeignKey(Feed, related_name='update_set')
     user = models.ForeignKey(User)
     action = models.ForeignKey(Action, related_name='updates')
     
@@ -121,3 +132,12 @@ def comment_action_update(sender, instance, created, **kwargs):
         instance.content_object.register_action(instance.user, 'comment', content_object=instance)
 
 post_save.connect(comment_action_update, sender=ThreadedComment)
+def followers_count_update(sender, instance, created, **kwargs):
+    obj = instance.feed.content_object
+    if hasattr(obj, 'followers_count'):
+        if created:
+            obj.followers_count = obj.followers_count + 1
+        obj.save()
+
+post_save.connect(followers_count_update, sender=Subscription)
+

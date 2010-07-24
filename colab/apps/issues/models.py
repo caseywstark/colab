@@ -48,7 +48,8 @@ class Issue(models.Model):
     contributors_count = models.PositiveIntegerField(default=1, editable=False)
     # comments
     comments_count = models.PositiveIntegerField(default=0, editable=False)
-    
+    # followers
+    followers_count = models.PositiveIntegerField(default=1, editable=False)
     
     @property
     def papers(self):
@@ -109,7 +110,7 @@ class IssueContributor(models.Model):
 from django.db.models.signals import pre_save, post_save
 from threadedcomments.models import ThreadedComment
 
-def update_comment_counts(sender, instance, created, **kwargs):
+def update_issue_counts(sender, instance, created, **kwargs):
     if created:
         issue = instance.content_object
         issue.comments_count = issue.comments_count + 1
@@ -117,5 +118,5 @@ def update_comment_counts(sender, instance, created, **kwargs):
             issue.contributors_count = issue.contributors_count + 1
         issue.save()
 
-post_save.connect(update_comment_counts, sender=ThreadedComment)
+post_save.connect(update_issue_counts, sender=ThreadedComment)
 

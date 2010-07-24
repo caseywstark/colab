@@ -57,6 +57,9 @@ class Researcher(models.Model):
     institution = models.ForeignKey(Institution, verbose_name=_("Current Institution"), null=True, blank=True, related_name='researchers')
     grad_institution = models.ForeignKey(Institution, verbose_name=_("Graduate Institution"), null=True, blank=True, related_name='graduates')
     
+    ### denormalization
+    # followers
+    followers_count = models.PositiveIntegerField(default=0, editable=False)
     
     class Meta:
         verbose_name = _("researcher")
@@ -70,6 +73,7 @@ class Researcher(models.Model):
             "username": self.user.username
         })
 
+object_feeds.register(Researcher)
 
 def create_researcher(sender, instance=None, **kwargs):
     if instance is None:
