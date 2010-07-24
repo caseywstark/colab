@@ -69,10 +69,10 @@ def post_datetime(post):
     
     return datetime
 
-### Meta summary: votes, contrib, issues, wiki counts ###
+### Meta summary: votes, contrib, comments ###
 @register.inclusion_tag("dashboard/meta_summary.html")
 def post_meta_summary(post, show_author=True):
-    contributor_count = the_user = comment_count = None
+    contributors_count = the_user = comments_count = None
     
     if isinstance(post, Issue) or isinstance(post, Paper) or isinstance(post, Summary):
         contributors_count = post.contributors_count

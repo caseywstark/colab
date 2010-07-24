@@ -21,7 +21,6 @@ from threadedcomments.models import ThreadedComment
 
 from issues.models import Issue, IssueContributor
 from issues.forms import IssueForm, InviteContributorForm, ResolutionForm
-from wikis.models import Wiki
 
 from threadedcomments.forms import RichCommentForm
 
@@ -74,7 +73,7 @@ def delete(request, slug=None, redirect_url=None):
     redirect_url = issue.get_absolute_url()
     
     if request.user == issue.creator:
-        if not Wiki.objects.get_for_object(issue).exists():
+        if not Paper.objects.get_for_object(issue).exists():
             if not ThreadedComment.objects.get_for_object(issue).exists():
                 issue.feed.delete()
                 issue.delete()
@@ -88,7 +87,7 @@ def delete(request, slug=None, redirect_url=None):
                 )
         else:
             messages.add_message(request, messages.SUCCESS,
-                _("Please delete wikis before deleting the issue.")
+                _("Please delete papers before deleting the issue.")
             )
     else:
         messages.add_message(request, messages.SUCCESS,

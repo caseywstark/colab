@@ -8,12 +8,12 @@ from django.contrib import messages
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
-from wikis.models import Wiki
 from threadedcomments.models import ThreadedComment
 from threadedcomments.forms import RichCommentForm
 
 from feedback.models import Feedback
 from feedback.forms import FeedbackForm, WidgetForm
+from papers.models import Paper
 
 def list(request, list="open", type="all", status="all", mine=False, template_name="feedback/list.html"):
     feedbacks = Feedback.objects.all().order_by('-created')
@@ -106,7 +106,7 @@ def delete(request, object_id=None, template_name="feedback/delete.html"):
     redirect_url = feedback.get_absolute_url()
     
     if request.user == feedback.user:
-        if not Wiki.objects.get_for_object(feedback).exists():
+        if not Paper.objects.get_for_object(feedback).exists():
             if not ThreadedComment.objects.get_for_object(feedback).exists():
                 feedback.feed.delete()
                 feedback.delete()
@@ -120,7 +120,7 @@ def delete(request, object_id=None, template_name="feedback/delete.html"):
                 )
         else:
             messages.add_message(request, messages.SUCCESS,
-                _("Please delete wikis before deleting the feedback.")
+                _("Please delete papers before deleting the feedback.")
             )
     else:
         messages.add_message(request, messages.SUCCESS,

@@ -29,8 +29,8 @@
     </div>
     
     {% if issue.papers %}
-        <ul id="paper-list" class="wiki-list">
-            <li>{% silk "page_white_text" %} Papers:</li>
+        <ul id="paper-list">
+            <li>Papers:</li>
             {% for paper in issue.papers.all %}
                 <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
             {% endfor %}
@@ -57,8 +57,8 @@
     {#{% resolution_preview issue %}#}
     
     {% if issue.summaries %}
-        <ul id="summary-list" class="wiki-list">
-            <li>{% silk "note" %} Summaries:</li>
+        <ul id="summary-list">
+            <li>Summaries:</li>
             {% for summary in issue.summaries.all %}
                 <li><a href="{{ summary.get_absolute_url }}">{{ summary }}</a></li>
             {% endfor %}
