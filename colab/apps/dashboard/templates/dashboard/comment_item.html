@@ -2,6 +2,8 @@
 {% load theme_tags %}
 
 <li id="comment-{{ comment.id }}" class="list-item comment level-{{ comment.depth }}">
+    
+    {{ comment.branch }}
     {% post_meta comment %}
     
     <div class="post-content">

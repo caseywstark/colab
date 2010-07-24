@@ -177,6 +177,11 @@ def comment_list(context, post):
     sort_field += sort
     
     comments = ThreadedComment.public.get_tree(post, sort=sort_field)
+    branch = 0
+    for comment in comments:
+        if not comment.parent:
+            branch = branch + 1
+        comment.branch = branch
     return {'comments': comments, 'comment_count': len(comments), 'post': post,
         'request': context['request']}
 
