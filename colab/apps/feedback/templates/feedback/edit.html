@@ -1,10 +1,15 @@
 {% extends "feedback/base.html" %}
 
+{% load i18n %}
 {% load uni_form_tags %}
 {% load feedback_tags %}
 {% load theme_tags %}
 
 {% block head_title %}{% blocktrans %}Edit Feedback{% endblocktrans %}{% endblock %}
+
+{% block head_extra %}
+    {{ form.media }}
+{% endblock %}
 
 {% block breadcrumbs %}
     <li><a href="{% url feedback_list %}">Feedback</a></li>

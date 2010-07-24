@@ -104,19 +104,3 @@ class IssueContributor(models.Model):
     class Meta:
         unique_together = [("user", "issue")]
 
-# This is for comment and contributor count denormalization. Eventually this
-# should work with a register(Model) statement instead of manually adding the
-# fields to the commentable object...
-from django.db.models.signals import pre_save, post_save
-from threadedcomments.models import ThreadedComment
-
-def update_issue_counts(sender, instance, created, **kwargs):
-    if created:
-        issue = instance.content_object
-        issue.comments_count = issue.comments_count + 1
-        if not issue.user_is_contributor(instance.user):
-            issue.contributors_count = issue.contributors_count + 1
-        issue.save()
-
-post_save.connect(update_issue_counts, sender=ThreadedComment)
-

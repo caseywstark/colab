@@ -353,3 +353,22 @@ class TestModel(models.Model):
     name = models.CharField(max_length=5)
     is_public = models.BooleanField(default=True)
     date = models.DateTimeField(default=datetime.now)
+
+# This is for comment and contributor count denormalization. Eventually this
+# should work with a register(Model) statement instead of manually adding the
+# fields to the commentable object...
+from django.db.models.signals import pre_save, post_save
+from threadedcomments.models import ThreadedComment
+
+def update_comment_counts(sender, instance, created, **kwargs):
+    if created and instance.content_object:
+        the_obj = instance.content_object
+        if hasattr(the_obj, 'comments_count'):
+            the_obj.comments_count = the_obj.comments_count + 1
+        if hasattr(the_obj, 'contributors_count'):
+            if not the_obj.user_is_contributor(instance.user):
+                the_obj.contributors_count = the_obj.contributors_count + 1
+        the_obj.save()
+
+post_save.connect(update_comment_counts, sender=ThreadedComment)
+

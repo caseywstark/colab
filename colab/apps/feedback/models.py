@@ -107,19 +107,4 @@ class FeedbackContributor(models.Model):
     class Meta:
         unique_together = [("user", "feedback")]
 
-# This is for comment and contributor count denormalization. Eventually this
-# should work with a register(Model) statement instead of manually adding the
-# fields to the commentable object...
-from django.db.models.signals import pre_save, post_save
-from threadedcomments.models import ThreadedComment
-
-def update_feedback_counts(sender, instance, created, **kwargs):
-    if created:
-        feedback = instance.content_object
-        feedback.comments_count = feedback.comments_count + 1
-        if not feedback.user_is_contributor(instance.user):
-            feedback.contributors_count = feedback.contributors_count + 1
-        feedback.save()
-
-post_save.connect(update_feedback_counts, sender=ThreadedComment)
 

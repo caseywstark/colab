@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "voting.vote", 
+        "fields": {
+            "vote": 1, 
+            "created": "2010-07-24 14:28:55", 
+            "user": 1, 
+            "content_type": 59, 
+            "object_id": 1
+        }
+    }
+]

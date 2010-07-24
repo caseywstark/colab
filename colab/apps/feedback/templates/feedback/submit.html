@@ -6,6 +6,10 @@
 
 {% block head_title %}Submit Feedback{% endblock %}
 
+{% block head_extra %}
+    {{ form.media }}
+{% endblock %}
+
 {% block breadcrumbs %}
     <li><a href="{% url feedback_list %}">Feedback</a></li>
     <li><a href="{{ request.path }}">Submit</a></li>

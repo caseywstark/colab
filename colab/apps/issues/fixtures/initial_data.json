@@ -1,0 +1,41 @@
+[
+    {
+        "pk": 1, 
+        "model": "issues.issue", 
+        "fields": {
+            "resolved": false, 
+            "comments_count": 3, 
+            "votes": 1, 
+            "description": "<p>We need some solid fixtures for CoLab, so I'm making some now. Let's test some common formats...</p>\r\n<ul>\r\n<li>how</li>\r\n<li>about</li>\r\n<li>unordered lists</li>\r\n</ul>\r\n<ol>\r\n<li>how</li>\r\n<li>about</li>\r\n<li>ordered lists</li>\r\n</ol>\r\n<p><span> </span>Lorem ipsum dolor sit amet, <strong>consectetur adipisicing elit</strong>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <em>Ut enim ad minim veniam</em>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in <span style=\"text-decoration: underline;\">reprehenderit</span> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Can't forget about math! Thanks to MathJax for super \\( \\int e^{x y} \\) math. And as for block level math...</p>\r\n<p>\\[&nbsp;J_\\alpha(x) = \\sum_{m=0}^\\infty \\frac{(-1)^m}{m! \\, \\Gamma(m + \\alpha + 1)}{\\left({\\frac{x}{2}}\\right)}^{2 m + \\alpha} \\]</p>", 
+            "disciplines": [
+                36, 
+                129
+            ], 
+            "creator": 1, 
+            "created": "2010-07-24 13:47:17", 
+            "private": false, 
+            "institutions": [], 
+            "followers_count": 1, 
+            "feed": 343, 
+            "contributors_count": 1, 
+            "yeas": 1, 
+            "title": "This is a test issue", 
+            "resolution": null, 
+            "slug": "this-is-a-test-issue", 
+            "tags": "testing, test data", 
+            "nays": 0
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "issues.issuecontributor", 
+        "fields": {
+            "away_since": "2010-07-24 13:47:18", 
+            "issue": 1, 
+            "away": false, 
+            "user": 1, 
+            "away_message": "", 
+            "contributions": 1
+        }
+    }
+]

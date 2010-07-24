@@ -1,0 +1,39 @@
+[
+    {
+        "pk": 1, 
+        "model": "papers.paper", 
+        "fields": {
+            "feed": 344, 
+            "comments_count": 1, 
+            "votes": 0, 
+            "last_edited": null, 
+            "yeas": 0, 
+            "creator": 1, 
+            "created": "2010-07-24 14:14:41", 
+            "object_id": 1, 
+            "followers_count": 1, 
+            "contributors_count": 1, 
+            "content_type": 59, 
+            "title": "This is a test paper", 
+            "last_editor": 1, 
+            "slug": "this-is-a-test-paper", 
+            "tags": "testing, test data", 
+            "nays": 0
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "papers.paperrevision", 
+        "fields": {
+            "comment": "Creating the primary paper", 
+            "votes": 0, 
+            "created": "2010-07-24 14:14:41", 
+            "content": "<p>Alright folks. More test data.</p>\r\n<p><span> </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br /><br /></p>\r\n<p>\\( \\int e^{x y} \\) math content in papers...</p>\r\n<p>\\[ J_\\alpha(x) = \\sum_{m=0}^\\infty \\frac{(-1)^m}{m! \\, \\Gamma(m + \\alpha + 1)}{\\left({\\frac{x}{2}}\\right)}^{2 m + \\alpha} \\]</p>", 
+            "paper": 1, 
+            "editor": 1, 
+            "yeas": 0, 
+            "nays": 0, 
+            "revision": 1
+        }
+    }
+]

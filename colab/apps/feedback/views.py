@@ -63,7 +63,7 @@ def detail(request, object_id, template_name="feedback/detail.html"):
         }, context_instance=RequestContext(request))
 
 def submit(request, form_class=FeedbackForm, template_name="feedback/submit.html"):
-    form = form_class(request.POST or None)
+    form = form_class(request.POST or None, auto_id='create_feedback_%s')
     
     if form.is_valid():
         feedback = form.save(commit=False)
@@ -86,7 +86,7 @@ def edit(request, object_id=None, form_class=FeedbackForm, template_name="feedba
     if feedback.user != request.user and not request.user.is_staff:
         return render_to_response('feedback/forbidden.html', {}, context_instance=RequestContext(request))
     
-    form = form_class(request.POST or None, instance=feedback)
+    form = form_class(request.POST or None, instance=feedback, auto_id='edit_feedback_%s')
     
     if form.is_valid():
         feedback = form.save()
