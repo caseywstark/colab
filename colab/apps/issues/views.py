@@ -12,17 +12,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 
-if "notification" in settings.INSTALLED_APPS:
-    from notification import models as notification
-else:
-    notification = None
-
 from threadedcomments.models import ThreadedComment
+from threadedcomments.forms import RichCommentForm
 
 from issues.models import Issue, IssueContributor
 from issues.forms import IssueForm, InviteContributorForm, ResolutionForm
 
-from threadedcomments.forms import RichCommentForm
+from disciplines.models import Discipline
+from tagging.models import Tag
+
 
 @login_required
 def create(request, form_class=IssueForm, template_name="issues/create.html"):
@@ -100,7 +98,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     authenticated = request.user.is_authenticated()
     
     if authenticated and mine:
-        issues = Issue.objects.filter(contributor_users__contains=request.user)
+        issues = Issue.objects.filter(contributors__contains=request.user)
     else:
         issues = Issue.objects.filter(private=False)
     
@@ -108,6 +106,22 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     if search_terms:
         issues = (issues.filter(title__icontains=search_terms) |
             issues.filter(description__icontains=search_terms))
+    
+    # Additional filtering
+    discipline = request.GET.get('discipline', None)
+    tag = request.GET.get('tag', None)
+    if discipline:
+        try:
+            the_discipline = Discipline.objects.get(slug=discipline) # make sure the discpline exists
+            issues = issues.filter(disciplines__id=the_discipline.id)
+        except Discipline.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That discipline does not exist."))
+    if tag:
+        try:
+            the_tag = Tag.objects.get(id=tag) # make sure the tag exists
+            issues = issues.filter(tags__id=the_tag.id)
+        except Tag.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That tag does not exist."))
     
     # Figure out sorting to replace the title
     list_title = ''
@@ -155,8 +169,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
         'issues': issues,
         'mine': mine,
         'search_terms': search_terms,
-        'sort': sort,
-        'direction': direction,
+        'sort': sort, 'direction': direction,
         'list_title': list_title,
     }, context_instance=RequestContext(request))
 

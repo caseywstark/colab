@@ -63,8 +63,12 @@
         </span>
     </div>
     
+    <div class="list-sidebar">
+        
+    </div>
+    
     <ul class="post-list issues">
-        {% if issues %}
+        {% if issues.paginator.count > 0 %}
             {% for issue in issues.object_list %}
                 {% show_issue issue %}
             {% endfor %}
