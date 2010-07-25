@@ -19,7 +19,7 @@ from issues.models import Issue, IssueContributor
 from issues.forms import IssueForm, InviteContributorForm, ResolutionForm
 
 from disciplines.models import Discipline
-from tagging.models import Tag
+from tagging.models import Tag, TaggedItem
 
 
 @login_required
@@ -113,13 +113,13 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     if discipline:
         try:
             the_discipline = Discipline.objects.get(slug=discipline) # make sure the discpline exists
-            issues = issues.filter(disciplines__id=the_discipline.id)
+            issues = issues.filter(disciplines=the_discipline)
         except Discipline.DoesNotExist:
             messages.add_message(request, messages.ERROR, _("That discipline does not exist."))
     if tag:
         try:
             the_tag = Tag.objects.get(id=tag) # make sure the tag exists
-            issues = issues.filter(tags__id=the_tag.id)
+            issues = TaggedItem.objects.get_by_model(issues, the_tag)
         except Tag.DoesNotExist:
             messages.add_message(request, messages.ERROR, _("That tag does not exist."))
     
