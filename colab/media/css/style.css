@@ -357,14 +357,21 @@ ul#messages li a { color: #693; }
 }
 #search-input {
     width: 250px;
+    border: 1px solid #999;
+    margin: 0; padding: 4px;
+    vertical-align: middle;
 }
 #search-input, #search-button { font-size: 12px; }
+#search-button {
+    position: relative;
+    right: 23px; top: 3px;
+}
 
 .left-action {
     float: left !important;
 }
-.left-action a{
-	   padding: 6px 10px;
+.left-action a {
+    padding: 6px 10px;
 }
 .right-action {
     float: right !important;
@@ -468,67 +475,107 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 /**************************************\
- * List
+ * Lists
 \**************************************/
 
-.list-title-wrapper {
-    
+#list-sidebar {
+    float: left;
+    margin: 10px 0 0; padding: 10px 10px 10px 0;
+    width: 140px;
+}
+.filter-list {
+    list-style: none;
+    margin-left: 10px;
+}
+
+#list-block {
+    margin: 10px 0 0 150px;
+    border-left: 3px solid #ccc;
+    padding: 10px 0 10px 20px;
 }
 .list-title {
     text-align: left;
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 26px;
+    line-height: 32px;
     font-weight: bold;
-    margin-top:10px;
 }
-.list-title span {
+.list-count {
     font-size: 16px;
-    font-weight: normal;
-}
-.sorting-wrapper {
-    text-align: left;
-    line-height: 30px;
-    font-size: 12px;
-}
-ul.list-sorting{
-	padding:0px 0px 10px 0px;
-	border-bottom:1px dotted #ccc;
-}
-.list-sorting li {
-    display: inline;
-    margin-right: 15px;
+    font-weight: bold;
+    color: #ccc;
 }
 
+.post-list {
+    margin: 20px 0 0 0;
+}
 .list-item {
     border-bottom: 1px dotted #ccc;
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
 
-.post-title {
-    font-size: 30px;
-    line-height: 40px;
+.post-title, .post-title:visited {
+    font-size: 16px;
+    line-height: 16px;
     text-align: left;
-    margin:20px 0px;
-    padding: 4px 8px 0px 0px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-}
-.post-title a, .post-title a:visited {
+    margin: 0 0 15px;
     color: #3e4f4a !important;
-    text-decoration: none!important;
-}
-.post-title a:hover, .post-title a:active {
-    color: #3e4f4a;
     text-decoration: none !important;
-    background: #E0E3E5;
+    font-weight: bold;
+}
+.post-title:hover {
+    text-decoration: underline !important;
 }
 
-.post-categories {
-    padding: 10px 5px;
-    color:#999;
-    width:805px;
-    margin-left:195px;  
+.list-post-block {
+    margin-left: 190px;
+}
+.list-post-content {
+}
+
+.more-link, .more-link:visited {
+    float: left;
+    font-weight: bold;
+    color: #999 !important;
+    text-decoration: none !important;
+}
+.more-link:hover {
+    text-decoration: underline !important;
+}
+
+.post-disciplines-list {
+    float: right;
+    color: #999;
+    font-weight: bold;
+}
+.post-disciplines-list a, .post-disciplines-list a:visited {
+    color: #94ba3c !important;
+    text-decoration: none !important;
+}
+.post-disciplines-list a:hover { text-decoration: underline !important; }
+
+.post-tags-list {
+    clear: right;
+    float: left;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.post-tags-list li {
+    float: left;
+    display: inline;
+    margin-right: 10px;
+}
+.post-tags-list a, .post-tags a:visited {
+    background: #333 !important;
+    color: #999 !important;
+    padding: 3px 6px;
+    text-decoration: none !important;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.post-tags-list a:hover {
+    color: #94ba3c !important;
 }
 
 /**************************************\
@@ -537,8 +584,7 @@ ul.list-sorting{
     
 .preview-meta-box, .meta-box {
     float: left;
-    width: 180px;
-    margin-right: 15px;
+    width: 150px;
     text-align: left;
     padding: 10px 10px;
     background-color: #eee;
@@ -652,12 +698,6 @@ ul.list-sorting{
 }
 .post-buttons li a:hover {
     background: #E0E3E5;
-}
-
-.list-post-content {
-    margin-left: 200px;
-    height: 160px;
-    overflow: hidden;
 }
 
 .post-content {

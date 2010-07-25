@@ -27,3 +27,14 @@ def persist_getvars(request):
     if len(getvars.keys()) > 0:
         return "?%s" % getvars.urlencode()
     return ''
+
+@register.simple_tag
+def filter_url(request, the_filter, the_value):
+    getvars = request.GET.copy()
+    if len(getvars.keys()) > 0:
+        return "%s?%s&%s=%s" % (request.path, getvars.urlencode(), the_filter, the_value)
+    return "%s?%s=%s" % (request.path, the_filter, the_value)
+
+@register.simple_tag
+def filter_link(request, the_filter, the_value, the_text):
+    return '<a href="%s">%s</a>' % (filter_url(request, the_filter, the_value), the_text)
