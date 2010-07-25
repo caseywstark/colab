@@ -43,8 +43,8 @@
         <div id="discplines-wrapper" class="filter-wrapper">
             <div class="filter-header">By discipline</div>
             <ul class="filter-list">
-                {% for discipline in filter_disciplines %}
-                    <li>{% filter_link request "discipline" discipline.slug discipline.name %}</li>
+                {% for discipline in discipline_filters %}
+                    <li><a href="{% filter_url request "discipline" discipline.slug %}">{{ discipline.name|truncatechar:20 }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -52,7 +52,7 @@
         <div id="tags-wrapper" class="filter-wrapper">
             <div class="filter-header">By tag</div>
             <ul class="filter-list">
-                {% for tag in filter_tags %}
+                {% for tag in tag_filters %}
                     <li>{% filter_link request "tag" tag.id tag.name%}</li>
                 {% endfor %}
             </ul>

@@ -481,7 +481,9 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 #list-sidebar {
     float: left;
     margin: 10px 0 0; padding: 10px 10px 10px 0;
-    width: 140px;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .filter-list {
     list-style: none;
@@ -489,7 +491,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 #list-block {
-    margin: 10px 0 0 150px;
+    margin: 10px 0 0 170px;
     border-left: 3px solid #ccc;
     padding: 10px 0 10px 20px;
 }
@@ -528,7 +530,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .list-post-block {
-    margin-left: 190px;
+    margin: 0 0 15px 190px;
 }
 .list-post-content {
 }
@@ -556,8 +558,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 .post-tags-list {
     clear: right;
-    float: left;
-    margin-top: 5px;
+    padding-top: 5px;
     font-weight: bold;
 }
 .post-tags-list li {

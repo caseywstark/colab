@@ -38,3 +38,12 @@ def filter_url(request, the_filter, the_value):
 @register.simple_tag
 def filter_link(request, the_filter, the_value, the_text):
     return '<a href="%s">%s</a>' % (filter_url(request, the_filter, the_value), the_text)
+
+# can't believe this isn't in django core...
+@register.filter
+# truncate after a certain number of characters
+def truncatechar(text, length):
+    if len(text) <= length:
+        return text
+    else:
+        return text[:length] + '...'

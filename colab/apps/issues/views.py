@@ -109,7 +109,9 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     
     # Additional filtering
     discipline = request.GET.get('discipline', None)
+    the_discipline = None
     tag = request.GET.get('tag', None)
+    the_tag = None
     if discipline:
         try:
             the_discipline = Discipline.objects.get(slug=discipline) # make sure the discpline exists
@@ -122,6 +124,16 @@ def issues(request, mine=False, template_name="issues/issues.html"):
             issues = TaggedItem.objects.get_by_model(issues, the_tag)
         except Tag.DoesNotExist:
             messages.add_message(request, messages.ERROR, _("That tag does not exist."))
+    
+    # get filter querysets
+    if the_discipline:
+        discipline_filters = the_discipline.get_children()
+    else:
+        discipline_filters = Discipline.objects.root_nodes()
+    if the_tag:
+        tag_filters = Tag.objects.related_for_model(the_tag, Issue)
+    else:
+        tag_filters = Tag.objects.usage_for_model(Issue)
     
     # Figure out sorting to replace the title
     list_title = ''
@@ -168,7 +180,8 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     return render_to_response(template_name, {
         'issues': issues,
         'mine': mine,
-        'search_terms': search_terms,
+        'search_terms': search_terms, 'the_discipline': the_discipline,
+        'discipline_filters': discipline_filters, 'tag_filters': tag_filters,
         'sort': sort, 'direction': direction,
         'list_title': list_title,
     }, context_instance=RequestContext(request))
