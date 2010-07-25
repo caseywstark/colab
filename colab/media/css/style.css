@@ -505,22 +505,20 @@ ul.list-sorting{
     margin-bottom: 15px;
 }
 
-.post-title-wrapper {
+.post-title {
     font-size: 30px;
     line-height: 40px;
     text-align: left;
     margin:20px 0px;
-}
-.post-title {
     padding: 4px 8px 0px 0px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
-.post-title-wrapper a, .post-title-wrapper a:visited {
+.post-title a, .post-title a:visited {
     color: #3e4f4a !important;
     text-decoration: none!important;
 }
-.post-title-wrapper a:hover, .post-title-wrapper a:active {
+.post-title a:hover, .post-title a:active {
     color: #3e4f4a;
     text-decoration: none !important;
     background: #E0E3E5;
@@ -536,15 +534,12 @@ ul.list-sorting{
 /**************************************\
  * Meta
 \**************************************/
-
-.meta-wrapper {
+    
+.preview-meta-box, .meta-box {
     float: left;
     width: 180px;
     margin-right: 15px;
     text-align: left;
-}
-    
-.meta-summary, .post-meta {
     padding: 10px 10px;
     background-color: #eee;
     border:3px solid #ccc;
@@ -552,38 +547,36 @@ ul.list-sorting{
     -webkit-border-radius: 8px;
 }
 
-.vote-box {
+.stat-box {
     float: left;
     width: 50%;
     text-align:center;
 }
-.vote-name {
+.stat-name {
     font-size: 12px;
     font-weight:bold;
 }
-.vote-number {
+.stat-number {
     padding: 5px;
     font-size: 35px;
     line-height: 25px;
     font-weight: bold;
 }
-.vote-button {
+.stat-button {
     font-size: 20px !important;
     font-weight: bold !important;
     padding: 0 5px!important;
-    background-color: #E0E3E5!important;
-    
     -moz-border-radius: 5px !important;
     -webkit-border-radius: 5px !important;
 }
-.vote-button:hover { background-color: #AEB0B2!important; }
+.stat-button:hover { background-color: #AEB0B2!important; }
 .yeas { color: #94ba3c; }
 .nays { color: #c44; }
 .nay-button { color: #c44 !important; border-color: #c44 !important;}
 .nay-button:hover { color: #911 !important; border-color: #911 !important; }
 .yea-button { color: #4c4 !important; border-color: #4c4 !important; }
 .yea-button:hover { color: #191 !important; border-color: #191 !important; }
-.vote-clear, .vote-clear:hover {
+.stat-clear, .stat-clear:hover {
     font-size: 20px !important;
 }
 
@@ -614,40 +607,25 @@ ul.list-sorting{
     font-size: 12px;
 }
 .post-date{
-	padding:0px 5px;
+    clear: both;
+	padding: 0px 5px;
 }
 .user-name {
-   margin: 5px 0px;
-   border-top:1px solid #ccc;
-   border-bottom:1px solid #ccc;
-   } 
-.user-name a{
+    clear: both;
+    margin: 5px 0px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
  	text-decoration:none!important;
  	display:block;
  	padding:0px 5px;
- }
-.user-name a:hover{
+}
+.user-name:hover {
  	background-color:#fff;
  	color:#193F66!important;
- }
-.count-list li{
-	padding: 0px 5px;
 }
-.count-list li span {
-    font-weight: bold;
+.anonymous-user {
+    
 }
-
-.tags-wrapper {
-    margin: 10px 0;
-}
-
-.contributor-list-title {
-    background-color: #E0E3E5;
-    margin-top: 10px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-}
-.contribution-number { font-weight: bold; }
 
 /**************************************\
  * Post
@@ -676,17 +654,14 @@ ul.list-sorting{
     background: #E0E3E5;
 }
 
-.post-content {
+.list-post-content {
     margin-left: 200px;
+    height: 160px;
+    overflow: hidden;
 }
 
-.wiki-list {
-    list-style: none;
-}
-.wiki-list li {
-    display: inline;
-    float: left;
-    margin: 3px 6px;
+.post-content {
+    margin-left: 200px;
 }
 
 /**************************************\

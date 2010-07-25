@@ -1,46 +1,50 @@
 {% load account_tags %}
 {% load threadedcommentstags %}
 
-<div class="meta-wrapper">
-    <div class="meta-summary">
-        <ul class="vote-boxes">
-            <li class="vote-box yeas">
-                <div class="vote-name">yeas</div>
-                <div class="vote-number">{{ post.yeas }}</div>
+<div class="preview-meta-box">
+    <ul class="stat-boxes">
+        <li class="stat-box yeas">
+            <div class="stat-name">yeas</div>
+            <div class="stat-number">{{ post.yeas }}</div>
+        </li>
+        <li class="stat-box nays">
+            <div class="stat-name">nays</div>
+            <div class="stat-number">{{ post.nays }}</div>
+        </li>
+        {% if comments_count >= 0 %}
+            <li class="stat-box comments">
+                <div class="stat-name">comments</div>
+                <div class="stat-number">{{ comments_count }}</div>
             </li>
-            <li class="vote-box nays">
-                <div class="vote-name">nays</div>
-                <div class="vote-number">{{ post.nays }}</div>
+        {% endif %}
+        {% if followers_count >= 0 %}
+            <li class="stat-box followers">
+                <div class="stat-name">followers</div>
+                <div class="stat-number">{{ followers_count }}</div>
             </li>
-            {% if comments_count >= 0%}
-                <li class="vote-box comments">
-                    <div class="vote-name">comments</div>
-                    <div class="vote-number">{{ comments_count }}</div>
-                </li>
-            {% endif %}
-            {% if followers_count >= 0%}
-                <li class="vote-box followers">
-                    <div class="vote-name">followers</div>
-                    <div class="vote-number">{{ followers_count }}</div>
-                </li>
-            {% endif %}
-        </ul>
-        <div class="clear"></div>
-        
-        
+        {% endif %}
+    </ul>
+    <div class="clear"></div>
+    
+    {% if show_author %}
         <div class="post-user">
-            {% if show_author %}
-                <div class="user-name">
-                    {% ifequal the_user "anonymous" %}
-                        Anonymous
-                    {% else %}
-                        <a href="{{ the_user.get_absolute_url }}">{% user_display the_user %}</a>
-                    {% endifequal %}
-                </div>
-            {% endif %}
-            <div class="post-date">
-                {{ datetime|date:"P M d, Y" }}
-            </div>
+            {% ifequal the_user "anonymous" %}
+                <span class="anonymous-user user-name">Anonymous</span>
+            {% else %}
+                <a class="user-name" href="{{ the_user.get_absolute_url }}">{% user_display the_user %}</a>
+            {% endifequal %}
         </div>
+    {% endif %}
+    
+    <div class="post-date">
+        {{ datetime|date:"P M d, Y" }}
     </div>
+    
+    {% if post.disciplines.any %}
+        <ul class="post-disciplines">
+            {% for discipline in issue.disciplines.all %}
+                <li><a href="{{ discipline.get_absolute_url }}">{{ discipline }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </div>

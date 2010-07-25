@@ -3,33 +3,24 @@
 {% load tagging_tags %}
 {% load dashboard_tags %}
 
-<li class="list-item post-summary">
+<li class="list-item post-preview">
    
-    <div class="post-title-wrapper">
-        <a class="post-title" href="{{ issue.get_absolute_url }}">
-            {{ issue.title }}
-        </a>
-    </div>
+    <a class="post-title" href="{{ issue.get_absolute_url }}">
+        {{ issue.title }}
+    </a>
     
     {% post_meta_summary issue %}
     
-    <div class="post-push-right post-content-wrapper">
-        <div class="post-content">
-            {{ issue.description|safe }}
+    <div class="list-post-information">
+        <div class="list-post-content">
+            {{ issue.description|truncatewords_html:100|safe }}
         </div>
         
-        <div class="post-categories">
-            <div class="post-disciplines-list">
-                <span>Posted under:</span>
-                {% if issue.disciplines %}
-                    {% for discipline in issue.disciplines.all %}
-                        <a href="{{ discipline.get_absolute_url }}">{{ discipline }}</a>{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                {% else %}
-                    No Disciplines.
-                {% endif %}
-            </div>
-            
+        <a class="more-link list-post-continue" href="{{ issue.get_absolute_url }}">
+            continue reading
+        </a>
+        
+        <div class="post-taxonomy">
             <div class="post-tags-list">
                 <span>Tagged with:</span>
                 {% tags_for_object issue as tags %}
@@ -44,5 +35,4 @@
         </div>
     </div>
     <div class="clear"></div>
-    
 </li>

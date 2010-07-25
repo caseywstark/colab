@@ -31,11 +31,13 @@
         </span>
         <span class="feedback-date">on {{ feedback.created|date:"d M Y" }}</span>
         
-        <div class="post-content">
-            {{ feedback.description|safe }}
+        <div class="list-post-content">
+            {{ feedback.description|truncatewords_html:100|safe }}
         </div>
         
-        
+        <a class="more-link" href="{{ feedback.get_absolute_url }}">
+            continue reading
+        </a>
     </div>
     <div class="clear"></div>
     
