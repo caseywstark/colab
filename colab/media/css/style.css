@@ -489,6 +489,16 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     border-left: 3px solid #ccc;
     padding: 10px 0 10px 20px;
 }
+
+.big-avatar, .big-avatar:visited {
+    float: left;
+    width: 80px; height: 80px;
+    border: 2px solid #ccc;
+}
+.big-avatar:hover {
+    border: 2px solid #eee;
+}
+
 .list-title {
     text-align: left;
     font-size: 26px;
@@ -525,6 +535,9 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 .list-post-block {
     margin: 0 0 15px 190px;
+}
+.list-researcher-block {
+    margin-left: 100px;
 }
 .list-post-content {
 }

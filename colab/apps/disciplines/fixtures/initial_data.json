@@ -2378,21 +2378,5 @@
             "tree_id": 12, 
             "slug": "neuroimaging"
         }
-    }, 
-    {
-        "pk": 1, 
-        "model": "disciplines.researchinterest", 
-        "fields": {
-            "name": "galaxy formation", 
-            "disciplines": []
-        }
-    }, 
-    {
-        "pk": 2, 
-        "model": "disciplines.researchinterest", 
-        "fields": {
-            "name": "large-scale structure", 
-            "disciplines": []
-        }
     }
 ]

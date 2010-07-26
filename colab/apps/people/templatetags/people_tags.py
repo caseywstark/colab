@@ -2,9 +2,9 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag("people/researcher_item.html")
-def show_researcher(researcher):
-    return {"researcher": researcher}
+@register.inclusion_tag("people/researcher_item.html", takes_context=True)
+def show_researcher(context, researcher):
+    return {"researcher": researcher, 'request': context['request']}
 
 @register.simple_tag
 def clear_search_url(request):

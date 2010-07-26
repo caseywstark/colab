@@ -1,15 +1,11 @@
 {% extends "people/base.html" %}
 
 {% load i18n %}
-{% load pagination_tags %}
-{% load order_by %}
 {% load sorting_tags %}
 {% load people_tags %}
+{% load issues_tags %}
 
-{% block head_title %}{% blocktrans %}People{% endblocktrans %}{% endblock %}
-
-{% autosort researchers %}
-{% autopaginate researchers 10 %}
+{% block head_title %}{% blocktrans %}Researchers{% endblocktrans %}{% endblock %}
 
 {% block breadcrumbs %}
     <li><a href="{% url researcher_list %}">Researchers</a></li>
@@ -18,8 +14,8 @@
 {% block actions %}
     <li class="search-form-wrapper right-action">
         <form class="search-form" method="GET" action="">
-            <input id="search-input" type="text" name="search" class="side-input" value="{{ search_terms }}" />
-            <input id="search-button" type="submit" value="Search People" />
+            <input id="search-input" type="text" name="search" class="side-input" value="{% if search_terms %}{{ search_terms }}{% else %}Search Researchers{% endif %}" />
+            <input id="search-button" type="image" src="{{ STATIC_URL }}images/search_button.png" value="Search Researchers" />
             {% if search_terms %}
                 <a href="{% clear_search_url request %}">Clear Search Terms</a>
             {% endif %}
@@ -28,38 +24,71 @@
 {% endblock %}
 
 {% block body %}
-    <div class="list-title-wrapper">
-        <h1 class="list-title">
-            Researchers
-            {% if search_terms %}
-                with keywords "{{ search_terms }}"
-            {% endif %}
-            <span>({{ researchers.count }} results)</span>
-        </h1>
-        
-        <div class="sorting-wrapper">
-            <ul class="list-sorting">
-                <li>Sort by:</li>
-                <li>{% anchor name name %}</li>
+    <div id="list-sidebar">
+        <div id="sorting-wrapper" class="filter-wrapper">
+            <div class="filter-header">Sort by</div>
+            <ul class="filter-list">
+                <li>{% anchor name "name" %}</li>
                 <li>{% anchor date "date joined" %}</li>
             </ul>
-            <div class="clear"></div>
+        </div>
+        
+        <div id="discplines-wrapper" class="filter-wrapper">
+            <div class="filter-header">By expertise</div>
+            <ul class="filter-list">
+                {% for discipline in discipline_filters %}
+                    <li><a href="{% filter_url request "discipline" discipline.slug %}">{{ discipline.name|truncatechar:20 }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div id="interests-wrapper" class="filter-wrapper">
+            <div class="filter-header">By interest</div>
+            <ul class="filter-list">
+                {% for interest in interest_filters %}
+                    <li><a href="{% filter_url request "interest" interest.slug %}">{{ interest.name|truncatechar:20 }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     
-    <ul class="post-list researchers">
-        {% if researchers %}
-            {% for researcher in researchers %}
-                {% show_researcher researcher %}
-            {% endfor %}
-        {% else %}
-            <li class="list-item no-results">
-                No researchers match your filters. Please broaden your search.
-            </li>
-        {% endif %}
-    </ul>
-    <div class="clear"></div>
-            
-    {% paginate %}
+    <div id="list-block">
+        <h1 class="list-title">
+            {{ list_title }}
+            {% if search_terms %}
+                with keywords "{{ search_terms }}"
+            {% endif %}
+        </h1>
+        <div class="list-count">
+            ({{ researchers.paginator.count }} results)
+        </div>
+        
+        <ul class="post-list issues">
+            {% if researchers.paginator.count > 0 %}
+                {% for researcher in researchers.object_list %}
+                    {% show_researcher researcher %}
+                {% endfor %}
+            {% else %}
+                <li class="list-item no-results">
+                    No researchers match your filters. Please broaden your search.
+                </li>
+            {% endif %}
+        </ul>
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if issues.has_previous %}
+                    <a href="?page={{ issues.previous_page_number }}">previous</a>
+                {% endif %}
 
+                <span class="current">
+                    Page {{ issues.number }} of {{ issues.paginator.num_pages }}
+                </span>
+
+                {% if issues.has_next %}
+                    <a href="?page={{ issues.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
 {% endblock %}

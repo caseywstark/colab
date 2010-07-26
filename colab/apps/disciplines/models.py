@@ -43,14 +43,3 @@ except mptt.AlreadyRegistered:
     pass
 
 object_feeds.register(Discipline)
-
-class ResearchInterest(models.Model):
-    name = models.CharField(max_length=50)
-    disciplines = models.ManyToManyField(Discipline, blank=True)
-    
-    def __unicode__(self):
-        return self.name
-    
-    @models.permalink
-    def get_absolute_url(self):
-        return ('interest_detail', (), {'object_id': self.id})

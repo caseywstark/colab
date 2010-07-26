@@ -6,8 +6,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 from timezones.fields import TimeZoneField
+from tagging.fields import TagField
 
-from disciplines.models import Discipline, ResearchInterest
+from disciplines.models import Discipline
 import object_feeds
 
 OCCUPATIONS = (
@@ -52,7 +53,7 @@ class Researcher(models.Model):
     
     expertise = models.ForeignKey(Discipline, null=True, blank=True, related_name='researcher')
     default_filter = models.ForeignKey(Discipline, null=True, blank=True, related_name='watcher')
-    research_interests = models.ManyToManyField(ResearchInterest, blank=True)
+    tags = TagField()
     occupation = models.CharField(max_length=2, choices=OCCUPATIONS, blank=True)
     institution = models.ForeignKey(Institution, verbose_name=_("Current Institution"), null=True, blank=True, related_name='researchers')
     grad_institution = models.ForeignKey(Institution, verbose_name=_("Graduate Institution"), null=True, blank=True, related_name='graduates')

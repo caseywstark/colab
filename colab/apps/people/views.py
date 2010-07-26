@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
+from django.core.paginator import Paginator
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -23,6 +24,9 @@ else:
 from people.forms import ResearcherForm
 from people.models import Researcher
 
+from disciplines.models import Discipline
+from tagging.models import Tag, TaggedItem
+
 def researchers(request, template_name="people/researchers.html"):
     researchers = Researcher.objects.all().order_by("-user__date_joined")
     
@@ -30,23 +34,83 @@ def researchers(request, template_name="people/researchers.html"):
     if search_terms:
         researchers = researchers.filter(name__icontains=search_terms)
     
-    sort = request.GET.get("sort", "date")
-    direction = request.GET.get("dir", "desc")
-    if sort == "date":
+    # Additional filtering
+    discipline = request.GET.get('discipline', None)
+    the_discipline = None
+    tag = request.GET.get('tag', None)
+    the_tag = None
+    if discipline:
+        try:
+            the_discipline = Discipline.objects.get(slug=discipline) # make sure the discpline exists
+            researchers = researchers.filter(expertise=the_discipline)
+        except Discipline.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That discipline does not exist."))
+    if tag:
+        try:
+            the_tag = Tag.objects.get(id=tag) # make sure the tag exists
+            researchers = TaggedItem.objects.get_by_model(researchers, the_tag)
+        except Tag.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That tag does not exist."))
+    
+    # get filter querysets
+    if the_discipline:
+        discipline_filters = the_discipline.get_children()
+    else:
+        discipline_filters = Discipline.tree.root_nodes()
+    if the_tag:
+        tag_filters = Tag.objects.related_for_model(the_tag, Researcher)
+    else:
+        tag_filters = Tag.objects.usage_for_model(Researcher)
+    
+    # Figure out sorting to replace the title
+    list_title = 'Researchers'
+    
+    sort = request.GET.get('sort', 'date')
+    direction = request.GET.get('dir', 'desc')
+    
+    if sort == 'date':
         if direction == "asc":
             researchers = researchers.order_by("user__date_joined")
+            list_title = "Oldest Researchers"
         else:
             researchers = researchers.order_by("-user__date_joined")
-    elif sort == "name":
+            list_title = "Newest Researchers"
+    if sort == 'name':
         if direction == "asc":
             researchers = researchers.order_by("name")
+            list_title = "Researchers (A to Z)"
         else:
             researchers = researchers.order_by("-name")
-        
+            list_title = "Researchers (Z to A)"
+    if sort == 'contributions':
+        if direction == "asc":
+            researchers = researchers.order_by("contributions")
+            list_title = "Least Active Researchers"
+        else:
+            researchers = researchers.order_by("-contributions")
+            list_title = "Most Active Researchers"
+    
+    # Paginate the list
+    paginator = Paginator(researchers, 20) # Show 20 researchers per page
+    
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page is out of range, deliver last page of results.
+    try:
+        researchers = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        researchers = paginator.page(paginator.num_pages)    
+    
     return render_to_response(template_name, {
         "researchers": researchers,
-        "search_terms": search_terms,
-        "sort": sort,
+        "search_terms": search_terms,'the_discipline': the_discipline,
+        'discipline_filters': discipline_filters, 'tag_filters': tag_filters,
+        'sort': sort, 'direction': direction,
+        'list_title': list_title,
     }, context_instance=RequestContext(request))
 
 
