@@ -490,12 +490,12 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     padding: 10px 0 10px 20px;
 }
 
-.big-avatar, .big-avatar:visited {
+.researcher-list-avatar, .researcher-list-avatar:visited {
     float: left;
     width: 80px; height: 80px;
     border: 2px solid #ccc;
 }
-.big-avatar:hover {
+.researcher-list-avatar:hover {
     border: 2px solid #eee;
 }
 
@@ -770,6 +770,73 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     text-decoration: none !important;
 }
 .post-option:hover { text-decoration: underline !important; }
+
+/**************************************\
+ * Profiles
+\**************************************/
+
+#profile-sidebar {
+    float: left;
+    width: 200px;
+}
+
+.profile-title {
+    margin-bottom: 10px;
+}
+
+.profile-avatar {
+    width: 150px; height: 150px;
+    border: 4px solid #ccc;
+    margin: 0 0 15px;
+    border-radius: 4px !important;
+    -moz-border-radius: 4px !important;
+    -webkit-border-radius: 4px !important;
+}
+
+.profile-sidebar-block {
+    color: #999;
+    font-weight: bold;
+    margin: 10px 0 10px;
+}
+.profile-sidebar-block a, .profile-sidebar-block a:visited {
+    color: #94ba3c !important;
+    text-decoration: none !important;
+}
+.profile-sidebar-block a:hover { text-decoration: underline !important; }
+
+#profile-followers {
+    margin-top: 15px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #666;
+}
+
+#profile-content-block {
+    margin-left: 200px;
+}
+#profile-about-block {
+    margin-bottom: 10px;
+}
+
+.profile-content-header {
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#profile-activity-block {
+    float: left;
+    width: 400px;
+    padding-right: 10px;
+    border-right: 3px solid #ccc;
+    margin-right: 10px;
+    min-height: 200px;
+}
+#profile-contributions-block {
+    float: left;
+    margin-left: 10px;
+}
 
 /**************************************\
  * Updates

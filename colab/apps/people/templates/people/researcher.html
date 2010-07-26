@@ -4,23 +4,19 @@
 {% load avatar_tags %}
 {% load account_tags %}
 {% load object_feeds_tags %}
+{% load tagging_tags %}
 
 {% block head_title %}{{ researcher }}{% endblock %}
 
 {% block breadcrumbs %}
-    <li><a href="{% url researcher_list %}">People</a></li>
-    <li><a href="{{ request.path }}">{% user_display the_user %}</a></li>
+    <li><a href="{% url researcher_list %}">Researchers</a></li>
+    <li><a href="{{ request.path }}">{{ researcher.name }}</a></li>
 {% endblock %}
 
 {% block actions %}
-    <li class="left-action">
-        <a href="{% url dashboard the_user.username %}">{% user_display the_user %}'s Dashboard</a>
+    <li class="right-action">
+        <a href="{% url dashboard the_user.username %}">{{ researcher.name }}'s Dashboard</a>
     </li>
-    {% if user.is_authenticated %}
-        <li class="right-action">
-            {#{% follow_link researcher %}#}
-        </li>
-    {% endif %}
     {% ifequal request.user the_user %}
         <li class="right-action">
             <a href="{% url researcher_edit %}">Edit my profile</a>
@@ -29,51 +25,89 @@
 {% endblock %}
 
 {% block body %}
-    <div class="post-title-wrapper">
-        <div class="post-title">
-            {{ researcher }}
+    <div id="profile-sidebar">
+        <h1 class="post-title profile-title">
+            {{ researcher.name }}
+        </h1>
+        
+        <div class="profile-avatar">
+            {% avatar the_user 150 %}
         </div>
+        
+        <a id="researcher-follow-button" class="big-button" href="{% url feeds_subscription researcher.feed.id %}" >
+            {% if following %}
+                Follow Settings
+            {% else %}
+                + Follow Researcher
+            {% endif %}
+        </a>
+        
+        <div id="profile-followers" class="profile-sidebar-block">
+            {{ researcher.followers_count }} followers
+        </div>
+        
+        <div id="profile-membership" class="profile-sidebar-block">
+            Member since<br>
+            {{ the_user.date_joined|date:"M d, Y" }}
+        </div>
+        
+        {% if researcher.expertise %}
+            <div id="profile-expertise" class="profile-sidebar-block">
+                Primary expertise:<br>
+                <a href="{{ researcher.expertise.get_absolute_url }}">{{ researcher.expertise }}</a>
+            </div>
+        {% endif %}
+        
+        {% if researcher.website %}
+            <div id="profile-website" class="profile-sidebar-block">
+                Website:<br>
+                <a href="{{ researcher.website.get_absolute_url }}">{{ researcher.website }}</a>
+            </div>
+        {% endif %}
+        
+        {% tags_for_object researcher as tags %}
+        {% if tags %}
+            <div id="profile-interests" class="profile-sidebar-block">
+                Research Interests:<br>
+                <ul class="post-tags-list">
+                    {% for tag in tags %}
+                        <li><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        {% if researcher.occupation %}
+            <div id="profile-occupation" class="profile-sidebar-block">
+                Occupation:<br>
+                {{ researcher.get_occupation_display }}
+            </div>
+        {% endif %}
     </div>
     
-    <div class="meta-wrapper">
-        <div class="post-meta">
-            <div class="big-avatar">
-                {% avatar the_user 80 %}
-            </div>
+    <div id="profile-content-block">
+        <div id="profile-about-block">
+            <div id="profile-about-header" class="profile-content-header">About</div>
             
-            <div class="clear"></div>
-            <div class="since">
-                Member since 
-                <div class="date">{{ the_user.date_joined|date:"M d, Y" }}</div>
+            <div id="profile-about">
+                {{ researcher.about|safe }}
             </div>
         </div>
-    </div>
-    
-    <div id="profile" class="post-content">
-        <ul class="profile-list">
-            {% if researcher.institution %}
-                <li>
-                    <span>Current Institution:</span>
-                    <a href="{{ researcher.institution.get_absolute_url }}">{{ researcher.institution }}</a>
-                </li>
-            {% endif %}
-            {% if researcher.grad_institution %}
-                <li>
-                    <span>Graduate Institution:</span>
-                    <a href="{{ researcher.grad_institution.get_absolute_url }}">{{ researcher.grad_institution }}</a>
-                </li>
-            {% endif %}
-            {% if researcher.expertise %}
-                <li>
-                    <span>Primary Expertise:</span>
-                    <a href="{{ researcher.expertise.get_absolute_url }}">{{ researcher.expertise }}</a>
-                </li>
-            {% endif %}
-        </ul>
-
-        <div class="profile-about-header">About</div>
-        <div class="profile-about">
-            {{ researcher.about|safe }}
+        
+        <div id="profile-activity-block">
+            <div id="profile-activity-header" class="profile-content-header">Latest Activity</div>
+            
+            <div id="profile-activity-content">
+                
+            </div>
+        </div>
+        
+        <div id="profile-contributions-block">
+            <div id="profile-contributions-header" class="profile-content-header">Overall Contributions</div>
+            
+            <div id="profile-contributions-content">
+                
+            </div>
         </div>
     </div>
     <div class="clear"></div>
