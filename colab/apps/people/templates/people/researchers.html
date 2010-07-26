@@ -63,7 +63,7 @@
             ({{ researchers.paginator.count }} results)
         </div>
         
-        <ul class="post-list issues">
+        <ul class="post-list researchers">
             {% if researchers.paginator.count > 0 %}
                 {% for researcher in researchers.object_list %}
                     {% show_researcher researcher %}
@@ -77,16 +77,16 @@
         
         <div class="pagination">
             <span class="step-links">
-                {% if issues.has_previous %}
-                    <a href="?page={{ issues.previous_page_number }}">previous</a>
+                {% if researchers.has_previous %}
+                    <a href="?page={{ researchers.previous_page_number }}">previous</a>
                 {% endif %}
 
                 <span class="current">
-                    Page {{ issues.number }} of {{ issues.paginator.num_pages }}
+                    Page {{ researchers.number }} of {{ researchers.paginator.num_pages }}
                 </span>
 
-                {% if issues.has_next %}
-                    <a href="?page={{ issues.next_page_number }}">next</a>
+                {% if researchers.has_next %}
+                    <a href="?page={{ researchers.next_page_number }}">next</a>
                 {% endif %}
             </span>
         </div>
