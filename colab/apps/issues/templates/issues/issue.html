@@ -66,25 +66,25 @@
         <div class="post-content">
             {{ issue.description|safe }}
         </div>
-    </div>
-    
-    <div class="issue-paper-block">
-        <div class="issue-paper-header">Papers</div>
-        {% if issue.papers %}
-            <ul id="issue-paper-list">
-                {% for paper in issue.papers %}
-                    <li>
-                        {% paper_preview paper %}
-                    </li>
-                {% endfor %}
-            </ul>
-            <div class="clear"></div>
-        {% else %}
-            <div id="issue-paper-list" class="no-papers">No papers yet.</div>
-        {% endif %}
-        <a id="issue-paper-add" class="big-button" href="{% add_paper_url issue %}">
-            + Add a paper
-        </a>
+        
+        <div class="issue-paper-block">
+            <div class="issue-paper-header">Papers</div>
+            {% if issue.papers %}
+                <ul id="issue-paper-list">
+                    {% for paper in issue.papers.all %}
+                        <li>
+                            {% paper_preview paper %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="clear"></div>
+            {% else %}
+                <div id="issue-paper-list" class="no-papers">No papers yet.</div>
+            {% endif %}
+            <a id="issue-paper-add" class="big-button" href="{% add_paper_url issue %}">
+                + Add a paper
+            </a>
+        </div>
     </div>
     
     {% comment_list issue %}

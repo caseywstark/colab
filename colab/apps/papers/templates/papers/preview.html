@@ -1,19 +1,21 @@
 {% load i18n %}
 {% load tagging_tags %}
 {% load dashboard_tags %}
+{% load account_tags %}
 
-<li class="list-item post-preview">
+<li class="list-item post-preview paper-preview">
+    <a class="list-post-title" href="{{ paper.get_absolute_url }}">
+        {{ paper.title }}
+    </a>
     
-    <div class="list-post-block">
-        <a class="post-title" href="{{ paper.get_absolute_url }}">
-            {{ paper.title }}
-        </a>
-        
-        <div class="list-post-content">
-            {{ paper.description|truncatewords_html:50|safe }}
-        </div>
-        
-        <a class="more-link list-post-continue" href="{{ paper.get_absolute_url }}">
+    <div class="preview-by-line">
+        Last edited by <a href="{{ paper.last_editor.get_absolute_url }}">{% user_display paper.last_editor %}</a>
+        at {{ paper.last_edited|date:"P on M d, Y"}}
+    </div>
+    
+    <div class="list-post-content">
+        {{ paper.current.content|truncatewords_html:50|safe }}
+        <a class="more-link list-post-continue no-float" href="{{ paper.get_absolute_url }}">
             continue reading &rsaquo;
         </a>
     </div>

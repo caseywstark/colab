@@ -33,6 +33,7 @@ a img {
 }
 
 .clear { clear: both; }
+.no-float { float: none !important; }
 
 .guide {
     position: relative;
@@ -639,8 +640,27 @@ input[type="submit"]:hover, input[type="submit"]:hover {
  * Issue paper list
 \**************************************/
 
-#issue-papers-block {
+.issue-papers-block {
+    margin-top: 20px;
+}
+.issue-paper-header {
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.issue-paper-list {
     
+}
+.issue-paper-list li {
+    
+}
+.paper-preview .list-post-title {
+    color: #999 !important;
+}
+
+#issue-paper-add {
+    margin: 10px;
 }
 
 /**************************************\

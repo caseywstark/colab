@@ -59,15 +59,6 @@
         <div class="post-content">
             {{ revision.content|safe }}
         </div>
-
-        <ul class="post-buttons">
-            <li><a class="post-option" href="{% url paper_edit slug=paper.slug %}">{% silk "page_edit" %} Edit</a></li>
-            {% ifequal user paper.creator %}
-                <li><a class="post-option" href="{% url paper_delete slug=paper.slug %}">{% silk "page_edit" %} Delete</a></li>
-            {% endifequal %}
-        </ul>
-        
-        <div class="clear"></div>
     </div>
         
     {% comment_list paper %}

@@ -33,7 +33,7 @@ class Paper(models.Model):
     creator = models.ForeignKey(User, verbose_name=_("creator"), related_name="%(class)s_created")
     created = models.DateTimeField(_("created"), default=datetime.now)
     last_editor = models.ForeignKey(User, verbose_name=_("last_editor"), related_name="%(class)s_edited")
-    last_edited = models.DateTimeField(blank=True, null=True)
+    last_edited = models.DateTimeField(default=datetime.now)
     
     tags = TagField()
     
