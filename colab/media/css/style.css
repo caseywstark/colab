@@ -368,8 +368,8 @@ ul#messages li a { color: #693; }
     right: 23px; top: 3px;
 }
 
-.left-action { float: left !important; }
-.right-action { float: right !important; }
+.left-action { float: left !important; margin-right: 10px; }
+.right-action { float: right !important; margin-left: 10px;}
 .left-action a, .right-action a { padding: 6px 10px; }
 
 /**************************************\
@@ -603,7 +603,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .big-button:hover {
     color: #94ba3c !important;
-    border-color: #94ba3c !important;
 }
 
 #detail-sidebar .meta-box {

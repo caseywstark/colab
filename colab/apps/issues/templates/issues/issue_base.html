@@ -11,10 +11,10 @@
                 </li>
             {% endif %}
             <li class="right-action">
-                <a class="post-option" href="{% url issue_delete issue.slug %}">Delete</a>
+                <a href="{% url issue_delete issue.slug %}">Delete</a>
             </li>
             <li class="right-action">
-                <a class="post-option" href="{% url issue_edit issue.slug %}">Edit</a>
+                <a href="{% url issue_edit issue.slug %}">Edit</a>
             </li>
         {% endifequal %}
         <li class="right-action">
