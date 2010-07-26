@@ -1,21 +1,76 @@
-{% load dashboard_tags %}
-{% load theme_tags %}
+{% load flagtags %}
+{% load account_tags %}
+{% load avatar_tags %}
 
-<li id="comment-{{ comment.id }}" class="list-item comment level-{{ comment.depth }}">
-    
-    {{ comment.branch }}
-    {% post_meta comment %}
-    
-    <div class="post-content">
-        {{ comment.comment|safe }}
+<li id="comment-{{ comment.id }}" class="comment-item comment level-{{ comment.depth }}">
+    <div class="comment-meta-box">
+        <ul class="stat-boxes">
+            <li class="stat-box yeas">
+                <div class="stat-name">yeas</div>
+                <div class="stat-number">{{ comment.yeas }}</div>
+                {% if previous_up %}
+                    <form class="stat-button-form" method="post" action="{{ up_url }}">{% csrf_token %}
+                        <input class="button stat-button yea-button stat-clear" type="submit" name="clear" value="clear">
+                    </form>
+                {% else %}
+                    <form class="stat-button-form" method="post" action="{{ up_url }}">{% csrf_token %}
+                        <input class="button stat-button yea-button" type="submit" name="up" value="+ yea">
+                    </form>
+                {% endif %}
+            </li>
+            <li class="stat-box nays">
+                <div class="stat-name">nays</div>
+                <div class="stat-number">{{ comment.nays }}</div>
+                {% if previous_down %}
+                    <form class="stat-button-form" method="post" action="{{ down_url }}">{% csrf_token %}
+                        <input class="button stat-button nay-button stat-clear" type="submit" name="clear" value="clear">
+                    </form>
+                {% else %}
+                    <form class="stat-button-form" method="post" action="{{ down_url }}">{% csrf_token %}
+                        <input class="button stat-button nay-button" type="submit" name="down" value="+ nay">
+                    </form>
+                {% endif %}
+            </li>
+        </ul>
     </div>
     
-    <ul class="post-buttons">
+    <div class="comment-content-wrapper">
+        <div class="user-avatar">
+            {% avatar comment.user 40 %}
+        </div>
+        
+        <div class="comment-content-block">
+            <div class="comment-by-line">
+                On {{ comment.date_submitted|date:"M d, Y P" }},
+                <a href="{{ comment.user.get_absolute_url }}">{% user_display comment.user %}</a>
+                said:
+            </div>
+            
+            <div class="comment-content">
+                {{ comment.comment|safe }}
+            </div>
+        </div>
+        
+        <a class="post-option post-permalink" href="{{ permalink }}">link</a>
+        <a class="post-option post-flag-link" id="flag-comment-{{ comment.id }}-link" href="">flag</a>
+        
+        <div class="flag-form-wrapper" id="flag-comment-{{ comment.id }}">
+            {% flag comment "user" %}
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#flag-comment-{{ comment.id }}-link").click(function(e) {
+                    $("#flag-comment-{{ comment.id }}").slideToggle(500);
+                    return false;
+                });
+            });
+        </script>
+        
         {% ifequal comment.user request.user %}
-            <li><a id="edit-{{ comment.id }}-link" class="post-option" href="{% url comment_edit comment.id %}">Edit</a></li>
-            <li><a class="post-option" href="{% url tc_comment_delete comment.id %}">Delete</a></li>
+            <a id="delete-comment-{{ comment.id }}-link" class="post-option delete-button" href="{% url tc_comment_delete comment.id %}">Delete</a>
+            <a id="edit-comment-{{ comment.id }}-link" class="post-option edit-button" href="{% url comment_edit comment.id %}">Edit</a>
         {% endifequal %}
-        <li><a id="reply-{{ comment.id }}-link" class="post-option" href="{% url comment_reply comment.id %}">Reply</a></li>
-    </ul>
-    <div class="clear"></div>
+        <a id="reply-comment-{{ comment.id }}-link" class="post-option reply-button" href="{% url comment_reply comment.id %}">Reply</a>
+        <div class="clear"></div>
+    </div>
 </li>

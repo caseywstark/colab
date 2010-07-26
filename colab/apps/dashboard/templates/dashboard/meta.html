@@ -76,8 +76,8 @@
         {{ datetime|date:"P M d, Y" }}
     </div>
 
-    <a class="post-permalink" href="{{ permalink }}">link</a>
-    <a class="post-flag-link" id="flag-{{ post_type.id }}-{{ post.id }}-link" href="">flag</a>
+    <a class="post-option post-permalink" href="{{ permalink }}">link</a>
+    <a class="post-option post-flag-link" id="flag-{{ post_type.id }}-{{ post.id }}-link" href="">flag</a>
     
     <div class="flag-form-wrapper" id="flag-{{ post_type.id }}-{{ post.id }}">
         {% flag post author_field %}

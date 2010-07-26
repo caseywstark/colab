@@ -11,8 +11,9 @@
 <div class="discussion-block">
     <div class="discussion-header">
         <span class="discussion-header-text">Discussion</span>
-        <span class="discussion-header-count">{{ issue.comments_count }}</span>
+        <span class="discussion-header-count">{{ comments_count }}</span>
     </div>
+    <img class="discussion-tail" src="{{ STATIC_URL }}images/discussion_tail.png">
     
     <ul class="post-list comments-list">
         {% if comments %}

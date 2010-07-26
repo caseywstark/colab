@@ -163,7 +163,34 @@ def post_meta(context, post):
 ### Shows a comment, to keep the full comment rendering in one file ###
 @register.inclusion_tag("dashboard/comment_item.html", takes_context=True)
 def show_comment(context, comment):
-    return {'comment': comment, 'request': context['request']}
+    vote_url = 'comment_vote'
+    # get vote details
+    post_type = ContentType.objects.get_for_model(comment)
+    try:
+        previous_vote = Vote.objects.get(content_type=post_type, object_id=post.id, user=context['request'].user)
+    except:
+        previous_vote = None
+    previous_up = False
+    previous_down = False
+    if previous_vote is not None:
+        if previous_vote.vote == 1:
+            previous_up = True
+            up_url = reverse(vote_url, args=[comment.id, "clear"])
+            down_url = reverse(vote_url, args=[comment.id, "down"])
+        elif previous_vote.vote == -1:
+            previous_down = True
+            up_url = reverse(vote_url, args=[comment.id, "up"])
+            down_url = reverse(vote_url, args=[comment.id, "clear"])
+    else:
+        up_url = reverse(vote_url, args=[comment.id, "up"])
+        down_url = reverse(vote_url, args=[comment.id, "down"])
+    
+    up_url += "?next="+context['request'].path
+    down_url += "?next="+context['request'].path
+    
+    return {'comment': comment, 'request': context['request'],
+        'previous_up': previous_up, 'previous_down': previous_down,
+        'up_url': up_url, 'down_url': down_url, 'permalink': comment_url(comment)}
 
 ### Links to a specific comment's id ###
 @register.simple_tag
@@ -192,8 +219,8 @@ def comment_list(context, post):
         if not comment.parent:
             branch = branch + 1
         comment.branch = branch
-    return {'comments': comments, 'comment_count': len(comments), 'post': post,
-        'request': context['request']}
+    return {'comments': comments, 'comments_count': len(comments), 'post': post,
+        'request': context['request'], 'STATIC_URL': settings.STATIC_URL} # hackish way to give STATIC_URL to the inclusion template
 
 ### Full preview of an update instance ###
 @register.inclusion_tag("dashboard/update_preview.html", takes_context=True)

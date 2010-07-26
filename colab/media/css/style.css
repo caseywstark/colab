@@ -750,14 +750,14 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 	padding: 0px 5px;
 }
 
-.post-permalink, .post-flag-link {
-    clear: both;
+.post-option {
+    float: left;
     font-size: 14px;
     color: #999 !important;
-    margin: 20px 10px 10px;
+    margin: 0 10px;
     text-decoration: none !important;
 }
-.post-permalink:hover, .post-flag-link:hover { text-decoration: underline !important; }
+.post-option:hover { text-decoration: underline !important; }
 
 /**************************************\
  * Updates
@@ -815,47 +815,62 @@ input.ac_loading {
 .results_on_deck > div { clear: both; }
 
 /**************************************\
- * Profile
+ * Discussion/Comments
 \**************************************/
 
-.profile-about-header {
-    font-size: 20px;
-    line-height: 30px;
-    text-align: center;
-    
-    width: 66%;
-    margin: 20px auto 10px;
-    border-bottom: 2px solid #E0E3E5;
+.discussion-block {
+    border-top: 2px solid #333;
+    margin-top: 20px; padding: 0;
+}
+.discussion-header {
+    font-weight: bold;
+    color: #fff !important;
+    background: #333;
+    padding: 15px 30px;
+    width: 170px;
+}
+.discussion-header-text { font-size: 16px; margin-right: 10px; }
+.discussion-header-count {
+    background-color: #999;
+    padding: 2px 4px;
+    border-radius: 4px !important;
+    -moz-border-radius: 4px !important;
+    -webkit-border-radius: 4px !important;
+}
+.discussion-tail {
+    position: relative;
+    top: 0; left: 0;
 }
 
-/**************************************\
- * Sections
-\**************************************/
-
-.section .list-title-wrapper {
-    padding: 10px 15px;
-    margin: 20px 0;
-    
-    background-color: #E0E3E5;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-}
-.section .list-sorting {
-    font-size: 18px;
+.comment-item {
+    margin: 0 0 10px;
 }
 
-/**************************************\
- * Comments
-\**************************************/
-
-.comments-wrapper .list-sorting {
-    text-align: center;
-}
-
-.add-summary {
+.comment-meta-box {
     float: left;
-    width: 200px;
+    text-align: left;
+    padding: 5px 5px;
+    background-color: #eee;
+    width: 100px;
 }
+.comment-meta-box .stat-name, .comment-meta-box .stat-button { font-size: 12px !important; }
+.comment-meta-box .stat-button { padding: 2px 4px; }
+.comment-meta-box .stat-number { font-size: 24px !important; padding: 0px; }
+
+.comment-content-wrapper {
+    border: 1px solid #ccc;
+    margin-left: 120px;
+    padding: 10px;
+}
+.comment-content-block {
+    margin-left: 60px;
+}
+.comment-by-line { font-weight: bold; }
+
+.reply-button, .edit-button, .delete-button {
+    float: right;
+}
+.delete-button { color: #C44 !important; }
 
 .level-1 { margin-left: 50px; }
 .level-2 { margin-left: 100px; }

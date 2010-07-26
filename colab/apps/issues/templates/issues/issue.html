@@ -72,9 +72,7 @@
             {% if issue.papers %}
                 <ul id="issue-paper-list">
                     {% for paper in issue.papers.all %}
-                        <li>
-                            {% paper_preview paper %}
-                        </li>
+                        {% paper_preview paper %}
                     {% endfor %}
                 </ul>
                 <div class="clear"></div>
