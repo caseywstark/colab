@@ -604,7 +604,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 .big-button, .big-button:visited {
     font-size: 16px;
-    margin: 0 0 10px 0; padding: 4px 8px;
+    margin: 10px 0 10px 0; padding: 4px 8px;
     background: #333;
     color: #fff !important;
     text-decoration: none !important;
@@ -898,6 +898,7 @@ input.ac_loading {
 \**************************************/
 
 .discussion-block {
+    clear: both;
     border-top: 2px solid #333;
     margin-top: 20px; padding: 0;
 }
