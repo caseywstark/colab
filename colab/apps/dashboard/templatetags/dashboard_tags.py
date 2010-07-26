@@ -1,6 +1,7 @@
 from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 register = template.Library()
 
@@ -96,6 +97,12 @@ def post_meta(context, post):
         previous_vote = Vote.objects.get(content_type=post_type, object_id=post.id, user=context['request'].user)
     except:
         previous_vote = None
+        
+    contributors_count = comments_count = followers_count = None
+    if isinstance(post, Issue) or isinstance(post, Paper) or isinstance(post, Feedback):
+        contributors_count = post.contributors_count
+        comments_count = post.comments_count
+        followers_count = post.followers_count
     
     if isinstance(post, Issue):
         author_field = "creator"
@@ -148,7 +155,10 @@ def post_meta(context, post):
         'the_author': post_author(post), 'datetime': post_datetime(post),
         'previous_up': previous_up, 'previous_down': previous_down,
         'up_url': up_url, 'down_url': down_url, 'author_field': author_field,
-        'permalink': permalink, 'post_type': post_type}
+        'permalink': permalink, 'post_type': post_type,
+        'is_issue': isinstance(post, Issue), 'comments_count': comments_count,
+        'followers_count': followers_count,
+        'contributors_count': contributors_count, 'STATIC_URL': settings.STATIC_URL} # hackish way to give STATIC_URL to the inclusion template
 
 ### Shows a comment, to keep the full comment rendering in one file ###
 @register.inclusion_tag("dashboard/comment_item.html", takes_context=True)

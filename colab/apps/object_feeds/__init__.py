@@ -43,6 +43,7 @@ def register(model, feed_attr='feed'):
 
     # Add feed object methods for model instances
     setattr(model, 'register_action', models.register_action)
+    setattr(model, 'user_is_following', models.user_is_following)
     
     # Set up signal receiver to manage the tree when instances of the
     # model are about to be saved.

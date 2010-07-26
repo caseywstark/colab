@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 register = template.Library()
 
-### Constructs the feed_subscription url for any object ###
+### Constructs the feed_subscription link for any object ###
 @register.inclusion_tag("feeds/follow.html", takes_context=True)
 def follow_link(context, content_object, extra_text=None):
     user = context['request'].user

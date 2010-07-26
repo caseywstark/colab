@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load tagging_tags %}
+{% load dashboard_tags %}
+
+<li class="list-item post-preview">
+    
+    <div class="list-post-block">
+        <a class="post-title" href="{{ paper.get_absolute_url }}">
+            {{ paper.title }}
+        </a>
+        
+        <div class="list-post-content">
+            {{ paper.description|truncatewords_html:50|safe }}
+        </div>
+        
+        <a class="more-link list-post-continue" href="{{ paper.get_absolute_url }}">
+            continue reading &rsaquo;
+        </a>
+    </div>
+</li>

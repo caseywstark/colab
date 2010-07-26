@@ -47,3 +47,7 @@ def truncatechar(text, length):
         return text
     else:
         return text[:length] + '...'
+
+@register.inclusion_tag("papers/preview.html", takes_context=True)
+def paper_preview(context, paper):
+    return {'paper': paper, 'request': context['request']}

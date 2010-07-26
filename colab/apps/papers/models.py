@@ -54,6 +54,8 @@ class Paper(models.Model):
     # followers
     followers_count = models.PositiveIntegerField(default=1, editable=False)
     
+    objects = QuerySetManager()
+    
     class QuerySet(QuerySet):
         def _generate_object_kwarg_dict(self, content_object, **kwargs):
             """ Generates the keyword arguments for a given ``content_object``. """

@@ -8,34 +8,19 @@
 {#{% get_threaded_comment_tree for post as comments %}#}
 {#{% get_comment_count for post as comment_count %}#}
 
-<div class="comments-wrapper">
-    <div class="section">
-        <div class="list-title-wrapper">
-            <div class="list-title">
-                Comments
-                <span>({{ comment_count }})</span>
-            </div>
-            
-            <ul class="list-sorting">
-                <li>Sort branches by:</li>
-                <li>{% anchor date_submitted "date" %}</li>
-                <li>{% anchor yeas "yeas" %}</li>
-                <li>{% anchor nays "nays" %}</li>
-            </ul>
-        </div>
-        
-        <div class="section-content">
-            <div class="clear"></div>
-            
-            <ul class="post-list comments">
-                {% if comments %}
-                    {% for comment in comments %}
-                        {% show_comment comment %}
-                    {% endfor %}
-                {% else %}
-                    <li>No comments yet</li>
-                {% endif %}
-            </ul>
-        </div>
+<div class="discussion-block">
+    <div class="discussion-header">
+        <span class="discussion-header-text">Discussion</span>
+        <span class="discussion-header-count">{{ issue.comments_count }}</span>
     </div>
+    
+    <ul class="post-list comments-list">
+        {% if comments %}
+            {% for comment in comments %}
+                {% show_comment comment %}
+            {% endfor %}
+        {% else %}
+            <li>No comments yet</li>
+        {% endif %}
+    </ul>
 </div>

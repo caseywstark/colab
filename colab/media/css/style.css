@@ -367,16 +367,9 @@ ul#messages li a { color: #693; }
     right: 23px; top: 3px;
 }
 
-.left-action {
-    float: left !important;
-}
-.left-action a {
-    padding: 6px 10px;
-}
-.right-action {
-    float: right !important;
-    padding: 6px 10px;
-}
+.left-action { float: left !important; }
+.right-action { float: right !important; }
+.left-action a, .right-action a { padding: 6px 10px; }
 
 /**************************************\
  * Body
@@ -516,7 +509,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     margin-bottom: 15px;
 }
 
-.post-title, .post-title:visited {
+.list-post-title, .list-post-title:visited {
     font-size: 16px;
     line-height: 16px;
     text-align: left;
@@ -525,7 +518,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     text-decoration: none !important;
     font-weight: bold;
 }
-.post-title:hover {
+.list-post-title:hover {
     text-decoration: underline !important;
 }
 
@@ -580,19 +573,88 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 /**************************************\
+ * Detail pages
+\**************************************/
+
+#detail-sidebar {
+    float: left;
+    margin-top: 20px; padding: 10px 10px 10px 0;
+    width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.big-button, .big-button:visited {
+    font-size: 16px;
+    margin: 0 0 10px 0; padding: 4px 8px;
+    background: #333;
+    color: #fff !important;
+    text-decoration: none !important;
+    border: 3px solid #ccc;
+    font-weight: bold;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.big-button:hover {
+    color: #94ba3c !important;
+    border-color: #94ba3c !important;
+}
+
+#detail-sidebar .meta-box {
+    margin-top: 10px;
+}
+
+.post-taxonomy-box {
+    clear: both;
+    padding-top: 20px;
+    font-weight: bold;
+    color: #999;
+}
+.post-taxonomy-list li { display: block; margin-bottom: 5px; }
+.post-taxonomy-list, .post-taxonomy-list li {
+    float: none !important;
+}
+.post-taxonomy-list {
+    margin: 0 0 0 10px;
+    list-style: none;
+}
+
+#post-content-block {
+    margin: 20px 0 10px 230px;
+}
+.post-title {
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.post-content { }
+
+/**************************************\
+ * Issue paper list
+\**************************************/
+
+#issue-papers-block {
+    
+}
+
+/**************************************\
  * Meta
 \**************************************/
     
 .preview-meta-box, .meta-box {
     float: left;
-    width: 150px;
     text-align: left;
     padding: 10px 10px;
     background-color: #eee;
     border:3px solid #ccc;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
+    border-radius: 8px;
 }
+.preview-meta-box { width: 150px; }
+.meta-box { width: 180px; }
 
 .stat-box {
     float: left;
@@ -610,100 +672,68 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     font-weight: bold;
 }
 .stat-button {
-    font-size: 20px !important;
+    border-color: transparent !important;
     font-weight: bold !important;
-    padding: 0 5px!important;
-    -moz-border-radius: 5px !important;
-    -webkit-border-radius: 5px !important;
+    padding: 2px 4px!important;
+    -moz-border-radius: 4px !important;
+    -webkit-border-radius: 4px !important;
 }
-.stat-button:hover { background-color: #AEB0B2!important; }
 .yeas { color: #94ba3c; }
 .nays { color: #c44; }
-.nay-button { color: #c44 !important; border-color: #c44 !important;}
-.nay-button:hover { color: #911 !important; border-color: #911 !important; }
-.yea-button { color: #4c4 !important; border-color: #4c4 !important; }
-.yea-button:hover { color: #191 !important; border-color: #191 !important; }
-.stat-clear, .stat-clear:hover {
-    font-size: 20px !important;
-}
+.nay-button { color: #fff !important; background-color: #c44 !important;}
+.nay-button:hover { color: #fff !important; background-color: #c44 !important; border-color: #ff9966 !important; }
+.yea-button { color: #fff !important; background-color: #94ba3c !important; }
+.yea-button:hover { color: #fff !important; background-color: #94ba3c !important; border-color: #ccff66 !important; }
+.stat-clear, .stat-clear:hover {}
 
+.post-status-block {
+    clear: both;
+    border-top: 1px solid #ccc;
+}
+.post-status {
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}   
+
+.post-user-block, .post-date {
+    font-size: 12px;
+}
+.post-user-block {
+    clear: both;
+    margin: 5px 0px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+.post-user-link {
+    display:block;
+    text-decoration:none!important;
+    padding: 5px 10px;
+}
+.post-user-link:hover {
+ 	background-color:#fff;
+ 	color:#193F66!important;
+}
+.anonymous-user { }
 .user-avatar {
     float: left;
     width: 40px;
     height: 40px;
-    border: 3px solid #999999;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-}
-.user-avatar:hover {
-    border: 3px solid #cccccc;
-}
-.big-avatar {
-    float: left;
-    margin: 0 20px;
-    width: 80px;
-    height: 80px;
-    border: 3px solid #999999;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-}
-.big-avatar:hover {
-    border: 3px solid #cccccc;
-}
-.user-name, .post-date {
-    font-size: 12px;
+    border: 3px solid #ccc;
 }
 .post-date{
     clear: both;
 	padding: 0px 5px;
 }
-.user-name {
+
+.post-permalink, .post-flag-link {
     clear: both;
-    margin: 5px 0px;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
- 	text-decoration:none!important;
- 	display:block;
- 	padding:0px 5px;
+    font-size: 14px;
+    color: #999 !important;
+    margin: 20px 10px 10px;
+    text-decoration: none !important;
 }
-.user-name:hover {
- 	background-color:#fff;
- 	color:#193F66!important;
-}
-.anonymous-user {
-    
-}
-
-/**************************************\
- * Post
-\**************************************/
-
-.post-buttons {
-    float: right;
-    padding: 5px 10px;
-    margin: 10px;
-    
-    background-color: #E0E3E5;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-}
-.post-buttons li {
-    display: inline;
-    float: left;
-}
-.post-buttons li a {
-    padding: 4px 8px;
-    text-decoration: none;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-}
-.post-buttons li a:hover {
-    background: #E0E3E5;
-}
-
-.post-content {
-    margin-left: 200px;
-}
+.post-permalink:hover, .post-flag-link:hover { text-decoration: underline !important; }
 
 /**************************************\
  * Updates

@@ -1,32 +1,26 @@
 {% extends "issues/base.html" %}
 
 {% load i18n %}
-{% load object_feeds_tags %}
-{% load theme_tags %}
-{% load papers_tags %}
 
 {% block actions %}
     {% if user.is_authenticated %}
-        {% if not issue.resolved %}
-            {% ifequal issue.creator user %}
+        {% ifequal issue.creator user %}
+            {% if not issue.resolved %}
                 <li class="left-action">
                     <a href="{% url issue_resolve issue.slug %}">Resolve</a>
                 </li>
-            {% endifequal %}
-        {% endif %}
-        <li class="right-action">
-            {% follow_link issue "this Issue" %}
-        </li>
-        {% if issue.private %}
+            {% endif %}
             <li class="right-action">
-                <a href="{% url issue_invite issue.slug %}">Invite Contributors</a>
+                <a class="post-option" href="{% url issue_delete issue.slug %}">Delete</a>
             </li>
-        {% endif %}
-        <li class="left-action">
-            <a href="{% add_paper_url issue %}">Add a Paper</a>
+            <li class="right-action">
+                <a class="post-option" href="{% url issue_edit issue.slug %}">Edit</a>
+            </li>
+        {% endifequal %}
+        <li class="right-action">
+            <a href="{% url issue_invite issue.slug %}">Invite Contributors</a>
         </li>
     {% else %}
         Sign in to access actions.
     {% endif %}
 {% endblock %}
-

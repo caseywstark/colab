@@ -24,6 +24,13 @@ def register_action(self, user, action, content_object):
         action=the_action, content_object=content_object,
         action_description=the_action.description)
 
+def user_is_following(self, the_user):
+    try:
+        Subscription.objects.get(feed=self.feed, user=the_user)
+        return True
+    except Subscription.DoesNotExist:
+        return False
+        
 ### End Code ###
 
 class Feed(models.Model):
@@ -133,7 +140,7 @@ def comment_action_update(sender, instance, created, **kwargs):
 
 post_save.connect(comment_action_update, sender=ThreadedComment)
 def followers_count_update(sender, instance, created, **kwargs):
-    obj = instance.feed.content_object
+    obj = instance.feed.feed_object
     if hasattr(obj, 'followers_count'):
         if created:
             obj.followers_count = obj.followers_count + 1

@@ -27,11 +27,13 @@
     <div class="clear"></div>
     
     {% if show_author %}
-        <div class="post-user">
+        <div class="post-user-block">
             {% ifequal the_user "anonymous" %}
-                <span class="anonymous-user user-name">Anonymous</span>
+                <span class="anonymous-user post-user-name">Anonymous</span>
             {% else %}
-                <a class="user-name" href="{{ the_user.get_absolute_url }}">{% user_display the_user %}</a>
+                <a class="post-user-link" href="{{ the_user.get_absolute_url }}">
+                    <span class="post-user-name">{% user_display the_user %}</span>
+                </a>
             {% endifequal %}
         </div>
     {% endif %}

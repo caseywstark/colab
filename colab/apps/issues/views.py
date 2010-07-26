@@ -129,7 +129,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     if the_discipline:
         discipline_filters = the_discipline.get_children()
     else:
-        discipline_filters = Discipline.objects.root_nodes()
+        discipline_filters = Discipline.tree.root_nodes()
     if the_tag:
         tag_filters = Tag.objects.related_for_model(the_tag, Issue)
     else:
@@ -199,6 +199,7 @@ def issue(request, slug=None, template_name="issues/issue.html"):
     
     return render_to_response(template_name, {
         'issue': issue,
+        'following': issue.user_is_following(request.user),
         'comment_form': comment_form,
     }, context_instance=RequestContext(request))
 

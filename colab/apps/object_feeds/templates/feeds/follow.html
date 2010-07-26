@@ -3,9 +3,9 @@
 {% spaceless %}
 <a href="{{ subscription_url }}">
     {% if subscription %}
-        Unfollow
+        - Unfollow
     {% else %}
-        Follow
+        + Follow
     {% endif %}
     {% if extra_text %} {{ extra_text }}{% endif %}
 </a>{% endspaceless %}
