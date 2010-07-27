@@ -138,7 +138,8 @@ from threadedcomments.models import ThreadedComment
 def comment_action_update(sender, instance, created, **kwargs):
     object_feed = getattr(instance.content_object, 'feed', None)
     if object_feed and created:
-        instance.content_object.register_action(instance.user, 'comment', content_object=instance)
+        action_slug = "discussion-%s" % instance.content_object._meta.verbose_name.lower()
+        instance.content_object.register_action(instance.user, action_slug, content_object=instance)
 
 post_save.connect(comment_action_update, sender=ThreadedComment)
 def followers_count_update(sender, instance, created, **kwargs):

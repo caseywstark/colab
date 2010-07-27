@@ -19,7 +19,7 @@
             continue reading &rsaquo;
         </a>
         
-        {% if issue.disciplines %}
+        {% if issue.disciplines.any %}
             <div class="post-disciplines-list">
                 Posted under
                 {% for discipline in issue.disciplines.all %}

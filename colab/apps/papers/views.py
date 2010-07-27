@@ -31,10 +31,10 @@ def create(request, content_type=None, object_id=None, form_class=PaperForm, tem
         paper, revision = form.save(request)
         
         # Updates and messages
-        paper.register_action(request.user, 'create', revision)
+        paper.register_action(request.user, 'create-paper', revision)
         
         if hasattr(paper.content_object, 'feed'):
-            paper.content_object.register_action(request.user, 'add paper', paper)
+            paper.content_object.register_action(request.user, 'add-paper-issue', paper)
         
         user_message = u"Your paper was created successfully."
         request.user.message_set.create(message=user_message)
@@ -67,7 +67,7 @@ def edit(request, paper_id=None, slug=None, revision_number=None, form_class=Pap
         form.editor = request.user
         paper, revision = form.save(request)
         
-        paper.register_action(request.user, 'edit', revision)
+        paper.register_action(request.user, 'edit-paper', revision)
         
         user_message = u"Your paper was edited successfully."
         request.user.message_set.create(message=user_message)
