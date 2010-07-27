@@ -52,6 +52,9 @@ class Feedback(models.Model):
     page_specific = models.BooleanField(default=False, help_text=_('Specific to this page?'))
     page = models.CharField(max_length=255, blank=True)
     
+    # followers
+    followers_count = models.PositiveIntegerField(default=1, editable=False)
+    
     contributor_users = models.ManyToManyField(User,
         through = "FeedbackContributor",
         verbose_name = _("contributor"),

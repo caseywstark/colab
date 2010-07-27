@@ -71,7 +71,7 @@ def submit(request, form_class=FeedbackForm, template_name="feedback/submit.html
             feedback.user = request.user
         feedback.save()
         
-        feedback.register_action(request.user, 'create', feedback)
+        feedback.register_action(request.user, 'create-feedback', feedback)
         
         return HttpResponseRedirect(feedback.get_absolute_url())
     
