@@ -51,19 +51,24 @@
                 </p>
             {% endif %}
         </div>
+    </div>
         
-        <div id="dashboard-subscriptions-block">
-            <div id="dashboard-subscriptions-header">My Subscriptions</div>
-            
-            {% if subscriptions %}
-                <ul id="dashboard-subscriptions-list">
-                    {% for subscription in subscriptions %}
-                        <li><a href="{% url feeds_subscription subscription.id %}">
-                            {{ subscription.feed.feed_title }}
-                        </a></li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
+    <div id="dashboard-subscriptions-block">
+        <div id="dashboard-subscriptions-header">My Subscriptions</div>
+        
+        {% if subscriptions %}
+            <ul id="dashboard-subscriptions-list">
+                {% for subscription in subscriptions %}
+                    <li>
+                        <a class="subscription-object-link" href="{{ subscription.feed.feed_object.get_absolute_url }}">
+                            {{ subscription.feed.title }}
+                        </a>
+                        <a class="subscription-edit-button" href="{% url feeds_subscription subscription.id %}">
+                            <img src="{{ STATIC_URL }}images/feeds/settings.png" alt="edit">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 {% endblock %}

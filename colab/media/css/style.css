@@ -843,8 +843,39 @@ input[type="submit"]:hover, input[type="submit"]:hover {
  * Dashboard
 \**************************************/
 
-#dashboard-feed-title {
-    margin-top: 20px;
+#dashboard-feed-block {
+    float: left;
+    width: 500px;
+    margin: 0 0 10px;
+    min-height: 400px;
+}
+
+#dashboard-subscriptions-block {
+    margin: 20px 0 10px 620px;
+    min-height: 400px;
+}
+#dashboard-subscriptions-header {
+    font-size: 20px; line-height: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#dashboard-subscriptions-list {
+    list-style: none;
+}
+#dashboard-subscriptions-list li {
+    margin: 0; padding: 0;
+}
+#dashboard-subscriptions-list a {
+    
+}
+
+.subscription-edit-button {
+    float: right;
+    padding: 5px;
+}
+.subscription-edit-button:hover {
+    background: #ccc !important;
 }
 
 /**************************************\
