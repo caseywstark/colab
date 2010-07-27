@@ -11,21 +11,31 @@ def show_update(context, update):
     update_object = update.content_object
     icon = object_content = None
     
+    feed_object_link = '<a class="update-object" href="%s">%s</a>' % (feed_object.get_absolute_url(), feed_object)
+    update_object_link = None
+    
     if update.action_description.startswith('create'):
         icon = 'create'
+        update_line = update.action_description % feed_object_link
     elif update.action_description.startswith('edit'):
         icon = 'edit'
+        update_line = update.action_description % feed_object_link
     elif update.action_description.startswith('added to the discussion'):
         icon = 'comment'
+        update_line = update.action_description % feed_object_link
     elif update.action_description.startswith('added the paper'):
         icon = 'paper'
+        update_object_link = '<a class="update-object" href="%s">%s</a>' % (update_object.get_absolute_url(), update_object)
+        update_line = update.action_description % (update_object_link, feed_object_link)
     elif update.action_description.startswith('started following'):
         icon = 'follow'
+        update_line = update.action_description % feed_object_link
     else:
         icon = 'settings'
+        update_line = update.action_description % feed_object_link
     
     return {'update': update, 'update_user': update.user, 'icon': icon,
-        'feed_object': feed_object, 'update_object': update_object,
+        'feed_object': feed_object, 'update_object': update_object, 'update_line': update_line,
         'update_content': update.update_content, 'STATIC_URL': settings.STATIC_URL}
 
 ### Constructs the feed_subscription link for any object ###

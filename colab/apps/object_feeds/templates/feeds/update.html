@@ -7,11 +7,11 @@
     
     <div class="update-content-block">
         <div class="update-header">
-            <a href="{{ update_user.get_absolute_url }}">{% user_display update_user %}</a>
-            {{ update.action_description }} <a href="{{ feed_object.get_absolute_url }}">{{ feed_object }}</a>
+            <a class="update-user" href="{{ update_user.get_absolute_url }}">{% user_display update_user %}</a>
+            {{ update_line|safe }}
         </div>
         <div class="update-time">
-            {{ update.created|date:"P M d, Y" }}
+            {{ update.created|timesince }} ago
         </div>
         
         {% if update_content %}

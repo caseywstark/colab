@@ -107,4 +107,10 @@ class FeedbackContributor(models.Model):
     class Meta:
         unique_together = [("user", "feedback")]
 
+from django.db.models.signals import pre_save, post_save
 
+def feedback_feed_title_update(sender, instance, created, **kwargs):
+    instance.feed.title = instance.title
+    instance.feed.save()
+
+post_save.connect(feedback_feed_title_update, sender=Feedback)

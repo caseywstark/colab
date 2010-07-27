@@ -851,25 +851,28 @@ input[type="submit"]:hover, input[type="submit"]:hover {
  * Updates
 \**************************************/
 
-.update {
-    
-}
-.update-description {
-    font-size: bold;
-}
-.update-object {
-    margin: 10px 10px 0 50px;
-}
-.update-date {
-    font-weight: bold;
-    color: #999;
+.update-item { margin-bottom: 10px; }
+
+.feed-icon {
+    float: left;
 }
 
-.vote-update-box {
-    float: left;
-    margin-right: 20px;
-    font-size: 45px;
+.update-content-block {
+    margin-left: 30px;
+}
+.update-header { }
+.update-user, .update-object {
     font-weight: bold;
+    text-decoration: none !important;
+}
+.update-user:hover, .update-object:hover { text-decoration: underline !important; }
+.update-user { color: #494d4f !important; }
+.update-object { color: #657f98 !important; }
+
+.update-time { font-weight: bold; color: #abaeb0 !important; }
+
+.update-content {
+    margin: 5px 0 0 30px;
 }
 
 /**************************************\

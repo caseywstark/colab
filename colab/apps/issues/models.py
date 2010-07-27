@@ -100,3 +100,10 @@ class IssueContributor(models.Model):
     class Meta:
         unique_together = [("user", "issue")]
 
+from django.db.models.signals import pre_save, post_save
+
+def issue_feed_title_update(sender, instance, created, **kwargs):
+    instance.feed.title = instance.title
+    instance.feed.save()
+
+post_save.connect(issue_feed_title_update, sender=Issue)

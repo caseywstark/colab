@@ -82,3 +82,10 @@ def create_researcher(sender, instance=None, **kwargs):
     researcher, created = Researcher.objects.get_or_create(user=instance)
 
 post_save.connect(create_researcher, sender=User)
+
+def researcher_feed_title_update(sender, instance, created, **kwargs):
+    instance.feed.title = instance.name
+    instance.feed.save()
+
+post_save.connect(researcher_feed_title_update, sender=Researcher)
+

@@ -119,3 +119,11 @@ class PaperContributor(models.Model):
     class Meta:
         unique_together = [("user", "paper")]
 
+
+from django.db.models.signals import pre_save, post_save
+
+def paper_feed_title_update(sender, instance, created, **kwargs):
+    instance.feed.title = instance.title
+    instance.feed.save()
+
+post_save.connect(paper_feed_title_update, sender=Paper)

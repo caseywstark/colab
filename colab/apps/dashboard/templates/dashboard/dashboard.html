@@ -22,9 +22,7 @@
                 {% if updates.paginator.count > 0 %}
                     <ul id="updates-list">
                         {% for update in updates.object_list %}
-                            <li class="update-item list-item">
-                                {% show_update update %}
-                            </li>
+                            {% show_update update %}
                         {% endfor %}
                     </ul>
                     

@@ -43,3 +43,12 @@ except mptt.AlreadyRegistered:
     pass
 
 object_feeds.register(Discipline)
+
+
+from django.db.models.signals import pre_save, post_save
+
+def discipline_feed_title_update(sender, instance, created, **kwargs):
+    instance.feed.title = instance.name
+    instance.feed.save()
+
+post_save.connect(discipline_feed_title_update, sender=Discipline)

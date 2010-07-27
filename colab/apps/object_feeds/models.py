@@ -40,7 +40,7 @@ class Feed(models.Model):
     object_id = models.PositiveIntegerField(null=True, blank=True) # needs to allow null because we create the feed right before the feed_object instance
     feed_object = generic.GenericForeignKey("content_type", "object_id")
     
-    feed_title = models.CharField(max_length=255) # keep it synced with the feed_object title somehow...
+    title = models.CharField(max_length=255) # keep it synced with the feed_object title somehow...
     
     subscriber_users = models.ManyToManyField(User, through="Subscription", verbose_name=_('subscribers'))
     
@@ -142,6 +142,7 @@ def comment_action_update(sender, instance, created, **kwargs):
         instance.content_object.register_action(instance.user, action_slug, content_object=instance)
 
 post_save.connect(comment_action_update, sender=ThreadedComment)
+
 def followers_count_update(sender, instance, created, **kwargs):
     obj = instance.feed.feed_object
     if hasattr(obj, 'followers_count'):
