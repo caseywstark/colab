@@ -98,7 +98,31 @@
             <div id="profile-activity-header" class="profile-content-header">Latest Activity</div>
             
             <div id="profile-activity-content">
-                
+                {% if updates.paginator.count > 0 %}
+                    <ul id="updates-list">
+                        {% for update in updates.object_list %}
+                            {% show_update update %}
+                        {% endfor %}
+                    </ul>
+                    
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if updates.has_previous %}
+                                <a href="?page={{ updates.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ updates.number }} of {{ updates.paginator.num_pages }}
+                            </span>
+
+                            {% if updates.has_next %}
+                                <a href="?page={{ updates.next_page_number }}">next</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% else %}
+                    <p>No activity, yet.</p>
+                {% endif %}
             </div>
         </div>
         

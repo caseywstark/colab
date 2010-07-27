@@ -128,10 +128,28 @@ def researcher(request, username=None, myself=False, template_name="people/resea
     
     researcher = the_user.get_profile()
     
+    updates = researcher.feed.updates.order_by('-created')
+    
+    # Paginate the list
+    paginator = Paginator(updates, 20) # Show 20 updates per page
+    
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page is out of range, deliver last page of results.
+    try:
+        updates = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        updates = paginator.page(paginator.num_pages)
+    
     return render_to_response(template_name, {
         "is_me": is_me,
         "the_user": the_user,
         "researcher": researcher,
+        'updates': updates,
     }, context_instance=RequestContext(request))
 
 
