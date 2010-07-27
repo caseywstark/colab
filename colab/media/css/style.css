@@ -479,9 +479,16 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     white-space: nowrap;
     overflow: hidden;
 }
+.filter-parent {
+    margin-left: 10px;
+}
+.set-filter {
+    font-weight: bold;
+    margin-left: 10px;
+}
 .filter-list {
     list-style: none;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 #list-block {

@@ -127,13 +127,13 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     
     # get filter querysets
     if the_discipline:
-        discipline_filters = the_discipline.get_children()
+        discipline_filters = the_discipline.get_children()[:10]
     else:
-        discipline_filters = Discipline.tree.root_nodes()
+        discipline_filters = Discipline.tree.root_nodes()[:10]
     if the_tag:
-        tag_filters = Tag.objects.related_for_model(the_tag, Issue)
+        tag_filters = Tag.objects.related_for_model(the_tag, Issue)[:10]
     else:
-        tag_filters = Tag.objects.usage_for_model(Issue)
+        tag_filters = Tag.objects.usage_for_model(Issue)[:10]
     
     # Figure out sorting to replace the title
     list_title = ''
@@ -182,6 +182,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
         'mine': mine,
         'search_terms': search_terms, 'the_discipline': the_discipline,
         'discipline_filters': discipline_filters, 'tag_filters': tag_filters,
+        'the_tag': the_tag,
         'sort': sort, 'direction': direction,
         'list_title': list_title,
     }, context_instance=RequestContext(request))

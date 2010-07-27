@@ -31,9 +31,14 @@ def persist_getvars(request):
 @register.simple_tag
 def filter_url(request, the_filter, the_value):
     getvars = request.GET.copy()
-    if len(getvars.keys()) > 0:
-        return "%s?%s&%s=%s" % (request.path, getvars.urlencode(), the_filter, the_value)
-    return "%s?%s=%s" % (request.path, the_filter, the_value)
+    getvars[the_filter] = the_value
+    return "%s?%s" % (request.path, getvars.urlencode())
+
+@register.simple_tag
+def remove_filter_url(request, the_filter):
+    getvars = request.GET.copy()
+    del getvars[the_filter]
+    return "%s?%s" % (request.path, getvars.urlencode())
 
 @register.simple_tag
 def filter_link(request, the_filter, the_value, the_text):
