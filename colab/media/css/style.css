@@ -680,6 +680,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 #issue-paper-add {
+    display: block;
+    width: 120px;
     margin: 10px;
 }
 
@@ -972,6 +974,11 @@ input.ac_loading {
     top: 0; left: 0;
 }
 
+.no-comments {
+    font-size: 20px;
+    margin-left: 50px;
+}
+
 .comment-item {
     margin: 0 0 10px;
 }
@@ -1022,6 +1029,14 @@ input.ac_loading {
 .level-18 { margin-left: 250px; }
 .level-19 { margin-left: 250px; }
 .level-20 { margin-left: 250px; }
+
+.reply-wrapper {
+    margin: 40px 0 0 20px;
+}
+.add-to-discussion {
+    font-weight: bold;
+    margin-bottom: 0;
+}
 
 /**************************************\
  * Homepage

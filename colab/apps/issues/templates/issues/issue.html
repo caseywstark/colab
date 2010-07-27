@@ -77,8 +77,9 @@
                 </ul>
                 <div class="clear"></div>
             {% else %}
-                <div id="issue-paper-list" class="no-papers">No papers yet.</div>
+                <div id="issue-paper-list" class="no-papers">No papers, yet.</div>
             {% endif %}
+            
             <a id="issue-paper-add" class="big-button" href="{% add_paper_url issue %}">
                 + Add a paper
             </a>
@@ -88,6 +89,9 @@
     {% comment_list issue %}
     
     <div class="reply-wrapper">
+        <p class="add-to-discussion">
+            Add to the discussion on this issue:
+        </p>
         {% if user.is_authenticated %}
         <form class="reply-form uniForm" id="reply-to-issue" method="POST" action="{% get_comment_url issue %}">{% csrf_token %}
             <fieldset class="inlineLabels">
