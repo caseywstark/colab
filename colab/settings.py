@@ -22,7 +22,7 @@ INTERNAL_IPS = [
 ]
 
 ADMINS = [
-    ("Casey Stark", "casey@thisiscolab.com"),
+    ("Casey Stark", "admin@colabscience.com"),
 ]
 
 MANAGERS = ADMINS
@@ -243,7 +243,7 @@ else:
 
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
-CONTACT_EMAIL = "casey@thisiscolab.com"
+CONTACT_EMAIL = "admin@colabscience.com"
 SITE_NAME = "CoLab"
 LOGIN_URL = "/account/login/"
 LOGIN_REDIRECT_URLNAME = "what_next"

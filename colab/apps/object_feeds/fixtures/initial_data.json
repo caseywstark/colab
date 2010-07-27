@@ -1,10 +1,10 @@
-[ 
+[
     {
         "pk": 1, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 6, 
             "description": "followed the researcher %s", 
+            "content_type": 6, 
             "slug": "follow-researcher"
         }
     }, 
@@ -12,8 +12,8 @@
         "pk": 2, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 53, 
             "description": "edited the discipline %s", 
+            "content_type": 51, 
             "slug": "edit-discipline"
         }
     }, 
@@ -21,8 +21,8 @@
         "pk": 3, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 53, 
-            "description": "added an issue to the discipline %s",
+            "description": "added an issue to the discipline %s", 
+            "content_type": 51, 
             "slug": "add-issue-discipline"
         }
     }, 
@@ -30,26 +30,26 @@
         "pk": 4, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 53, 
             "description": "added the expertise %s", 
+            "content_type": 51, 
             "slug": "add-expertise"
         }
-    },
+    }, 
     {
         "pk": 5, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 53, 
             "description": "followed the discipline %s", 
+            "content_type": 51, 
             "slug": "follow-discipline"
         }
-    },  
+    }, 
     {
         "pk": 6, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 64, 
             "description": "created the feedback %s", 
+            "content_type": 60, 
             "slug": "create-feedback"
         }
     }, 
@@ -57,8 +57,8 @@
         "pk": 7, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 64, 
             "description": "edited the feedback %s", 
+            "content_type": 60, 
             "slug": "edit-feedback"
         }
     }, 
@@ -66,8 +66,8 @@
         "pk": 8, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 64, 
             "description": "added to the discussion of the feedback %s", 
+            "content_type": 60, 
             "slug": "discussion-feedback"
         }
     }, 
@@ -75,8 +75,8 @@
         "pk": 9, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 64, 
-            "description": "resolved the feedback %s",
+            "description": "resolved the feedback %s", 
+            "content_type": 60, 
             "slug": "resolve-feedback"
         }
     }, 
@@ -84,8 +84,8 @@
         "pk": 10, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 64, 
-            "description": "followed the feedback %s",
+            "description": "followed the feedback %s", 
+            "content_type": 60, 
             "slug": "follow-feedback"
         }
     }, 
@@ -93,8 +93,8 @@
         "pk": 11, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 55, 
             "description": "created the issue %s", 
+            "content_type": 53, 
             "slug": "create-issue"
         }
     }, 
@@ -102,8 +102,8 @@
         "pk": 12, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 55, 
             "description": "edited the issue %s", 
+            "content_type": 53, 
             "slug": "edit-issue"
         }
     }, 
@@ -111,17 +111,17 @@
         "pk": 13, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 55, 
             "description": "added to the discussion of the issue %s", 
+            "content_type": 53, 
             "slug": "discussion-issue"
         }
     }, 
     {
         "pk": 14, 
         "model": "object_feeds.action", 
-        "fields": { 
-            "content_type": 55, 
+        "fields": {
             "description": "added the paper %s to the issue %s", 
+            "content_type": 53, 
             "slug": "add-paper-issue"
         }
     }, 
@@ -129,8 +129,8 @@
         "pk": 15, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 55, 
             "description": "resolved the issue %s", 
+            "content_type": 53, 
             "slug": "resolve-issue"
         }
     }, 
@@ -138,26 +138,26 @@
         "pk": 16, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 55, 
             "description": "followed the issue %s", 
+            "content_type": 53, 
             "slug": "follow-issue"
         }
     }, 
     {
         "pk": 17, 
         "model": "object_feeds.action", 
-        "fields": { 
-            "content_type": 57, 
+        "fields": {
             "description": "created the paper %s", 
+            "content_type": 55, 
             "slug": "create-paper"
         }
     }, 
     {
         "pk": 18, 
         "model": "object_feeds.action", 
-        "fields": {            
-            "content_type": 57, 
+        "fields": {
             "description": "edited the paper %s", 
+            "content_type": 55, 
             "slug": "edit-paper"
         }
     }, 
@@ -165,8 +165,8 @@
         "pk": 19, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 57, 
             "description": "added to the discussion of the paper %s", 
+            "content_type": 55, 
             "slug": "discussion-paper"
         }
     }, 
@@ -174,8 +174,8 @@
         "pk": 20, 
         "model": "object_feeds.action", 
         "fields": {
-            "content_type": 57, 
             "description": "followed the paper %s", 
+            "content_type": 55, 
             "slug": "follow-paper"
         }
     }
