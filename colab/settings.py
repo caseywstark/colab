@@ -158,7 +158,6 @@ INSTALLED_APPS = [
     "django_openid",
     "emailconfirmation",
     "django_extensions",
-    "robots",
     "mailer",
     "messages",
     "announcements",
