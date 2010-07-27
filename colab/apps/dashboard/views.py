@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
 from django.conf import settings
+from django.core.paginator import Paginator
 
 from account.forms import SignupForm
 from threadedcomments.models import ThreadedComment
@@ -64,12 +65,26 @@ def dashboard(request, mine=True, username=None):
     feeds = [sub.feed for sub in subscriptions]
     updates = Update.objects.filter(feed__in=feeds).order_by('-created')
     
+    # Paginate the list
+    paginator = Paginator(updates, 20) # Show 20 updates per page
+    
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page is out of range, deliver last page of results.
+    try:
+        updates = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        updates = paginator.page(paginator.num_pages)
+    
     return render_to_response('dashboard/dashboard.html', {
         'the_user': the_user,
         'is_me': is_me,
         'subscriptions': subscriptions,
         'feeds': feeds,
-        'feed_count': subscriptions.count(),
         'updates': updates,
         }, context_instance=RequestContext(request)
     )

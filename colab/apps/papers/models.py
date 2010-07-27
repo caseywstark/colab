@@ -12,14 +12,6 @@ from tagging.fields import TagField
 
 import object_feeds
 
-
-class QuerySetManager(models.Manager):
-	def get_query_set(self):
-		return self.model.QuerySet(self.model)
-		
-	def __getattr__(self, attr, *args):
-		return getattr(self.get_query_set(), attr, *args)
-
 class Paper(models.Model):
     """ A formal write-up of results. """
     
@@ -53,19 +45,6 @@ class Paper(models.Model):
     comments_count = models.PositiveIntegerField(default=0, editable=False)
     # followers
     followers_count = models.PositiveIntegerField(default=1, editable=False)
-    
-    objects = QuerySetManager()
-    
-    class QuerySet(QuerySet):
-        def _generate_object_kwarg_dict(self, content_object, **kwargs):
-            """ Generates the keyword arguments for a given ``content_object``. """
-            
-            kwargs['content_type'] = ContentType.objects.get_for_model(content_object)
-            kwargs['object_id'] = getattr(content_object, 'pk', getattr(content_object, 'id'))
-            return kwargs
-        
-        def get_for_object(self, content_object, **kwargs):
-            return self.filter(**self._generate_object_kwarg_dict(content_object, **kwargs))
     
     class Meta:
         app_label = "papers"
@@ -109,19 +88,6 @@ class PaperRevision(models.Model):
     yeas = models.PositiveIntegerField(default=0, editable=False)
     nays = models.PositiveIntegerField(default=0, editable=False)
     votes = models.PositiveIntegerField(default=0, editable=False)
-
-    objects = QuerySetManager()
-    
-    class QuerySet(QuerySet):
-        def _generate_object_kwarg_dict(self, content_object, **kwargs):
-            """ Generates the keyword arguments for a given ``content_object``. """
-            
-            kwargs['content_type'] = ContentType.objects.get_for_model(content_object)
-            kwargs['object_id'] = getattr(content_object, 'pk', getattr(content_object, 'id'))
-            return kwargs
-        
-        def get_for_object(self, content_object, **kwargs):
-            return self.filter(**self._generate_object_kwarg_dict(content_object, **kwargs))
 
     class Meta:
         verbose_name = _(u'Paper revision')

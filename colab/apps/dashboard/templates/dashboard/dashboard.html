@@ -12,31 +12,60 @@
 {% endblock %}
 
 {% block body %}
-    
-    {% if subscriptions %}
-        <p>
-            You are subscribed to <a href="{% url my_feeds %}">{{ feed_count }} feeds</a>.
-        </p>
+    <div id="dashboard-feed-block">
+        <h1 id="dashboard-feed-title" class="post-title">
+            Live Feed
+        </h1>
         
-        {% autopaginate updates %}
-        {% paginate %}
+        <div id="dashboard-feed">
+            {% if subscriptions %}
+                {% if updates.paginator.count > 0 %}
+                    <ul id="updates-list">
+                        {% for update in updates.object_list %}
+                            <li class="update-item list-item">
+                                {% show_update update %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if updates.has_previous %}
+                                <a href="?page={{ updates.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ updates.number }} of {{ updates.paginator.num_pages }}
+                            </span>
+
+                            {% if updates.has_next %}
+                                <a href="?page={{ updates.next_page_number }}">next</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                    
+                {% else %}
+                    <p>No updates in these feeds yet!</p>
+                {% endif %}
+            {% else %}
+                <p class="no-subscriptions">
+                    You are not subscribed to any feeds.
+                </p>
+            {% endif %}
+        </div>
         
-        {% if updates %}
-            <ul id="update-list">
-                {% for update in updates %}
-                <li class="update list-item">
-                    {% update_preview update %}
-                </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No updates in these feeds yet!</p>
-        {% endif %}
-        
-        {% paginate %}
-        
-    {% else %}
-        <p>You are not subscribed to any feeds.</p>
-    {% endif %}
-    
+        <div id="dashboard-subscriptions-block">
+            <div id="dashboard-subscriptions-header">My Subscriptions</div>
+            
+            {% if subscriptions %}
+                <ul id="dashboard-subscriptions-list">
+                    {% for subscription in subscriptions %}
+                        <li><a href="{% url feeds_subscription subscription.id %}">
+                            {{ subscription.feed.feed_title }}
+                        </a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

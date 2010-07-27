@@ -32,7 +32,7 @@ def create(request, form_class=IssueForm, template_name="issues/create.html"):
         issue.save()
         issue_form.save_m2m() # to save disciplines after commit=False
         
-        issue.register_action(request.user, 'create', issue)
+        issue.register_action(request.user, 'create-issue', issue)
         
         issue_contributor = IssueContributor(issue=issue, user=request.user)
         issue.contributors.add(issue_contributor)
@@ -56,7 +56,7 @@ def edit(request, slug=None, form_class=IssueForm, template_name="issues/edit.ht
     if issue_form.is_valid():
         issue = issue_form.save()
         
-        issue.register_action(request.user, 'edit', issue)
+        issue.register_action(request.user, 'edit-issue', issue)
         
         return HttpResponseRedirect(issue.get_absolute_url())
     
@@ -199,7 +199,7 @@ def issue(request, slug=None, template_name="issues/issue.html"):
     
     return render_to_response(template_name, {
         'issue': issue,
-        'following': issue.user_is_following(request.user),
+        'following': issue.is_user_following(request.user),
         'comment_form': comment_form,
     }, context_instance=RequestContext(request))
 
@@ -214,7 +214,7 @@ def resolve(request, slug=None, template_name="issues/resolve.html"):
     if resolution_form.is_valid():
         resolution = resolution_form.save()
         
-        issue.register_action(request.user, 'resolve', resolution)
+        issue.register_action(request.user, 'resolve-issue', resolution)
         
         return HttpResponseRedirect(issue.get_absolute_url())
     

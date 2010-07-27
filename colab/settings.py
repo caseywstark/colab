@@ -188,7 +188,6 @@ INSTALLED_APPS = [
     "analytics",
     "account",
     "signup_codes",
-    "tag_app",
     
     # extra
     "django.contrib.comments",
@@ -198,7 +197,6 @@ INSTALLED_APPS = [
     "tinymce",
     "oauth_access",
     "biblion",
-    "south",
     
     # custom
     "about",
@@ -207,7 +205,6 @@ INSTALLED_APPS = [
     "people",
     "issues",
     "papers",
-    "summaries",
     "dashboard",
     "feedback",
     

@@ -1,4 +1,0 @@
-{% load account_tags %}
-
-{{ update.created|date:"M d, Y P" }}
-<a href="{{ user.get_absolute_url }}">{% user_display update.user %}</a> {{ update.action_description }} <a href="{{ update.content_object.get_absolute_url }}">{{ update.content_object }}</a>

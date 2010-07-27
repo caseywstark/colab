@@ -43,34 +43,9 @@ def register(model, feed_attr='feed'):
 
     # Add feed object methods for model instances
     setattr(model, 'register_action', models.register_action)
-    setattr(model, 'user_is_following', models.user_is_following)
+    setattr(model, 'is_user_following', models.is_user_following)
     
     # Set up signal receiver to manage the tree when instances of the
     # model are about to be saved.
     model_signals.pre_save.connect(pre_save, sender=model)
     model_signals.post_save.connect(post_save, sender=model)
-    
-    
-    """
-    # Add a custom tree manager
-    TreeManager(parent_attr, left_attr, right_attr, tree_id_attr,
-                level_attr).contribute_to_class(model, tree_manager_attr)
-    setattr(model, '_tree_manager', getattr(model, tree_manager_attr))
-
-    # Wrap the model's delete method to manage the tree structure before
-    # deletion. This is icky, but the pre_delete signal doesn't currently
-    # provide a way to identify which model delete was called on and we
-    # only want to manage the tree based on the topmost node which is
-    # being deleted.
-    def wrap_delete(delete):
-        def _wrapped_delete(self):
-            opts = self._meta
-            tree_width = (getattr(self, opts.right_attr) -
-                          getattr(self, opts.left_attr) + 1)
-            target_right = getattr(self, opts.right_attr)
-            tree_id = getattr(self, opts.tree_id_attr)
-            self._tree_manager._close_gap(tree_width, target_right, tree_id)
-            delete(self)
-        return wraps(delete)(_wrapped_delete)
-    model.delete = wrap_delete(model.delete)
-    """

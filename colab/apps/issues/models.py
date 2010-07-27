@@ -53,11 +53,7 @@ class Issue(models.Model):
     
     @property
     def papers(self):
-        return Paper.objects.get_for_object(self)
-    
-    @property
-    def summaries(self):
-        return Summary.objects.get_for_object(self)
+        return Paper.objects.filter(content_type=ContentType.objects.get_for_model(self),object_id=self.id)
     
     class Meta:
         verbose_name = _("Issue")

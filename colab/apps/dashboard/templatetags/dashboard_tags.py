@@ -9,9 +9,9 @@ from threadedcomments.models import ThreadedComment
 
 from issues.models import Issue
 from papers.models import Paper, PaperRevision
-from summaries.models import Summary, SummaryRevision
 from voting.models import Vote
 from feedback.models import Feedback
+
 
 ### Get the icon name for a post ###
 @register.simple_tag
@@ -22,8 +22,6 @@ def post_icon(post):
         icon = 'script'
     elif isinstance(post, Paper) or isinstance(post, PaperRevision):
         icon = 'report'
-    elif isinstance(post, Summary) or isinstance(post, SummaryRevision):
-        icon = 'newspaper'
     elif isinstance(post, Feedback):
         icon = 'bug'
     elif isinstance(post, ThreadedComment):
@@ -38,9 +36,9 @@ def post_author(post):
     author = None
     if isinstance(post, Issue):
         author = post.creator
-    elif isinstance(post, Paper) or isinstance(post, Summary):
+    elif isinstance(post, Paper):
         author = post.last_editor
-    elif isinstance(post, PaperRevision) or isinstance(post, SummaryRevision):
+    elif isinstance(post, PaperRevision):
         author = post.editor
     elif isinstance(post, Feedback):
         if not post.user or post.anonymous:
@@ -59,9 +57,9 @@ def post_datetime(post):
     datetime = None
     if isinstance(post, Issue):
         datetime = post.created
-    elif isinstance(post, Paper) or isinstance(post, Summary):
+    elif isinstance(post, Paper):
         datetime = post.last_edited
-    elif isinstance(post, PaperRevision) or isinstance(post, SummaryRevision):
+    elif isinstance(post, PaperRevision):
         datetime = post.created
     elif isinstance(post, Feedback):
         datetime = post.created
@@ -75,7 +73,7 @@ def post_datetime(post):
 def post_meta_summary(post, show_author=True):
     the_user = contributors_count = comments_count = followers_count = None
     
-    if isinstance(post, Issue) or isinstance(post, Paper) or isinstance(post, Summary):
+    if isinstance(post, Issue) or isinstance(post, Paper):
         contributors_count = post.contributors_count
         comments_count = post.comments_count
         followers_count = post.followers_count
@@ -116,14 +114,6 @@ def post_meta(context, post):
         author_field = "editor"
         permalink = post.get_absolute_url()
         vote_url = 'paper_revision_vote'
-    elif isinstance(post, Summary):
-        author_field = "creator"
-        permalink = post.get_absolute_url()
-        vote_url = 'summary_vote'
-    elif isinstance(post, SummaryRevision):
-        author_field = "editor"
-        permalink = post.get_absolute_url()
-        vote_url = 'summary_revision_vote'
     elif isinstance(post, Feedback):
         author_field = "user"
         permalink = post.get_absolute_url()
@@ -221,21 +211,3 @@ def comment_list(context, post):
         comment.branch = branch
     return {'comments': comments, 'comments_count': len(comments), 'post': post,
         'request': context['request'], 'STATIC_URL': settings.STATIC_URL} # hackish way to give STATIC_URL to the inclusion template
-
-### Full preview of an update instance ###
-@register.inclusion_tag("dashboard/update_preview.html", takes_context=True)
-def update_preview(context, update):
-    feed_object = update.feed.feed_object
-    update_object = update.content_object
-    icon = object_content = None
-    
-    if isinstance(update_object, Issue):
-        object_content = update_object.description
-    elif isinstance(update_object, Paper) or isinstance(update_object, Summary):
-        object_content = update_object.current.content
-    elif isinstance(update_object, ThreadedComment):
-        object_content = update_object.comment
-    
-    return {'update': update, 'update_user': update.user,
-        'feed_object': feed_object, 'update_object': update_object,
-        'object_content': object_content}

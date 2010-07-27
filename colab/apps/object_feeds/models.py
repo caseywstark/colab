@@ -15,20 +15,21 @@ BASIC_ACTIONS = (
 )
 
 ### Code for the Feed Object ###
-def register_action(self, user, action, content_object):
+def register_action(self, user, action, content_object, object_title='', object_link='', update_content=''):
     content_type = ContentType.objects.get_for_model(self)
     
     # get the Action specified with the action string
-    the_action = Action.objects.get(content_type=content_type, name=action)
+    the_action = Action.objects.get(content_type=content_type, slug=action)
     the_update = Update.objects.create(feed=self.feed, user=user, 
         action=the_action, content_object=content_object,
-        action_description=the_action.description)
+        action_description=the_action.description, object_title=object_title,
+        update_content=update_content)
 
-def user_is_following(self, the_user):
+def is_user_following(self, the_user):
     try:
         Subscription.objects.get(feed=self.feed, user=the_user)
         return True
-    except Subscription.DoesNotExist:
+    except:
         return False
         
 ### End Code ###
@@ -38,6 +39,8 @@ class Feed(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField(null=True, blank=True) # needs to allow null because we create the feed right before the feed_object instance
     feed_object = generic.GenericForeignKey("content_type", "object_id")
+    
+    feed_title = models.CharField(max_length=255) # keep it synced with the feed_object title somehow...
     
     subscriber_users = models.ManyToManyField(User, through="Subscription", verbose_name=_('subscribers'))
     
@@ -53,7 +56,7 @@ class Feed(models.Model):
     def is_user_following(self, user):
         try:
             subscription = Subscription.objects.get(feed=self, user=user)
-        except Subscription.DoesNotExist:
+        except:
             return False
         
         return subscription
@@ -64,7 +67,7 @@ class Feed(models.Model):
         A wrapper for update_set used in order to distinguish between object
         feeds and researcher feeds (they act differently).
         """
-        if self.content_type_id == 58: # horrible but it will perform nicely!
+        if self.content_type_id == 6: # horrible but it will perform nicely!
             return Update.objects.filter(user__id=self.object_id)
         else:
             return self.update_set
@@ -98,13 +101,11 @@ class Subscription(models.Model):
 class Action(models.Model):
     
     content_type = models.ForeignKey(ContentType)
-    name = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
-    
     slug = models.SlugField()
     
     def __unicode__(self):
-        return self.name
+        return self.slug
 
 class Update(models.Model):
     
@@ -122,6 +123,7 @@ class Update(models.Model):
     action_description = models.CharField(max_length=255)
     object_title = models.CharField(max_length=255)
     object_link = models.CharField(max_length=255)
+    update_content = models.TextField()
     
     def __unicode__(self):
         return '%s %s %s' % (self.user, self.action_description, self.object_title)
