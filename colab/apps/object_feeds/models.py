@@ -58,7 +58,25 @@ class Feed(models.Model):
             subscription = Subscription.objects.get(feed=self, user=user)
         except:
             return False
-        
+        return subscription
+    
+    def subscribe(self, the_user, the_actions='all'):
+        subscription, created = Subscription.objects.get_or_create(feed=self, user=the_user)
+        if created:
+            if the_actions == 'all':
+                actions = Action.objects.filter(content_type=self.content_type)
+                subscription.actions = actions
+            else:
+                subscription.actions = the_actions
+            subscription.save()
+        return subscription
+    
+    def unsubscribe(self, the_user):
+        try:
+            subscription = Subscription.objects.get(feed=self, user=the_user)
+        except Subscription.DoesNotExist:
+            return false
+        subscription.delete()
         return subscription
     
     @property

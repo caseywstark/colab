@@ -38,6 +38,8 @@ def create(request, form_class=IssueForm, template_name="issues/create.html"):
         issue.contributors.add(issue_contributor)
         issue_contributor.save()
         
+        issue.feed.subscribe(request.user)
+        
         return HttpResponseRedirect(issue.get_absolute_url())
     
     return render_to_response(template_name, {

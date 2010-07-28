@@ -49,7 +49,7 @@ class Issue(models.Model):
     # comments
     comments_count = models.PositiveIntegerField(default=0, editable=False)
     # followers
-    followers_count = models.PositiveIntegerField(default=1, editable=False)
+    followers_count = models.PositiveIntegerField(default=0, editable=False)
     
     @property
     def papers(self):

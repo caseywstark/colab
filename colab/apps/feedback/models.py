@@ -70,6 +70,8 @@ class Feedback(models.Model):
     contributors_count = models.PositiveIntegerField(default=0, editable=False)
     # comments
     comments_count = models.PositiveIntegerField(default=0, editable=False)
+    # followers
+    followers_count = models.PositiveIntegerField(default=0, editable=False)
     
     class Meta:
         ordering = ['-created']
