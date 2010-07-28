@@ -798,6 +798,22 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .post-option:hover { text-decoration: underline !important; }
 
 /**************************************\
+ * Papers
+\**************************************/
+
+table#history th, table#history td {
+    padding: 2px 5px;
+}
+
+th.compare { width: 70px; }
+th.modified { width: 200px; }
+th.author { min-width: 130px; }
+th.comment { min-width: 400px; }
+th.options { width: 200px; }
+
+td.options a { margin: 0 5px; }
+
+/**************************************\
  * Profiles
 \**************************************/
 
