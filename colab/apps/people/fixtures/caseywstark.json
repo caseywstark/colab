@@ -1,5 +1,17 @@
 [
     {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "caseywstark",
+            "password": "test",
+            "email": "caseywstark@colabscience.com",
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": true
+        }
+    },
+    {
         "pk": 1, 
         "model": "people.researcher", 
         "fields": {
