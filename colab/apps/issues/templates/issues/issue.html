@@ -37,7 +37,7 @@
         <div class="clear"></div>
         
         {% if issue.private %}
-            <div class="private">private</div>
+            <span class="private">private</span>
         {% endif %}
         
         {% ifequal issue.creator request.user %}
@@ -97,7 +97,7 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <div id="issue-paper-list" class="no-papers">No papers, yet.</div>
+                <div class="no-papers">No papers, yet.</div>
             {% endif %}
             
             <a id="issue-paper-add" class="big-button" href="{% add_paper_url issue %}">

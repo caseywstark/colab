@@ -631,7 +631,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     background: #c44;
     color: #fff;
     font-weight: bold;
-    width: 50px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -680,18 +679,19 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     font-weight: bold;
 }
 .issue-paper-list {
-    
+    margin-bottom: 10px;
 }
 .issue-paper-list li {
     
+}
+.no-papers {
+    margin-bottom: 10px;
 }
 .paper-preview .list-post-title {
     color: #999 !important;
 }
 
 #issue-paper-add {
-    display: block;
-    width: 120px;
     margin: 10px;
 }
 

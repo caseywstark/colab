@@ -12,18 +12,21 @@
 {% endblock %}
 
 {% block body %}
-
-{% ifequal issue.creator user %}
-    <form class="uniForm" method="POST" action="">{% csrf_token %}
-        <fieldset class="inlineLabels">
-            {{ invite_form|as_uni_form }}
-            <div class="form_block">
-                <input type="submit" value="Invite"/>
-            </div>
-        </fieldset>
-    </form>
-{% else %}
-    <p>You cannot edit this post because you are not the post's creator.</p>
-{% endifequal %}
-
+    
+    <h1>Invite Collaborators</h1>
+    
+    <p>Type the name of any researcher to add them to the recipient list.</p>
+    
+    {% ifequal issue.creator user %}
+        <form class="uniForm" method="POST" action="">{% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ invite_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="submit" value="Invite"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <p>You cannot edit this post because you are not the post's creator.</p>
+    {% endifequal %}
 {% endblock body %}
