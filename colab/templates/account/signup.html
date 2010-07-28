@@ -31,11 +31,6 @@
         {% url terms as terms_url %}
         {% url privacy as privacy_url %}
         <p>{% blocktrans %}By clicking "Sign Up", you are indicating that you have read and agree to the <a href="{{ terms_url }}">Terms of Use</a> and <a href="{{ privacy_url }}">Privacy Policy</a>.{% endblocktrans %}</p>
-        
-        {# @@@ currently OpenID signup is not supported via signup codes #}
-        {% if not code %}
-            <p>If you have OpenID, <a href="{% url acct_login %}">log in</a> using that to begin using this site with OpenID right away.</p>
-        {% endif %}
     {% endif %}
 {% endblock %}
 
