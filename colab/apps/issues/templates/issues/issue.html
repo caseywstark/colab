@@ -91,7 +91,7 @@
         <div class="issue-paper-block">
             <div class="issue-paper-header">Papers</div>
             {% if issue.papers %}
-                <ul id="issue-paper-list">
+                <ul class="issue-paper-list">
                     {% for paper in issue.papers.all %}
                         {% paper_preview paper %}
                     {% endfor %}

@@ -5,11 +5,16 @@
 {% block actions %}
     {% if user.is_authenticated %}
         {% ifequal issue.creator user %}
-            {% if not issue.resolved %}
-                <li class="left-action">
-                    <a href="{% url issue_resolve issue.slug %}">Resolve</a>
-                </li>
-            {% endif %}
+            
+            <li class="left-action">
+                <a href="{% url issue_resolve issue.slug %}">
+                    {% if issue.resolved %}
+                        Change resolution
+                    {% else %}
+                        Resolve
+                    {% endif %}
+                </a>
+            </li>
             <li class="right-action">
                 <a href="{% url issue_delete issue.slug %}">Delete</a>
             </li>
