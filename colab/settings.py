@@ -246,7 +246,7 @@ EMAIL_DEBUG = DEBUG
 CONTACT_EMAIL = "admin@colabscience.com"
 SITE_NAME = "CoLab"
 LOGIN_URL = "/account/login/"
-LOGIN_REDIRECT_URLNAME = "what_next"
+LOGIN_REDIRECT_URLNAME = "dashboard"
 
 ugettext = lambda s: s
 LANGUAGES = [

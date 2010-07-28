@@ -1,0 +1,32 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}Terms{% endblock %}
+
+{% block body_class %}terms{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a></li>
+    <li><a href="{{ request.path }}">Terms</a></li>
+{% endblock %}
+
+{% block body %}
+    <div id="terms">
+        <h1>Terms of service</h1>
+        
+        <p>
+            CoLab does not have a formal terms of service yet, but we do want to make it
+            clear that we are not responsible for how information you post on the site
+            is used by others.
+        </p>
+        
+        <p>
+            So just to make that clear - we are not responsible if bad things happen
+            from using our site.
+        </p>
+        
+        <p>
+            We could really use someone with legal experience to draft new terms,
+            so if you're that person, see <a href="{% url contribute %}">how to contribute</a>.
+        </p>
+    </div>
+{% endblock %}

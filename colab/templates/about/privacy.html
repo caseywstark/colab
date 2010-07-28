@@ -1,0 +1,29 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}Privacy CoLab{% endblock %}
+
+{% block body_class %}privacy{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a></li>
+    <li><a href="{% url about %}">About</a></li>
+    <li><a href="{{ request.path }}">Privacy</a></li>
+{% endblock %}
+
+{% block body %}
+    <div id="privacy">
+        <h1>Privacy Policy</h1>
+        
+        <p>
+            CoLab does not have a formal privacy policy yet, but we do want to make it
+            clear that your information (email and other) is safe with us. We are
+            scientists too and we don't care much about making a buck off of
+            your hard work.
+        </p>
+        
+        <p>
+            We could really use someone with legal experience to draft a new policy,
+            so if you're that person, see <a href="{% url contribute %}">how to contribute</a>.
+        </p>
+    </div>
+{% endblock %}
