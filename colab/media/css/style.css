@@ -475,12 +475,12 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 #list-sidebar {
     float: left;
     margin: 10px 0 0; padding: 10px 10px 10px 0;
-    width: 150px;
+    width: 160px;
     white-space: nowrap;
     overflow: hidden;
 }
 .filter-parent {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .set-filter {
     font-weight: bold;
@@ -490,9 +490,13 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     list-style: none;
     margin-left: 20px;
 }
+.no-filters {
+    margin-left: 20px;
+    font-style: italic;
+}
 
 #list-block {
-    margin: 10px 0 0 170px;
+    margin: 10px 0 0 180px;
     border-left: 3px solid #ccc;
     padding: 10px 0 10px 20px;
 }
@@ -545,7 +549,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     min-height: 180px;
 }
 .list-researcher-block {
-    margin-left: 100px;
+    margin: 0 0 15px 100px;
+    min-height: 70px;
 }
 .list-post-content {
 }
@@ -846,6 +851,31 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 #profile-contributions-block {
     float: left;
     margin-left: 10px;
+}
+
+.interests-header {
+    float: left;
+}
+.interests-list {
+    display: inline;
+    font-weight: bold;
+}
+.interests-list li {
+    float: left;
+    display: inline;
+    margin-left: 10px;
+}
+.interests-list a, .interests a:visited {
+    background: #333 !important;
+    color: #999 !important;
+    padding: 2px 4px;
+    text-decoration: none !important;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.interests-list a:hover {
+    color: #94ba3c !important;
 }
 
 /**************************************\

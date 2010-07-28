@@ -9,6 +9,17 @@
 
 {% block breadcrumbs %}
     <li><a href="{% url researcher_list %}">Researchers</a></li>
+    {% if the_discipline and the_tag %}
+        <li><a href="{% remove_filter_url request "tag" %}">{{ the_discipline }}</a></li>
+        <li><a href="{{ request.get_full_path }}">{{ the_tag }}</a></li>
+    {% else %}
+        {% if the_discipline %}
+            <li><a href="{{ request.get_full_path }}">{{ the_discipline }}</a></li>
+        {% endif %}
+        {% if the_tag %}
+            <li><a href="{{ request.get_full_path }}">{{ the_tag }}</a></li>
+        {% endif %}
+    {% endif %}
 {% endblock %}
 
 {% block actions %}
@@ -35,20 +46,60 @@
         
         <div id="discplines-wrapper" class="filter-wrapper">
             <div class="filter-header">By expertise</div>
-            <ul class="filter-list">
-                {% for discipline in discipline_filters %}
-                    <li><a href="{% filter_url request "discipline" discipline.slug %}">{{ discipline.name|truncatechar:20 }}</a></li>
-                {% endfor %}
-            </ul>
+            
+            {% if the_discipline %}
+                {% if not the_discipline.is_root_node %}
+                    <a class="filter-parent" href="{% filter_url request "discipline" the_discipline.parent.slug %}">{{ the_discipline.parent.name|truncatechar:10 }}</a>
+                {% endif %}
+                
+                <div id="set-discipline" class="set-filter">
+                    {{ the_discipline }}
+                    <a href="{% remove_filter_url request "discipline" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if discipline_filters %}
+                <ul class="filter-list">
+                    {% for discipline in discipline_filters %}
+                        <li><a href="{% filter_url request "discipline" discipline.slug %}">{{ discipline.name|truncatechar:20 }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-filters">
+                    No children disciplines
+                </div>
+            {% endif %}
         </div>
         
         <div id="interests-wrapper" class="filter-wrapper">
             <div class="filter-header">By interest</div>
-            <ul class="filter-list">
-                {% for interest in interest_filters %}
-                    <li><a href="{% filter_url request "interest" interest.slug %}">{{ interest.name|truncatechar:20 }}</a></li>
-                {% endfor %}
-            </ul>
+            
+            {% if the_tag %}
+                <div class="set-filter">
+                    {{ the_tag }}
+                    <a href="{% remove_filter_url request "tag" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if tag_filters %}
+                <ul class="filter-list">
+                    {% for tag in tag_filters %}
+                        <li>{% filter_link request "tag" tag.id tag.name%}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-filters">
+                    {% if the_tag %}
+                        No related tags.
+                    {% else %}
+                        No tags on these objects.
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
     

@@ -15,7 +15,6 @@ class ResearcherForm(forms.ModelForm):
             "about",
             "website",
             "expertise",
-            "default_filter",
-            "research_interests",
+            "tags",
             "occupation",
         ]

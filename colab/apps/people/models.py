@@ -52,7 +52,6 @@ class Researcher(models.Model):
     )
     
     expertise = models.ForeignKey(Discipline, null=True, blank=True, related_name='researcher')
-    default_filter = models.ForeignKey(Discipline, null=True, blank=True, related_name='watcher')
     tags = TagField()
     occupation = models.CharField(max_length=2, choices=OCCUPATIONS, blank=True)
     institution = models.ForeignKey(Institution, verbose_name=_("Current Institution"), null=True, blank=True, related_name='researchers')

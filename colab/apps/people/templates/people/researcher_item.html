@@ -8,7 +8,7 @@
         {% avatar researcher.user 80 %}
     </a>
     
-    <div class="list-post-block list-researcher-block">
+    <div class="list-researcher-block">
         <a class="list-post-title" href="{{ researcher.get_absolute_url }}">
             {{ researcher.name }}
         </a>
@@ -18,15 +18,17 @@
             {% if researcher.expertise %}
                 {% filter_link request "discipline" researcher.expertise.slug researcher.expertise.name %}
             {% else %}
-                None specified, yet
+                <span class="no-expertise">
+                    None specified, yet
+                </span>
             {% endif %}
         </div>
         
         <div class="researcher-insterests">
-            Research Interests:
+            <span class="interests-header">Research Interests:</span>
             {% tags_for_object researcher as tags %}
             {% if tags %}
-                <ul class="post-tags-list">
+                <ul class="interests-list">
                     {% for tag in tags %}
                         <li>
                             {% filter_link request "tag" tag.id tag.name %}
@@ -34,7 +36,9 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                None specified, yet
+                <span class="no-interests">
+                    None specified, yet
+                </span>
             {% endif %}
         </div>
     </div>
