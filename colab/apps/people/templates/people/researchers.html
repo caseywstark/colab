@@ -128,17 +128,14 @@
         
         <div class="pagination">
             <span class="step-links">
-                {% if researchers.has_previous %}
-                    <a href="?page={{ researchers.previous_page_number }}">previous</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ researchers.number }} of {{ researchers.paginator.num_pages }}
-                </span>
-
-                {% if researchers.has_next %}
-                    <a href="?page={{ researchers.next_page_number }}">next</a>
-                {% endif %}
+                Page 
+                {% for page in researchers.paginator.page_range %}
+                    {% ifequal page researchers.paginator.number %}
+                        <span class="current">{{ page }}</span>
+                    {% else %}
+                        <a href="?page={{ page }}">{{ page }}</a>
+                    {% endifequal %}
+                {% endfor %}
             </span>
         </div>
     </div>

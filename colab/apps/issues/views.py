@@ -17,7 +17,7 @@ from threadedcomments.forms import RichCommentForm
 from tagging.models import Tag, TaggedItem
 
 from issues.models import Issue, IssueContributor
-from issues.forms import IssueForm, InviteContributorForm, ResolutionForm
+from issues.forms import IssueForm, InviteContributorForm, ResolutionForm, PrivacyForm
 
 from disciplines.models import Discipline
 from papers.models import Paper
@@ -198,10 +198,24 @@ def issue(request, slug=None, template_name="issues/issue.html"):
     
     comment_form = RichCommentForm(auto_id='new_issue_comment_%s')
     
+    privacy_form = None
+    if request.user == issue.creator:
+        privacy_form = PrivacyForm(request.POST or None, issue=issue)
+    
+    if privacy_form and privacy_form.is_valid():
+        if privacy_form.cleaned_data["privacy"]:
+            issue.private = not issue.private
+            issue.save()
+            if issue.private:
+                messages.add_message(request, messages.SUCCESS,_("Issue now private"))
+            else:
+                messages.add_message(request, messages.SUCCESS,_("Issue now public"))
+    
     return render_to_response(template_name, {
         'issue': issue,
         'following': issue.is_user_following(request.user),
         'comment_form': comment_form,
+        'privacy_form': privacy_form
     }, context_instance=RequestContext(request))
 
 @login_required

@@ -124,6 +124,21 @@ def votes(request, mine=True, username=None):
     
     votes = Vote.objects.filter(user=request.user)
     
+    # Paginate the list
+    paginator = Paginator(votes, 20) # Show 20 votes per page
+    
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page is out of range, deliver last page of results.
+    try:
+        votes = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        votes = paginator.page(paginator.num_pages)
+    
     return render_to_response('dashboard/votes.html', {
         'the_user': the_user,
         'is_me': is_me,

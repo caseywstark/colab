@@ -11,40 +11,49 @@
 {% endblock %}
 
 {% block body %}
-    
     {% if is_me %}
-        {% if votes %}
-            <p>
-                You have voted on {{ votes.count }} posts.
-            </p>
-            
-            {% autopaginate votes %}
-            {% paginate %}
-            
-            <ul id="update-list">
-                {% for vote in votes %}
-                <li class="update list-item">
-                    <div class="vote-update-box {% if vote.is_upvote %}yea{% endif %}{% if vote.is_downvote %}nay{% endif %}">
-                        {% if vote.is_upvote %}
-                            +1
-                        {% endif %}
-                        {% if vote.is_downvote %}
-                            -1
-                        {% endif %}
-                    </div>
-                    on <a href="{{ vote.object.get_absolute_url }}">{{ vote.object }}</a>
-                    <span class="update-date">at {{ vote.created|date:"P M d, Y" }}</span>
-                </li>
+        <h1>My Votes</h1>
+        
+        <p class="dashboard-votes-count">
+            You have voted on {{ votes.paginator.count }} posts
+        </p>
+        
+        {% if votes.paginator.count > 0 %}
+            <ul class="votes-list">
+                {% for vote in votes.object_list %}
+                    <li class="vote-item list-item {% cycle "dark-item" "light-item" %}">
+                        <span class="vote-update-box {% if vote.is_upvote %}yea{% endif %}{% if vote.is_downvote %}nay{% endif %}">
+                            {% if vote.is_upvote %}
+                                yea
+                            {% endif %}
+                            {% if vote.is_downvote %}
+                                nay
+                            {% endif %}
+                        </span>
+                        on <a href="{{ vote.object.get_absolute_url }}">{{ vote.object }}</a>
+                        <span class="update-date">at {{ vote.created|date:"P M d, Y" }}</span>
+                    </li>
                 {% endfor %}
             </ul>
             
-            {% paginate %}
-            
+            <div class="pagination">
+                <span class="step-links">
+                    Page 
+                    {% for page in votes.paginator.page_range %}
+                        {% ifequal page votes.paginator.number %}
+                            <span class="current">{{ page }}</span>
+                        {% else %}
+                            <a href="?page={{ page }}">{{ page }}</a>
+                        {% endifequal %}
+                    {% endfor %}
+                </span>
+            </div>
         {% else %}
-            <p>You have not voted on any posts, yet.</p>
+            <p class="no-votes">
+                Try voting on some <a href="{% url issue_list %}">issues</a>.
+            </p>
         {% endif %}
     {% else %}
         <p>Sorry, but you cannot view another user's votes.</p>
     {% endif %}
-    
 {% endblock %}

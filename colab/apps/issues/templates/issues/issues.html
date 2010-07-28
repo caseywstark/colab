@@ -24,7 +24,7 @@
 {% block actions %}
     {% if user.is_authenticated %}
         <li class="left-action">
-            <a href="{% url issue_create %}">Compose new Issue</a>
+            <a href="{% url issue_create %}">+ Add New Issue</a>
         </li>
     {% endif %}
     
@@ -141,17 +141,14 @@
         
         <div class="pagination">
             <span class="step-links">
-                {% if issues.has_previous %}
-                    <a href="?page={{ issues.previous_page_number }}">previous</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ issues.number }} of {{ issues.paginator.num_pages }}
-                </span>
-
-                {% if issues.has_next %}
-                    <a href="?page={{ issues.next_page_number }}">next</a>
-                {% endif %}
+                Page 
+                {% for page in issues.paginator.page_range %}
+                    {% ifequal page issues.paginator.number %}
+                        <span class="current">{{ page }}</span>
+                    {% else %}
+                        <a href="?page={{ page }}">{{ page }}</a>
+                    {% endifequal %}
+                {% endfor %}
             </span>
         </div>
     </div>

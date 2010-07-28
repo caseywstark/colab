@@ -19,18 +19,16 @@
             continue reading &rsaquo;
         </a>
         
-        {% if issue.disciplines %}
-            <div class="post-disciplines-list">
-                Posted under
-                {% if issue.disciplines.all %}
-                    {% for discipline in issue.disciplines.all %}
-                        {% filter_link request "discipline" discipline.slug discipline.name %}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                {% else %}
-                    no disciplines
-                {% endif %}
-            </div>
-        {% endif %}
+        <div class="post-disciplines-list">
+            Posted under
+            {% if issue.disciplines.all %}
+                {% for discipline in issue.disciplines.all %}
+                    {% filter_link request "discipline" discipline.slug discipline.name %}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                <span class="post-no-disciplines">no disciplines</span>
+            {% endif %}
+        </div>
         
         {% tags_for_object issue as tags %}
         {% if tags %}
@@ -41,6 +39,8 @@
                     </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <span class="post-no-tags">no tags</span>
         {% endif %}
     </div>
 </li>

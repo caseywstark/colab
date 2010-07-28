@@ -34,6 +34,23 @@
         
         {% post_meta issue %}
         
+        <div class="clear"></div>
+        
+        {% if issue.private %}
+            <span class="private">private</span>
+        {% endif %}
+        
+        {% ifequal issue.creator request.user %}
+            <form class="privacy-form uniForm" id="privacy-issue" method="POST" action="">{% csrf_token %}
+                <fieldset class="inlineLabels">
+                    {{ privacy_form|as_uni_form }}
+                    <div class="form_block">
+                        <input type="submit" value="{% trans 'Apply' %}"/>
+                    </div>
+                </fieldset>
+            </form>
+        {% endifequal %}
+        
         <div class="post-taxonomy-box">
             <div class="post-taxonomy-header">Posted under</div>
             {% if issue.disciplines.all %}
@@ -74,13 +91,13 @@
         <div class="issue-paper-block">
             <div class="issue-paper-header">Papers</div>
             {% if issue.papers %}
-                <ul id="issue-paper-list">
+                <ul class="issue-paper-list">
                     {% for paper in issue.papers.all %}
                         {% paper_preview paper %}
                     {% endfor %}
                 </ul>
             {% else %}
-                <div id="issue-paper-list" class="no-papers">No papers, yet.</div>
+                <div class="no-papers">No papers, yet.</div>
             {% endif %}
             
             <a id="issue-paper-add" class="big-button" href="{% add_paper_url issue %}">

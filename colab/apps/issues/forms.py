@@ -70,4 +70,15 @@ class ResolutionForm(forms.Form):
         super(ResolutionForm, self).__init__(*args, **kwargs)
         
         self.fields['resolution'].queryset = self.issue.papers
-
+class PrivacyForm(forms.Form):
+    
+    privacy = forms.BooleanField(
+        label=_("Make this issue public"),
+    )
+    
+    def __init__(self, *args, **kwargs):
+        self.issue = kwargs.pop("issue")
+        super(PrivacyForm, self).__init__(*args, **kwargs)
+        
+        if not self.issue.private:
+            self.fields['privacy'].label = _("Make this issue private")

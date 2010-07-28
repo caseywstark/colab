@@ -30,6 +30,9 @@ def show_update(context, update):
     elif update.action_description.startswith('started following'):
         icon = 'follow'
         update_line = update.action_description % feed_object_link
+    elif update.action_description.startswith('resolved'):
+        icon = 'resolve'
+        update_line = update.action_description % feed_object_link
     else:
         icon = 'settings'
         update_line = update.action_description % feed_object_link
