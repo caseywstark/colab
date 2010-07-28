@@ -34,6 +34,23 @@
         
         {% post_meta issue %}
         
+        <div class="clear"></div>
+        
+        {% if issue.private %}
+            <div class="private">private</div>
+        {% endif %}
+        
+        {% ifequal issue.creator request.user %}
+            <form class="privacy-form uniForm" id="privacy-issue" method="POST" action="">{% csrf_token %}
+                <fieldset class="inlineLabels">
+                    {{ privacy_form|as_uni_form }}
+                    <div class="form_block">
+                        <input type="submit" value="{% trans 'Apply' %}"/>
+                    </div>
+                </fieldset>
+            </form>
+        {% endifequal %}
+        
         <div class="post-taxonomy-box">
             <div class="post-taxonomy-header">Posted under</div>
             {% if issue.disciplines.all %}
