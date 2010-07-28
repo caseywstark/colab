@@ -10,6 +10,7 @@ from tinymce.widgets import TinyMCE
 from issues.models import Issue, IssueContributor
 from disciplines.models import Discipline
 from people.models import Researcher
+from papers.models import Paper
 from tinymce.widgets import TinyMCE
 
 class IssueForm(forms.ModelForm):
@@ -57,15 +58,16 @@ class InviteContributorForm(forms.Form):
 
 class ResolutionForm(forms.Form):
     
-    resolution = forms.ModelChoiceField(queryset=None, empty_label=None)
+    resolution = forms.ModelChoiceField(
+        label=_("Resolution Paper"),
+        queryset = Paper.objects.all(),
+        empty_label = None,
+        widget = forms.RadioSelect
+    )
     
     def __init__(self, *args, **kwargs):
         self.issue = kwargs.pop("issue")
         super(ResolutionForm, self).__init__(*args, **kwargs)
         
         self.fields['resolution'].queryset = self.issue.papers
-    
-    def save(self):
-        resolution = self.issue.resolve(self.cleaned_data['resolution'])
-        return resolution
 

@@ -14,13 +14,13 @@ from django.contrib.contenttypes.models import ContentType
 
 from threadedcomments.models import ThreadedComment
 from threadedcomments.forms import RichCommentForm
+from tagging.models import Tag, TaggedItem
 
 from issues.models import Issue, IssueContributor
 from issues.forms import IssueForm, InviteContributorForm, ResolutionForm
 
 from disciplines.models import Discipline
-from tagging.models import Tag, TaggedItem
-
+from papers.models import Paper
 
 @login_required
 def create(request, form_class=IssueForm, template_name="issues/create.html"):
@@ -71,7 +71,7 @@ def delete(request, slug=None, redirect_url=None):
     redirect_url = issue.get_absolute_url()
     
     if request.user == issue.creator:
-        if not Paper.objects.get_for_object(issue).exists():
+        if not issue.papers.exists():
             if not ThreadedComment.objects.get_for_object(issue).exists():
                 issue.feed.delete()
                 issue.delete()
@@ -213,10 +213,13 @@ def resolve(request, slug=None, template_name="issues/resolve.html"):
     resolution_form = ResolutionForm(request.POST or None, issue=issue)
     
     if resolution_form.is_valid():
-        resolution = resolution_form.save()
-        
-        issue.register_action(request.user, 'resolve-issue', resolution)
-        
+        resolution_paper = resolution_form.cleaned_data['resolution']
+        if issue.resolve(resolution_paper):
+            issue.register_action(request.user, 'resolve-issue', resolution_paper)
+        else:
+            messages.add_message(request, messages.ERROR,
+                _("Sorry, the paper you selected is not associated with this issue.")
+            )
         return HttpResponseRedirect(issue.get_absolute_url())
     
     return render_to_response(template_name, {

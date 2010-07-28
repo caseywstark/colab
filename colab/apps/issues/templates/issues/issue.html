@@ -36,25 +36,29 @@
         
         <div class="post-taxonomy-box">
             <div class="post-taxonomy-header">Posted under</div>
-            <ul class="post-taxonomy-list post-disciplines-list">
-                {% for discipline in issue.disciplines.all %}
-                    <li><a href="{{ discipline.get_absolute_url }}">{{ discipline }}</a></li>
-                {% endfor %}
-            </ul>
+            {% if issue.disciplines.all %}
+                <ul class="post-taxonomy-list post-disciplines-list">
+                    {% for discipline in issue.disciplines.all %}
+                        <li><a href="{{ discipline.get_absolute_url }}">{{ discipline }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-disciplines">No disciplines</div>
+            {% endif %}
         </div>
         
         <div class="post-taxonomy-box">
             <div class="post-taxonomy-header">Tags</div>
             {% tags_for_object issue as tags %}
-            <ul class="post-taxonomy-list post-tags-list">
-                {% if tags %}
+            {% if tags %}
+                <ul class="post-taxonomy-list post-tags-list">
                     {% for tag in tags %}
                         <li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
                     {% endfor %}
-                {% else %}
-                    <li class="no-tags">No tags</li>
-                {% endif %}
-            </ul>
+                </ul>
+            {% else %}
+                <div class="no-tags">No tags</div>
+            {% endif %}
         </div>
     </div>
     
@@ -75,7 +79,6 @@
                         {% paper_preview paper %}
                     {% endfor %}
                 </ul>
-                <div class="clear"></div>
             {% else %}
                 <div id="issue-paper-list" class="no-papers">No papers, yet.</div>
             {% endif %}

@@ -73,16 +73,13 @@ class Issue(models.Model):
             return False
         return True
     
-    def resolve(self, resolution_id):
-        try:
-            resolution = Paper.objects.get(id=resolution_id)
-        except:
-            return False
-        
-        self.resolution = resolution
-        self.resolved = True
-        self.save()
-        return resolution
+    def resolve(self, resolution_paper):
+        if resolution_paper in self.papers:
+            self.resolution = resolution_paper
+            self.resolved = True
+            self.save()
+            return resolution_paper
+        return False
 
 object_feeds.register(Issue)
 

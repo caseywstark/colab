@@ -649,6 +649,9 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     margin: 0 0 0 10px;
     list-style: none;
 }
+.no-disciplines, .no-tags {
+    margin-left: 10px;
+}
 
 #post-content-block {
     margin: 20px 0 10px 230px;
@@ -874,7 +877,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-.interests-list a:hover {
+.interests-list a:hover {f
     color: #94ba3c !important;
 }
 

@@ -5,7 +5,11 @@
 
 <li class="list-item post-preview paper-preview">
     <a class="list-post-title" href="{{ paper.get_absolute_url }}">
-        {{ paper.title }}
+        {% ifequal paper paper.content_object.resolution %}
+            <img src="{{ STATIC_URL }}images/resolved.png"> {{ paper.title }} (resolution)
+        {% else %}
+            {{ paper.title }}
+        {% endifequal %}
     </a>
     
     <div class="preview-by-line">
