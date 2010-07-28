@@ -853,13 +853,11 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 #profile-activity-block {
     float: left;
-    width: 400px;
-    padding-right: 10px;
-    border-right: 3px solid #ccc;
-    margin-right: 10px;
+    width: 600px;
     min-height: 200px;
 }
 #profile-contributions-block {
+    display: none;
     float: left;
     margin-left: 10px;
 }
