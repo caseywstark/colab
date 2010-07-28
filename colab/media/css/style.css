@@ -1118,6 +1118,7 @@ input.ac_loading {
     list-style: disc inside url("/site_media/static/images/check.png");
     vertical-align: middle;
     height: 30px;
+    line-height:30px;
 }
 #signup-button, #signup-button:visited {
     display: block;
@@ -1146,7 +1147,43 @@ input.ac_loading {
     margin: 70px auto;
     width: 400px;
     border: 10px solid #ccc;
-    padding: 10px;
+    padding: 0px;
+    background-color:#eee;
+    padding:30px;
+}
+#login-page-box h1{
+	font-size:32px;
+	letter-spacing:-1px;
+}
+#login-page-box p{
+	margin-top:10px;
+}
+#login-page-box form.login fieldset.inlineLabels div#div_id_email input, #login-page-box form.login fieldset.inlineLabels div#div_id_password input{
+	background-color:#fff;
+	padding:10px 5px;
+	width:380px;
+	display:block;
+	
+}
+#login-page-box form.login fieldset.inlineLabels div#div_id_email label, #login-page-box form.login fieldset.inlineLabels div#div_id_password label{
+	font-weight:bold;
+	font-size:18px;
+	margin-top:10px;
+	color:#333;	
+}
+#login-page-box form.login fieldset.inlineLabels div.form_block input {
+	background-color:#666;
+	border:0px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	color:#fff;
+	font-size:16px;
+	font-weight:bold;
+	font-family: "Helvetica", Arial, sans-serif;
+	cursor:pointer;
+}		
+#login-page-box form.login fieldset.inlineLabels div.form_block input:hover{
+	background-color:#333;
 }
 
 /**************************************\
