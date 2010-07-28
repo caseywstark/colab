@@ -258,14 +258,6 @@ ul#messages li a { color: #693; }
     border-bottom: 8px #ABAEB0 solid;
     text-align: left;
 }
-#page-content a, #page-content a:visited {
-    color: #193F66;
-    text-decoration: underline;
-}
-#page-content a:hover {
-    color: #657F98;
-    text-decoration: none;
-}
 
 #subnav-wrapper {
     background: #C9CCCE;
@@ -1075,26 +1067,76 @@ input.ac_loading {
 #tagline {
     text-align: center;
     font-size: 32px; line-height: 32px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     font-weight: bold;
 }
 #sub-tagline {
     text-align: center;
-    font-size: 24px; line-height: 24px;
+    font-size: 16px; line-height: 16px;
     margin-bottom: 20px;
     font-weight: bold;
 }
 
 #launch-box {
     text-align: center;
-    font-size: 18px; line-height: 18px;
+    font-size: 16px; line-height: 16px;
     margin-bottom: 20px;
     background: #efefef;
     border-top: 1px solid #c1c1c1;
     border-bottom: 1px solid #c1c1c1;
+    padding: 8px 0;
 }
 
+#home-content {
+    margin-top: 10px;
+}
 
+#home-cast {
+    float: left;
+    width: 600px;
+}
+#home-promo {
+    float: right;
+    width: 400px;
+}
+
+#home-promo-header {
+    text-align: center;
+    font-size: 24px; line-height: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+#home-promo-list {
+    text-align: left;
+    font-size: 16px; line-height: 16px;
+    margin-left: 50px;
+    font-weight: bold;
+    color: #808080;
+    margin: 10px 20px 30px;
+}
+#home-promo-list li {
+    list-style: disc inside url("/site_media/static/images/check.png");
+    vertical-align: middle;
+    height: 30px;
+}
+#signup-button, #signup-button:visited {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333333;
+    background: #94ba3c;
+    padding: 20px 10px;
+    width: 250px;
+    text-decoration: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+#signup-button:hover {
+    background: #82a630;
+}
 
 /**************************************\
  * About
