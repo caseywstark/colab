@@ -38,17 +38,14 @@
             
             <div class="pagination">
                 <span class="step-links">
-                    {% if updates.has_previous %}
-                        <a href="?page={{ updates.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ updates.number }} of {{ updates.paginator.num_pages }}
-                    </span>
-
-                    {% if updates.has_next %}
-                        <a href="?page={{ updates.next_page_number }}">next</a>
-                    {% endif %}
+                    Page 
+                    {% for page in votes.paginator.page_range %}
+                        {% ifequal page votes.paginator.number %}
+                            <span class="current">{{ page }}</span>
+                        {% else %}
+                            <a href="?page={{ page }}">{{ page }}</a>
+                        {% endifequal %}
+                    {% endfor %}
                 </span>
             </div>
         {% else %}
