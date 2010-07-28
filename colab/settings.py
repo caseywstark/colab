@@ -334,16 +334,6 @@ BIBLION_SECTIONS = [
 
 # No credentials for you
 try:
-    from development import *
-except ImportError:
-    pass
-
-try:
-    from staging import *
-except ImportError:
-    pass
-    
-try:
-    from production import *
+    from local_settings import *
 except ImportError:
     pass
