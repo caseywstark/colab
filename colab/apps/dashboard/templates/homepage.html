@@ -4,7 +4,7 @@
 {% load ifsetting_tag %}
 {% load uni_form_tags %}
 
-{% block head_title %}{% trans "Welcome to CoLab" %}{% endblock %}
+{% block head_title %}{% trans "Open Source Science" %}{% endblock %}
 
 {% block body_class %}home{% endblock %}
 
@@ -14,73 +14,50 @@
 
 {% block body %}
     
-    <div class="tagline">
-        CoLab is an online set of tools designed to promote open and massively collaborative science.
+    <h1 id="tagline">
+        Designed for open and massively collaborative science.
+    </h1>
+    
+    <h2 id="sub-tagline">
+        For scientists. By scientists.
+    </h2>
+    
+    <div id="launch-box">
+        We launched at Open Science Summit 2010.
+        Watch the video of our <a href="http://fora.tv/live/open_science/open_science_summit_2010">presentation on Fora.tv</a>
+        and follow us on <a href="http://twitter.com/colabscience">Twitter</a>.
     </div>
     
-    <div class="home-blurb rounded">
-        <strong>Warning:</strong> CoLab is in testing mode. The content posted to the site <em>will not be saved</em> until we are done with the next version (as of June 20, 2010).
-        We are changing features too quickly to be worried about data migrations.
-        We are looking for contributors, so <a href="{% url contact %}">contact us</a> if you are interested.
-    </div>
-    
-    <div id="home-box">
-        <div id="home-about">
-            <p>
-                We are currently preparing a screencast tutorial on using CoLab.
-            </p>
+    <div id="home-content">
+        <div id="home-cast">
+            <div id="tutorial-video"></div>
+        </div>
+        
+        <div id="home-promo">
+            <div id="home-promo-header">What can I do here?</div>
             
-            <div id="tutorial-video">
-                Tutorial screencast will go here.
-            </div>
+            <ul id="home-promo-list">
+                <li>
+                    <img src="{{ STATIC_URL }}images/check.png">
+                    Manage massive collaborations
+                </li>
+                <li>
+                    <img src="{{ STATIC_URL }}images/check.png">
+                    Open source your research
+                </li>
+                <li>
+                    <img src="{{ STATIC_URL }}images/check.png">
+                    Follow science as it happens
+                </li>
+                <li>
+                    <img src="{{ STATIC_URL }}images/check.png">
+                    Build a realtime CV of contributions
+                </li>
+            </ul>
+            
+            <a id="signup-button" href="{% url acct_signup %}">
+                Sign up
+            </a>
         </div>
-        
-        <div id="home-login-box">
-            <div id="login-suggestion">Create an account to get started.</div>
-        
-            {% if user.is_authenticated %}
-                {% url what_next as what_next_url %}
-                <p>You're already logged in.</p>
-                <p class="what_next">{% blocktrans %}Wondering <a href="{{ what_next_url }}">What Next</a>?{% endblocktrans %}</p>
-            {% else %}
-                {% url acct_login as login_url %}
-                {% ifsetting ACCOUNT_OPEN_SIGNUP %}
-                    {% url acct_signup as signup_url %}
-                    <form class="uniForm" id="signup_form" method="POST" action="{{ signup_url }}">{% csrf_token %}
-                        <fieldset class="inlineLabels">
-                            {{ signup_form|as_uni_form }}
-                            <div class="form_block">
-                                <input type="hidden" name="action" value="signup" />
-                                <input type="submit" value="{% trans 'Create Account' %}"/>
-                            </div>
-                        </fieldset>
-                    </form>
-                {% else %}
-                    <p>{% blocktrans %}You can <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
-                {% endifsetting %}
-            {% endif %}
-        </div>
-        <div class="clear"></div>
-    </div>
-    
-    <p class="ui-state-highlight ui-corner-all">
-        <span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
-        You must have Javascript enabled to use several features on this site.
-    </p>
-    
-    <p class="ui-state-highlight ui-corner-all">
-        <span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
-        This site looks best using <a href="http://www.getfirefox.com/">Firefox</a>
-        or any WebKit browser (<a href="http://www.apple.com/safari/">Safari</a> or
-        <a href="http://www.google.com/chrome">Chrome</a>).
-    </p>
-    
-{% endblock %}
-
-{% block extra_body %}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#id_name").slug({ slug:'#id_username', space: '' });
-        });
-    </script>
+    </div>  
 {% endblock %}

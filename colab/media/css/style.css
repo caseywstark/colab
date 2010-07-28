@@ -11,7 +11,7 @@ body {
     line-height: 20px;
     
     color: #ffffff;
-    background-color: #494D4F;
+    background-color: #494d4f;
     
     height: 100%;
 }
@@ -22,11 +22,14 @@ p {
     margin-bottom: 1.5em;
 }
 
-a, a, a:visited {
+a, a:visited {
+    color: #145689;
     text-decoration: underline;
-    color: #ffffff;
 }
-a:hover { text-decoration: none; }
+a:hover {
+    color: #cccccc;
+    text-decoration: none;
+}
 a img { 
     border: 0;
     vertical-align: middle;
@@ -41,27 +44,16 @@ a img {
     margin: 0 auto;
 }
 
-.rounded-top {
-    -moz-border-radius-topleft: 4px;
-    -moz-border-radius-topright: 4px;
-    -webkit-border-top-left-radius: 4px;
-    -webkit-border-top-right-radius: 4px;
-}
-.rounded {
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-}
-
 /**************************************\
  * Feedback Widget
 \**************************************/
 
 #feedback-widget-wrapper {
-    position: absolute;
+    position: fixed;
+    top: 50%; left: 0;
     z-index: 2;
-    top: 50%;
-    margin-left:-25px;
     color: #3e4f4a;
+    margin-left: -30px;
 }
 #feedback-widget-wrapper a, #feedback-widget-wrapper a, #feedback-wrapper a:visited {
     color: #193F66;
@@ -79,15 +71,19 @@ a img {
 }
 
 #feedback-widget-toggle {
-    padding: 3px;
-    margin-left:25px;
-    border: 3px solid #eee;
+    padding: 6px 12px;
+    border-top: 0;
+    border-left: 3px solid #193f66;
+    border-right: 3px solid #193f66;
+    border-bottom: 3px solid #193f66;
     background: #eee;
+    border-radius-bottomleft: 4px;
+    border-radius-bottomright: 4px;
     -moz-border-radius-bottomleft: 4px;
     -moz-border-radius-bottomright: 4px;
     -webkit-border-bottom-left-radius: 4px;
     -webkit-border-bottom-right-radius: 4px;
-    text-decoration:none;
+    text-decoration: none;
     font-size: 14px;
     line-height: 14px;
 }
@@ -1075,38 +1071,30 @@ input.ac_loading {
 /**************************************\
  * Homepage
 \**************************************/
-.home-blurb {
-    width: 700px;
-    border: 2px solid #ccc;
-    padding: 10px;
-    margin: 10px auto;
+
+#tagline {
     text-align: center;
-}
-
-#home-box {
-    margin: 40px 0;
-}
-#home-about {
-    float: left;
-    width: 470px;
-}
-#tutorial-video {
-    height: 350px;
-    width: 420px;
-    border: 5px solid #999;
-    padding: 15px;
-}
-
-#home-login-box {
-    float: right;
-    width: 420px;
-    border-left: 3px solid #ccc;
-    padding-left: 20px;
-}
-#login-suggestion {
-    font-size: 18px;
+    font-size: 32px; line-height: 32px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
+#sub-tagline {
+    text-align: center;
+    font-size: 24px; line-height: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#launch-box {
+    text-align: center;
+    font-size: 18px; line-height: 18px;
+    margin-bottom: 20px;
+    background: #efefef;
+    border-top: 1px solid #c1c1c1;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+
 
 /**************************************\
  * About
