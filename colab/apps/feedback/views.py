@@ -7,9 +7,11 @@ from django.utils import simplejson
 from django.contrib import messages
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.core.paginator import Paginator
 
 from threadedcomments.models import ThreadedComment
 from threadedcomments.forms import RichCommentForm
+from tagging.models import Tag, TaggedItem
 
 from feedback.models import Feedback
 from feedback.forms import FeedbackForm, WidgetForm
@@ -43,9 +45,60 @@ def list(request, list="open", type="all", status="all", mine=False, template_na
     if not request.user.is_staff:
         feedbacks = feedbacks.filter(private=False)
     
+    # Additional filtering
+    tag = request.GET.get('tag', None)
+    the_tag = None
+    if tag:
+        try:
+            the_tag = Tag.objects.get(id=tag) # make sure the tag exists
+            feedbacks = TaggedItem.objects.get_by_model(feedbacks, the_tag)
+        except Tag.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That tag does not exist."))
+    
+    # get filter querysets
+    if the_tag:
+        tag_filters = Tag.objects.related_for_model(the_tag, Feedback)[:10]
+    else:
+        tag_filters = Tag.objects.usage_for_model(Feedback)[:10]
+    
+    sort = request.GET.get('sort', 'created')
+    direction = request.GET.get('dir', 'desc')
+    if sort == 'created':
+        if direction == "asc":
+            feedbacks = feedbacks.order_by("created")
+        else:
+            feedbacks = feedbacks.order_by("-created")
+    if sort == 'yeas':
+        if direction == 'asc':
+            feedbacks = feedbacks.order_by('yeas')
+        else:
+            feedbacks = feedbacks.order_by('-yeas')
+    if sort == 'nays':
+        if direction == 'asc':
+            feedbacks = feedbacks.order_by('nays')
+        else:
+            feedbacks = feedbacks.order_by('-nays')
+    
+    # Paginate the list
+    paginator = Paginator(feedbacks, 20) # Show 20 feedbacks per page
+    
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page is out of range, deliver last page of results.
+    try:
+        feedbacks = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        feedbacks = paginator.page(paginator.num_pages)
+    
     return render_to_response(template_name, {
         'feedbacks': feedbacks, 'list': list, 'status': status, 'type': type,
         'list_title': list_title,
+        'tag_filters': tag_filters, 'the_tag': the_tag,
+        'sort': sort, 'direction': direction,
         }, context_instance=RequestContext(request))
 
 def detail(request, object_id, template_name="feedback/detail.html"):
