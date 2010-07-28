@@ -22,16 +22,13 @@
         {% else %}
             {% ifsetting ACCOUNT_OPEN_SIGNUP %}
             {% url acct_signup as signup_url %}
-            <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up</a>!{% endblocktrans %}</p>
+            <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up</a>!  <a href="{% url acct_passwd_reset %}">{% trans "Forgot password?" %}</a>{% endblocktrans %}</p>
             {% endifsetting %}
         {% endif %}
     
         <form class="login uniForm" method="POST" action="{% url acct_login %}">
             {% csrf_token %}
             <fieldset class="inlineLabels">
-                <div class="form_block">
-                    <a href="{% url acct_passwd_reset %}">{% trans "Forgot password?" %}</a>
-                </div>
                 {{ form|as_uni_form }}
                 <div class="form_block">
                     <input type="submit" value="{% trans "Log in &raquo;" %}" />
