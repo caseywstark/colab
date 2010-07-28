@@ -16,7 +16,11 @@ body {
     height: 100%;
 }
 
-h1 { font-size: 20px; }
+h1 {
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
 
 p {
     margin-bottom: 1.5em;
@@ -594,6 +598,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     clear: both;
 }
 
+.dark-item { background-color: #eeeeee; }
+
 /**************************************\
  * Detail pages
 \**************************************/
@@ -920,6 +926,26 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .subscription-edit-button:hover {
     background: #ccc !important;
+}
+
+.dashboard-votes-count {
+    font-weight: bold;
+}
+.votes-list {
+    border-top: 1px solid #bababc;
+    font-weight: bold;
+}
+.votes-list .yea, .votes-list .nay {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: bold;
+}
+.yea { color: #94ba3c; }
+.nay { color: #c44; }
+
+.votes-list li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #bababc;
 }
 
 /**************************************\
