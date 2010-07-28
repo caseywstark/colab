@@ -3,6 +3,22 @@
         "pk": 1, 
         "model": "sites.site", 
         "fields": {
+            "domain": "localhost:8000", 
+            "name": "CoLab"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "sites.site", 
+        "fields": {
+            "domain": "staging2.colabscience.com", 
+            "name": "CoLab"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "sites.site", 
+        "fields": {
             "domain": "colabscience.com", 
             "name": "CoLab"
         }
