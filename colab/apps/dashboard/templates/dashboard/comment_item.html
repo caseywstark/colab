@@ -54,6 +54,13 @@
         <a class="post-option post-permalink" href="{{ permalink }}">link</a>
         <a class="post-option post-flag-link" id="flag-comment-{{ comment.id }}-link" href="">flag</a>
         
+        {% ifequal comment.user request.user %}
+            <a id="delete-comment-{{ comment.id }}-link" class="post-option delete-button" href="{% url tc_comment_delete comment.id %}">Delete</a>
+            <a id="edit-comment-{{ comment.id }}-link" class="post-option edit-button" href="{% url comment_edit comment.id %}">Edit</a>
+        {% endifequal %}
+        <a id="reply-comment-{{ comment.id }}-link" class="post-option reply-button" href="{% url comment_reply comment.id %}">Reply</a>
+        <div class="clear"></div>
+        
         <div class="flag-form-wrapper" id="flag-comment-{{ comment.id }}">
             {% flag comment "user" %}
         </div>
@@ -66,11 +73,5 @@
             });
         </script>
         
-        {% ifequal comment.user request.user %}
-            <a id="delete-comment-{{ comment.id }}-link" class="post-option delete-button" href="{% url tc_comment_delete comment.id %}">Delete</a>
-            <a id="edit-comment-{{ comment.id }}-link" class="post-option edit-button" href="{% url comment_edit comment.id %}">Edit</a>
-        {% endifequal %}
-        <a id="reply-comment-{{ comment.id }}-link" class="post-option reply-button" href="{% url comment_reply comment.id %}">Reply</a>
-        <div class="clear"></div>
     </div>
 </li>
