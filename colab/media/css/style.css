@@ -101,6 +101,11 @@ a img {
     padding:10px;
 }
 
+#feedback-widget input[type="text"], #feedback-widget textarea {
+    min-width: 300px;
+    width: auto;
+}
+
 /**************************************\
  * Header
 \**************************************/
