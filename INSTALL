@@ -105,4 +105,8 @@ I couldn't include MathJax in the repo because there are too many files. It's ea
 TinyMCE
 -------
 
-Download and unzip the tiny_mce directory (not tinymce) to colab/colab/media
+Download the lastest version from http://tinymce.moxiecode.com/download.php.
+
+Unzip the tiny_mce directory (not tinymce) to colab/colab/media. The TinyMCE download package contains tinymce/jscripts/tiny_mce so if you unpack the archive directly, please mv tiny_mce to the media directory.
+
+
