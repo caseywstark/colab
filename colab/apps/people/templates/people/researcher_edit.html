@@ -6,6 +6,10 @@
 
 {% block head_title %}Edit Profile{% endblock %}
 
+{% block head_extra %}
+    {{ researcher_form.media }}
+{% endblock %}
+
 {% block breadcrumbs %}
     <li><a href="{% url researcher_list %}">People</a></li>
     <li><a href="{{ user.get_absolute_url }}">{% user_display user %}</a></li>

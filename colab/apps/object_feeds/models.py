@@ -84,8 +84,11 @@ class Feed(models.Model):
         """
         A wrapper for update_set used in order to distinguish between object
         feeds and researcher feeds (they act differently).
+        
         """
-        if self.content_type_id == 6: # horrible but it will perform nicely!
+        from people.models import Researcher
+        researcher_type = ContentType.objects.get_for_model(Researcher)
+        if self.content_type == researcher_type:
             return Update.objects.filter(user__id=self.object_id)
         else:
             return self.update_set

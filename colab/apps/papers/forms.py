@@ -23,7 +23,7 @@ class PaperForm(forms.ModelForm):
 
     class Meta:
         model = Paper
-        fields = ['title', 'slug', 'tags', 'content_type', 'object_id']
+        fields = ['title', 'slug', 'content', 'tags', 'comment', 'content_type', 'object_id']
     
     def __init__(self, *args, **kwargs):
         super(PaperForm, self).__init__(*args, **kwargs)

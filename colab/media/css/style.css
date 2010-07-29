@@ -351,6 +351,7 @@ ul#messages li a { color: #693; }
     border: 1px solid #999;
     margin: 0; padding: 4px;
     vertical-align: middle;
+    display: inline;
 }
 #search-input, #search-button { font-size: 12px; }
 #search-button {
@@ -455,10 +456,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .form_block input {
-    float: right;
-    margin: 10px 0;
-}
-.full_form_block input {
     float: right;
     margin: 10px 310px 10px 0;
 }
@@ -868,15 +865,13 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 #profile-activity-block {
     float: left;
-    width: 400px;
-    padding-right: 10px;
-    border-right: 3px solid #ccc;
-    margin-right: 10px;
+    width: 600px;
     min-height: 200px;
 }
 #profile-contributions-block {
     float: left;
     margin-left: 10px;
+    display: none;
 }
 
 .interests-header {
@@ -1254,7 +1249,7 @@ input.ac_loading {
 	font-weight:bold;
 	font-family: "Helvetica", Arial, sans-serif;
 	cursor:pointer;
-	
+	margin: 10px 0;
 }		
 #login-page-box .form_block input:hover{
 	background-color:#333;

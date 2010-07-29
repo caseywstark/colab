@@ -19,7 +19,7 @@
     {% if content_object %}
         <li><a href="{{ content_object.get_absolute_url }}">{{ content_object }}</a></li>
     {% endif %}
-    <li>Papers</li>
+    <li>Papers:</li>
     {% if paper %}
         <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
         <li><a href="{{ request.path }}">Edit</a></li>
@@ -42,7 +42,7 @@
             <fieldset class="inlineLabels">
                 {{ paper_form|as_uni_form }}
                 <div class="form_block">
-                    <input type="submit" value="Submit Revision"/>
+                    <input type="submit" value="{% if paper %}Submit Revision{% else %}Create Paper{% endif %}"/>
                 </div>
             </fieldset>
         </form>

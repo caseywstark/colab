@@ -69,7 +69,7 @@
         {% if tags %}
             <div id="profile-interests" class="profile-sidebar-block">
                 Research Interests:<br>
-                <ul class="post-tags-list">
+                <ul class="post-taxonomy-list post-tags-list">
                     {% for tag in tags %}
                         <li><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>
                     {% endfor %}
