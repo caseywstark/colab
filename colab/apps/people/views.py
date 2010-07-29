@@ -12,8 +12,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from avatar.templatetags.avatar_tags import avatar
-from friends.forms import InviteFriendForm
-from friends.models import FriendshipInvitation, Friendship
 from microblogging.models import Following
 
 if "notification" in settings.INSTALLED_APPS:

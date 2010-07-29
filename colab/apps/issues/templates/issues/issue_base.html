@@ -5,7 +5,6 @@
 {% block actions %}
     {% if user.is_authenticated %}
         {% ifequal issue.creator user %}
-            
             <li class="left-action">
                 <a href="{% url issue_resolve issue.slug %}">
                     {% if issue.resolved %}

@@ -356,7 +356,8 @@ ul#messages li a { color: #693; }
     right: 23px; top: 3px;
 }
 
-.left-action { float: left !important; margin-right: 10px; }
+.left-action { float: left !important; }
+.left-action a { margin-right: 10px; }
 .right-action { float: right !important; margin-left: 10px;}
 .left-action a, .right-action a { padding: 6px 10px; }
 
@@ -779,6 +780,22 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .post-option:hover { text-decoration: underline !important; }
 
 /**************************************\
+ * Papers
+\**************************************/
+
+table#history th, table#history td {
+    padding: 2px 5px;
+}
+
+th.compare { width: 70px; }
+th.modified { width: 200px; }
+th.author { min-width: 130px; }
+th.comment { min-width: 400px; }
+th.options { width: 200px; }
+
+td.options a { margin: 0 5px; }
+
+/**************************************\
  * Profiles
 \**************************************/
 
@@ -1052,7 +1069,7 @@ input.ac_loading {
 .level-19 { margin-left: 250px; }
 .level-20 { margin-left: 250px; }
 
-.reply-wrapper {
+.comment-form-wrapper {
     margin: 40px 0 0 20px;
 }
 .add-to-discussion {

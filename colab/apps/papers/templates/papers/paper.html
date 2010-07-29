@@ -6,64 +6,93 @@
 {% load account_tags %}
 {% load dashboard_tags %}
 {% load object_feeds_tags %}
-{% load theme_tags %}
+{% load tagging_tags %}
 
-{% block head_title %}{{ paper.title }}{% endblock %}
+{% block head_title %}Paper: {{ paper.title }}{% endblock %}
 
 {% block head_extra %}
     {{ comment_form.media }}
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% if paper.content_object %}
-        <li><a href="{{ paper.content_object.get_absolute_url }}">{{ paper.content_object }}</a></li>
-    {% endif %}
-    <li>Papers</li>
+    <li><a href="{% url issue_list %}">Issues</a></li>
+    <li><a href="{{ paper.content_object.get_absolute_url }}">{{ paper.content_object }}</a></li>
+    <li>Papers:</li>
     <li><a href="{{ paper.get_absolute_url }}">{{ paper }}</a></li>
 {% endblock %}
 
 {% block actions %}
+    <li class="left-action">
+        <a href="{% url paper_history paper.slug %}">View Paper History</a>
+    </li>
     {% if user.is_authenticated %}
+        {% ifequal paper.creator user %}
+            <li class="right-action">
+                <a href="{% url paper_delete paper.slug %}">Delete</a>
+            </li>
+        {% endifequal %}
         <li class="right-action">
-            {% follow_link paper "this Paper"%}
-        </li>
-        <li class="left-action">
-            <a href="{% url paper_history paper.slug %}">View Paper History</a>
+            <a href="{% url paper_edit paper.slug %}">Edit</a>
         </li>
     {% else %}
         Sign in to access actions.
     {% endif %}
-    
 {% endblock %}
 
-
 {% block body %}
-    {% if revision.is_not_current %}
-        <p class="revert-warning">
-	        {% trans "You are viewing an older revision" %}
-	        <a href="{% url paper_detail slug=paper.slug %}">
-	          {% trans "See the latest version" %}
-	        </a>
-        </p>
-    {% endif %}
-    
-    <div class="post-title-wrapper">
-        <div class="post-title">
-            {{ paper.title }}
+    <div id="detail-sidebar">
+        <a id="paper-follow-button" class="big-button" href="{% url feeds_subscription paper.feed.id %}" >
+            {% if following %}
+                Follow Settings
+            {% else %}
+                + Follow Paper
+            {% endif %}
+        </a>
+        
+        {% post_meta paper %}
+        
+        <div class="clear"></div>
+        
+        <div class="post-taxonomy-box">
+            <div class="post-taxonomy-header">Tags</div>
+            {% tags_for_object paper as tags %}
+            {% if tags %}
+                <ul class="post-taxonomy-list post-tags-list">
+                    {% for tag in tags %}
+                        <li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-tags">No tags</div>
+            {% endif %}
         </div>
     </div>
     
-    {% post_meta paper %}
+    <div id="post-content-block">
+        {% if revision.is_not_current %}
+            <p class="revert-warning">
+	            {% trans "You are viewing an older revision" %}
+	            <a href="{% url paper_detail slug=paper.slug %}">
+	              {% trans "See the latest version" %}
+	            </a>
+            </p>
+        {% endif %}
     
-    <div id="description" class="post-wrapper">
+        <h1 class="post-title">
+            {{ paper.title }}
+        </h1>
+    
         <div class="post-content">
             {{ revision.content|safe }}
         </div>
     </div>
         
     {% comment_list paper %}
-    
+
     <div class="comment-form-wrapper">
+        <p class="add-to-discussion">
+            Add to the discussion on this paper:
+        </p>
         {% if user.is_authenticated %}
         <form class="comment-form uniForm" id="comment-form" method="POST" action="{% get_comment_url paper %}">{% csrf_token %}
             <fieldset class="inlineLabels">

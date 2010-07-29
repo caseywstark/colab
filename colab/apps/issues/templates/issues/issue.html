@@ -108,12 +108,12 @@
     
     {% comment_list issue %}
     
-    <div class="reply-wrapper">
+    <div class="comment-form-wrapper">
         <p class="add-to-discussion">
             Add to the discussion on this issue:
         </p>
         {% if user.is_authenticated %}
-        <form class="reply-form uniForm" id="reply-to-issue" method="POST" action="{% get_comment_url issue %}">{% csrf_token %}
+        <form class="comment-form uniForm" id="issue-comment-form" method="POST" action="{% get_comment_url issue %}">{% csrf_token %}
             <fieldset class="inlineLabels">
                 {{ comment_form|as_uni_form }}
                 <div class="form_block">

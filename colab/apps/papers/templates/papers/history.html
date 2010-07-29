@@ -26,25 +26,22 @@
     {% else %}
         Sign in to access actions.
     {% endif %}
-    
 {% endblock %}
 
 
 {% block body %}
-    <div class="post-title-wrapper">
-        <div class="post-title">
-            History for Paper: {{ paper.title }}
-        </div>
-    </div>
+    <h1 class="post-title">
+        History for Paper: {{ paper.title }}
+    </h1>
     
     <form method="GET" action="{% url paper_changes slug=paper.slug %}">
-        <table>
+        <table id="history">
             <tr class="tbheader">
-                <th>Compare</th>
-                <th>Modified</th>
-                <th>Comment</th>
-                <th>Author</th>
-                <th>Options</th>
+                <th class="compare">Compare</th>
+                <th class="modified">Modified</th>
+                <th class="author">Author</th>
+                <th class="comment">Comment</th>
+                <th class="options">Options</th>
             </tr>
             {% for rev in paper.revisions.all %}
                 <tr class="{% cycle 'table-odd' 'table-even' %}">
@@ -69,8 +66,8 @@
                         />
                 	</td>
                     <td class="modifed">{{ rev.created|timesince }} ago</td>
-	                <td class="message">{{ rev.comment }}</td>
-	                <td class="creator"><a href="{{ rev.editor.get_absolute_url }}">{% user_display rev.editor %}</td>
+                    <td class="author"><a href="{{ rev.editor.get_absolute_url }}">{% user_display rev.editor %}</td>
+	                <td class="comment">{{ rev.comment }}</td>
 	                <td class="options">
 		                <a href="{% url paper_revision slug=paper.slug, revision_number=rev.revision %}">{% trans "View" %}</a>
 		                <a href="{% url paper_edit slug=paper.slug, revision_number=rev.revision %}">{% trans "Revert" %}</a>

@@ -11,6 +11,9 @@ class Discipline(models.Model):
     
     about = models.TextField(blank=True)
     
+    # followers
+    followers_count = models.PositiveIntegerField(default=0, editable=False)
+    
     # fields for the tree to work and migrate properly
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
     lft = models.PositiveIntegerField(null=True, blank=True)

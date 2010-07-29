@@ -22,7 +22,13 @@
         {% else %}
             {% ifsetting ACCOUNT_OPEN_SIGNUP %}
             {% url acct_signup as signup_url %}
-            <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up</a>!  <a href="{% url acct_passwd_reset %}">{% trans "Forgot password?" %}</a>{% endblocktrans %}</p>
+            {% url acct_password_reset as reset_url %}
+            <p>
+                {% blocktrans %}
+                    Don't have an account? <a href="{{ signup_url }}">Sign up</a>!
+                    <a href="{{ reset_url }}">Forgot password?</a>
+                {% endblocktrans %}
+            </p>
             {% endifsetting %}
         {% endif %}
     

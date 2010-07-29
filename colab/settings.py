@@ -132,14 +132,12 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "account.context_processors.openid",
     "account.context_processors.account",
     "messages.context_processors.inbox",
-    #"friends_app.context_processors.invitations",
     "colab.context_processors.combined_inbox_count",
     "feedback.context_processors.widget_feedback_form",
 ]
 
 COMBINED_INBOX_COUNT_SOURCES = [
     "messages.context_processors.inbox",
-    #"friends_app.context_processors.invitations",
     #"notification.context_processors.notification",
 ]
 
@@ -208,6 +206,10 @@ INSTALLED_APPS = [
     
 ]
 
+FIXTURE_DIRS = [
+    os.path.join(PROJECT_ROOT, "fixtures"),
+]
+
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 ABSOLUTE_URL_OVERRIDES = {
@@ -228,7 +230,7 @@ NOTIFICATION_LANGUAGE_MODULE = "account.Account"
 
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_REQUIRED_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = False
+ACCOUNT_EMAIL_VERIFICATION = True
 ACCOUNT_EMAIL_AUTHENTICATION = True
 ACCOUNT_UNIQUE_EMAIL = EMAIL_CONFIRMATION_UNIQUE_EMAIL = True
 
@@ -334,16 +336,6 @@ BIBLION_SECTIONS = [
 
 # No credentials for you
 try:
-    from development import *
-except ImportError:
-    pass
-
-try:
-    from staging import *
-except ImportError:
-    pass
-    
-try:
-    from production import *
+    from local_settings import *
 except ImportError:
     pass

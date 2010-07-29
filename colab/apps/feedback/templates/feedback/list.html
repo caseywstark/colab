@@ -1,65 +1,165 @@
 {% extends "feedback/base.html" %}
 
 {% load i18n %}
-{% load uni_form_tags %}
-{% load pagination_tags %}
 {% load feedback_tags %}
-{% load theme_tags %}
+{% load sorting_tags %}
+{% load tagging_tags %}
+{% load issues_tags %}
 
 {% block head_title %}{% blocktrans %}Feedback{% endblocktrans %}{% endblock %}
-
-{% autopaginate feedbacks 10 %}
 
 {% block breadcrumbs %}
     <li><a href="{% url feedback_list %}">Feedback</a></li>
 {% endblock %}
 
 {% block actions %}
+    <li class="left-action">
+        <a href="{% url feedback_submit %}">Submit Feedback</a>
+    </li>
+    
     <li class="search-form-wrapper right-action">
         <form class="search-form" method="GET" action="">
-            <input id="search-input" type="text" name="search" class="side-input" value="{{ search_terms }}" />
-            <input id="search-button" type="submit" value="Search Feedback" />
+            <input id="search-input" type="text" name="search" value="{% if search_terms %}{{ search_terms }}{% else %}Search Feedback{% endif %}" />
+            <input id="search-button" type="image" src="{{ STATIC_URL }}images/search_button.png" value="Search feedback" />
             {% if search_terms %}
                 <a href="{% clear_search_url request %}">Clear Search Terms</a>
             {% endif %}
         </form>
     </li>
-    
-    <li class="left-action">
-        <a href="{% url feedback_submit %}">Submit Feedback</a>
-    </li>
 {% endblock %}
 
 {% block body %}
-    <div class="list-title-wrapper">
+    <div id="list-sidebar">
+        <div id="sorting-wrapper" class="filter-wrapper">
+            <div class="filter-header">Sort by</div>
+            <ul class="filter-list">
+                <li>{% anchor created "date" %}</li>
+                <li>{% anchor yeas "yeas" %}</li>
+                <li>{% anchor nays "nays" %}</li>
+            </ul>
+        </div>
+        
+        <div id="status-wrapper" class="filter-wrapper">
+            <div class="filter-header">By status</div>
+            
+            {% if the_status %}
+                <div id="set-status" class="set-filter">
+                    {{ the_status }}
+                    <a href="{% remove_filter_url request "status" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if status_filters %}
+                <ul class="filter-list">
+                    {% for status in status_filters %}
+                        <li><a href="{% filter_url request "status" status.slug %}">{{ status.title|truncatechar:20 }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-filters">
+                    No valid status
+                </div>
+            {% endif %}
+        </div>
+        
+        <div id="type-wrapper" class="filter-wrapper">
+            <div class="filter-header">By type</div>
+            
+            {% if the_type %}
+                <div id="set-type" class="set-filter">
+                    {{ the_type }}
+                    <a href="{% remove_filter_url request "type" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if type_filters %}
+                <ul class="filter-list">
+                    {% for type in type_filters %}
+                        <li><a href="{% filter_url request "type" type.slug %}">{{ type.title|truncatechar:20 }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-filters">
+                    No valid types
+                </div>
+            {% endif %}
+        </div>
+        
+        <div id="tags-wrapper" class="filter-wrapper">
+            <div class="filter-header">By tag</div>
+            
+            {% if the_tag %}
+                <div class="set-filter">
+                    {{ the_tag }}
+                    <a href="{% remove_filter_url request "tag" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if tag_filters %}
+                <ul class="filter-list">
+                    {% for tag in tag_filters %}
+                        <li>{% filter_link request "tag" tag.id tag.name%}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-filters">
+                    {% if the_tag %}
+                        No related tags.
+                    {% else %}
+                        No tags on these objects.
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div id="list-block">
         <h1 class="list-title">
             {{ list_title }}
             {% if search_terms %}
                 with keywords "{{ search_terms }}"
             {% endif %}
-            <span>({{ feedbacks.count }} results)</span>
         </h1>
-    </div>
-    
-    <ul class="post-list feedback">
-        {% if feedbacks %}
-            {% for feedback in feedbacks %}
-                {% show_feedback feedback %}
-                <div class="clear"></div>
-            {% endfor %}
-        {% else %}
-            {% if mine %}
-                <li class="list-item no-results">
-                    You haven't submitted any feedback yet.
-                </li>
+        
+        <div class="list-count">
+            ({{ feedbacks.paginator.count }} results)
+        </div>
+        
+        <ul class="post-list feedbacks">
+            {% if feedbacks.paginator.count > 0 %}
+                {% for feedback in feedbacks.object_list %}
+                    {% show_feedback feedback %}
+                {% endfor %}
             {% else %}
-                <li class="list-item no-results">
-                    No feedback matches your filters. Please broaden your search or submit new feedback.
-                </li>
+                {% if mine %}
+                    <li class="list-item no-results">
+                        You haven't contributed to any feedback yet.
+                    </li>
+                {% else %}
+                    <li class="list-item no-results">
+                        No feedback matches your filters. Please broaden your search or submit new feedback.
+                    </li>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    </ul>
-    <div class="clear"></div>
-    
-    {% paginate %}
+        </ul>
+        
+        <div class="pagination">
+            <span class="step-links">
+                Page 
+                {% for page in feedbacks.paginator.page_range %}
+                    {% ifequal page feedbacks.paginator.number %}
+                        <span class="current">{{ page }}</span>
+                    {% else %}
+                        <a href="?page={{ page }}">{{ page }}</a>
+                    {% endifequal %}
+                {% endfor %}
+            </span>
+        </div>
+    </div>
 {% endblock %}
