@@ -19,8 +19,8 @@ class IssueForm(forms.ModelForm):
     slug = forms.SlugField(max_length=30,
         help_text = _("a short version of the name consisting only of letters, numbers, underscores and hyphens."),
     )
-    description = forms.CharField(widget=TinyMCE)
-    disciplines = AutoCompleteSelectMultipleField('discipline', required=False)
+    description = forms.CharField(widget=TinyMCE(attrs={'class': 'rich-editor'}))
+    disciplines = AutoCompleteSelectMultipleField('discipline', required=False, label=_("Disciplines (autocomple)")
     
     def clean_title(self):
         if not self.instance.id and Issue.objects.filter(title__iexact=self.cleaned_data["title"]).exists():
@@ -34,7 +34,7 @@ class IssueForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(IssueForm, self).__init__(*args, **kwargs)
-        self.fields.keyOrder = ['title', 'slug', 'disciplines', 'tags', 'description', 'private']
+        self.fields.keyOrder = ['title', 'slug', 'description', 'disciplines', 'tags', 'private']
     
     class Meta:
         model = Issue

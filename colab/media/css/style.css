@@ -418,15 +418,20 @@ ul#messages li a { color: #693; }
  * Forms
 \**************************************/
 
+.ctrlHolder {
+    margin: 3px 20px;
+    clear: both;
+}
+
 input { color: #222222; }
 
 input[type="text"], input[type="password"], textarea {
-    border: 2px solid #d5dde0;
-    padding: 4px;
-    font-size: 12px;
+    display: block;
+    width: 650px;
+    border: 3px solid #d5dde0;
+    padding: 5px;
+    font-size: 14px;
     background-color: #fbfbfb;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
 }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
     border-color: #a7cf4c;
@@ -443,9 +448,24 @@ input[type="submit"], input[type="button"] {
 input[type="submit"]:hover, input[type="submit"]:hover {
     border-color: #a7cf4c;
 }
+
+.formHint {
+    color: #999;
+    margin: 0 0 0 20px;
+}
+
 .form_block input {
-    margin: 10px;
-    float: right;
+    position: absolute;
+    right: 310px;
+    margin: 10px 0;
+}
+
+.rich-editor {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.tinymce {
+    min-height: 350px;
 }
 
 .flag-form-wrapper {
@@ -1259,7 +1279,7 @@ input.ac_loading {
 }
 #error-extra {
     position:absolute;
-    top: 425px; left: 525px;
+    top: 400px; left: 525px;
     font-size: 36px; line-height: 40px;
 }
 		
