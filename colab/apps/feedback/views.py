@@ -13,7 +13,7 @@ from threadedcomments.models import ThreadedComment
 from threadedcomments.forms import RichCommentForm
 from tagging.models import Tag, TaggedItem
 
-from feedback.models import Feedback
+from feedback.models import Feedback, Type, Status
 from feedback.forms import FeedbackForm, WidgetForm
 from papers.models import Paper
 
@@ -42,6 +42,7 @@ def list(request, list="open", type="all", status="all", mine=False, template_na
     if status != "all":
         feedbacks = feedbacks.filter(status__slug=status)
     
+    # private filter
     if not request.user.is_staff:
         feedbacks = feedbacks.filter(private=False)
     
@@ -54,12 +55,31 @@ def list(request, list="open", type="all", status="all", mine=False, template_na
             feedbacks = TaggedItem.objects.get_by_model(feedbacks, the_tag)
         except Tag.DoesNotExist:
             messages.add_message(request, messages.ERROR, _("That tag does not exist."))
+    status = request.GET.get('status', None)
+    the_status = None
+    if status:
+        try:
+            the_status = Status.objects.get(slug=status) # make sure the status exists
+            feedbacks = feedbacks.filter(status=the_status)
+        except Status.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That feedback status does not exist."))
+    type = request.GET.get('type', None)
+    the_type = None
+    if type:
+        try:
+            the_type = Type.objects.get(slug=type) # make sure the type exists
+            feedbacks = feedbacks.filter(type=the_type)
+        except Type.DoesNotExist:
+            messages.add_message(request, messages.ERROR, _("That feedback type does not exist."))
     
     # get filter querysets
     if the_tag:
         tag_filters = Tag.objects.related_for_model(the_tag, Feedback)[:10]
     else:
         tag_filters = Tag.objects.usage_for_model(Feedback)[:10]
+    
+    status_filters = Status.objects.all()
+    type_filters = Type.objects.all()
     
     sort = request.GET.get('sort', 'created')
     direction = request.GET.get('dir', 'desc')
@@ -98,6 +118,8 @@ def list(request, list="open", type="all", status="all", mine=False, template_na
         'feedbacks': feedbacks, 'list': list, 'status': status, 'type': type,
         'list_title': list_title,
         'tag_filters': tag_filters, 'the_tag': the_tag,
+        'status_filters': status_filters, 'the_status': the_status,
+        'type_filters': type_filters, 'the_type': the_type,
         'sort': sort, 'direction': direction,
         }, context_instance=RequestContext(request))
 

@@ -278,7 +278,7 @@ ul#messages li a { color: #693; }
 	padding-left:15px;
 }
 #breadcrumbs li a {
-    background: url(x	) no-repeat right center;
+    background: url(/site_media/static/images/crumbs.gif) no-repeat right center; no-repeat right center;
 	display: block;
 	padding: 0 25px 0 0;
 }
