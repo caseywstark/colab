@@ -1,14 +1,20 @@
 [
     {
-        "pk": 1,
-        "model": "auth.user",
+        "pk": 1, 
+        "model": "auth.user", 
         "fields": {
-            "username": "caseywstark",
-            "password": "test",
-            "email": "caseywstark@colabscience.com",
-            "is_active": true,
-            "is_staff": true,
-            "is_superuser": true
+            "username": "caseywstark", 
+            "first_name": "", 
+            "last_name": "", 
+            "is_active": true, 
+            "is_superuser": true, 
+            "is_staff": true, 
+            "last_login": "2010-07-28 19:08:03", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$95b0a$ecd8f50a7910d2a7b8ef5ddf87e224acd84f139c", 
+            "email": "caseywstark@colabscience.com", 
+            "date_joined": "2010-07-28 19:05:52"
         }
     },
     {

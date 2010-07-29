@@ -18,7 +18,7 @@
         </h1>
         
         <div id="dashboard-feed">
-            {% if subscriptions %}
+            {% if subscriptions.count > 0 %}
                 {% if updates.paginator.count > 0 %}
                     <ul id="updates-list">
                         {% for update in updates.object_list %}
@@ -52,7 +52,7 @@
     <div id="dashboard-subscriptions-block">
         <div id="dashboard-subscriptions-header">My Subscriptions</div>
         
-        {% if subscriptions %}
+        {% if subscriptions.count > 0 %}
             <ul id="dashboard-subscriptions-list">
                 {% for subscription in subscriptions %}
                     <li>
@@ -65,6 +65,10 @@
                     </li>
                 {% endfor %}
             </ul>
+        {% else %}
+            <p class="no-subscriptions">
+                none
+            </p>
         {% endif %}
     </div>
 {% endblock %}
