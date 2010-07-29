@@ -986,7 +986,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     font-weight: bold;
     color: #999;
 }
-    
 
 /**************************************\
  * Ajax Select
@@ -1233,6 +1232,35 @@ input.ac_loading {
 }		
 #login-page-box form.login fieldset.inlineLabels div.form_block input:hover{
 	background-color:#333;
+}
+
+/**************************************\
+ * Errors
+\**************************************/
+
+.error-page #body { padding: 0; }
+#error-page {
+    height: 600px;
+    padding: 20px 0 0;
+    background: url('/site_media/static/images/error.png') no-repeat left bottom;
+    font-weight: bold;
+}
+#error-title {
+    position: absolute;
+    top: 100px; left: 525px;
+    font-size: 54px;
+    color: #c9ccce;
+}
+#error-description {
+    position: absolute;
+    top: 170px; left: 525px;
+    font-size: 36px;
+    line-height: 40px;
+}
+#error-extra {
+    position:absolute;
+    top: 425px; left: 525px;
+    font-size: 36px; line-height: 40px;
 }
 		
 /**************************************\
