@@ -3,10 +3,10 @@
 {% load i18n %}
 {% load uni_form_tags %}
 {% load feedback_tags %}
-{% load theme_tags %}
-{% load threadedcommentstags %}
+{% load tagging_tags %}
 {% load dashboard_tags %}
 {% load object_feeds_tags %}
+{% load threadedcommentstags %}
 
 {% block head_title %}Feedback: {{ feedback.title }}{% endblock %}
 
@@ -20,50 +20,83 @@
 {% endblock %}
 
 {% block actions %}
-    <li class="right-action">
-        {% follow_link feedback %}
-    </li>
+    {% if user.is_authenticated %}
+        {% ifequal feedback.user user %}
+            <li class="right-action">
+                <a href="{% url feedback_delete feedback.id %}">Delete</a>
+            </li>
+            <li class="right-action">
+                <a href="{% url feedback_edit feedback.id %}">Edit</a>
+            </li>
+        {% endifequal %}
+    {% else %}
+        Sign in to access actions.
+    {% endif %}
 {% endblock %}
 
 {% block body %}
-    <div class="post-title-wrapper">
-        <div class="post-title">
-            {{ feedback.title }}
+    <div id="detail-sidebar">
+        <a id="feedback-follow-button" class="big-button" href="{% url feeds_subscription feedback.feed.id %}" >
+            {% if following %}
+                Follow Settings
+            {% else %}
+                + Follow Feedback
+            {% endif %}
+        </a>
+        
+        {% post_meta feedback %}
+        
+        <div class="clear"></div>
+        
+        {% if feedback.private %}
+            <span class="private">private</span>
+        {% endif %}
+        
+        <div class="post-taxonomy-box">
+            <div class="post-taxonomy-header">Tags</div>
+            {% tags_for_object feedback as tags %}
+            {% if tags %}
+                <ul class="post-taxonomy-list post-tags-list">
+                    {% for tag in tags %}
+                        <li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-tags">No tags</div>
+            {% endif %}
+        </div>
+        <div class="post-taxonomy-box">
+            Type:
+            <span class="feedback-type feedback-type-{{ feedback.type.slug }}">
+                {{ feedback.type.title }}
+            </span>
+        </div>
+        <div class="post-taxonomy-box">
+            Status:
+            <span class="feedback-status feedback-status-{{ feedback.status.slug }}">
+                {{ feedback.status.title }}
+            </span>
         </div>
     </div>
     
-    
-    <h1 id="feedback-detail-heading">
-        <span class="feedback-type feedback-type-{{ feedback.type.slug }}">
-            {{ feedback.type.title }}
-        </span>
-        {{ feedback.title }}
-        <span class="feedback-status feedback-status-{{ feedback.status.slug }}">
-            {{ feedback.status.title }}
-        </span>
-    </h1>
-
-    {% post_meta feedback %}
-
-    <div id="description" class="post-wrapper">
+    <div id="post-content-block">
+        <h1 class="post-title">
+            {{ feedback.title }}
+        </h1>
+        
         <div class="post-content">
             {{ feedback.description|safe }}
         </div>
-        
-        {% ifequal user feedback.user %}
-            <ul class="post-buttons">
-                <li><a class="post-option" href="{% url feedback_edit feedback.id %}">Edit</a></li>
-                <li><a class="post-option" href="{% url feedback_delete feedback.id %}">Delete</a></li>
-            </ul>
-        {% endifequal %}
     </div>
-    <div class="clear"></div>
     
     {% comment_list feedback %}
     
-    <div class="reply-wrapper">
+    <div class="comment-form-wrapper">
+        <p class="add-to-discussion">
+            Add to the discussion on this feedback:
+        </p>
         {% if user.is_authenticated %}
-        <form class="reply-form uniForm" id="reply-to-feedback" method="POST" action="{% get_comment_url feedback %}">{% csrf_token %}
+        <form class="comment-form uniForm" id="feedback-comment-form" method="POST" action="{% get_comment_url feedback %}">{% csrf_token %}
             <fieldset class="inlineLabels">
                 {{ comment_form|as_uni_form }}
                 <div class="form_block">
@@ -76,5 +109,4 @@
             <h3>Please <a href="{% url acct_login %}">Login</a> (or <a href="{% url acct_signup %}">Sign Up</a>) to leave a comment.</h3>
         {% endif %}
     </div>
-    
 {% endblock %}

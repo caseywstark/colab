@@ -183,21 +183,16 @@ def delete(request, object_id=None, template_name="feedback/delete.html"):
     redirect_url = feedback.get_absolute_url()
     
     if request.user == feedback.user:
-        if not Paper.objects.get_for_object(feedback).exists():
-            if not ThreadedComment.objects.get_for_object(feedback).exists():
-                feedback.feed.delete()
-                feedback.delete()
-                messages.add_message(request, messages.SUCCESS,
-                    _("Feedback %s deleted.") % feedback.title
-                )
-                redirect_url = reverse("feedback_list")
-            else:
-                messages.add_message(request, messages.ERROR,
-                    _("Please delete comments before deleting the feedback.")
-                )
-        else:
+        if not ThreadedComment.objects.get_for_object(feedback).exists():
+            feedback.feed.delete()
+            feedback.delete()
             messages.add_message(request, messages.SUCCESS,
-                _("Please delete papers before deleting the feedback.")
+                _("Feedback %s deleted.") % feedback.title
+            )
+            redirect_url = reverse("feedback_list")
+        else:
+            messages.add_message(request, messages.ERROR,
+                _("Please delete comments before deleting the feedback.")
             )
     else:
         messages.add_message(request, messages.SUCCESS,

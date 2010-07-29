@@ -6,7 +6,6 @@
     
     {% post_meta_summary feedback %}
     
-    
     <div class="list-post-block">
         <span class="feedback-title-wrapper">
             <a class="list-post-title" href="{{ feedback.get_absolute_url }}">
@@ -47,7 +46,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <span class="post-no-tags">no tags</span>
+            <div class="post-no-tags">no tags</div>
         {% endif %}
     </div>
 </li>

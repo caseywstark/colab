@@ -966,6 +966,29 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 /**************************************\
+ * Feedback
+\**************************************/
+
+.feedback-type-wrapper {
+    float: right;
+    color: #999;
+    font-weight: bold;
+}
+.feedback-type-wrapper a, .feedback-type-wrapper a:visited {
+    color: #94ba3c !important;
+    text-decoration: none !important;
+}
+.feedback-type-wrapper a:hover { text-decoration: underline !important; }
+
+.post-no-tags {
+    clear: right;
+    padding-top: 5px;
+    font-weight: bold;
+    color: #999;
+}
+    
+
+/**************************************\
  * Ajax Select
 \**************************************/
 
