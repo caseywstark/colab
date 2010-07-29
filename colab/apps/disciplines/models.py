@@ -33,12 +33,6 @@ class Discipline(models.Model):
             return True
         else:
             return False
-    
-    def save(self, *args, **kwargs):
-        super(Discipline, self).save(*args, **kwargs)
-        
-        if not self.feed.all():
-            pass
 
 try:
     mptt.register(Discipline)
