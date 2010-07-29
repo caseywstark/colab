@@ -6,7 +6,8 @@
 
 {% block breadcrumbs %}
     <li><a href="{% url home %}">Home</a></li>
-    <li><a href="{{ request.path }}">About</a></li>
+    <li><a href="{% url about %}">About</a></li>
+    <li><a href="{{ request.path }}">FAQs</a></li>
 {% endblock %}
 
 {% block body %}
