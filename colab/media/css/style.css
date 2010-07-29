@@ -16,11 +16,7 @@ body {
     height: 100%;
 }
 
-h1 {
-    font-size: 24px;
-    line-height: 24px;
-    margin-bottom: 20px;
-}
+h1 { font-size: 20px; }
 
 p {
     margin-bottom: 1.5em;
@@ -31,7 +27,7 @@ a, a:visited {
     text-decoration: underline;
 }
 a:hover {
-    color: #;
+    color: #cccccc;
     text-decoration: none;
 }
 a img { 
@@ -280,7 +276,7 @@ ul#messages li a { color: #693; }
 	padding-left:15px;
 }
 #breadcrumbs li a {
-    background: url(/site_media/static/images/crumbs.gif) no-repeat right center;
+    background: url(x	) no-repeat right center;
 	display: block;
 	padding: 0 25px 0 0;
 }
@@ -360,8 +356,7 @@ ul#messages li a { color: #693; }
     right: 23px; top: 3px;
 }
 
-.left-action { float: left !important; }
-.left-action a { margin-right: 10px; }
+.left-action { float: left !important; margin-right: 10px; }
 .right-action { float: right !important; margin-left: 10px;}
 .left-action a, .right-action a { padding: 6px 10px; }
 
@@ -513,7 +508,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .list-count {
     font-size: 16px;
     font-weight: bold;
-    color: #999;
+    color: #ccc;
 }
 
 .post-list {
@@ -570,13 +565,11 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .post-disciplines-list a:hover { text-decoration: underline !important; }
 
-.post-tags-list, .post-no-tags {
+.post-tags-list {
     clear: right;
     padding-top: 5px;
     font-weight: bold;
-    color: #999;
 }
-.post-no-tags { float: left; }
 .post-tags-list li {
     float: left;
     display: inline;
@@ -598,8 +591,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .pagination {
     clear: both;
 }
-
-.dark-item { background-color: #eeeeee; }
 
 /**************************************\
  * Detail pages
@@ -630,17 +621,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 #detail-sidebar .meta-box {
-    margin-top: 20px;
-}
-
-.private {
-    padding: 5px 10px;
-    background: #c44;
-    color: #fff;
-    font-weight: bold;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
+    margin-top: 10px;
 }
 
 .post-taxonomy-box {
@@ -672,6 +653,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .post-content { }
 
+<<<<<<< HEAD:colab/media/css/style.css
 .page-title {
     font-size: 24px;
     line-height: 24px;
@@ -682,6 +664,11 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 /**************************************\
  * Issue paper list
 \**************************************/
+=======
+/**************************************\
+ * Issue paper list
+\**************************************/
+>>>>>>> 7ecbcb0f0e12b5c1e1131926a95c85c4cf14b339:colab/media/css/style.css
 
 .issue-papers-block {
     margin-top: 20px;
@@ -693,19 +680,18 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     font-weight: bold;
 }
 .issue-paper-list {
-    margin-bottom: 10px;
+    
 }
 .issue-paper-list li {
     
-}
-.no-papers {
-    margin-bottom: 10px;
 }
 .paper-preview .list-post-title {
     color: #999 !important;
 }
 
 #issue-paper-add {
+    display: block;
+    width: 120px;
     margin: 10px;
 }
 
@@ -806,22 +792,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .post-option:hover { text-decoration: underline !important; }
 
 /**************************************\
- * Papers
-\**************************************/
-
-table#history th, table#history td {
-    padding: 2px 5px;
-}
-
-th.compare { width: 70px; }
-th.modified { width: 200px; }
-th.author { min-width: 130px; }
-th.comment { min-width: 400px; }
-th.options { width: 200px; }
-
-td.options a { margin: 0 5px; }
-
-/**************************************\
  * Profiles
 \**************************************/
 
@@ -877,11 +847,13 @@ td.options a { margin: 0 5px; }
 
 #profile-activity-block {
     float: left;
-    width: 600px;
+    width: 400px;
+    padding-right: 10px;
+    border-right: 3px solid #ccc;
+    margin-right: 10px;
     min-height: 200px;
 }
 #profile-contributions-block {
-    display: none;
     float: left;
     margin-left: 10px;
 }
@@ -907,7 +879,7 @@ td.options a { margin: 0 5px; }
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-.interests-list a:hover {
+.interests-list a:hover {f
     color: #94ba3c !important;
 }
 
@@ -957,26 +929,6 @@ td.options a { margin: 0 5px; }
 .subscription-edit-button:hover {
 }
 
-.dashboard-votes-count {
-    font-weight: bold;
-}
-.votes-list {
-    border-top: 1px solid #bababc;
-    font-weight: bold;
-}
-.votes-list .yea, .votes-list .nay {
-    font-size: 24px;
-    line-height: 24px;
-    font-weight: bold;
-}
-.yea { color: #94ba3c; }
-.nay { color: #c44; }
-
-.votes-list li {
-    padding: 10px 20px;
-    border-bottom: 1px solid #bababc;
-}
-
 /**************************************\
  * Updates
 \**************************************/
@@ -1021,18 +973,18 @@ td.options a { margin: 0 5px; }
 \**************************************/
 
 input.ac_loading {
-	background: #FFF url('/site_media/static/images/loading-indicator.gif') no-repeat;
+	background: #FFF url('http://staging.colabscience.com/site_media/static/images/loading-indicator.gif') no-repeat;
 	background-position: right;
 }
 
 .iconic {
     padding: 2px 4px;
     float: left;
-    background: url('/site_media/static/pinax/img/silk/icons/cross.png') no-repeat;
+    background: url('http://staging.colabscience.com/site_media/static/pinax/img/silk/icons/cross.png') no-repeat;
     color: transparent;
     border: 0;
 }
-.iconic:hover { background: url('/site_media/static/pinax/img/silk/icons/cancel.png') no-repeat; }
+.iconic:hover { background: url('http://staging.colabscience.com/site_media/static/pinax/img/silk/icons/cancel.png') no-repeat; }
 .results_on_deck > div { clear: both; }
 
 /**************************************\
@@ -1120,7 +1072,7 @@ input.ac_loading {
 .level-19 { margin-left: 250px; }
 .level-20 { margin-left: 250px; }
 
-.comment-form-wrapper {
+.reply-wrapper {
     margin: 40px 0 0 20px;
 }
 .add-to-discussion {
@@ -1133,26 +1085,30 @@ input.ac_loading {
 \**************************************/
 
 #tagline {
-    text-align: center;
+    text-align: left;
     font-size: 32px; line-height: 32px;
     margin: 10px 0;
     font-weight: bold;
+    letter-spacing:-1px;
 }
 #sub-tagline {
-    text-align: center;
-    font-size: 16px; line-height: 16px;
+    text-align: left
+    font-size: 22px; line-height: 16px;
     margin-bottom: 20px;
     font-weight: bold;
+    color:#999;
+    letter-spacing:-1px;
 }
 
 #launch-box {
-    text-align: center;
+    text-align: left;
     font-size: 16px; line-height: 16px;
     margin-bottom: 20px;
     background: #efefef;
     border-top: 1px solid #c1c1c1;
     border-bottom: 1px solid #c1c1c1;
-    padding: 8px 0;
+    padding: 10px;
+    letter-spacing:0px;
 }
 
 #home-content {
@@ -1167,6 +1123,7 @@ input.ac_loading {
     float: right;
     width: 400px;
 }
+
 #home-promo-header {
     text-align: center;
     font-size: 24px; line-height: 24px;
@@ -1182,10 +1139,15 @@ input.ac_loading {
     margin: 10px 20px 30px;
 }
 #home-promo-list li {
-    list-style: disc inside url("/site_media/static/images/check.png");
+    background-image: url("http://staging.colabscience.com/site_media/static/images/check.png");
+    background-repeat:no-repeat;
+    padding-left:40px;
+    padding-top:5px;
+    background-position: left;
     vertical-align: middle;
-    height: 30px;
-    line-height:30px;
+    list-style-type:none;
+    height: 35px;
+    line-height: 35px;
 }
 #signup-button, #signup-button:visited {
     display: block;
@@ -1252,7 +1214,7 @@ input.ac_loading {
 #login-page-box form.login fieldset.inlineLabels div.form_block input:hover{
 	background-color:#333;
 }
-
+		
 /**************************************\
  * About
 \**************************************/
@@ -1269,27 +1231,29 @@ input.ac_loading {
 }
 .about-title {
     margin: 10px auto;
-    padding: 10px;
-    text-align: center;
-    border-bottom: 2px solid #ccc;
-    width: 80%;
+    font-size:28px;
+    font-weight:bold;
+    text-align: left;
+    color:#333;
 }
 .tagline {
     font-size: 16px;
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
     font-weight: bold;
-    color: #647433;
+    color: #999;
 }
 .about-header {
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     font-size: 20px;
     line-height: 30px;
     margin: 20px 0 10px;
+    color:#333;	
 }
 .question {
     font-weight: bold;
+    color:#333;
 }
 .answer {
     margin: 10px 0 25px 50px;
@@ -1302,7 +1266,19 @@ input.ac_loading {
 
 .bio-title {
     font-size: 16px;
-    font-style: italic;
+}
+.bio-title a.twitter{
+   font-size:11px;
+   font-weight:bold;
+   background-color:#eee;
+   color:#333;
+   -moz-border-radius:4px;
+   -webkit-border-radius:4px;
+   text-decoration:none;
+   padding:5px;
+}
+.bio-title a.twitter:hover{
+	background-color:#ccc;
 }
 .bio {
     margin-left: 50px;
