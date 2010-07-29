@@ -1,0 +1,28 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "404" %}{% endblock %}
+
+{% block body_class %}error-page{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url home %}">Home</a><li>
+{% endblock %}
+
+{% block body %}
+    <div id="error-page">
+        <h1 id="error-title">
+            {% block error_title %}{% endblock %}
+        </h1>
+        
+        <div id="error-description">
+            {% block error_description %}{% endblock %}
+        </div>
+        
+        <div id="error-extra">
+            {% block error_extra %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
