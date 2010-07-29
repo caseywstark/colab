@@ -592,6 +592,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     clear: both;
 }
 
+.dark-item { background-color: #eee; }
+
 /**************************************\
  * Detail pages
 \**************************************/
@@ -653,7 +655,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .post-content { }
 
-<<<<<<< HEAD:colab/media/css/style.css
 .page-title {
     font-size: 24px;
     line-height: 24px;
@@ -664,11 +665,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 /**************************************\
  * Issue paper list
 \**************************************/
-=======
-/**************************************\
- * Issue paper list
-\**************************************/
->>>>>>> 7ecbcb0f0e12b5c1e1131926a95c85c4cf14b339:colab/media/css/style.css
 
 .issue-papers-block {
     margin-top: 20px;
@@ -916,7 +912,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     border-top: 1px solid #bababc;
 }
 #dashboard-subscriptions-list a {
-    
 }
 
 .subscription-edit-button {
