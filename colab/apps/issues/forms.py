@@ -20,7 +20,7 @@ class IssueForm(forms.ModelForm):
         help_text = _("a short version of the name consisting only of letters, numbers, underscores and hyphens."),
     )
     description = forms.CharField(widget=TinyMCE(attrs={'class': 'rich-editor'}))
-    disciplines = AutoCompleteSelectMultipleField('discipline', required=False, label=_("Disciplines (autocomple)")
+    disciplines = AutoCompleteSelectMultipleField('discipline', required=False, label=_("Disciplines (autocomple)"))
     
     def clean_title(self):
         if not self.instance.id and Issue.objects.filter(title__iexact=self.cleaned_data["title"]).exists():

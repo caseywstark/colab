@@ -455,9 +455,12 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .form_block input {
-    position: absolute;
-    right: 310px;
+    float: right;
     margin: 10px 0;
+}
+.full_form_block input {
+    float: right;
+    margin: 10px 310px 10px 0;
 }
 
 .rich-editor {
@@ -1217,29 +1220,31 @@ input.ac_loading {
     border: 10px solid #ccc;
     padding: 0px;
     background-color:#eee;
-    padding:30px 30px 0 30px;
+    padding:20px 30px 0 30px;
 }
 #login-page-box h1{
 	font-size:32px;
+	line-height: 36px;
+	margin-bottom: 10px;
 	letter-spacing:-1px;
 }
 #login-page-box p{
-	margin-top:10px;
+	margin-bottom:10px;
 }
-#login-page-box form.login fieldset.inlineLabels div#div_id_email input, #login-page-box form.login fieldset.inlineLabels div#div_id_password input{
+#login-page-box .ctrlHolder { margin: 0; }
+#login-page-box #div_id_email input, #login-page-box #div_id_password input{
 	background-color:#fff;
 	padding:10px 5px;
 	width:380px;
 	display:block;
-	
 }
-#login-page-box form.login fieldset.inlineLabels div#div_id_email label, #login-page-box form.login fieldset.inlineLabels div#div_id_password label{
+#login-page-box #div_id_email label, #login-page-box #div_id_password label{
 	font-weight:bold;
 	font-size:18px;
 	margin-top:10px;
 	color:#333;	
 }
-#login-page-box form.login fieldset.inlineLabels div.form_block input {
+#login-page-box .form_block input {
 	background-color:#666;
 	border:0px;
 	-webkit-border-radius:3px;
@@ -1249,8 +1254,9 @@ input.ac_loading {
 	font-weight:bold;
 	font-family: "Helvetica", Arial, sans-serif;
 	cursor:pointer;
+	
 }		
-#login-page-box form.login fieldset.inlineLabels div.form_block input:hover{
+#login-page-box .form_block input:hover{
 	background-color:#333;
 }
 
