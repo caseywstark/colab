@@ -3,7 +3,6 @@
         "pk": 47, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 197, 
             "rght": 96, 
             "about": "", 
             "name": "Physics", 
@@ -19,7 +18,6 @@
         "pk": 48, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 198, 
             "rght": 15, 
             "about": "", 
             "name": "Astrophysics", 
@@ -34,8 +32,7 @@
     {
         "pk": 49, 
         "model": "disciplines.discipline", 
-        "fields": {
-            "feed": 196, 
+        "fields": { 
             "rght": 31, 
             "about": "", 
             "name": "Condensed Matter", 
@@ -51,7 +48,6 @@
         "pk": 50, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 195, 
             "rght": 33, 
             "about": "", 
             "name": "General Relativity and Quantum Cosmology", 
@@ -67,7 +63,6 @@
         "pk": 51, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 194, 
             "rght": 43, 
             "about": "", 
             "name": "High Energy Physics", 
@@ -83,7 +78,6 @@
         "pk": 52, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 192, 
             "rght": 45, 
             "about": "", 
             "name": "Mathematical Physics", 
@@ -99,7 +93,6 @@
         "pk": 53, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 193, 
             "rght": 51, 
             "about": "", 
             "name": "Nuclear Physics", 
@@ -115,7 +108,6 @@
         "pk": 54, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 190, 
             "rght": 53, 
             "about": "", 
             "name": "Quantum Physics", 
@@ -131,7 +123,6 @@
         "pk": 55, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 191, 
             "rght": 55, 
             "about": "", 
             "name": "Accelerator Physics", 
@@ -147,7 +138,6 @@
         "pk": 56, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 189, 
             "rght": 57, 
             "about": "", 
             "name": "Atmospheric and Oceanic Physics", 
@@ -163,7 +153,6 @@
         "pk": 57, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 188, 
             "rght": 59, 
             "about": "", 
             "name": "Atomic Physics", 
@@ -179,7 +168,6 @@
         "pk": 58, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 187, 
             "rght": 61, 
             "about": "", 
             "name": "Atomic and Molecular Clusters", 
@@ -195,7 +183,6 @@
         "pk": 59, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 186, 
             "rght": 63, 
             "about": "", 
             "name": "Biophysics", 
@@ -211,7 +198,6 @@
         "pk": 60, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 185, 
             "rght": 65, 
             "about": "", 
             "name": "Chemical Physics", 
@@ -227,7 +213,6 @@
         "pk": 61, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 184, 
             "rght": 67, 
             "about": "", 
             "name": "Classical Physics", 
@@ -243,7 +228,6 @@
         "pk": 62, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 183, 
             "rght": 69, 
             "about": "", 
             "name": "Computational Physics", 
@@ -259,7 +243,6 @@
         "pk": 63, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 182, 
             "rght": 71, 
             "about": "", 
             "name": "Data Analysis", 
@@ -275,7 +258,6 @@
         "pk": 64, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 181, 
             "rght": 73, 
             "about": "", 
             "name": "Fluid Dynamics", 
@@ -291,7 +273,6 @@
         "pk": 66, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 179, 
             "rght": 75, 
             "about": "", 
             "name": "Geophysics", 
@@ -307,7 +288,6 @@
         "pk": 67, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 178, 
             "rght": 77, 
             "about": "", 
             "name": "History of Physics", 
@@ -323,7 +303,6 @@
         "pk": 68, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 177, 
             "rght": 79, 
             "about": "", 
             "name": "Instrumentation and Detectors", 
@@ -339,7 +318,6 @@
         "pk": 69, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 176, 
             "rght": 81, 
             "about": "", 
             "name": "Medical Physics", 
@@ -355,7 +333,6 @@
         "pk": 70, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 175, 
             "rght": 83, 
             "about": "", 
             "name": "Optics", 
@@ -371,7 +348,6 @@
         "pk": 71, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 174, 
             "rght": 85, 
             "about": "", 
             "name": "Physics Education", 
@@ -387,7 +363,6 @@
         "pk": 72, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 173, 
             "rght": 87, 
             "about": "", 
             "name": "Physics and Society", 
@@ -403,7 +378,6 @@
         "pk": 73, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 200, 
             "rght": 89, 
             "about": "", 
             "name": "Plasma Physics", 
@@ -419,7 +393,6 @@
         "pk": 74, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 201, 
             "rght": 91, 
             "about": "", 
             "name": "Popular Physics", 
@@ -435,7 +408,6 @@
         "pk": 75, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 202, 
             "rght": 93, 
             "about": "", 
             "name": "Space Physics", 
@@ -451,7 +423,6 @@
         "pk": 76, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 203, 
             "rght": 36, 
             "about": "", 
             "name": "High Energy Physics - Experiment", 
@@ -467,7 +438,6 @@
         "pk": 77, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 204, 
             "rght": 38, 
             "about": "", 
             "name": "High Energy Physics - Lattice", 
@@ -483,7 +453,6 @@
         "pk": 78, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 205, 
             "rght": 40, 
             "about": "", 
             "name": "High Energy Physics - Phenomenology", 
@@ -499,7 +468,6 @@
         "pk": 79, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 206, 
             "rght": 42, 
             "about": "", 
             "name": "High Energy Physics - Theory", 
@@ -515,7 +483,6 @@
         "pk": 80, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 207, 
             "rght": 48, 
             "about": "", 
             "name": "Nuclear Experiment", 
@@ -531,7 +498,6 @@
         "pk": 81, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 208, 
             "rght": 50, 
             "about": "", 
             "name": "Nuclear Theory", 
@@ -547,7 +513,6 @@
         "pk": 82, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 209, 
             "rght": 4, 
             "about": "", 
             "name": "Cosmology and Extragalactic Astrophysics", 
@@ -563,7 +528,6 @@
         "pk": 83, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 210, 
             "rght": 6, 
             "about": "", 
             "name": "Earth and Planetary Astrophysics", 
@@ -579,7 +543,6 @@
         "pk": 84, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 211, 
             "rght": 8, 
             "about": "", 
             "name": "Galaxy Astrophysics", 
@@ -595,7 +558,6 @@
         "pk": 85, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 212, 
             "rght": 10, 
             "about": "", 
             "name": "High Energy Astrophysical Phenomena", 
@@ -611,7 +573,6 @@
         "pk": 86, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 213, 
             "rght": 12, 
             "about": "", 
             "name": "Instrumentation and Methods for Astrophysics", 
@@ -627,7 +588,6 @@
         "pk": 87, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 214, 
             "rght": 14, 
             "about": "", 
             "name": "Solar and Stellar Astrophysics", 
@@ -643,7 +603,6 @@
         "pk": 88, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 215, 
             "rght": 18, 
             "about": "", 
             "name": "Disordered Systems and Neural Networks", 
@@ -659,7 +618,6 @@
         "pk": 89, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 216, 
             "rght": 20, 
             "about": "", 
             "name": "Materials Science", 
@@ -675,7 +633,6 @@
         "pk": 90, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 217, 
             "rght": 22, 
             "about": "", 
             "name": "Mesoscale and Nanoscale Physics", 
@@ -691,7 +648,6 @@
         "pk": 91, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 180, 
             "rght": 24, 
             "about": "", 
             "name": "Quantum Gases", 
@@ -707,7 +663,6 @@
         "pk": 92, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 218, 
             "rght": 26, 
             "about": "", 
             "name": "Soft Condensed Matter", 
@@ -723,7 +678,6 @@
         "pk": 93, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 219, 
             "rght": 95, 
             "about": "", 
             "name": "Statistical Mechanics", 
@@ -739,7 +693,6 @@
         "pk": 94, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 220, 
             "rght": 28, 
             "about": "", 
             "name": "Strongly Correlated Electrons", 
@@ -755,7 +708,6 @@
         "pk": 95, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 221, 
             "rght": 30, 
             "about": "", 
             "name": "Superconductivity", 
@@ -771,7 +723,6 @@
         "pk": 96, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 222, 
             "rght": 20, 
             "about": "", 
             "name": "Mathematics", 
@@ -787,7 +738,6 @@
         "pk": 97, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 223, 
             "rght": 3, 
             "about": "", 
             "name": "Algebra", 
@@ -803,7 +753,6 @@
         "pk": 99, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 224, 
             "rght": 5, 
             "about": "", 
             "name": "Calculus and Analysis", 
@@ -819,7 +768,6 @@
         "pk": 100, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 225, 
             "rght": 7, 
             "about": "", 
             "name": "Geometry and Topology", 
@@ -835,7 +783,6 @@
         "pk": 101, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 226, 
             "rght": 9, 
             "about": "", 
             "name": "Combinatorics", 
@@ -851,7 +798,6 @@
         "pk": 103, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 227, 
             "rght": 11, 
             "about": "", 
             "name": "Number Theory", 
@@ -867,7 +813,6 @@
         "pk": 104, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 228, 
             "rght": 17, 
             "about": "", 
             "name": "Applied Mathematics", 
@@ -883,7 +828,6 @@
         "pk": 105, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 229, 
             "rght": 14, 
             "about": "", 
             "name": "Differential Equations", 
@@ -899,7 +843,6 @@
         "pk": 106, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 230, 
             "rght": 16, 
             "about": "", 
             "name": "Probability and Statistics", 
@@ -915,7 +858,6 @@
         "pk": 115, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 240, 
             "rght": 60, 
             "about": "", 
             "name": "Biology", 
@@ -931,7 +873,6 @@
         "pk": 125, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 235, 
             "rght": 2, 
             "about": "", 
             "name": "Chemistry", 
@@ -947,7 +888,6 @@
         "pk": 126, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 236, 
             "rght": 34, 
             "about": "", 
             "name": "Earth Science", 
@@ -963,7 +903,6 @@
         "pk": 127, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 237, 
             "rght": 2, 
             "about": "", 
             "name": "Environmental Science", 
@@ -979,7 +918,6 @@
         "pk": 128, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 238, 
             "rght": 2, 
             "about": "", 
             "name": "Astronomy", 
@@ -995,7 +933,6 @@
         "pk": 129, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 239, 
             "rght": 40, 
             "about": "", 
             "name": "Computer Science", 
@@ -1011,7 +948,6 @@
         "pk": 161, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 268, 
             "rght": 2, 
             "about": "", 
             "name": "Health Sciences", 
@@ -1027,7 +963,6 @@
         "pk": 172, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 276, 
             "rght": 3, 
             "about": "", 
             "name": "Theory of Computation", 
@@ -1043,7 +978,6 @@
         "pk": 173, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 277, 
             "rght": 5, 
             "about": "", 
             "name": "Algorithms", 
@@ -1059,7 +993,6 @@
         "pk": 174, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 278, 
             "rght": 7, 
             "about": "", 
             "name": "Data Structures", 
@@ -1075,7 +1008,6 @@
         "pk": 175, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 279, 
             "rght": 9, 
             "about": "", 
             "name": "Computer Architecture", 
@@ -1091,7 +1023,6 @@
         "pk": 176, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 280, 
             "rght": 11, 
             "about": "", 
             "name": "Operating Systems", 
@@ -1107,7 +1038,6 @@
         "pk": 178, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 282, 
             "rght": 15, 
             "about": "", 
             "name": "Computer Security", 
@@ -1123,7 +1053,6 @@
         "pk": 179, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 283, 
             "rght": 17, 
             "about": "", 
             "name": "Distributed Computing", 
@@ -1139,7 +1068,6 @@
         "pk": 180, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 284, 
             "rght": 19, 
             "about": "", 
             "name": "Parallel Computing", 
@@ -1155,7 +1083,6 @@
         "pk": 181, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 285, 
             "rght": 21, 
             "about": "", 
             "name": "Quantum Computing", 
@@ -1171,7 +1098,6 @@
         "pk": 182, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 286, 
             "rght": 23, 
             "about": "", 
             "name": "Computer Graphics", 
@@ -1187,7 +1113,6 @@
         "pk": 183, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 287, 
             "rght": 25, 
             "about": "", 
             "name": "Programming Languages", 
@@ -1203,7 +1128,6 @@
         "pk": 184, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 288, 
             "rght": 27, 
             "about": "", 
             "name": "Information Science", 
@@ -1219,7 +1143,6 @@
         "pk": 185, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 289, 
             "rght": 37, 
             "about": "", 
             "name": "Artificial Intelligence", 
@@ -1235,7 +1158,6 @@
         "pk": 186, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 290, 
             "rght": 39, 
             "about": "", 
             "name": "Human-Computer Interaction", 
@@ -1251,7 +1173,6 @@
         "pk": 187, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 291, 
             "rght": 30, 
             "about": "", 
             "name": "Computer Vision", 
@@ -1267,7 +1188,6 @@
         "pk": 188, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 292, 
             "rght": 32, 
             "about": "", 
             "name": "Machine Learning", 
@@ -1283,7 +1203,6 @@
         "pk": 189, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 293, 
             "rght": 34, 
             "about": "", 
             "name": "Natural Language Processing", 
@@ -1299,7 +1218,6 @@
         "pk": 192, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 296, 
             "rght": 3, 
             "about": "", 
             "name": "Anatomy", 
@@ -1315,7 +1233,6 @@
         "pk": 193, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 297, 
             "rght": 5, 
             "about": "", 
             "name": "Astrobiology", 
@@ -1331,7 +1248,6 @@
         "pk": 194, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 298, 
             "rght": 7, 
             "about": "", 
             "name": "Biochemistry", 
@@ -1347,7 +1263,6 @@
         "pk": 195, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 299, 
             "rght": 9, 
             "about": "", 
             "name": "Bioinformatics", 
@@ -1363,7 +1278,6 @@
         "pk": 196, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 300, 
             "rght": 11, 
             "about": "", 
             "name": "Botany", 
@@ -1379,7 +1293,6 @@
         "pk": 197, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 301, 
             "rght": 13, 
             "about": "", 
             "name": "Cell Biology", 
@@ -1395,7 +1308,6 @@
         "pk": 198, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 302, 
             "rght": 15, 
             "about": "", 
             "name": "Developmental Biology", 
@@ -1411,7 +1323,6 @@
         "pk": 201, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 305, 
             "rght": 21, 
             "about": "", 
             "name": "Evolutionary Biology", 
@@ -1427,7 +1338,6 @@
         "pk": 202, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 306, 
             "rght": 29, 
             "about": "", 
             "name": "Genetics", 
@@ -1443,7 +1353,6 @@
         "pk": 203, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 307, 
             "rght": 24, 
             "about": "", 
             "name": "Genomics", 
@@ -1459,7 +1368,6 @@
         "pk": 204, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 308, 
             "rght": 26, 
             "about": "", 
             "name": "Proteomics", 
@@ -1475,7 +1383,6 @@
         "pk": 205, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 309, 
             "rght": 28, 
             "about": "", 
             "name": "Population Genetics", 
@@ -1491,7 +1398,6 @@
         "pk": 206, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 310, 
             "rght": 31, 
             "about": "", 
             "name": "Microbiology", 
@@ -1507,7 +1413,6 @@
         "pk": 207, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 311, 
             "rght": 33, 
             "about": "", 
             "name": "Molecular Biology", 
@@ -1523,7 +1428,6 @@
         "pk": 208, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 312, 
             "rght": 35, 
             "about": "", 
             "name": "Physiology", 
@@ -1539,7 +1443,6 @@
         "pk": 209, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 313, 
             "rght": 37, 
             "about": "", 
             "name": "Virology", 
@@ -1555,7 +1458,6 @@
         "pk": 210, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 314, 
             "rght": 3, 
             "about": "", 
             "name": "Atmospheric Sciences", 
@@ -1571,7 +1473,6 @@
         "pk": 211, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 315, 
             "rght": 5, 
             "about": "", 
             "name": "Climatology", 
@@ -1587,7 +1488,6 @@
         "pk": 212, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 316, 
             "rght": 7, 
             "about": "", 
             "name": "Geology", 
@@ -1603,7 +1503,6 @@
         "pk": 213, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 317, 
             "rght": 9, 
             "about": "", 
             "name": "Geophysics", 
@@ -1619,7 +1518,6 @@
         "pk": 214, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 318, 
             "rght": 11, 
             "about": "", 
             "name": "Glaciology", 
@@ -1635,7 +1533,6 @@
         "pk": 215, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 319, 
             "rght": 13, 
             "about": "", 
             "name": "Hydrology", 
@@ -1651,7 +1548,6 @@
         "pk": 216, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 320, 
             "rght": 15, 
             "about": "", 
             "name": "Hydrogeology", 
@@ -1667,7 +1563,6 @@
         "pk": 217, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 321, 
             "rght": 17, 
             "about": "", 
             "name": "Mineralogy", 
@@ -1683,7 +1578,6 @@
         "pk": 218, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 322, 
             "rght": 19, 
             "about": "", 
             "name": "Meteorology", 
@@ -1699,7 +1593,6 @@
         "pk": 219, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 323, 
             "rght": 21, 
             "about": "", 
             "name": "Oceanography", 
@@ -1715,7 +1608,6 @@
         "pk": 220, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 324, 
             "rght": 23, 
             "about": "", 
             "name": "Petrology", 
@@ -1731,7 +1623,6 @@
         "pk": 221, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 325, 
             "rght": 25, 
             "about": "", 
             "name": "Paleoclimatology", 
@@ -1747,7 +1638,6 @@
         "pk": 222, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 326, 
             "rght": 27, 
             "about": "", 
             "name": "Paleontology", 
@@ -1763,7 +1653,6 @@
         "pk": 223, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 327, 
             "rght": 29, 
             "about": "", 
             "name": "Seismology", 
@@ -1779,7 +1668,6 @@
         "pk": 224, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 328, 
             "rght": 31, 
             "about": "", 
             "name": "Soil Science", 
@@ -1795,7 +1683,6 @@
         "pk": 225, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 329, 
             "rght": 33, 
             "about": "", 
             "name": "Volcanology", 
@@ -1811,7 +1698,6 @@
         "pk": 228, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 332, 
             "rght": 59, 
             "about": "", 
             "name": "Neuroscience", 
@@ -1827,7 +1713,6 @@
         "pk": 229, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 333, 
             "rght": 40, 
             "about": "", 
             "name": "Molecular and Cellular Neuroscience", 
@@ -1843,7 +1728,6 @@
         "pk": 230, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 334, 
             "rght": 42, 
             "about": "", 
             "name": "Behavioral Neuroscience", 
@@ -1859,7 +1743,6 @@
         "pk": 231, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 335, 
             "rght": 44, 
             "about": "", 
             "name": "Systems Neuroscience", 
@@ -1875,7 +1758,6 @@
         "pk": 232, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 336, 
             "rght": 46, 
             "about": "", 
             "name": "Developmental Neuroscience", 
@@ -1891,7 +1773,6 @@
         "pk": 233, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 337, 
             "rght": 48, 
             "about": "", 
             "name": "Cognitive Neuroscience", 
@@ -1907,7 +1788,6 @@
         "pk": 234, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 338, 
             "rght": 50, 
             "about": "", 
             "name": "Theoretical Neuroscience", 
@@ -1923,7 +1803,6 @@
         "pk": 237, 
         "model": "disciplines.discipline", 
         "fields": {
-            "feed": 341, 
             "rght": 56, 
             "about": "", 
             "name": "Neurology", 
