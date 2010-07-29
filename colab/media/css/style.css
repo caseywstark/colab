@@ -672,6 +672,13 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .post-content { }
 
+.page-title {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
 /**************************************\
  * Issue paper list
 \**************************************/
@@ -914,6 +921,9 @@ td.options a { margin: 0 5px; }
     margin: 0 0 10px;
     min-height: 400px;
 }
+#dashboard-feed-title {
+    margin-top: 0px;
+}
 
 #dashboard-subscriptions-block {
     margin: 20px 0 10px 620px;
@@ -929,7 +939,9 @@ td.options a { margin: 0 5px; }
     list-style: none;
 }
 #dashboard-subscriptions-list li {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 5px 10px;
+    border-top: 1px solid #bababc;
 }
 #dashboard-subscriptions-list a {
     
@@ -937,10 +949,12 @@ td.options a { margin: 0 5px; }
 
 .subscription-edit-button {
     float: right;
-    padding: 5px;
+    padding: 1px 6px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 .subscription-edit-button:hover {
-    background: #ccc !important;
 }
 
 .dashboard-votes-count {
@@ -1202,7 +1216,7 @@ input.ac_loading {
     border: 10px solid #ccc;
     padding: 0px;
     background-color:#eee;
-    padding:30px;
+    padding:30px 30px 0 30px;
 }
 #login-page-box h1{
 	font-size:32px;

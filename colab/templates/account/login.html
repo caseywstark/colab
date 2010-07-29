@@ -18,20 +18,28 @@
     
         {% if user.is_authenticated %}
             {% user_display user as user_display %}
-            <p><span class="warning">{% trans "Note" %}</span>: {% blocktrans %}you are already logged in as {{ user_display }}.{% endblocktrans %}</p>
+            <p>
+                <span class="warning">{% trans "Note" %}</span>:
+                {% blocktrans %}
+                    you are already logged in as {{ user_display }}.
+                {% endblocktrans %}
+            </p>
         {% else %}
             {% ifsetting ACCOUNT_OPEN_SIGNUP %}
             {% url acct_signup as signup_url %}
-            {% url acct_password_reset as reset_url %}
             <p>
                 {% blocktrans %}
                     Don't have an account? <a href="{{ signup_url }}">Sign up</a>!
-                    <a href="{{ reset_url }}">Forgot password?</a>
                 {% endblocktrans %}
             </p>
             {% endifsetting %}
         {% endif %}
-    
+        
+        {% url acct_password_reset as reset_url %}
+        <p>
+            <a href="{{ reset_url }}">Forgot password?</a>
+        </p>
+        
         <form class="login uniForm" method="POST" action="{% url acct_login %}">
             {% csrf_token %}
             <fieldset class="inlineLabels">

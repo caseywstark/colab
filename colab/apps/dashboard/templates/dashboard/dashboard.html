@@ -13,7 +13,7 @@
 
 {% block body %}
     <div id="dashboard-feed-block">
-        <h1 id="dashboard-feed-title" class="post-title">
+        <h1 id="dashboard-feed-title" class="page-title">
             Live Feed
         </h1>
         
@@ -45,6 +45,9 @@
                 <p class="no-subscriptions">
                     You are not subscribed to any feeds.
                 </p>
+                <p>
+                    Try following some <a href="{% url issue_list %}">issues</a>.
+                </p>
             {% endif %}
         </div>
     </div>
@@ -55,7 +58,7 @@
         {% if subscriptions.count > 0 %}
             <ul id="dashboard-subscriptions-list">
                 {% for subscription in subscriptions %}
-                    <li>
+                    <li class="{% cycle "dark-item" "light-item" %}">
                         <a class="subscription-object-link" href="{{ subscription.feed.feed_object.get_absolute_url }}">
                             {{ subscription.feed.title }}
                         </a>
