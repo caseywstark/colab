@@ -16,7 +16,7 @@
         }
     },
     {
-        "pk": 1, 
+        "pk": 3, 
         "model": "sites.site", 
         "fields": {
             "domain": "colabscience.com", 
