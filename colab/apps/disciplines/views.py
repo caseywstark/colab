@@ -42,7 +42,7 @@ def my_expertise(request):
         )
         
         redirect_url = reverse('researcher_edit')
-        return HttpResponseRedirect(request, redirect_url)
+        return HttpResponseRedirect(redirect_url)
     
     return render_to_response(template_name, {
         "disciplines": disciplines,
