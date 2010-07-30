@@ -21,7 +21,10 @@ def blog_list(request, section=None):
     
     section_name = None
     if section:
-        section_name = dict(Post.SECTION_CHOICES)[Post.section_idx(section)]
+        try:
+            section_name = dict(Post.SECTION_CHOICES)[Post.section_idx(section)]
+        except KeyError:
+            raise Http404()
         try:
             posts = Post.objects.section(section)
         except InvalidSection:
