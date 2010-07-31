@@ -1016,6 +1016,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 .post-no-tags {
     clear: right;
+    float: left;
     padding-top: 5px;
     font-weight: bold;
     color: #999;
