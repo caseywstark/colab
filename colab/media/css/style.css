@@ -517,6 +517,10 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     padding: 10px 0 10px 20px;
 }
 
+.researcher-list {
+    margin: 0 !important;
+    list-style: none !important;
+}
 .researcher-list-avatar, .researcher-list-avatar:visited {
     float: left;
     width: 80px; height: 80px;
@@ -540,6 +544,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 .post-list {
     margin: 20px 0 0 0;
+    list-style: none;
 }
 .list-item {
     border-bottom: 1px dotted #ccc;
@@ -586,6 +591,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     float: right;
     color: #999;
     font-weight: bold;
+    list-style: none;
+    margin: 0;
 }
 .post-disciplines-list a, .post-disciplines-list a:visited {
     color: #94ba3c !important;
@@ -597,6 +604,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     clear: right;
     padding-top: 5px;
     font-weight: bold;
+    list-style: none;
 }
 .post-tags-list li {
     float: left;
@@ -683,6 +691,16 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .post-content { }
 
+.list-post-content ul, .post-content ul {
+    margin: 0 0 1.5em 20px;
+    list-style: inside square;
+}
+
+.list-post-content ol, .post-content ol {
+    margin: 0 0 1.5em 20px;
+    list-style: inside decimal;
+}
+
 .page-title {
     font-size: 24px;
     line-height: 24px;
@@ -715,7 +733,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     font-weight: bold;
 }
 .issue-paper-list {
-    
+    margin: 0;
+    list-style: none;
 }
 .issue-paper-list li {
     
@@ -746,6 +765,11 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 .preview-meta-box { width: 150px; }
 .meta-box { width: 180px; }
+
+.preivew-meta-box ul, .meta-box ul {
+    margin: 0 !important;
+    list-style: none !important;
+}
 
 .stat-box {
     float: left;
@@ -1087,6 +1111,10 @@ input.ac_loading {
     background-color: #eee;
     width: 100px;
 }
+.comment-meta-box ul {
+    margin: 0 !important;
+    list-style: none !important;
+}
 .comment-meta-box .stat-name, .comment-meta-box .stat-button { font-size: 12px !important; }
 .comment-meta-box .stat-button { padding: 2px 4px; }
 .comment-meta-box .stat-number { font-size: 24px !important; padding: 0px; }
@@ -1188,10 +1216,10 @@ input.ac_loading {
 #home-promo-list {
     text-align: left;
     font-size: 16px; line-height: 16px;
-    margin-left: 50px;
     font-weight: bold;
     color: #808080;
-    margin: 10px 20px 30px;
+    margin: 10px 20px 30px 50px;
+    list-style: none;
 }
 #home-promo-list li {
     background-image: url("http://staging.colabscience.com/site_media/static/images/check.png");
