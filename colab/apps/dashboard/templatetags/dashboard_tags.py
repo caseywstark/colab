@@ -78,7 +78,10 @@ def post_meta_summary(post, show_author=True):
         comments_count = post.comments_count
         followers_count = post.followers_count
         the_user = post.creator
-    elif isinstance(post, ThreadedComment):
+    if isinstance(post, Feedback):
+        contributors_count = post.contributors_count
+        comments_count = post.comments_count
+        followers_count = post.followers_count
         the_user = post.user
     
     return {'post': post, 'the_user': post_author(post),

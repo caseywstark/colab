@@ -567,7 +567,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .list-post-block {
-    margin: 0 0 15px 190px;
+    margin: 0 0 0 190px;
     min-height: 180px;
 }
 .list-researcher-block {
@@ -1041,7 +1041,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 
 .post-no-tags {
     clear: right;
-    float: left;
     padding-top: 5px;
     font-weight: bold;
     color: #999;
