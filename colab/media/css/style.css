@@ -548,10 +548,11 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 .list-post-title, .list-post-title:visited {
+    display: block;
     font-size: 16px;
     line-height: 16px;
     text-align: left;
-    margin: 0 0 15px;
+    margin: 0 0 10px;
     color: #3e4f4a !important;
     text-decoration: none !important;
     font-weight: bold;
@@ -1126,7 +1127,7 @@ input.ac_loading {
 .level-19 { margin-left: 250px; }
 .level-20 { margin-left: 250px; }
 
-.reply-wrapper {
+.comment-form-wrapper, .reply-form-wrapper {
     margin: 40px 0 0 20px;
 }
 .add-to-discussion {
