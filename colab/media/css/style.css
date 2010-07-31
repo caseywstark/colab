@@ -829,6 +829,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
  	background-color:#fff;
  	color:#193F66!important;
 }
+.post-user-name { margin-left: 10px; }
 .anonymous-user { }
 .user-avatar {
     float: left;
