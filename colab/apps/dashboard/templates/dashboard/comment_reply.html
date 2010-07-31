@@ -5,7 +5,11 @@
 {% load dashboard_tags %}
 {% load threadedcommentstags %}
 
-{% block head_title %}Edit your Comment{% endblock %}
+{% block head_title %}Reply to Comment{% endblock %}
+
+{% block head_extra %}
+    {{ comment_form.media }}
+{% endblock %}
 
 {% block breadcrumbs %}
     <li><a href="{{ comment.content_object.get_absolute_url }}">{{ comment.content_object }}</a></li>
