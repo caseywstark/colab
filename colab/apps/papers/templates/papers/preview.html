@@ -14,7 +14,7 @@
     
     <div class="preview-by-line">
         Last edited by <a href="{{ paper.last_editor.get_absolute_url }}">{% user_display paper.last_editor %}</a>
-        at {{ paper.last_edited|date:"P on M d, Y"}}
+        at {{ paper.last_edited|date:"P M d, Y"}}
     </div>
     
     <div class="list-post-content">
