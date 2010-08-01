@@ -53,7 +53,7 @@ a img {
     top: 50%; left: 0;
     z-index: 2;
     color: #3e4f4a;
-    margin-left: -33px;
+    margin-left: -35px;
 }
 #feedback-widget-wrapper a, #feedback-widget-wrapper a, #feedback-wrapper a:visited {
     color: #193F66;
@@ -71,7 +71,7 @@ a img {
 }
 
 #feedback-widget-toggle {
-    padding: 10px 12px 7px;
+    padding: 14px 12px 7px;
     border-top: 0;
     border-left: 3px solid #193f66;
     border-right: 3px solid #193f66;

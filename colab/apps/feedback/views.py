@@ -17,12 +17,8 @@ from feedback.models import Feedback, Type, Status
 from feedback.forms import FeedbackForm, WidgetForm
 from papers.models import Paper
 
-def list(request, list="open", type="all", status="all", mine=False, template_name="feedback/list.html"):
+def list(request, list="all", type=None, status=None, template_name="feedback/list.html"):
     feedbacks = Feedback.objects.all().order_by('-created')
-    
-    if mine:
-      feedbacks = feedbacks.filter(user=request.user)
-      list_title = "My Feedback"
     
     if list == "all":
         list_title = "All Feedback"
@@ -36,10 +32,10 @@ def list(request, list="open", type="all", status="all", mine=False, template_na
         list_title = "My Feedback"
         feedbacks = feedbacks.filter(user=request.user)
     
-    if type != "all":
+    if type:
         feedbacks = feedbacks.filter(type__slug=type)
     
-    if status != "all":
+    if status:
         feedbacks = feedbacks.filter(status__slug=status)
     
     # private filter

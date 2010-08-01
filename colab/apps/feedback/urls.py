@@ -14,7 +14,7 @@ urlpatterns = patterns("feedback.views",
     url(r"^detail/(?P<object_id>\d+)/edit/$", "edit", name="feedback_edit"),
     url(r"^detail/(?P<object_id>\d+)/delete/$", "delete", name="feedback_delete"),
     
-    url(r"^mine/$", "list", kwargs={"mine": True}, name="my_feedback"),
+    url(r"^mine/$", "list", kwargs={"list": "mine"}, name="my_feedback"),
 )
 
 urlpatterns += patterns("",

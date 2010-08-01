@@ -53,6 +53,8 @@
             
             {% if status_filters %}
                 <ul class="filter-list">
+                    <li><a href="{% url feedback_list list="open" %}">All Open</a></li>
+                    <li><a href="{% url feedback_list list="closed" %}">All Closed</a></li>
                     {% for status in status_filters %}
                         <li><a href="{% filter_url request "status" status.slug %}">{{ status.title|truncatechar:20 }}</a></li>
                     {% endfor %}
