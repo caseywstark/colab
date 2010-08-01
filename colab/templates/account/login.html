@@ -35,9 +35,8 @@
             {% endifsetting %}
         {% endif %}
         
-        {% url acct_password_reset as reset_url %}
         <p>
-            <a href="{{ reset_url }}">Forgot password?</a>
+            <a href="{% url acct_passwd_reset %}">Forgot password?</a>
         </p>
         
         <form class="login uniForm" method="POST" action="{% url acct_login %}">
