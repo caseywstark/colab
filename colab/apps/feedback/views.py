@@ -164,7 +164,7 @@ def edit(request, object_id=None, form_class=FeedbackForm, template_name="feedba
     if form.is_valid():
         feedback = form.save()
         
-        feedback.register_action(request.user, 'edit', feedback)
+        feedback.register_action(request.user, 'edit-feedback', feedback)
         
         return HttpResponseRedirect(feedback.get_absolute_url())
     
@@ -206,7 +206,7 @@ def widget(request, form_class=WidgetForm, template_name="feedback/widget.html")
             feedback.creator = u
         feedback.save()
         
-        feedback.register_action(request.user, 'create', feedback)
+        feedback.register_action(request.user, 'create-feedback', feedback)
         
         data = simplejson.dumps({'url':feedback.get_absolute_url(), 'errors': False})
     else:
