@@ -20,7 +20,7 @@ class IssueForm(forms.ModelForm):
         help_text = _("a short version of the name consisting only of letters, numbers, underscores and hyphens."),
     )
     description = forms.CharField(widget=TinyMCE(attrs={'class': 'rich-editor'}))
-    disciplines = AutoCompleteSelectMultipleField('discipline', required=False, label=_("Disciplines (autocomple)"))
+    disciplines = AutoCompleteSelectMultipleField('discipline', required=False, label=_("Disciplines"))
     
     def clean_title(self):
         if not self.instance.id and Issue.objects.filter(title__iexact=self.cleaned_data["title"]).exists():
@@ -35,6 +35,10 @@ class IssueForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(IssueForm, self).__init__(*args, **kwargs)
         self.fields.keyOrder = ['title', 'slug', 'sandbox', 'description', 'disciplines', 'tags', 'private']
+        self.fields['sandbox'].help_text = 'I am making this issue for testing'
+        self.fields['disciplines'].help_text = 'Enter something to search (autocomplete)'
+        self.fields['tags'].help_text = 'separated by commas'
+        self.fields['private'].help_text = 'I want this issue to be hidden from public view'
     
     class Meta:
         model = Issue
