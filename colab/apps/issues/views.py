@@ -100,7 +100,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     authenticated = request.user.is_authenticated()
     
     if authenticated and mine:
-        issues = Issue.objects.filter(contributors=request.user)
+        issues = Issue.objects.filter(contributor_users=request.user)
     else:
         issues = Issue.objects.filter(private=False)
     

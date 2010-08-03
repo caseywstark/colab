@@ -8,6 +8,6 @@
 {% block subnav %}
     <li><a href="{% url issue_list %}">{% trans "Public Issues" %}</a></li>
     {% if user.is_authenticated %}
-        <li><a href="{% url my_issues %} ">{% trans "My Issues" %}</a></li>
+        <li><a href="{% url my_issues %}?sandbox=1">{% trans "My Issues" %}</a></li>
     {% endif %}
 {% endblock %}
