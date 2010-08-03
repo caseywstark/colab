@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.datastructures import SortedDict
@@ -199,8 +199,8 @@ def issue(request, slug=None, template_name="issues/issue.html"):
     issue = get_object_or_404(Issue, slug=slug)
     
     # check if private
-    if issue.private and not issue.user_can_read(request.user):
-        return render_to_response('issues/forbidden.html', {}, context_instance=RequestContext(request))
+    if issue.private and not issue.user_is_contributor(request.user):
+        return Http404
     
     issue_type = ContentType.objects.get_for_model(issue)
     
@@ -218,6 +218,7 @@ def issue(request, slug=None, template_name="issues/issue.html"):
                 messages.add_message(request, messages.SUCCESS,_("Issue now private"))
             else:
                 messages.add_message(request, messages.SUCCESS,_("Issue now public"))
+            privacy_form = PrivacyForm(request.POST or None, issue=issue)
     
     return render_to_response(template_name, {
         'issue': issue,
