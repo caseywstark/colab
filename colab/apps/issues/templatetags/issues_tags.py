@@ -9,7 +9,10 @@ from issues.models import Issue, IssueContributor
 
 @register.inclusion_tag("issues/issue_item.html", takes_context=True)
 def show_issue(context, issue):
-    return {'issue': issue, 'request': context['request']}
+    extras = False
+    if issue.private or issue.sandbox or issue.model_project:
+        extras = True
+    return {'issue': issue, 'extras': extras, 'request': context['request']}
 
 @register.simple_tag
 def clear_search_url(request):

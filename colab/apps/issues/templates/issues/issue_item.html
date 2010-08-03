@@ -42,5 +42,19 @@
         {% else %}
             <span class="post-no-tags">no tags</span>
         {% endif %}
+        
+        {% if extras %}
+            <ul class="post-extras-list">
+                {% if issue.private %}
+                    <li class="post-sticker private-sticker">{% filter_link request "private" 1 "private" %}</li>
+                {% endif %}
+                {% if issue.sandbox %}
+                    <li class="post-sticker sandbox-sticker">{% filter_link request "sandbox" 1 "sandbox" %}</li>
+                {% endif %}
+                {% if issue.model_project %}
+                    <li class="post-sticker model-project-sticker">{% filter_link request "model_project" 1 "model project" %}</li>
+                {% endif %}
+            </ul>
+        {% endif %}
     </div>
 </li>

@@ -100,7 +100,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
     authenticated = request.user.is_authenticated()
     
     if authenticated and mine:
-        issues = Issue.objects.filter(contributors=request.user).distinct()
+        issues = Issue.objects.filter(contributors=request.user)
     else:
         issues = Issue.objects.filter(private=False)
     
@@ -110,10 +110,16 @@ def issues(request, mine=False, template_name="issues/issues.html"):
             issues.filter(description__icontains=search_terms))
     
     # Additional filtering
+    sandbox = request.GET.get('sandbox', None)
+    model_project = request.GET.get('model_project', None)
     discipline = request.GET.get('discipline', None)
     the_discipline = None
     tag = request.GET.get('tag', None)
     the_tag = None
+    if not sandbox:
+        issues = issues.filter(sandbox=False)
+    if model_project:
+        issues = issues.filter(model_project=True)
     if discipline:
         try:
             the_discipline = Discipline.objects.get(slug=discipline) # make sure the discpline exists
@@ -184,7 +190,7 @@ def issues(request, mine=False, template_name="issues/issues.html"):
         'mine': mine,
         'search_terms': search_terms, 'the_discipline': the_discipline,
         'discipline_filters': discipline_filters, 'tag_filters': tag_filters,
-        'the_tag': the_tag,
+        'the_tag': the_tag, 'sandbox': sandbox, 'model_project': model_project,
         'sort': sort, 'direction': direction,
         'list_title': list_title,
     }, context_instance=RequestContext(request))

@@ -23,6 +23,8 @@ class Issue(models.Model):
     description = models.TextField(_("description"))
     
     private = models.BooleanField(_("private"), default=False)
+    sandbox = models.BooleanField(_("sandbox"), default=False)
+    model_project = models.BooleanField(_("model project"), default=False)
     
     disciplines = models.ManyToManyField(Discipline, blank=True)
     tags = TagField()

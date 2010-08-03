@@ -34,11 +34,11 @@ class IssueForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(IssueForm, self).__init__(*args, **kwargs)
-        self.fields.keyOrder = ['title', 'slug', 'description', 'disciplines', 'tags', 'private']
+        self.fields.keyOrder = ['title', 'slug', 'sandbox', 'description', 'disciplines', 'tags', 'private']
     
     class Meta:
         model = Issue
-        fields = ['title', 'slug', 'tags', 'description', 'disciplines', 'private']
+        fields = ['title', 'sandbox', 'slug', 'tags', 'description', 'disciplines', 'private']
 
 class InviteContributorForm(forms.Form):
     

@@ -37,7 +37,7 @@
         <div class="clear"></div>
         
         {% if issue.private %}
-            <span class="private">private</span>
+            <span class="post-sticker private-sticker">private</span>
         {% endif %}
         
         {% ifequal issue.creator request.user %}
@@ -50,6 +50,14 @@
                 </fieldset>
             </form>
         {% endifequal %}
+        
+        {% if issue.sandbox %}
+            <span class="post-sticker sandbox-sticker">sandbox</span>
+        {% endif %}
+        
+        {% if issue.model_project %}
+            <span class="post-sticker model-project-sticker">model project</span>
+        {% endif %}
         
         <div class="post-taxonomy-box">
             <div class="post-taxonomy-header">Posted under</div>

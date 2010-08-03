@@ -50,6 +50,36 @@
             </ul>
         </div>
         
+        <div id="example-wrapper" class="filter-wrapper">
+            <div class="filter-header">By extras</div>
+            
+            {% if sandbox %}
+                <div id="set-sandbox" class="set-filter">
+                    Include sandbox issues
+                    <a href="{% remove_filter_url request "sandbox" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% else %}
+                <div class="filter-block">
+                    <a href="{% filter_url request "sandbox" 1 %}">Include sandbox issues</a>
+                </div>
+            {% endif %}
+            
+            {% if model_project %}
+                <div id="set-model-project" class="set-filter">
+                    Only model projects
+                    <a href="{% remove_filter_url request "model_project" %}">
+                        <img class="remove-filter-button" src="{{ STATIC_URL }}images/feeds/delete.png" alt="remove">
+                    </a>
+                </div>
+            {% else %}
+                <div class="filter-block">
+                    <a href="{% filter_url request "model_project" 1 %}">Only model projects</a>
+                </div>
+            {% endif %}
+        </div>
+        
         <div id="discplines-wrapper" class="filter-wrapper">
             <div class="filter-header">By discipline</div>
             

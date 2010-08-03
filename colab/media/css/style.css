@@ -502,7 +502,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     font-weight: bold;
     margin-left: 10px;
 }
-.filter-list {
+.filter-list, .filter-block {
     list-style: none;
     margin-left: 20px;
 }
@@ -623,6 +623,30 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .post-tags-list a:hover {
     color: #94ba3c !important;
 }
+
+.post-no-tags {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.post-extras-list li {
+    display: inline;
+}
+
+.post-sticker {
+    padding: 3px 6px;
+    font-weight: bold;
+    color: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.post-sticker a { color: #fff; text-decoration: none; }
+.post-sticker a:hover { text-decoration: underline; }
+.private-sticker { background: #c44; }
+.sandbox-sticker { background: #ada222; }
+.sandbox-sticker a { color: #f7f0a7; }
+.model-project-sticker { background: #94ba3c; }
 
 .pagination {
     clear: both;
