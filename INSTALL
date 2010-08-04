@@ -10,7 +10,8 @@ CoLab requires...
  - Django 1.2
  - Pinax 0.9
  - MathJax
- - TinyMCE 
+ - TinyMCE
+ - Postgresql (recommended, but you can always change the DATABASE settings to use sqlite3)
 
 Getting a local copy running isn't the simplest thing right now. Eventually we will have a buildout script to do all of this. Babysteps.
 
@@ -90,6 +91,24 @@ In the colab directory, run
 
     (colab)$ pip install Pinax
     (colab)$ pip install -r requirements.txt
+
+
+Postgresql
+----------
+
+Get the latest postgresql by using apt-get
+
+    $ sudo apt-get install postgresql
+
+To match the settings in the repo, make a user and db called `dev`
+
+    $ sudo -u postgres createuser -D -A -P dev
+    give dev the password `password` at the prompt
+    $ sudo -u postgres createdb -O dev dev
+
+Now go into your colab env and sync the db
+
+    (colab)$ python manage.py syncdb
 
 
 MathJax
