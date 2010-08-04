@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic.simple import redirect_to
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
+
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 

@@ -7,3 +7,4 @@ colab/media/mathjax
 colab/media/tiny_mce
 colab/site_media/media/*
 colab/local_settings.py
+colab/test_data/

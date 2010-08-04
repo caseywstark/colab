@@ -17,7 +17,7 @@ class IssueForm(forms.ModelForm):
     
     title = forms.CharField(label=_("Title"), max_length=255)
     slug = forms.SlugField(max_length=30,
-        help_text = _("a short version of the name consisting only of letters, numbers, underscores and hyphens."),
+        help_text = _("a short version of the title used for the permalink (only letters, numbers, underscores and dashes please)"),
     )
     description = forms.CharField(widget=TinyMCE(attrs={'class': 'rich-editor'}))
     disciplines = AutoCompleteSelectMultipleField('discipline', required=False, label=_("Disciplines"))

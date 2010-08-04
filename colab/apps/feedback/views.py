@@ -7,7 +7,7 @@ from django.utils import simplejson
 from django.contrib import messages
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 from threadedcomments.models import ThreadedComment
 from threadedcomments.forms import RichCommentForm

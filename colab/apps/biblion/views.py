@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils import simplejson as json
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 from django.contrib.sites.models import Site
 
