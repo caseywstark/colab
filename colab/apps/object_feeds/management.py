@@ -1,15 +1,14 @@
-from django.template.defaultfilters import slugify
-from django.contrib.contenttypes.models import ContentType
+from django.conf import settings
+from django.db.models import signals
+from django.utils.translation import ugettext_noop as _
 
-def create_actions(model, **kwargs):
-    try:
-        content_type = ContentType.objects.get_for_model(model)
+if "notification" in settings.INSTALLED_APPS:
+    from notification import models as notification
 
-        create_action = models.Action(content_type=content_type, action='create', description='created', slug='create')
-        create_action.save()
-        edit_action = models.Action(content_type=content_type, action='edit', description='edited', slug='edit')
-        edit_action.save()
-        comment_action = models.Action(content_type=content_type, action='comment', description='commented on', slug='comment')
-        comment_action.save()
-    except:
-        print "Skipping creation of default actions as ContentType instances not found"
+    def create_notice_types(app, created_models, verbosity, **kwargs):
+        notification.create_notice_type("issues_invite", _("Invitation Received"), _("you have received an invitation"))
+        notification.create_notice_type("object_feeds_update", _("Acitivity Feed Update"), _("someone updated an object you are following"))
+
+    signals.post_syncdb.connect(create_notice_types, sender=notification)
+else:
+    print "Skipping creation of NoticeTypes as notification app not found"

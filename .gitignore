@@ -2,6 +2,7 @@
 .svn
 dev.db
 fabfile.py
+app-messages
 
 colab/media/mathjax
 colab/media/tiny_mce

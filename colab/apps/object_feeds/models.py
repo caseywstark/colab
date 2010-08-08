@@ -12,13 +12,7 @@ try:
     from notification import models as notification
 except ImportError:
     notification = None
-    
 
-BASIC_ACTIONS = (
-    ('create', 'created'),
-    ('edit', 'edited'),
-    ('comment', 'commented on'),
-)
 
 ### Code for the Feed Object ###
 def register_action(self, user, action, content_object, object_title='', object_link='', update_content=''):
@@ -71,9 +65,12 @@ class Feed(models.Model):
         if created:
             if the_actions == 'all':
                 actions = Action.objects.filter(content_type=self.content_type)
-                subscription.actions = actions
+                subscription.site_actions = actions
+                subscription.email_actions = actions
             else:
-                subscription.actions = the_actions
+                actions = the_actions
+            subscription.site_actions = actions
+            subscription.email_actions = actions
             subscription.save()
         return subscription
     
@@ -114,7 +111,8 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, related_name="feeds", verbose_name=_('user'))
     feed = models.ForeignKey(Feed, related_name="subscribers", verbose_name=_('feed'))
     
-    actions = models.ManyToManyField('Action')
+    site_actions = models.ManyToManyField('Action', related_name='site_subscriptions')
+    email_actions = models.ManyToManyField('Action', related_name='email_subscriptions')
     
     top_level = models.BooleanField(default=False)
     
@@ -164,10 +162,11 @@ class Update(models.Model):
     def save(self, *args, **kw):
         if not self.id:
             if notification:
-                followers_with_this_action = Subscription.objects.filter(feed=self.feed, actions=self.action)
+                subscriptions_with_this_action = Subscription.objects.filter(feed=self.feed, email_actions=self.action)
+                followers_with_this_action = [sub.user for sub in subscriptions_with_this_action]
                 notification.send(followers_with_this_action, "object_feeds_update", {
                     "update": self,
-                }, on_site=False, queue=True)
+                }, on_site=False, queue=False)
 
 
 from threadedcomments.models import ThreadedComment
