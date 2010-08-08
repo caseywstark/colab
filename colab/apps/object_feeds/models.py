@@ -8,6 +8,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.template.defaultfilters import date
 
+try:
+    from notification import models as notification
+except ImportError:
+    notification = None
+    
+
 BASIC_ACTIONS = (
     ('create', 'created'),
     ('edit', 'edited'),
@@ -60,7 +66,7 @@ class Feed(models.Model):
             return False
         return subscription
     
-    def subscribe(self, the_user, the_actions='all'):
+    def follow(self, the_user, the_actions='all'):
         subscription, created = Subscription.objects.get_or_create(feed=self, user=the_user)
         if created:
             if the_actions == 'all':
@@ -71,7 +77,7 @@ class Feed(models.Model):
             subscription.save()
         return subscription
     
-    def unsubscribe(self, the_user):
+    def unfollow(self, the_user):
         try:
             subscription = Subscription.objects.get(feed=self, user=the_user)
         except Subscription.DoesNotExist:
@@ -118,6 +124,7 @@ class Subscription(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('subscription_options', (), {'feed_id': self.feed.id})
+    
 
 class Action(models.Model):
     
@@ -127,6 +134,7 @@ class Action(models.Model):
     
     def __unicode__(self):
         return self.slug
+
 
 class Update(models.Model):
     
@@ -152,6 +160,14 @@ class Update(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('update_detail', (), {'update_id': self.id})
+    
+    def save(self, *args, **kw):
+        if not self.id:
+            if notification:
+                followers_with_this_action = Subscription.objects.filter(feed=self.feed, actions=self.action)
+                notification.send(followers_with_this_action, "object_feeds_update", {
+                    "update": self,
+                }, on_site=False, queue=True)
 
 
 from threadedcomments.models import ThreadedComment

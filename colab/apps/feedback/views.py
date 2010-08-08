@@ -144,7 +144,7 @@ def submit(request, form_class=FeedbackForm, template_name="feedback/submit.html
         
         feedback.register_action(request.user, 'create-feedback', feedback)
         
-        feedback.feed.subscribe(request.user)
+        feedback.feed.follow(request.user)
         
         return HttpResponseRedirect(feedback.get_absolute_url())
     
