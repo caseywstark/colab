@@ -23,7 +23,7 @@ First you need to make sure Python is installed and works. Hopefully, you are us
 
     $ sudo apt-get install python2.6
     $ python
-    Python 2.6.4 (r264:75706, Dec  7 2009, 18:45:15)
+    Python 2.6.5...
     [GCC 4.4.1] on linux2
     Type "help", "copyright", "credits" or "license" for more information.
     >>> 
@@ -90,7 +90,7 @@ Django and Pinax
 In the colab directory, run
 
     (colab)$ pip install Pinax
-    (colab)$ pip install -r requirements.txt
+    (colab)$ pip install -r colab/requirements/project.txt
 
 
 Postgresql
@@ -105,8 +105,12 @@ To match the settings in the repo, make a user and db called `dev`
     $ sudo -u postgres createuser -D -A -P dev
     give dev the password `password` at the prompt
     $ sudo -u postgres createdb -O dev dev
+    
+Edit the pg_hba.conf to allow password access
 
-Now go into your colab env and sync the db
+    local    all    all    password
+
+Restart postgres, go into your colab env and sync the db
 
     (colab)$ python manage.py syncdb
 
