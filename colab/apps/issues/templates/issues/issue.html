@@ -24,13 +24,7 @@
 
 {% block body %}
     <div id="detail-sidebar">
-        <a id="issue-follow-button" class="big-button" href="{% url feeds_subscription issue.feed.id %}" >
-            {% if following %}
-                Follow Settings
-            {% else %}
-                + Follow Issue
-            {% endif %}
-        </a>
+        {% follow_button issue "Issue" %}
         
         {% post_meta issue %}
         

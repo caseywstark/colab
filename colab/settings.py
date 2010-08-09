@@ -90,6 +90,7 @@ SECRET_KEY = "*vrox!me3x6nk0%pe^*njyi0lwbzw-bd_t@ddjw4cu=rtvqm(1"
 TEMPLATE_LOADERS = [
     "django.template.loaders.filesystem.load_template_source",
     "django.template.loaders.app_directories.load_template_source",
+    "django.template.loaders.eggs.load_template_source",
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -193,9 +194,9 @@ INSTALLED_APPS = [
     "tinymce",
     "oauth_access",
     "biblion",
+    "about",
     
     # custom
-    "about",
     "object_feeds",
     "disciplines",
     "people",
@@ -203,7 +204,6 @@ INSTALLED_APPS = [
     "papers",
     "dashboard",
     "feedback",
-    
 ]
 
 FIXTURE_DIRS = [
@@ -273,9 +273,11 @@ RESTRUCTUREDTEXT_FILTER_SETTINGS = {
     "strip_comments": True,
 }
 
+
 # if Django is running behind a proxy, we need to do things like use
 # HTTP_X_FORWARDED_FOR instead of REMOTE_ADDR. This setting is used
 # to inform apps of this fact
+
 BEHIND_PROXY = False
 
 FORCE_LOWERCASE_TAGS = True

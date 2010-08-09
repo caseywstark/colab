@@ -1,0 +1,32 @@
+<div id="follow-button-{{ feed.id }}" class="follow-button">
+    {% if subscription %}
+        Following
+        <a id="follow-button-link-{{ feed.id }}" class="follow-edit-button"
+            href="{{ subscription_url }}">
+            <img src="{{ STATIC_URL }}images/feeds/settings.png" alt="edit">
+        </a>
+    {% else %}
+        <a id="follow-button-link-{{ feed.id }}" class="follow-button-link"
+            href="{{ subscription_url }}">
+            + Follow{% if extra_text %} {{ extra_text }}{% endif %}
+        </a>
+    {% endif %}
+</div>
+
+<div id="follow-form-wrapper-{{ feed.id }}" class="follow-form-wrapper">
+    <img src="{{ STATIC_URL }}images/spinner.gif" alt="Loading...">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#follow-edit-button-{{ feed.id }}").click(function(e) {
+            $("#follow-form-wrapper-{{ feed.id }}").slideToggle(500);
+            
+            $("#follow-form-wrapper-{{ feed.id }}").load(
+                "{% url feeds_follow_form feed_id=feed.id %}"
+            );
+            
+            return false;
+        });
+    });
+</script>

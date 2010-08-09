@@ -1,0 +1,32 @@
+{% if following %}
+    <form class="uniForm unfollow-form" id="unfollow-form-{{ feed.id }}" method="POST" action="{% ">{% csrf_token %}
+        <fieldset class="inlineLabels">
+            <div class="form_block">
+                <input type="submit" name="unfollow" value="Unfollow" onclick="unfollow();">
+            </div>
+        </fieldset>
+    </form>
+{% endif %}
+
+<p>
+    RSS/Atom
+</p>
+
+{% if user.is_authenticated %}
+    <form class="uniForm follow-form" id="follow-form-{{ feed.id }}" method="POST" action="">{% csrf_token %}
+        <fieldset class="inlineLabels">
+            {{ subscription_form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" name="follow" value="Update follow" onclick="follow();">
+            </div>
+        </fieldset>
+    </form>
+{% else %}
+    {% url acct_signup as signup_url %}
+    {% url acct_login as login_url %}
+    <p>
+        <a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in</a> to follow through CoLab and get email notifications.
+    </p>
+{% endif %}
+
+

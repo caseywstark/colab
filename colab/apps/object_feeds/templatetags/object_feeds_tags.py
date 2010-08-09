@@ -41,9 +41,9 @@ def show_update(context, update):
         'feed_object': feed_object, 'update_object': update_object, 'update_line': update_line,
         'update_content': update.update_content, 'STATIC_URL': settings.STATIC_URL}
 
-### Constructs the feed_subscription link for any object ###
-@register.inclusion_tag("feeds/follow.html", takes_context=True)
-def follow_link(context, content_object, extra_text=None):
+### Renders the follow button for any object ###
+@register.inclusion_tag("feeds/follow_button.html", takes_context=True)
+def follow_button(context, content_object, extra_text=None):
     user = context['request'].user
     feed = content_object.feed
     subscription_url = reverse('feeds_subscription', kwargs={'feed_id': feed.id})
@@ -53,4 +53,6 @@ def follow_link(context, content_object, extra_text=None):
     else:
         subscription = None
         
-    return {'subscription_url': subscription_url, 'subscription': subscription, 'extra_text': extra_text}
+    return {'subscription_url': subscription_url, 'subscription': subscription,
+        'extra_text': extra_text, 'feed': feed,
+        'STATIC_URL': settings.STATIC_URL}

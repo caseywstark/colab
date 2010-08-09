@@ -1,11 +1,0 @@
-{% load theme_tags %}
-
-{% spaceless %}
-<a href="{{ subscription_url }}">
-    {% if subscription %}
-        - Unfollow
-    {% else %}
-        + Follow
-    {% endif %}
-    {% if extra_text %} {{ extra_text }}{% endif %}
-</a>{% endspaceless %}

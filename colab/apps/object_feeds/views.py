@@ -40,7 +40,8 @@ def feeds(request, mine=True, username=None, template_name='feeds/feeds.html'):
     )
 
 @login_required
-def subscription(request, feed_id=None, content_type=None, object_id=None, template_name='feeds/subscription.html'):
+def subscription(request, feed_id=None, content_type=None, object_id=None,
+    add_messages=False, ajax=False, template_name='feeds/subscription.html'):
     
     if feed_id: # feed_id takes priority (fastest)
         feed = get_object_or_404(Feed, pk=feed_id)
@@ -52,10 +53,12 @@ def subscription(request, feed_id=None, content_type=None, object_id=None, templ
         raise Http404
     
     subscription = None
-    actions = None
+    site_actions = None
+    email_actions = None
     try:
         subscription = Subscription.objects.get(feed=feed, user=request.user)
-        actions = subscription.actions.all()
+        site_actions = subscription.site_actions.all()
+        email_actions = subscription.email_actions.all()
         following = True
     except Subscription.DoesNotExist:
         following = False
@@ -70,9 +73,18 @@ def subscription(request, feed_id=None, content_type=None, object_id=None, templ
     # figure out which form was submitted
     unfollow_form = request.POST.get('unfollow', False)
     follow_form = request.POST.get('follow', False)
-    if unfollow_form and following:
-        subscription.delete()
-        return HttpResponseRedirect(feed.feed_object.get_absolute_url())
+    if unfollow_form:
+        if following:
+            subscription.delete()
+            messages.add_message(request, messages.SUCCESS,
+                _("You are now longer following.")
+            )
+            return HttpResponseRedirect(feed.feed_object.get_absolute_url())
+        else:
+            messages.add_message(request, messages.ERROR,
+                _("You can't unfollow because you aren't following this object.")
+            )
+            return HttpResponseRedirect(feed.feed_object.get_absolute_url())
         
     if follow_form and subscription_form.is_valid():
         subscription = subscription_form.save()
@@ -82,6 +94,13 @@ def subscription(request, feed_id=None, content_type=None, object_id=None, templ
         
         return HttpResponseRedirect(feed.feed_object.get_absolute_url())
     
+    if ajax == 'json':
+        return JSONResponse([new_comment,])
+    elif ajax == 'xml':
+        return XMLResponse([new_comment,])
+    else:
+        return HttpResponseRedirect(_get_next(request))
+    
     return render_to_response(template_name, {
         'feed': feed,
         'subscription_form': subscription_form,
@@ -90,3 +109,10 @@ def subscription(request, feed_id=None, content_type=None, object_id=None, templ
         }, context_instance=RequestContext(request)
     )
 
+def follow_form(request, feed_id=None, template_name='feeds/subscription.html'):
+    if feed_id: # feed_id takes priority (fastest)
+        feed = get_object_or_404(Feed, pk=feed_id)
+    else:
+        return "Sorry, we couldn't find that feed"
+    
+    return render_to_string('feeds/follow_form.html', {'feed': feed})
