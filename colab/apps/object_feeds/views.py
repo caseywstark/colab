@@ -115,4 +115,6 @@ def follow_form(request, feed_id=None, template_name='feeds/subscription.html'):
     else:
         return "Sorry, we couldn't find that feed"
     
-    return render_to_string('feeds/follow_form.html', {'feed': feed})
+    return render_to_response('feeds/follow_form.html', {'feed': feed,
+        'authenticated': user.is_authenticated()}
+    )

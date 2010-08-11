@@ -1,4 +1,4 @@
-<div id="follow-button-{{ feed.id }}" class="follow-button">
+<span id="follow-button-{{ feed.id }}" class="follow-button big-button">
     {% if subscription %}
         Following
         <a id="follow-button-link-{{ feed.id }}" class="follow-edit-button"
@@ -11,15 +11,15 @@
             + Follow{% if extra_text %} {{ extra_text }}{% endif %}
         </a>
     {% endif %}
-</div>
+</span>
 
 <div id="follow-form-wrapper-{{ feed.id }}" class="follow-form-wrapper">
-    <img src="{{ STATIC_URL }}images/spinner.gif" alt="Loading...">
+    <img class="spinner" src="{{ STATIC_URL }}images/spinner.gif" alt="Loading...">
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#follow-edit-button-{{ feed.id }}").click(function(e) {
+    $(function() {
+        $("#follow-button-link-{{ feed.id }}").click(function(e) {
             $("#follow-form-wrapper-{{ feed.id }}").slideToggle(500);
             
             $("#follow-form-wrapper-{{ feed.id }}").load(

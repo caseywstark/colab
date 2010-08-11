@@ -664,21 +664,26 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     width: 220px;
     white-space: nowrap;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
-.big-button, .big-button:visited {
+.big-button {
     font-size: 16px;
-    margin: 10px 0 10px 0; padding: 4px 8px;
+    margin: 10px 0 10px 0; padding: 5px 10px;
     background: #333;
     color: #fff !important;
-    text-decoration: none !important;
     border: 3px solid #ccc;
     font-weight: bold;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
-.big-button:hover {
+.big-button a, .big-button a:visited {
+    color: #fff;
+    text-decoration: none !important;
+}
+.big-button a:hover {
     color: #94ba3c !important;
 }
 
@@ -705,7 +710,9 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 #post-content-block {
-    margin: 20px 0 10px 230px;
+    float: left;
+    margin: 20px 0 10px 20px;
+    z-index: 1;
 }
 .post-title {
     font-size: 24px;
@@ -767,12 +774,6 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     color: #999 !important;
 }
 
-#issue-paper-add {
-    display: block;
-    width: 120px;
-    margin: 10px;
-}
-
 /**************************************\
  * Meta
 \**************************************/
@@ -799,6 +800,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     float: left;
     width: 50%;
     text-align:center;
+    margin: 0 0 5px;
 }
 .stat-name {
     font-size: 12px;
@@ -828,9 +830,10 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .post-status-block {
     clear: both;
     border-top: 1px solid #ccc;
+    margin: 5px 0;
 }
 .post-status {
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 16px;
     font-weight: bold;
 }   
@@ -964,6 +967,26 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 .interests-list a:hover {f
     color: #94ba3c !important;
 }
+
+/**************************************\
+ * Follow stuff
+\**************************************/
+
+.follow-form-wrapper {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    width: 230px;
+    background: white;
+    border: 5px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 8px;
+}
+img.spinner { text-align: center; }
+
+
 
 /**************************************\
  * Dashboard

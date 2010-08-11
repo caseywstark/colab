@@ -102,9 +102,11 @@
                 <div class="no-papers">No papers, yet.</div>
             {% endif %}
             
-            <a id="issue-paper-add" class="big-button" href="{% add_paper_url issue %}">
-                + Add a paper
-            </a>
+            <span id="issue-paper-add-{{ issue.id }}" class="big-button">
+                <a id="issue-paper-add" href="{% add_paper_url issue %}">
+                    + Add a paper
+                </a>
+            </span>
         </div>
     </div>
     
