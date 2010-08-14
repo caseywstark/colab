@@ -94,13 +94,6 @@ def subscription(request, feed_id=None, content_type=None, object_id=None,
         
         return HttpResponseRedirect(feed.feed_object.get_absolute_url())
     
-    if ajax == 'json':
-        return JSONResponse([new_comment,])
-    elif ajax == 'xml':
-        return XMLResponse([new_comment,])
-    else:
-        return HttpResponseRedirect(_get_next(request))
-    
     return render_to_response(template_name, {
         'feed': feed,
         'subscription_form': subscription_form,
@@ -113,8 +106,22 @@ def follow_form(request, feed_id=None, template_name='feeds/subscription.html'):
     if feed_id: # feed_id takes priority (fastest)
         feed = get_object_or_404(Feed, pk=feed_id)
     else:
-        return "Sorry, we couldn't find that feed"
+        return '<span class="error">Sorry, we could not find that feed.</span>'
+    
+    if request.user.is_authenticated():
+        subscription = feed.is_user_following(request.user)
+        if subscription:
+            following = True
+            subscription_form = SubscriptionForm(request.POST or None,
+                instance=subscription, feed=feed)
+        else:
+            following = False
+            subscription_form = SubscriptionForm(request.POST or
+                {'feed': feed.id, 'user': request.user.id}, feed=feed)
+    else:
+        subscription = None
     
     return render_to_response('feeds/follow_form.html', {'feed': feed,
-        'authenticated': user.is_authenticated()}
+        'subscription': subscription, 'subscription_form': subscription_form,
+        }, context_instance=RequestContext(request)
     )

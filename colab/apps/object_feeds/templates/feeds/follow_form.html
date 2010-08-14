@@ -14,7 +14,7 @@
     RSS/Atom
 </p>
 
-{% if authenticated %}
+{% if user.is_authenticated %}
     <form class="uniForm follow-form" id="follow-form-{{ feed.id }}" method="POST" action="">{% csrf_token %}
         <fieldset class="inlineLabels">
             {{ subscription_form|as_uni_form }}
