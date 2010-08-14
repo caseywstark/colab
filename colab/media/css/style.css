@@ -664,8 +664,8 @@ input[type="submit"]:hover, input[type="submit"]:hover {
     width: 220px;
     white-space: nowrap;
     overflow: hidden;
-    position: relative;
-    z-index: 1;
+    position: static;
+    z-index: 2;
 }
 
 .big-button {
@@ -710,6 +710,7 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 }
 
 #post-content-block {
+    position: relative;
     float: left;
     margin: 20px 0 10px 20px;
     z-index: 1;
@@ -973,18 +974,21 @@ input[type="submit"]:hover, input[type="submit"]:hover {
 \**************************************/
 
 .follow-form-wrapper {
-    display: none;
     position: absolute;
+    top: 34px; left: 150px;
+    margin: 10px; padding: 8px;
     z-index: 10;
-    width: 230px;
+    width: 250px;
     background: white;
-    border: 5px solid #ccc;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    padding: 8px;
+    border: 3px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 5px 5px 10px #666;
+    -moz-box-shadow: 5px 5px 10px #666;
+    box-shadow: 5px 5px 10px #666;
 }
-img.spinner { text-align: center; }
+div.spinner-wrapper { text-align: center; }
 
 
 

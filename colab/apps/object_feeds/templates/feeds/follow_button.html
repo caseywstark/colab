@@ -13,8 +13,10 @@
     {% endif %}
 </span>
 
-<div id="follow-form-wrapper-{{ feed.id }}" class="follow-form-wrapper">
-    <img class="spinner" src="{{ STATIC_URL }}images/spinner.gif" alt="Loading...">
+<div id="follow-form-wrapper-{{ feed.id }}" class="follow-form-wrapper" style="display: none;">
+    <div class="spinner-wrapper">
+        <img class="spinner" src="{{ STATIC_URL }}images/spinner.gif" alt="Loading...">
+    </div>
 </div>
 
 <script type="text/javascript">

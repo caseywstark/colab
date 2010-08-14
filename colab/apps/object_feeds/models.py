@@ -96,6 +96,14 @@ class Feed(models.Model):
         else:
             return self.update_set
     
+    def get_followers(self, action=None, email_action=None):
+        subscriptions = Subscription.objects.filter(feed=self)
+        if action:
+            subscriptions.filter(actions=action)
+        if email_action:
+            subscriptions.filter(email_actions=email_action)
+        return [sub.user for sub in subscriptions]
+    
     def save(self, *args, **kwargs):
         already_created = False
         if self.id:
@@ -162,8 +170,7 @@ class Update(models.Model):
     def save(self, *args, **kw):
         if not self.id:
             if notification:
-                subscriptions_with_this_action = Subscription.objects.filter(feed=self.feed, email_actions=self.action)
-                followers_with_this_action = [sub.user for sub in subscriptions_with_this_action]
+                followers_with_this_action = self.feed.get_followers(email_action=self.action)
                 notification.send(followers_with_this_action, "object_feeds_update", {
                     "update": self,
                 }, on_site=False, queue=False)
