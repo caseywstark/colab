@@ -200,7 +200,7 @@ def issue(request, slug=None, template_name="issues/issue.html"):
     
     # check if private
     if issue.private and not issue.user_is_contributor(request.user):
-        return Http404
+        raise Http404
     
     issue_type = ContentType.objects.get_for_model(issue)
     

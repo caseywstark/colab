@@ -68,7 +68,9 @@ class Issue(models.Model):
         return reverse("issue_detail", kwargs={"slug": self.slug})
     
     def user_is_contributor(self, user):
-        return self.contributors.filter(user=user).exists()
+        if user.is_authenticated():
+            return self.contributors.filter(user=user).exists()
+        return False
     
     def user_can_read(self, user):
         if self.private and not self.user_is_contributor(user):
